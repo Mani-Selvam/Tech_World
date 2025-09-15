@@ -55,48 +55,37 @@ export default function TicketModal({ isOpen, onClose }: TicketModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl max-h-[90vh] bg-slate-900 border-slate-700 overflow-hidden">
-        <DialogHeader className="text-center pb-6">
-          <DialogTitle className="text-4xl font-bold text-white">
+      <DialogContent className="max-w-6xl bg-slate-900 border-slate-700">
+        <DialogHeader className="text-center pb-4">
+          <DialogTitle className="text-3xl font-bold text-white">
             Choose your ticket
           </DialogTitle>
         </DialogHeader>
         
-        <div className="max-h-[75vh] overflow-y-auto px-6 pb-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="px-6 pb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {tickets.map((ticket, index) => (
               <div key={ticket.type} className="relative">
-                {/* Happy Bird Tag */}
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
-                  <div className="bg-green-500 text-white px-4 py-1 rounded-full text-sm font-bold">
-                    HAPPY BIRD
-                  </div>
-                </div>
-                
-                {/* Limited Tickets Badge - moved to top right for VIP */}
-                {ticket.isLimited && (
-                  <div className="absolute -top-3 right-4 z-10">
-                    <span className="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold">
-                      20 TICKETS ONLY
-                    </span>
-                  </div>
-                )}
-                
                 {/* Ticket Card */}
-                <div className={`${ticket.bgColor} ${ticket.borderColor} border-2 rounded-lg p-6 h-full flex flex-col backdrop-blur-sm`}>
-                  {/* Ticket Type Header */}
-                  <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold text-white bg-slate-800/50 py-3 rounded-lg border border-gray-600">
-                      {ticket.type}
-                    </h3>
+                <div className={`${ticket.bgColor} ${ticket.borderColor} border-2 rounded-lg p-4 h-full flex flex-col backdrop-blur-sm`}>
+                  {/* Ticket Type Header with Badge */}
+                  <div className="mb-4">
+                    <div className="flex items-center justify-between bg-slate-800/50 py-3 px-4 rounded-lg border border-gray-600">
+                      <h3 className="text-xl font-bold text-white">{ticket.type}</h3>
+                      {ticket.isLimited && (
+                        <span className="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">
+                          20 TICKETS ONLY
+                        </span>
+                      )}
+                    </div>
                   </div>
                   
                   {/* Features List */}
-                  <div className="flex-1 mb-6">
+                  <div className="flex-1 mb-4">
                     {ticket.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-3 mb-3">
-                        <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-white text-sm leading-relaxed">
+                      <div key={idx} className="flex items-start gap-2 mb-2">
+                        <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-white text-[13px] leading-relaxed">
                           {feature === "All options included in the STANDARD ticket" && (
                             <>All options included in the <span className="underline font-semibold">STANDARD</span> ticket</>
                           )}
@@ -116,9 +105,9 @@ export default function TicketModal({ isOpen, onClose }: TicketModalProps) {
                     
                     {/* AKON Image for VIP */}
                     {ticket.type === "VIP" && (
-                      <div className="mt-4 text-center">
-                        <div className="bg-slate-800/70 rounded-lg p-3 inline-block">
-                          <span className="text-orange-400 font-bold text-lg">AKON</span>
+                      <div className="mt-2 text-center">
+                        <div className="bg-slate-800/70 rounded-lg p-2 inline-block">
+                          <span className="text-orange-400 font-bold text-sm">AKON</span>
                         </div>
                       </div>
                     )}
