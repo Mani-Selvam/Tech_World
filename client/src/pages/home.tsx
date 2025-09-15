@@ -43,8 +43,8 @@ function HomeContent() {
       <WhyAttend />
       <SpeakersVideo />
       <BullRun />
-      <Attendees />
       <WhoAttends />
+      <Attendees />
       <OfficialTrailer />
       <ForumTopics />
       
