@@ -56,7 +56,7 @@ export default function StartupPitch() {
           </div>
 
           {/* Orbiting Images */}
-          <div className="orbit-container absolute inset-0">
+          <div className="orbit-ring absolute inset-0">
             {speakers.map((speaker, index) => {
               const angle = index * 60; // 360 / 6 speakers = 60 degrees each
               return (
@@ -69,7 +69,7 @@ export default function StartupPitch() {
                   } as React.CSSProperties}
                   data-testid={`orbit-speaker-${index}`}
                 >
-                  <div className="rounded-full w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 border-4 border-[#F59E0B] shadow-lg overflow-hidden">
+                  <div className="card rounded-full w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 border-4 border-[#F59E0B] shadow-lg overflow-hidden">
                     <img
                       src={speaker.image}
                       alt={speaker.alt}

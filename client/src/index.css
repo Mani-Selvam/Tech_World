@@ -238,30 +238,3 @@
   animation: spin-slow 8s linear infinite;
 }
 
-/* Orbital animation for images rotating around center text */
-.orbit-container {
-  animation: orbit 15s linear infinite;
-}
-
-.orbit-item {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  transform-origin: 0 calc(0px - var(--radius));
-  transform: rotate(var(--angle)) translateY(calc(0px - var(--radius)));
-}
-
-.orbit-item > div {
-  transform: translateX(-50%) translateY(-50%);
-}
-
-@keyframes orbit {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
