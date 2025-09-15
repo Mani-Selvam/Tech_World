@@ -8,6 +8,7 @@ import BullRun from "@/components/BullRun";
 import Attendees from "@/components/Attendees";
 import WhoAttends from "@/components/WhoAttends";
 import OfficialTrailer from "@/components/OfficialTrailer";
+import ForumTopics from "@/components/ForumTopics";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -37,6 +38,7 @@ export default function Home() {
       <Attendees />
       <WhoAttends />
       <OfficialTrailer />
+      <ForumTopics />
       
       {/* Call to Action Section */}
       <section className="py-20 bg-background">
