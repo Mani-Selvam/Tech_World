@@ -1,3 +1,4 @@
+import techaraLogo from "@/assets/techara-logo.png";
 
 export default function Hero() {
 
@@ -45,8 +46,8 @@ export default function Hero() {
         {/* Main Logo */}
         <div className="mb-8">
           <img 
-            src="https://blockchain-life.com/wp-content/themes/cpalife/assets/img/icons3/Logo_forum_white.svg" 
-            alt="Blockchain Life Forum Logo" 
+            src={techaraLogo} 
+            alt="TechAra Logo" 
             className="h-20 md:h-32 mx-auto mb-6"
             data-testid="img-main-logo"
           />

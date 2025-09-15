@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Blockchain Life
+              TechAra
             </div>
             <p className="text-muted-foreground">
               The world's leading blockchain, crypto & Web3 forum.
@@ -28,9 +28,8 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="font-semibold text-foreground">Event Info</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li data-testid="footer-event-date">October 28-29, 2025</li>
-              <li data-testid="footer-event-location">Dubai, UAE</li>
-              <li data-testid="footer-event-venue">Festival Arena</li>
+              <li data-testid="footer-event-date">Web3_Sindhu</li>
+              <li data-testid="footer-event-location">TechARA Academy</li>
             </ul>
           </div>
           
@@ -62,7 +61,7 @@ export default function Footer() {
         
         <div className="border-t border-border mt-12 pt-8 text-center text-muted-foreground">
           <p data-testid="footer-copyright">
-            &copy; 2025 Blockchain Life. All rights reserved. Established in 2017.
+            &copy; 2025 TechAra. All rights reserved.
           </p>
         </div>
       </div>

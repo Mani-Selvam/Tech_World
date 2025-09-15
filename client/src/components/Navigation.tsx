@@ -26,7 +26,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-4">
             <div className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Blockchain Life
+              TechAra
             </div>
           </div>
           
@@ -58,7 +58,7 @@ export default function Navigation() {
               className="bg-gradient-to-r from-primary to-accent px-6 py-2 rounded-lg text-primary-foreground font-medium hover:opacity-90 transition-opacity"
               data-testid="button-buy-tickets-nav"
             >
-              Buy Tickets
+              Register Now
             </button>
           </div>
 
@@ -104,7 +104,7 @@ export default function Navigation() {
                 className="block w-full text-left px-3 py-2 bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium rounded-lg"
                 data-testid="button-buy-tickets-mobile"
               >
-                Buy Tickets
+                Register Now
               </button>
             </div>
           </div>

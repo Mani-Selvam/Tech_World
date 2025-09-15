@@ -32,10 +32,10 @@ function HomeContent() {
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              The World's Leading Blockchain, Crypto & Web3 Forum
+              The World's Leading Web3 Academy
             </span>
             <br />
-            <span className="text-foreground">hosted in Dubai, UAE</span>
+            <span className="text-foreground">TechARA Academy</span>
           </h2>
         </div>
       </section>
