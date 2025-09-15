@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import Statistics from "@/components/Statistics";
 import PhotoGallery from "@/components/PhotoGallery";
 import WhyAttend from "@/components/WhyAttend";
-import SpeakersVideo from "@/components/SpeakersVideo";
 import BullRun from "@/components/BullRun";
 import Attendees from "@/components/Attendees";
 import WhoAttends from "@/components/WhoAttends";
@@ -42,7 +41,6 @@ function HomeContent() {
       </section>
 
       <WhyAttend />
-      <SpeakersVideo />
       <BullRun />
       <WhoAttends />
       <Attendees />
@@ -66,13 +64,7 @@ function HomeContent() {
               onClick={scrollToAttendees}
               className="bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-lg text-lg font-semibold text-primary-foreground hover:opacity-90 transition-opacity crypto-glow"
             >
-              Buy Tickets Now
-            </button>
-            <button 
-              data-testid="button-become-sponsor"
-              className="border-2 border-primary px-8 py-4 rounded-lg text-lg font-semibold text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-            >
-              Become a Sponsor
+              Register Now
             </button>
           </div>
         </div>
