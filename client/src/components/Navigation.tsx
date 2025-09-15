@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useTicketModal } from "@/contexts/TicketModalContext";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const { openModal } = useTicketModal();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -46,6 +48,7 @@ export default function Navigation() {
               Sponsors
             </button>
             <button 
+              onClick={openModal}
               className="bg-gradient-to-r from-primary to-accent px-6 py-2 rounded-lg text-primary-foreground font-medium hover:opacity-90 transition-opacity"
               data-testid="button-buy-tickets-nav"
             >
@@ -91,6 +94,7 @@ export default function Navigation() {
                 Sponsors
               </button>
               <button 
+                onClick={openModal}
                 className="block w-full text-left px-3 py-2 bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium rounded-lg"
                 data-testid="button-buy-tickets-mobile"
               >

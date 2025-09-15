@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { X } from "lucide-react";
+import { useTicketModal } from "@/contexts/TicketModalContext";
 
 export default function Hero() {
   const [showVideo, setShowVideo] = useState(false);
+  const { openModal } = useTicketModal();
 
   const playTrailer = () => {
     setShowVideo(true);
@@ -63,6 +65,7 @@ export default function Hero() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
           <button 
+            onClick={openModal}
             className="bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-lg text-lg font-semibold text-primary-foreground hover:opacity-90 transition-opacity crypto-glow"
             data-testid="button-buy-tickets-hero"
           >
