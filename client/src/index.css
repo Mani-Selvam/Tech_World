@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --primary: hsl(262, 83%, 58%);
+  --primary-foreground: hsl(210, 20%, 98%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --accent: hsl(24, 95%, 53%);
+  --accent-foreground: hsl(60, 9.1%, 97.8%);
+  --destructive: hsl(356.3, 90.6%, 54.3%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --ring: hsl(262, 83%, 58%);
+  --chart-1: hsl(262, 83%, 58%);
+  --chart-2: hsl(24, 95%, 53%);
+  --chart-3: hsl(159.8, 100%, 36.1%);
+  --chart-4: hsl(147.1, 78.5%, 41.9%);
+  --chart-5: hsl(341.5, 75.2%, 50.9%);
+  --sidebar: hsl(240, 10%, 3.9%);
+  --sidebar-foreground: hsl(0, 0%, 98%);
+  --sidebar-primary: hsl(262, 83%, 58%);
+  --sidebar-primary-foreground: hsl(210, 20%, 98%);
+  --sidebar-accent: hsl(240, 3.7%, 15.9%);
+  --sidebar-accent-foreground: hsl(0, 0%, 98%);
+  --sidebar-border: hsl(240, 3.7%, 15.9%);
+  --sidebar-ring: hsl(262, 83%, 58%);
+  --font-sans: Inter, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: 1.3rem;
+  --shadow-2xs: 0px 2px 0px 0px hsl(262, 83%, 58%, 0.00);
+  --shadow-xs: 0px 2px 0px 0px hsl(262, 83%, 58%, 0.00);
+  --shadow-sm: 0px 2px 0px 0px hsl(262, 83%, 58%, 0.00), 0px 1px 2px -1px hsl(262, 83%, 58%, 0.00);
+  --shadow: 0px 2px 0px 0px hsl(262, 83%, 58%, 0.00), 0px 1px 2px -1px hsl(262, 83%, 58%, 0.00);
+  --shadow-md: 0px 2px 0px 0px hsl(262, 83%, 58%, 0.00), 0px 2px 4px -1px hsl(262, 83%, 58%, 0.00);
+  --shadow-lg: 0px 2px 0px 0px hsl(262, 83%, 58%, 0.00), 0px 4px 6px -1px hsl(262, 83%, 58%, 0.00);
+  --shadow-xl: 0px 2px 0px 0px hsl(262, 83%, 58%, 0.00), 0px 8px 10px -1px hsl(262, 83%, 58%, 0.00);
+  --shadow-2xl: 0px 2px 0px 0px hsl(262, 83%, 58%, 0.00);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --primary: hsl(262, 83%, 58%);
+  --primary-foreground: hsl(210, 20%, 98%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --accent: hsl(24, 95%, 53%);
+  --accent-foreground: hsl(60, 9.1%, 97.8%);
+  --destructive: hsl(356.3, 90.6%, 54.3%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --ring: hsl(262, 83%, 58%);
+  --chart-1: hsl(262, 83%, 58%);
+  --chart-2: hsl(24, 95%, 53%);
+  --chart-3: hsl(159.8, 100%, 36.1%);
+  --chart-4: hsl(147.1, 78.5%, 41.9%);
+  --chart-5: hsl(341.5, 75.2%, 50.9%);
+  --sidebar: hsl(240, 10%, 3.9%);
+  --sidebar-foreground: hsl(0, 0%, 98%);
+  --sidebar-primary: hsl(262, 83%, 58%);
+  --sidebar-primary-foreground: hsl(210, 20%, 98%);
+  --sidebar-accent: hsl(240, 3.7%, 15.9%);
+  --sidebar-accent-foreground: hsl(0, 0%, 98%);
+  --sidebar-border: hsl(240, 3.7%, 15.9%);
+  --sidebar-ring: hsl(262, 83%, 58%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-dots {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.gradient-border {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  padding: 2px;
+  border-radius: 12px;
+}
+
+.gradient-border-content {
+  background: var(--background);
+  border-radius: 10px;
+  height: 100%;
+}
+
+.crypto-glow {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+}
+
+.hero-bg {
+  background: radial-gradient(ellipse at top, rgba(139, 92, 246, 0.1), transparent),
+              radial-gradient(ellipse at bottom right, rgba(249, 115, 22, 0.1), transparent);
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-dots {
+  animation: pulse-dots 2s infinite;
+}
+
+.scrolling-gallery {
+  animation: scroll 30s linear infinite;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
