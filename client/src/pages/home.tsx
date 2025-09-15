@@ -9,6 +9,7 @@ import Attendees from "@/components/Attendees";
 import WhoAttends from "@/components/WhoAttends";
 import OfficialTrailer from "@/components/OfficialTrailer";
 import ForumTopics from "@/components/ForumTopics";
+import StickyBottomBanner from "@/components/StickyBottomBanner";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -68,6 +69,7 @@ export default function Home() {
       </section>
 
       <Footer />
+      <StickyBottomBanner />
     </div>
   );
 }
