@@ -28,9 +28,7 @@ export default function StartupPitch() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary/20 via-blue-900/40 to-background text-foreground relative overflow-hidden" id="startup-pitch">
-      {/* Background overlay for conference branding effect */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-blue-900/20"></div>
+    <section className="py-20 conference-gradient text-foreground relative overflow-hidden" id="startup-pitch">
       <div className="absolute top-10 left-10 w-32 h-32 bg-primary/10 rounded-full blur-xl"></div>
       <div className="absolute bottom-10 right-10 w-48 h-48 bg-accent/10 rounded-full blur-xl"></div>
       
@@ -52,7 +50,7 @@ export default function StartupPitch() {
         <div className="hidden md:block">
           <div className="relative mx-auto w-[600px] h-[600px]">
             {/* Rotating Ring Container */}
-            <div className="ring absolute inset-0 flex items-center justify-center">
+            <div className="orbit-ring absolute inset-0 flex items-center justify-center">
               {speakers.map((speaker, index) => {
                 const angle = index * 60; // 360 / 6 speakers = 60 degrees each
                 return (

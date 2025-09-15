@@ -158,7 +158,7 @@
   to { transform: rotate(-360deg); }
 }
 
-.ring {
+.orbit-ring {
   animation: orbit 45s linear infinite;
 }
 
@@ -166,7 +166,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: rotate(var(--angle)) translate(var(--radius)) rotate(calc(-1 * var(--angle)));
+  transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--radius)) rotate(calc(-1 * var(--angle)));
 }
 
 .orbit-item > .card {
@@ -174,18 +174,25 @@
 }
 
 /* Pause animation on hover for better UX */
-.ring:hover {
+.orbit-ring:hover {
   animation-play-state: paused;
 }
 
-.ring:hover .orbit-item > .card {
+.orbit-ring:hover .orbit-item > .card {
   animation-play-state: paused;
 }
 
 /* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .ring,
+  .orbit-ring,
   .orbit-item > .card {
     animation: none;
   }
+}
+
+/* Custom gradient for conference background */
+.conference-gradient {
+  background: radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 70%, rgba(249, 115, 22, 0.15) 0%, transparent 50%),
+              linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
 }
