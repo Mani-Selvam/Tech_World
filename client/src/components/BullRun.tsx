@@ -15,14 +15,14 @@ export default function BullRun() {
   ];
 
   return (
-    <section className="py-20 relative overflow-hidden" id="bullrun" style={{
-      background: 'linear-gradient(135deg, #1e40af 0%, #1e3a8a 50%, #1e1b4b 100%)'
-    }}>
-      {/* Background pattern overlay */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+    <section className="py-20 bg-background relative overflow-hidden" id="bullrun">
+      {/* Background Graphics */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://blockchain-life.com/wp-content/themes/cpalife/assets/img/asia24/bullrun_coins_d.webp" 
+          alt="Cryptocurrency coins floating background" 
+          className="absolute right-0 top-0 w-1/2 h-full object-cover opacity-30"
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,7 +81,7 @@ export default function BullRun() {
           {/* Center content */}
           <div className="text-center py-12">
             {/* Title */}
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight max-w-4xl mx-auto" data-testid="text-bullrun-title">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-8 leading-tight max-w-4xl mx-auto" data-testid="text-bullrun-title">
               The peak of Bull Run is yet to come. Join to earn the maximum
             </h2>
 
@@ -130,14 +130,14 @@ export default function BullRun() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
           {strategies.map((strategy) => (
             <div key={strategy.number} className="relative">
-              <div className="bg-blue-600/80 backdrop-blur-sm rounded-lg p-6 text-center border border-blue-400/30 shadow-lg">
+              <div className="bg-secondary/90 backdrop-blur-sm rounded-lg p-6 text-center border border-border shadow-lg">
                 {/* Number circle */}
                 <div className="w-12 h-12 bg-gradient-to-b from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-4 shadow-lg" data-testid={`strategy-number-${strategy.number}`}>
                   {strategy.number}
                 </div>
                 
                 {/* Strategy text */}
-                <p className="text-white text-sm leading-relaxed" data-testid={`strategy-text-${strategy.number}`}>
+                <p className="text-foreground text-sm leading-relaxed" data-testid={`strategy-text-${strategy.number}`}>
                   {strategy.text}
                 </p>
               </div>
