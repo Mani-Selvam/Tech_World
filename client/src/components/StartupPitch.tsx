@@ -1,28 +1,36 @@
+// Import the AI-generated speaker images
+import speaker1 from '@assets/generated_images/Startup_founder_presenting_confidently_0655559c.png';
+import speaker2 from '@assets/generated_images/Female_tech_entrepreneur_speaking_5c26dd22.png';
+import speaker3 from '@assets/generated_images/Cryptocurrency_expert_presenting_data_7ad804c8.png';
+import speaker4 from '@assets/generated_images/Young_startup_leader_pitching_94675300.png';
+import speaker5 from '@assets/generated_images/Senior_executive_discussing_blockchain_3d9ca94d.png';
+import speaker6 from '@assets/generated_images/Venture_capitalist_at_forum_59f9b7a2.png';
+
 export default function StartupPitch() {
   // Speaker data for the hexagonal cards with AI-generated images
   const speakers = [
     {
-      image: "/attached_assets/generated_images/Startup_founder_presenting_confidently_0655559c.png",
+      image: speaker1,
       alt: "Startup founder presenting confidently at tech conference"
     },
     {
-      image: "/attached_assets/generated_images/Female_tech_entrepreneur_speaking_5c26dd22.png", 
+      image: speaker2, 
       alt: "Female tech entrepreneur speaking at blockchain conference"
     },
     {
-      image: "/attached_assets/generated_images/Cryptocurrency_expert_presenting_data_7ad804c8.png",
+      image: speaker3,
       alt: "Cryptocurrency expert presenting market data and trends"
     },
     {
-      image: "/attached_assets/generated_images/Young_startup_leader_pitching_94675300.png",
+      image: speaker4,
       alt: "Young startup leader pitching innovative ideas to investors"
     },
     {
-      image: "/attached_assets/generated_images/Senior_executive_discussing_blockchain_3d9ca94d.png",
+      image: speaker5,
       alt: "Senior executive discussing blockchain technology solutions"
     },
     {
-      image: "/attached_assets/generated_images/Venture_capitalist_at_forum_59f9b7a2.png",
+      image: speaker6,
       alt: "International venture capitalist speaking at crypto forum"
     }
   ];
