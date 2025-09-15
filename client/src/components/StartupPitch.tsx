@@ -1,29 +1,29 @@
 export default function StartupPitch() {
-  // Speaker data for the hexagonal cards
+  // Speaker data for the hexagonal cards with AI-generated images
   const speakers = [
     {
-      image: "https://blockchain-life.com/wp-content/uploads/2023/11/speaker1.jpg",
-      alt: "Speaker presenting blockchain technology"
+      image: "/attached_assets/generated_images/Startup_founder_presenting_confidently_0655559c.png",
+      alt: "Startup founder presenting confidently at tech conference"
     },
     {
-      image: "https://blockchain-life.com/wp-content/uploads/2023/11/speaker2.jpg", 
-      alt: "Startup founder pitching to investors"
+      image: "/attached_assets/generated_images/Female_tech_entrepreneur_speaking_5c26dd22.png", 
+      alt: "Female tech entrepreneur speaking at blockchain conference"
     },
     {
-      image: "https://blockchain-life.com/wp-content/uploads/2023/11/speaker3.jpg",
-      alt: "Cryptocurrency expert discussing market trends"
+      image: "/attached_assets/generated_images/Cryptocurrency_expert_presenting_data_7ad804c8.png",
+      alt: "Cryptocurrency expert presenting market data and trends"
     },
     {
-      image: "https://blockchain-life.com/wp-content/uploads/2023/11/speaker4.jpg",
-      alt: "Investment fund manager presenting opportunities"
+      image: "/attached_assets/generated_images/Young_startup_leader_pitching_94675300.png",
+      alt: "Young startup leader pitching innovative ideas to investors"
     },
     {
-      image: "https://blockchain-life.com/wp-content/uploads/2023/11/speaker5.jpg",
-      alt: "Tech entrepreneur explaining blockchain solutions"
+      image: "/attached_assets/generated_images/Senior_executive_discussing_blockchain_3d9ca94d.png",
+      alt: "Senior executive discussing blockchain technology solutions"
     },
     {
-      image: "https://blockchain-life.com/wp-content/uploads/2023/11/speaker6.jpg",
-      alt: "Venture capitalist discussing funding"
+      image: "/attached_assets/generated_images/Venture_capitalist_at_forum_59f9b7a2.png",
+      alt: "International venture capitalist speaking at crypto forum"
     }
   ];
 
@@ -56,14 +56,14 @@ export default function StartupPitch() {
                 return (
                   <div
                     key={index}
-                    className="orbit-item absolute"
+                    className="orbit-item absolute group"
                     style={{
                       '--angle': `${angle}deg`,
                       '--radius': '12rem'
                     } as React.CSSProperties}
                     data-testid={`orbit-speaker-${index}`}
                   >
-                    <div className="card hex-clip w-32 h-32 bg-cover bg-center border-4 border-accent/50 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 hover:border-accent transition-all duration-300 hover:scale-110">
+                    <div className="card hex-clip w-32 h-32 bg-cover bg-center border-3 border-accent/60 shadow-lg shadow-primary/40 hover:shadow-2xl hover:shadow-accent/60 hover:border-accent hover:border-4 transition-all duration-500 hover:scale-125 hover:rotate-12 group-hover:brightness-110">
                       <img
                         src={speaker.image}
                         alt={speaker.alt}
@@ -84,7 +84,7 @@ export default function StartupPitch() {
             {speakers.map((speaker, index) => (
               <div
                 key={index}
-                className="hex-clip w-28 h-28 sm:w-32 sm:h-32 bg-cover bg-center border-4 border-accent/50 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 hover:border-accent transition-all duration-300 hover:scale-105 mx-auto"
+                className="hex-clip w-28 h-28 sm:w-32 sm:h-32 bg-cover bg-center border-3 border-accent/60 shadow-lg shadow-primary/40 hover:shadow-2xl hover:shadow-accent/60 hover:border-accent hover:border-4 transition-all duration-500 hover:scale-110 hover:rotate-6 hover:brightness-110 mx-auto"
                 data-testid={`card-speaker-grid-${index}`}
               >
                 <img

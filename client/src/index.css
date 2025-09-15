@@ -173,13 +173,40 @@
   animation: counter 45s linear infinite;
 }
 
-/* Pause animation on hover for better UX */
+/* Enhanced hover effects for better UX */
 .orbit-ring:hover {
   animation-play-state: paused;
 }
 
 .orbit-ring:hover .orbit-item > .card {
   animation-play-state: paused;
+}
+
+/* Enhanced card hover animations */
+.card:hover {
+  animation-play-state: paused;
+  filter: brightness(1.2) contrast(1.1);
+  box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.4), 0 0 0 1px rgba(249, 115, 22, 0.3);
+}
+
+/* Improved hexagonal clip with better visual appeal */
+.hex-clip {
+  position: relative;
+  clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0 50%);
+}
+
+.hex-clip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+  clip-path: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hex-clip:hover::before {
+  opacity: 1;
 }
 
 /* Respect user's motion preferences */
