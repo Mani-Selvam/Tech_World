@@ -46,26 +46,9 @@ export default function StartupPitch() {
           <h3 className="text-accent font-semibold text-lg mb-2" data-testid="text-startup-pitch-date">
             OCTOBER 29, 12:00
           </h3>
-          <div className="mb-6 animate-pulse" data-testid="heading-startup-pitch">
-            {/* STARTUP with varied letter sizes and rotation effects */}
-            <div className="flex justify-center items-baseline mb-2">
-              <span className="text-4xl md:text-5xl font-bold text-foreground transform hover:rotate-12 transition-transform duration-300">S</span>
-              <span className="text-6xl md:text-8xl font-bold text-foreground transform hover:-rotate-6 transition-transform duration-300">T</span>
-              <span className="text-4xl md:text-5xl font-bold text-foreground transform hover:rotate-6 transition-transform duration-300">A</span>
-              <span className="text-5xl md:text-7xl font-bold text-foreground transform hover:-rotate-12 transition-transform duration-300">R</span>
-              <span className="text-4xl md:text-5xl font-bold text-foreground transform hover:rotate-6 transition-transform duration-300">T</span>
-              <span className="text-6xl md:text-8xl font-bold text-foreground transform hover:-rotate-6 transition-transform duration-300">U</span>
-              <span className="text-5xl md:text-7xl font-bold text-foreground transform hover:rotate-12 transition-transform duration-300">P</span>
-            </div>
-            {/* PITCH with varied letter sizes and rotation effects */}
-            <div className="flex justify-center items-baseline">
-              <span className="text-5xl md:text-7xl font-bold text-foreground transform hover:-rotate-6 transition-transform duration-300">P</span>
-              <span className="text-4xl md:text-5xl font-bold text-foreground transform hover:rotate-12 transition-transform duration-300">I</span>
-              <span className="text-6xl md:text-8xl font-bold text-foreground transform hover:-rotate-12 transition-transform duration-300">T</span>
-              <span className="text-5xl md:text-7xl font-bold text-foreground transform hover:rotate-6 transition-transform duration-300">C</span>
-              <span className="text-4xl md:text-5xl font-bold text-foreground transform hover:-rotate-6 transition-transform duration-300">H</span>
-            </div>
-          </div>
+          <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6" data-testid="heading-startup-pitch">
+            STARTUP PITCH
+          </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-startup-pitch-description">
             PRESENT YOUR PROJECT TO INTERNATIONAL CRYPTO/VENTURE FUNDS AND INVESTORS
           </p>
