@@ -1,12 +1,30 @@
 import techaraLogo from "@/assets/techara-logo.png";
+import { useState } from "react";
 
 export default function Hero() {
+  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
 
   const scrollToAttendees = () => {
     const attendeesSection = document.getElementById('attendees');
     if (attendeesSection) {
       attendeesSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const openRegistrationForm = () => {
+    setShowRegistrationForm(true);
+    // Scroll to attendees section to trigger the form
+    setTimeout(() => {
+      const attendeesSection = document.getElementById('attendees');
+      if (attendeesSection) {
+        attendeesSection.scrollIntoView({ behavior: 'smooth' });
+        // Trigger the registration form in attendees component
+        const registerButton = document.querySelector('[data-testid="button-register-countdown"]') as HTMLButtonElement;
+        if (registerButton) {
+          registerButton.click();
+        }
+      }
+    }, 100);
   };
 
 
@@ -65,7 +83,7 @@ export default function Hero() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
           <button 
-            onClick={scrollToAttendees}
+            onClick={openRegistrationForm}
             className="bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-lg text-lg font-semibold text-primary-foreground hover:opacity-90 transition-opacity crypto-glow"
             data-testid="button-buy-tickets-hero"
           >

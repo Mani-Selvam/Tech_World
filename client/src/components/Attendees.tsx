@@ -7,9 +7,30 @@ import {
   Settings, 
   Rocket, 
   MoreHorizontal,
-  Clock
+  Clock,
+  User,
+  Mail,
+  Phone,
+  Building2,
+  CheckCircle
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
+// Registration form schema
+const registrationSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  mobile: z.string().min(10, "Mobile number must be at least 10 digits"),
+  companyName: z.string().optional()
+});
+
+type RegistrationFormData = z.infer<typeof registrationSchema>;
 
 export default function Attendees() {
   // Countdown Timer State
@@ -18,6 +39,21 @@ export default function Attendees() {
     hours: 0,
     minutes: 0,
     seconds: 0
+  });
+
+  // Registration form state
+  const [showForm, setShowForm] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const form = useForm<RegistrationFormData>({
+    resolver: zodResolver(registrationSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      mobile: "",
+      companyName: ""
+    }
   });
 
   useEffect(() => {
@@ -40,6 +76,27 @@ export default function Attendees() {
 
     return () => clearInterval(timer);
   }, []);
+
+  const onSubmit = async (data: RegistrationFormData) => {
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setShowForm(false);
+      setShowThankYou(true);
+      
+      // Get WhatsApp number from environment variable
+      const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919345791995";
+      const message = `interested`;
+      
+      // Open WhatsApp with pre-filled message
+      setTimeout(() => {
+        const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+      }, 2000);
+    }, 1000);
+  };
 
   const demographics = [
     { 
@@ -196,13 +253,165 @@ export default function Attendees() {
               
               {/* Register Button */}
               <div className="text-center mt-8">
-                <button className="bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-lg text-lg font-semibold text-primary-foreground hover:opacity-90 transition-opacity crypto-glow" data-testid="button-register-countdown">
+                <button 
+                  onClick={() => setShowForm(true)}
+                  className="bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-lg text-lg font-semibold text-primary-foreground hover:opacity-90 transition-opacity crypto-glow" 
+                  data-testid="button-register-countdown"
+                >
                   Register Now
                 </button>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Registration Form Modal */}
+        {showForm && (
+          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="bg-background border border-border rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-foreground mb-2">Register for TechAra Academy</h3>
+                <p className="text-muted-foreground">Fill in your details to register</p>
+              </div>
+              
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2">
+                          <User className="w-4 h-4" />
+                          Name *
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="Enter your full name" 
+                            {...field} 
+                            data-testid="input-name"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2">
+                          <Mail className="w-4 h-4" />
+                          Email *
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            type="email"
+                            placeholder="Enter your email address" 
+                            {...field} 
+                            data-testid="input-email"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="mobile"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2">
+                          <Phone className="w-4 h-4" />
+                          Mobile Number *
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            type="tel"
+                            placeholder="Enter your mobile number" 
+                            {...field} 
+                            data-testid="input-mobile"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="companyName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2">
+                          <Building2 className="w-4 h-4" />
+                          Company Name (Optional)
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="Enter your company name" 
+                            {...field} 
+                            data-testid="input-company"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <div className="flex gap-3 pt-4">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setShowForm(false)}
+                      className="flex-1"
+                      data-testid="button-cancel"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="flex-1 bg-gradient-to-r from-primary to-accent text-primary-foreground"
+                      data-testid="button-submit"
+                    >
+                      {isSubmitting ? "Submitting..." : "Submit"}
+                    </Button>
+                  </div>
+                </form>
+              </Form>
+            </div>
+          </div>
+        )}
+
+        {/* Thank You Modal */}
+        {showThankYou && (
+          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="bg-background border border-border rounded-2xl p-8 max-w-md w-full text-center">
+              <div className="mb-6">
+                <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold text-foreground mb-2">Thank You!</h3>
+                <p className="text-muted-foreground mb-4">
+                  Your registration has been received successfully.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  You will be redirected to WhatsApp to complete your registration process.
+                </p>
+              </div>
+              
+              <Button
+                onClick={() => setShowThankYou(false)}
+                className="bg-gradient-to-r from-primary to-accent text-primary-foreground"
+                data-testid="button-close-thanks"
+              >
+                Close
+              </Button>
+            </div>
+          </div>
+        )}
 
         {/* Attendees Section Title */}
         <div className="text-center mb-16">

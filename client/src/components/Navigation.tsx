@@ -12,6 +12,21 @@ export default function Navigation() {
     setIsOpen(false);
   };
 
+  const openRegistrationForm = () => {
+    setIsOpen(false);
+    setTimeout(() => {
+      const attendeesSection = document.getElementById('attendees');
+      if (attendeesSection) {
+        attendeesSection.scrollIntoView({ behavior: 'smooth' });
+        // Trigger the registration form in attendees component
+        const registerButton = document.querySelector('[data-testid="button-register-countdown"]') as HTMLButtonElement;
+        if (registerButton) {
+          registerButton.click();
+        }
+      }
+    }, 100);
+  };
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -54,7 +69,7 @@ export default function Navigation() {
               Sponsors
             </button>
             <button 
-              onClick={scrollToAttendees}
+              onClick={openRegistrationForm}
               className="bg-gradient-to-r from-primary to-accent px-6 py-2 rounded-lg text-primary-foreground font-medium hover:opacity-90 transition-opacity"
               data-testid="button-buy-tickets-nav"
             >
@@ -100,7 +115,7 @@ export default function Navigation() {
                 Sponsors
               </button>
               <button 
-                onClick={scrollToAttendees}
+                onClick={openRegistrationForm}
                 className="block w-full text-left px-3 py-2 bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium rounded-lg"
                 data-testid="button-buy-tickets-mobile"
               >

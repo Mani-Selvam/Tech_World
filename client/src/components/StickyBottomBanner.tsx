@@ -5,6 +5,20 @@ export default function StickyBottomBanner() {
       attendeesSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const openRegistrationForm = () => {
+    setTimeout(() => {
+      const attendeesSection = document.getElementById('attendees');
+      if (attendeesSection) {
+        attendeesSection.scrollIntoView({ behavior: 'smooth' });
+        // Trigger the registration form in attendees component
+        const registerButton = document.querySelector('[data-testid="button-register-countdown"]') as HTMLButtonElement;
+        if (registerButton) {
+          registerButton.click();
+        }
+      }
+    }, 100);
+  };
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-t border-red-500/30">
       <div className="flex items-center justify-between px-4 py-3 max-w-7xl mx-auto">
@@ -15,7 +29,7 @@ export default function StickyBottomBanner() {
         </div>
         
         <button 
-          onClick={scrollToAttendees}
+          onClick={openRegistrationForm}
           data-testid="button-buy-tickets-sticky"
           className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-6 py-2 rounded-lg text-white font-semibold text-sm uppercase tracking-wide transition-all duration-300 animate-pulse hover:animate-none shadow-lg hover:shadow-orange-500/30"
         >
