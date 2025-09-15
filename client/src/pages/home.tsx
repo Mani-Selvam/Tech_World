@@ -9,6 +9,7 @@ import Attendees from "@/components/Attendees";
 import WhoAttends from "@/components/WhoAttends";
 import OfficialTrailer from "@/components/OfficialTrailer";
 import ForumTopics from "@/components/ForumTopics";
+import StartupPitch from "@/components/StartupPitch";
 import StickyBottomBanner from "@/components/StickyBottomBanner";
 import Footer from "@/components/Footer";
 
@@ -47,6 +48,7 @@ function HomeContent() {
       <Attendees />
       <OfficialTrailer />
       <ForumTopics />
+      <StartupPitch />
       
       {/* Call to Action Section */}
       <section className="py-20 bg-background">

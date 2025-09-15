@@ -144,3 +144,48 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+/* Startup Pitch Section Animations */
+.hex-clip {
+  clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0 50%);
+}
+
+@keyframes orbit {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes counter {
+  to { transform: rotate(-360deg); }
+}
+
+.ring {
+  animation: orbit 45s linear infinite;
+}
+
+.orbit-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: rotate(var(--angle)) translate(var(--radius)) rotate(calc(-1 * var(--angle)));
+}
+
+.orbit-item > .card {
+  animation: counter 45s linear infinite;
+}
+
+/* Pause animation on hover for better UX */
+.ring:hover {
+  animation-play-state: paused;
+}
+
+.ring:hover .orbit-item > .card {
+  animation-play-state: paused;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .ring,
+  .orbit-item > .card {
+    animation: none;
+  }
+}
