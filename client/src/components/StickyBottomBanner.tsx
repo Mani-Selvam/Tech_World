@@ -12,9 +12,6 @@ export default function StickyBottomBanner() {
           <span className="text-red-500 font-bold text-sm uppercase tracking-wider animate-pulse">
             HIGH DEMAND
           </span>
-          <span className="text-white font-medium text-sm">
-            PRICES WILL INCREASE SOON
-          </span>
         </div>
         
         <button 
@@ -22,7 +19,7 @@ export default function StickyBottomBanner() {
           data-testid="button-buy-tickets-sticky"
           className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-6 py-2 rounded-lg text-white font-semibold text-sm uppercase tracking-wide transition-all duration-300 animate-pulse hover:animate-none shadow-lg hover:shadow-orange-500/30"
         >
-          BUY TICKETS
+          REGISTER NOW
         </button>
       </div>
     </div>
