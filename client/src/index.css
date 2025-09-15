@@ -223,3 +223,17 @@
               radial-gradient(circle at 70% 70%, rgba(249, 115, 22, 0.15) 0%, transparent 50%),
               linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
 }
+
+/* Slow rotation animation for circles */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
