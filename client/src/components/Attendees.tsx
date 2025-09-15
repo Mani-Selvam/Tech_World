@@ -6,10 +6,58 @@ import {
   Pickaxe, 
   Settings, 
   Rocket, 
-  MoreHorizontal 
+  MoreHorizontal,
+  Check
 } from "lucide-react";
 
 export default function Attendees() {
+  // Ticket selection data
+  const tickets = [
+    {
+      type: "STANDARD",
+      originalPrice: "$299",
+      currentPrice: "$219",
+      features: [
+        "Access to main conference (both days)",
+        "Exhibition area access",
+        "Networking coffee breaks",
+        "Lunch",
+        "The Blockchain Life token"
+      ],
+      bgColor: "bg-slate-800/50",
+      borderColor: "border-blue-500/50",
+      isLimited: false
+    },
+    {
+      type: "BUSINESS",
+      originalPrice: "$499",
+      currentPrice: "$349",
+      features: [
+        "All options included in the STANDARD ticket",
+        "Access to business lounge",
+        "VIP networking cocktails",
+        "Priority seating"
+      ],
+      bgColor: "bg-slate-800/50",
+      borderColor: "border-purple-500/50",
+      isLimited: false
+    },
+    {
+      type: "VIP",
+      originalPrice: "$1999",
+      currentPrice: "$1699",
+      features: [
+        "All options included in the BUSINESS ticket",
+        "VIP registration desks",
+        "VIP/Speaker Lounge : network with speakers and VIP attendees, fancy coffee breaks and lunches",
+        "Official AfterParty at Soho Garden DXB (food, drinks, show are included) October 29, 9 p.m - 2 a.m with AKON"
+      ],
+      bgColor: "bg-gradient-to-br from-purple-900/50 to-orange-900/50",
+      borderColor: "border-gradient-to-r from-purple-500 to-orange-500",
+      isLimited: true
+    }
+  ];
+
   const demographics = [
     { 
       percentage: "67%", 
@@ -102,6 +150,81 @@ export default function Attendees() {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Attendees</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+        </div>
+
+        {/* Ticket Selection Section */}
+        <div className="mb-20">
+          <div className="text-center mb-8">
+            <h3 className="text-3xl font-bold text-foreground mb-4">Choose your ticket</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {tickets.map((ticket, index) => (
+              <div key={ticket.type} className="relative">
+                {/* Ticket Card */}
+                <div className={`${ticket.bgColor} ${ticket.borderColor} border-2 rounded-lg p-6 h-full flex flex-col backdrop-blur-sm`}>
+                  {/* Ticket Type Header with Badge */}
+                  <div className="mb-6">
+                    <div className="flex items-center justify-between bg-slate-800/50 py-3 px-4 rounded-lg border border-gray-600">
+                      <h3 className="text-xl font-bold text-white">{ticket.type}</h3>
+                      {ticket.isLimited && (
+                        <span className="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">
+                          20 TICKETS ONLY
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Features List */}
+                  <div className="flex-1 mb-6">
+                    {ticket.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start gap-3 mb-3">
+                        <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-white text-sm leading-relaxed">
+                          {feature === "All options included in the STANDARD ticket" && (
+                            <>All options included in the <span className="underline font-semibold">STANDARD</span> ticket</>
+                          )}
+                          {feature === "All options included in the BUSINESS ticket" && (
+                            <>All options included in the <span className="underline font-semibold">BUSINESS</span> ticket</>
+                          )}
+                          {feature.includes("AKON") && (
+                            <>
+                              {feature.split("with AKON")[0]}
+                              with <span className="text-orange-400 font-bold">AKON</span>
+                            </>
+                          )}
+                          {!feature.includes("All options included") && !feature.includes("AKON") && feature}
+                        </span>
+                      </div>
+                    ))}
+                    
+                    {/* AKON Image for VIP */}
+                    {ticket.type === "VIP" && (
+                      <div className="mt-4 text-center">
+                        <div className="bg-slate-800/70 rounded-lg p-3 inline-block">
+                          <span className="text-orange-400 font-bold text-lg">AKON</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Pricing */}
+                  <div className="bg-white rounded-lg p-4 text-center">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <span className="text-gray-500 line-through text-lg">{ticket.originalPrice}</span>
+                      <span className="text-2xl font-bold text-slate-900">{ticket.currentPrice}</span>
+                    </div>
+                    <button 
+                      className="w-full bg-gradient-to-r from-purple-600 to-orange-500 hover:from-purple-700 hover:to-orange-600 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg"
+                      data-testid={`button-select-${ticket.type.toLowerCase()}`}
+                    >
+                      Select Ticket
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Attendee Categories */}

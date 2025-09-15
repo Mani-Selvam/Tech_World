@@ -1,7 +1,10 @@
-import { useTicketModal } from "@/contexts/TicketModalContext";
-
 export default function StickyBottomBanner() {
-  const { openModal } = useTicketModal();
+  const scrollToAttendees = () => {
+    const attendeesSection = document.getElementById('attendees');
+    if (attendeesSection) {
+      attendeesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-t border-red-500/30">
       <div className="flex items-center justify-between px-4 py-3 max-w-7xl mx-auto">
@@ -15,7 +18,7 @@ export default function StickyBottomBanner() {
         </div>
         
         <button 
-          onClick={openModal}
+          onClick={scrollToAttendees}
           data-testid="button-buy-tickets-sticky"
           className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-6 py-2 rounded-lg text-white font-semibold text-sm uppercase tracking-wide transition-all duration-300 animate-pulse hover:animate-none shadow-lg hover:shadow-orange-500/30"
         >

@@ -10,12 +10,15 @@ import WhoAttends from "@/components/WhoAttends";
 import OfficialTrailer from "@/components/OfficialTrailer";
 import ForumTopics from "@/components/ForumTopics";
 import StickyBottomBanner from "@/components/StickyBottomBanner";
-import TicketModal from "@/components/TicketModal";
 import Footer from "@/components/Footer";
-import { TicketModalProvider, useTicketModal } from "@/contexts/TicketModalContext";
 
 function HomeContent() {
-  const { isOpen, openModal, closeModal } = useTicketModal();
+  const scrollToAttendees = () => {
+    const attendeesSection = document.getElementById('attendees');
+    if (attendeesSection) {
+      attendeesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -58,7 +61,7 @@ function HomeContent() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <button 
               data-testid="button-buy-tickets-cta"
-              onClick={openModal}
+              onClick={scrollToAttendees}
               className="bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-lg text-lg font-semibold text-primary-foreground hover:opacity-90 transition-opacity crypto-glow"
             >
               Buy Tickets Now
@@ -75,15 +78,10 @@ function HomeContent() {
 
       <Footer />
       <StickyBottomBanner />
-      <TicketModal isOpen={isOpen} onClose={closeModal} />
     </div>
   );
 }
 
 export default function Home() {
-  return (
-    <TicketModalProvider>
-      <HomeContent />
-    </TicketModalProvider>
-  );
+  return <HomeContent />;
 }
