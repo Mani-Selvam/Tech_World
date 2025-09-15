@@ -21,7 +21,7 @@ function HomeContent() {
   };
   
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navigation />
       <Hero />
       <Statistics />
