@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { CSSProperties } from 'react';
 
 interface ResponsiveMediaProps {
   src: string;
@@ -10,6 +11,8 @@ interface ResponsiveMediaProps {
   aspectRatio?: 'square' | 'video' | 'auto';
   objectFit?: 'contain' | 'cover' | 'fill';
   maxHeight?: string;
+  style?: CSSProperties;
+  'data-testid'?: string;
 }
 
 export function ResponsiveMedia({
@@ -21,7 +24,9 @@ export function ResponsiveMedia({
   decoding = 'async',
   aspectRatio = 'auto',
   objectFit = 'contain',
-  maxHeight
+  maxHeight,
+  style,
+  'data-testid': dataTestId
 }: ResponsiveMediaProps) {
   const aspectRatioClasses = {
     square: 'aspect-square',
@@ -48,7 +53,8 @@ export function ResponsiveMedia({
         objectFitClasses[objectFit],
         className
       )}
-      style={maxHeight ? { maxHeight } : undefined}
+      style={maxHeight ? { maxHeight, ...style } : style}
+      data-testid={dataTestId}
     />
   );
 }

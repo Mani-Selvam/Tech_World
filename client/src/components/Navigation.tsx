@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { ResponsiveMedia } from "./ResponsiveMedia";
+import techaraLogo from "@/assets/techara-logo.png";
 
 export default function Navigation() {
     const [isOpen, setIsOpen] = useState(false);
@@ -43,8 +45,15 @@ export default function Navigation() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex items-center space-x-4">
-                        <div className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                            TechAra
+                        <div className="flex items-center">
+                            <ResponsiveMedia
+                                src={techaraLogo}
+                                alt="TechARA Logo"
+                                className="h-8 w-auto object-contain"
+                                loading="eager"
+                                maxHeight="32px"
+                                data-testid="nav-logo"
+                            />
                         </div>
                     </div>
 
