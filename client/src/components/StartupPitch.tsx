@@ -47,11 +47,8 @@ export default function StartupPitch() {
           
           {/* Center Text */}
           <div className="absolute text-center z-10">
-            <h3 className="text-[#F59E0B] font-semibold text-lg mb-2" data-testid="text-startup-pitch-date">
-              OCTOBER 29, 12:00
-            </h3>
-            <h2 className="text-4xl md:text-6xl font-bold text-white" data-testid="heading-startup-pitch">
-              STARTUP PITCH
+            <h2 className="text-4xl md:text-6xl font-bold text-white" data-testid="heading-testimonial">
+              Testimonial
             </h2>
           </div>
 
@@ -88,11 +85,8 @@ export default function StartupPitch() {
         <div className="md:hidden">
           {/* Center Text */}
           <div className="text-center mb-8">
-            <h3 className="text-[#F59E0B] font-semibold text-lg mb-2" data-testid="text-startup-pitch-date-mobile">
-              OCTOBER 29, 12:00
-            </h3>
-            <h2 className="text-3xl font-bold text-white" data-testid="heading-startup-pitch-mobile">
-              STARTUP PITCH
+            <h2 className="text-3xl font-bold text-white" data-testid="heading-testimonial-mobile">
+              Testimonial
             </h2>
           </div>
           
