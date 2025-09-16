@@ -80,22 +80,44 @@ export default function Attendees() {
   const onSubmit = async (data: RegistrationFormData) => {
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Submit registration data to backend
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.details || result.message || 'Registration failed');
+      }
+
+      // Registration successful
       setIsSubmitting(false);
       setShowForm(false);
       setShowThankYou(true);
       
       // Get WhatsApp number from environment variable
       const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "+919345791995";
-      const message = `interested`;
+      const message = `Hi! I just registered for Blockchain Life conference. My details: Name: ${data.name}, Email: ${data.email}. Looking forward to the event!`;
       
       // Open WhatsApp with pre-filled message
       setTimeout(() => {
         const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
       }, 2000);
-    }, 1000);
+
+    } catch (error) {
+      console.error('Registration error:', error);
+      setIsSubmitting(false);
+      
+      // Show error message to user
+      alert(error instanceof Error ? error.message : 'Registration failed. Please try again.');
+    }
   };
 
   const demographics = [

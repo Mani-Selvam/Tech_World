@@ -39,6 +39,9 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
 
+  // Add API-only 404 handler to prevent Vite from handling /api requests
+  app.use('/api', (_req, res) => res.status(404).json({ message: 'Not found' }));
+
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
