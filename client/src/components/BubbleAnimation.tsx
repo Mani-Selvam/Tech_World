@@ -26,15 +26,15 @@ export default function BubbleAnimation() {
   // Generate stable accent bubble data once
   const accentBubbles = useMemo<AccentBubble[]>(() => {
     const bubbles: AccentBubble[] = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 8; i++) {
       bubbles.push({
         id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        width: Math.random() * 120 + 80,
-        height: Math.random() * 120 + 80,
-        speed: Math.random() * 30 + 20,
-        delay: Math.random() * 15,
+        x: (i * 12.5) + (Math.random() * 10), // Spread across width with some randomness
+        y: 100, // Start from bottom
+        width: Math.random() * 80 + 40,
+        height: Math.random() * 80 + 40,
+        speed: Math.random() * 20 + 15,
+        delay: Math.random() * 8,
       });
     }
     return bubbles;
@@ -44,17 +44,17 @@ export default function BubbleAnimation() {
     // Create initial bubbles
     const createBubbles = () => {
       const newBubbles: Bubble[] = [];
-      const bubbleCount = 15; // Number of bubbles
+      const bubbleCount = 25; // More bubbles for better coverage
 
       for (let i = 0; i < bubbleCount; i++) {
         newBubbles.push({
           id: i,
-          x: Math.random() * 100, // Random x position (percentage)
-          y: Math.random() * 100, // Random y position (percentage)
-          size: Math.random() * 60 + 20, // Size between 20-80px
-          speed: Math.random() * 20 + 10, // Animation duration between 10-30s
-          delay: Math.random() * 10, // Random delay 0-10s
-          opacity: Math.random() * 0.3 + 0.1, // Opacity between 0.1-0.4
+          x: Math.random() * 95, // Random x position across screen width
+          y: 100 + (Math.random() * 20), // Start from bottom edge with some variation
+          size: Math.random() * 50 + 15, // Size between 15-65px
+          speed: Math.random() * 15 + 8, // Faster animation (8-23s)
+          delay: Math.random() * 12, // Random delay 0-12s
+          opacity: Math.random() * 0.6 + 0.3, // Higher opacity (0.3-0.9)
         });
       }
       
@@ -72,21 +72,22 @@ export default function BubbleAnimation() {
           className="absolute rounded-full animate-bubble"
           style={{
             left: `${bubble.x}%`,
-            top: `${bubble.y}%`,
+            bottom: `${bubble.y}%`, // Start from bottom instead of top
             width: `${bubble.size}px`,
             height: `${bubble.size}px`,
             background: `radial-gradient(circle, 
               hsla(262, 83%, 58%, ${bubble.opacity}) 0%, 
-              hsla(262, 83%, 58%, ${bubble.opacity * 0.5}) 50%, 
+              hsla(262, 83%, 58%, ${bubble.opacity * 0.7}) 30%, 
+              hsla(262, 83%, 58%, ${bubble.opacity * 0.3}) 70%, 
               transparent 100%)`,
             boxShadow: `
-              0 0 ${bubble.size * 0.5}px hsla(262, 83%, 58%, ${bubble.opacity * 0.8}),
-              0 0 ${bubble.size}px hsla(262, 83%, 58%, ${bubble.opacity * 0.4}),
-              inset 0 0 ${bubble.size * 0.3}px hsla(262, 83%, 58%, ${bubble.opacity * 0.6})
+              0 0 ${bubble.size * 0.8}px hsla(262, 83%, 58%, ${bubble.opacity}),
+              0 0 ${bubble.size * 1.5}px hsla(262, 83%, 58%, ${bubble.opacity * 0.6}),
+              0 0 ${bubble.size * 2}px hsla(262, 83%, 58%, ${bubble.opacity * 0.3})
             `,
             animationDuration: `${bubble.speed}s`,
             animationDelay: `${bubble.delay}s`,
-            filter: 'blur(1px)',
+            filter: 'blur(0.5px)',
           }}
         />
       ))}
@@ -98,21 +99,22 @@ export default function BubbleAnimation() {
           className="absolute rounded-full animate-bubble-slow"
           style={{
             left: `${bubble.x}%`,
-            top: `${bubble.y}%`,
+            bottom: `${bubble.y}%`, // Start from bottom
             width: `${bubble.width}px`,
             height: `${bubble.height}px`,
             background: `radial-gradient(circle, 
-              hsla(262, 83%, 58%, 0.15) 0%, 
-              hsla(262, 83%, 58%, 0.08) 40%, 
-              hsla(24, 95%, 53%, 0.05) 70%,
+              hsla(262, 83%, 58%, 0.4) 0%, 
+              hsla(262, 83%, 58%, 0.2) 30%, 
+              hsla(24, 95%, 53%, 0.15) 60%,
               transparent 100%)`,
             boxShadow: `
-              0 0 60px hsla(262, 83%, 58%, 0.2),
-              0 0 120px hsla(262, 83%, 58%, 0.1)
+              0 0 ${bubble.width}px hsla(262, 83%, 58%, 0.4),
+              0 0 ${bubble.width * 1.5}px hsla(262, 83%, 58%, 0.2),
+              0 0 ${bubble.width * 2}px hsla(24, 95%, 53%, 0.1)
             `,
             animationDuration: `${bubble.speed}s`,
             animationDelay: `${bubble.delay}s`,
-            filter: 'blur(2px)',
+            filter: 'blur(1px)',
           }}
         />
       ))}
