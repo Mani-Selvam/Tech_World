@@ -211,9 +211,9 @@ export default function Attendees() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
         {/* Countdown Timer Section */}
-        <div className="mb-20">
-          <div className="text-center mb-8">
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Event Starts In</h3>
+        <div className="mb-8">
+          <div className="text-center mb-4">
+            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Event Starts In</h3>
             <p className="text-muted-foreground text-lg">Don't miss out on TechAra Academy</p>
           </div>
           
