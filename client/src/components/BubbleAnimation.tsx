@@ -30,7 +30,7 @@ export default function BubbleAnimation() {
       bubbles.push({
         id: i,
         x: (i * 12.5) + (Math.random() * 10), // Spread across width with some randomness
-        y: 100, // Start from bottom
+        y: -80 - (Math.random() * 120), // Start below screen (-80 to -200px)
         width: Math.random() * 80 + 40,
         height: Math.random() * 80 + 40,
         speed: Math.random() * 20 + 15,
@@ -50,7 +50,7 @@ export default function BubbleAnimation() {
         newBubbles.push({
           id: i,
           x: Math.random() * 95, // Random x position across screen width
-          y: 100 + (Math.random() * 20), // Start from bottom edge with some variation
+          y: -50 - (Math.random() * 100), // Start below screen (-50 to -150px)
           size: Math.random() * 50 + 15, // Size between 15-65px
           speed: Math.random() * 15 + 8, // Faster animation (8-23s)
           delay: Math.random() * 12, // Random delay 0-12s
@@ -72,7 +72,7 @@ export default function BubbleAnimation() {
           className="absolute rounded-full animate-bubble"
           style={{
             left: `${bubble.x}%`,
-            bottom: `${bubble.y}%`, // Start from bottom instead of top
+            bottom: `${bubble.y}px`, // Start from below screen
             width: `${bubble.size}px`,
             height: `${bubble.size}px`,
             background: `radial-gradient(circle, 
@@ -99,7 +99,7 @@ export default function BubbleAnimation() {
           className="absolute rounded-full animate-bubble-slow"
           style={{
             left: `${bubble.x}%`,
-            bottom: `${bubble.y}%`, // Start from bottom
+            bottom: `${bubble.y}px`, // Start from below screen
             width: `${bubble.width}px`,
             height: `${bubble.height}px`,
             background: `radial-gradient(circle, 
