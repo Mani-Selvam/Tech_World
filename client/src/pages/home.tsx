@@ -24,15 +24,7 @@ function HomeContent() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navigation />
       <Hero />
-      
-      {/* Gap between Hero and Statistics sections */}
-      <div className="py-8"></div>
-      
       <Statistics />
-      
-      {/* Gap between Statistics and PhotoGallery sections */}
-      <div className="py-6"></div>
-      
       <PhotoGallery />
       
       {/* Main Title Section */}
