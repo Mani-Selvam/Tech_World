@@ -5,7 +5,7 @@ import PhotoGallery from "@/components/PhotoGallery";
 import Features from "@/components/WhyAttend";
 import BullRun from "@/components/BullRun";
 import Attendees from "@/components/Attendees";
-import WhoAttends from "@/components/WhoAttends";
+import ExploreCourses from "@/components/WhoAttends";
 import OfficialTrailer from "@/components/OfficialTrailer";
 import ForumTopics from "@/components/ForumTopics";
 import StartupPitch from "@/components/StartupPitch";
@@ -69,10 +69,10 @@ function HomeContent() {
         <BullRun />
       </div>
       
-      {/* WhoAttends Section with Bubbles */}
+      {/* Explore Our Best Courses Section with Bubbles */}
       <div className="relative">
         <SectionBubbles count={5} />
-        <WhoAttends />
+        <ExploreCourses />
       </div>
       
       {/* Attendees Section with Bubbles */}
