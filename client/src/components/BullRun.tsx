@@ -1,4 +1,4 @@
-import bitcoinBg from "@assets/Bitcoin_1758037108065.png";
+import bitcoinBg from "@assets/Bitcoin_1758037906078.png";
 
 export default function BullRun() {
   const strategies = [
