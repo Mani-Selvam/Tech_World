@@ -26,25 +26,25 @@ function HomeContent() {
       <Navigation />
       
       {/* Hero Section with Bubbles */}
-      <div className="relative">
+      <div className="relative" id="hero">
         <SectionBubbles count={5} />
         <Hero />
       </div>
       
       {/* Statistics Section with Bubbles */}
-      <div className="relative">
+      <div className="relative" id="statistics">
         <SectionBubbles count={4} />
         <Statistics />
       </div>
       
       {/* PhotoGallery Section with Bubbles */}
-      <div className="relative">
+      <div className="relative" id="gallery">
         <SectionBubbles count={6} />
         <PhotoGallery />
       </div>
       
       {/* Main Title Section with Bubbles */}
-      <section className="relative py-16 bg-secondary/30">
+      <section className="relative py-16 bg-secondary/30" id="academy">
         <SectionBubbles count={5} />
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
@@ -58,43 +58,43 @@ function HomeContent() {
       </section>
 
       {/* Features Section with Bubbles */}
-      <div className="relative">
+      <div className="relative" id="features">
         <SectionBubbles count={4} />
         <Features />
       </div>
       
       {/* BullRun Section with Bubbles */}
-      <div className="relative">
+      <div className="relative" id="bullrun">
         <SectionBubbles count={6} />
         <BullRun />
       </div>
       
       {/* Explore Our Best Courses Section with Bubbles */}
-      <div className="relative">
+      <div className="relative" id="courses">
         <SectionBubbles count={5} />
         <ExploreCourses />
       </div>
       
       {/* Attendees Section with Bubbles */}
-      <div className="relative">
+      <div className="relative" id="attendees">
         <SectionBubbles count={4} />
         <Attendees />
       </div>
       
       {/* OfficialTrailer Section with Bubbles */}
-      <div className="relative">
+      <div className="relative" id="trailer">
         <SectionBubbles count={5} />
         <OfficialTrailer />
       </div>
       
-      {/* ForumTopics Section with Bubbles */}
-      <div className="relative">
+      {/* Benefit Section with Bubbles */}
+      <div className="relative" id="benefit">
         <SectionBubbles count={6} />
         <ForumTopics />
       </div>
       
-      {/* StartupPitch Section with Bubbles */}
-      <div className="relative">
+      {/* Testimonial Section with Bubbles */}
+      <div className="relative" id="testimonial">
         <SectionBubbles count={4} />
         <StartupPitch />
       </div>
