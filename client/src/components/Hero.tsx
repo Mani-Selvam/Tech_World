@@ -59,135 +59,139 @@ export default function Hero() {
 
   return (
     <section 
-      className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ backgroundColor: '#000' }}
+      className="relative min-h-screen flex items-center overflow-hidden bg-background"
     >
-      {/* Optimized Background Animation - Right Side Only */}
-      <div className="absolute right-0 top-0 bottom-0 z-0 flex items-center justify-center lg:w-1/2 w-full">
-        <ResponsiveMedia
-          src={hudGif}
-          alt="Futuristic HUD Circle Animation"
-          className="w-auto h-auto max-w-screen-lg opacity-60"
-          loading="eager"
-          maxHeight="100vh"
+      {/* Modern Geometric Background Elements */}
+      <div className="absolute inset-0 z-0">
+        {/* Large Yellow Circle - Top Right */}
+        <div 
+          className="geometric-shape absolute top-20 right-32 w-64 h-64 opacity-80"
           style={{
-            transform: `scale(${1 + scrollY * 0.0003})`,
-            opacity: opacity * 0.6
-          }}
-        />
-      </div>
-      
-      {/* Person Photo - Right Side for Large Screens */}
-      <div className="absolute right-20 top-1/2 transform -translate-y-1/2 z-5 hidden lg:block">
-        <ResponsiveMedia
-          src={personPhoto}
-          alt="TechAra Person"
-          className="w-64 h-64 xl:w-80 xl:h-80 object-cover rounded-full shadow-2xl"
-          loading="eager"
-          maxHeight="320px"
-          style={{
-            transform: `translateY(${scrollY * 0.2}px) scale(${1 - scrollY * 0.0002})`,
+            background: 'linear-gradient(135deg, rgba(255, 255, 0, 0.3), rgba(255, 255, 0, 0.1))',
+            transform: `translateY(${scrollY * 0.1}px)`,
             opacity: opacity * 0.8
           }}
-        />
+        ></div>
+        
+        {/* Medium Green Circle - Top Left */}
+        <div 
+          className="geometric-shape absolute top-40 left-20 w-32 h-32 opacity-70"
+          style={{
+            background: 'linear-gradient(135deg, rgba(0, 255, 0, 0.4), rgba(0, 255, 0, 0.2))',
+            transform: `translateY(${scrollY * -0.05}px)`,
+            opacity: opacity * 0.7
+          }}
+        ></div>
+        
+        {/* Small Yellow Circle - Bottom Left */}
+        <div 
+          className="geometric-shape absolute bottom-32 left-16 w-16 h-16 opacity-90"
+          style={{
+            background: 'radial-gradient(circle, rgba(255, 255, 0, 0.8), rgba(255, 255, 0, 0.3))',
+            transform: `translateY(${scrollY * 0.08}px)`,
+            opacity: opacity * 0.9
+          }}
+        ></div>
+        
+        {/* Triangle Shape - Right Side */}
+        <div 
+          className="absolute top-1/3 right-16"
+          style={{
+            transform: `translateY(${scrollY * -0.03}px)`,
+            opacity: opacity * 0.6
+          }}
+        >
+          <div className="geometric-shape triangle"></div>
+        </div>
+        
+        {/* Square Shape - Bottom Right */}
+        <div 
+          className="geometric-shape square absolute bottom-20 right-24 w-12 h-12 opacity-75"
+          style={{
+            transform: `translateY(${scrollY * 0.12}px)`,
+            opacity: opacity * 0.75
+          }}
+        ></div>
       </div>
       
-      {/* Enhanced Floating Elements */}
-      <div 
-        className="absolute top-20 left-10 animate-float"
-        style={{
-          transform: `translateY(${scrollY * 0.1}px)`,
-          opacity: opacity * 0.8
-        }}
-      >
-        <div className="w-3 h-3 bg-cyan-400 rounded-full crypto-glow"></div>
-      </div>
-      <div 
-        className="absolute top-40 right-20 animate-float" 
-        style={{
-          animationDelay: '-2s',
-          transform: `translateY(${scrollY * -0.1}px)`,
-          opacity: opacity * 0.7
-        }}
-      >
-        <div className="w-2 h-2 bg-blue-300 rounded-full crypto-glow"></div>
-      </div>
-      <div 
-        className="absolute bottom-40 left-20 animate-float" 
-        style={{
-          animationDelay: '-4s',
-          transform: `translateY(${scrollY * 0.15}px)`,
-          opacity: opacity * 0.9
-        }}
-      >
-        <div className="w-4 h-4 bg-cyan-300 rounded-full crypto-glow"></div>
-      </div>
-
-      {/* Main Content Grid */}
-      <div className="relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen items-center">
-          {/* Left Content - Logo and Text */}
-          <div 
-            className="px-4 sm:px-6 lg:px-12 xl:px-16 text-center lg:text-left"
+      {/* Person Photo - Right Side with Modern Overlay */}
+      <div className="absolute right-8 lg:right-20 top-1/2 transform -translate-y-1/2 z-5">
+        <div className="relative">
+          <ResponsiveMedia
+            src={personPhoto}
+            alt="TechAra Person"
+            className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 object-cover rounded-full modern-glow"
+            loading="eager"
+            maxHeight="384px"
             style={{
               transform: `translateY(${scrollY * 0.1}px)`,
+              opacity: opacity * 0.9
+            }}
+          />
+          {/* Yellow overlay geometric shape on person */}
+          <div 
+            className="absolute -top-4 -right-4 w-24 h-24 rounded-full opacity-80"
+            style={{
+              background: 'linear-gradient(45deg, rgba(255, 255, 0, 0.7), rgba(255, 255, 0, 0.3))',
+              transform: `translateY(${scrollY * -0.05}px)`,
+            }}
+          ></div>
+        </div>
+      </div>
+
+      {/* Main Content - Left Side */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="lg:w-3/5">
+          <div 
+            className="text-left"
+            style={{
+              transform: `translateY(${scrollY * 0.05}px)`,
               opacity: opacity
             }}
           >
             {/* Web3_Sindhu Title */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-accent mb-4" data-testid="text-event-date">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-muted-foreground mb-2" data-testid="text-event-date">
               Web3_Sindhu
             </h2>
             
             {/* TechARA Academy */}
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8" data-testid="text-event-location">
+            <p className="text-lg md:text-xl text-muted-foreground mb-6" data-testid="text-event-location">
               • TechARA Academy
             </p>
 
-            {/* TechARA Logo */}
-            <div className="mb-8 flex justify-center lg:justify-start">
-              <ResponsiveMedia
-                src={techaraLogo}
-                alt="TechARA Logo"
-                className="h-16 md:h-24 lg:h-32 object-contain"
-                loading="eager"
-                maxHeight="128px"
-                data-testid="img-main-logo"
-              />
-            </div>
-
-            {/* Main Title */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 leading-tight" data-testid="text-main-title">
+            {/* Main Title - Large and Bold */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-tight" data-testid="text-main-title">
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                15th anniversary Forum
+                15th anniversary
               </span>
               <br />
-              <span className="text-foreground">on Web3 and crypto</span>
+              <span className="text-foreground">Forum on</span>
+              <br />
+              <span className="text-foreground">Web3 and crypto</span>
             </h1>
 
-            {/* CTA Button */}
-            <div className="flex justify-center lg:justify-start">
+            {/* Subtitle */}
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg leading-relaxed">
+              TechARA Academy hosts the 15th anniversary Forum on Web3 and crypto, bringing together industry leaders and innovators.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
               <button 
                 onClick={openRegistrationForm}
-                className="bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-lg text-lg font-semibold text-primary-foreground hover:opacity-90 transition-opacity crypto-glow"
+                className="bg-primary text-primary-foreground px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all duration-300 crypto-glow"
                 data-testid="button-buy-tickets-hero"
               >
-                Register Now
+                Get Started
               </button>
-            </div>
-          </div>
-
-          {/* Right Content - Visual Space for Large Screens */}
-          <div className="hidden lg:block relative">
-            {/* Person Photo for Mobile - Center */}
-            <div className="lg:hidden flex justify-center mt-12">
-              <ResponsiveMedia
-                src={personPhoto}
-                alt="TechAra Person"
-                className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full shadow-2xl"
-                loading="eager"
-                maxHeight="256px"
-              />
+              <button 
+                onClick={scrollToAttendees}
+                className="text-foreground px-8 py-4 rounded-full text-lg font-semibold hover:text-primary transition-colors duration-300 flex items-center gap-2"
+                data-testid="button-learn-more-hero"
+              >
+                Learn More
+                <span className="ml-2">→</span>
+              </button>
             </div>
           </div>
         </div>

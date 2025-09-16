@@ -4,38 +4,38 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(240, 10%, 3.9%);
-  --foreground: hsl(0, 0%, 98%);
-  --card: hsl(240, 10%, 3.9%);
-  --card-foreground: hsl(0, 0%, 98%);
-  --popover: hsl(240, 10%, 3.9%);
-  --popover-foreground: hsl(0, 0%, 98%);
-  --primary: hsl(262, 83%, 58%);
-  --primary-foreground: hsl(210, 20%, 98%);
-  --secondary: hsl(240, 3.7%, 15.9%);
-  --secondary-foreground: hsl(0, 0%, 98%);
-  --muted: hsl(240, 3.7%, 15.9%);
-  --muted-foreground: hsl(240, 5%, 64.9%);
-  --accent: hsl(24, 95%, 53%);
-  --accent-foreground: hsl(60, 9.1%, 97.8%);
-  --destructive: hsl(356.3, 90.6%, 54.3%);
-  --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(240, 3.7%, 15.9%);
-  --input: hsl(240, 3.7%, 15.9%);
-  --ring: hsl(262, 83%, 58%);
-  --chart-1: hsl(262, 83%, 58%);
-  --chart-2: hsl(24, 95%, 53%);
-  --chart-3: hsl(159.8, 100%, 36.1%);
-  --chart-4: hsl(147.1, 78.5%, 41.9%);
-  --chart-5: hsl(341.5, 75.2%, 50.9%);
-  --sidebar: hsl(240, 10%, 3.9%);
-  --sidebar-foreground: hsl(0, 0%, 98%);
-  --sidebar-primary: hsl(262, 83%, 58%);
-  --sidebar-primary-foreground: hsl(210, 20%, 98%);
-  --sidebar-accent: hsl(240, 3.7%, 15.9%);
-  --sidebar-accent-foreground: hsl(0, 0%, 98%);
-  --sidebar-border: hsl(240, 3.7%, 15.9%);
-  --sidebar-ring: hsl(262, 83%, 58%);
+  --background: hsl(0, 0%, 4%);
+  --foreground: hsl(0, 0%, 96%);
+  --card: hsl(0, 0%, 6%);
+  --card-foreground: hsl(0, 0%, 96%);
+  --popover: hsl(0, 0%, 6%);
+  --popover-foreground: hsl(0, 0%, 96%);
+  --primary: hsl(60, 100%, 70%);
+  --primary-foreground: hsl(0, 0%, 9%);
+  --secondary: hsl(0, 0%, 12%);
+  --secondary-foreground: hsl(0, 0%, 96%);
+  --muted: hsl(0, 0%, 14%);
+  --muted-foreground: hsl(0, 0%, 65%);
+  --accent: hsl(120, 100%, 60%);
+  --accent-foreground: hsl(0, 0%, 9%);
+  --destructive: hsl(0, 85%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(0, 0%, 18%);
+  --input: hsl(0, 0%, 14%);
+  --ring: hsl(60, 100%, 70%);
+  --chart-1: hsl(60, 100%, 70%);
+  --chart-2: hsl(120, 100%, 60%);
+  --chart-3: hsl(90, 100%, 65%);
+  --chart-4: hsl(45, 100%, 65%);
+  --chart-5: hsl(75, 100%, 65%);
+  --sidebar: hsl(0, 0%, 4%);
+  --sidebar-foreground: hsl(0, 0%, 96%);
+  --sidebar-primary: hsl(60, 100%, 70%);
+  --sidebar-primary-foreground: hsl(0, 0%, 9%);
+  --sidebar-accent: hsl(0, 0%, 14%);
+  --sidebar-accent-foreground: hsl(0, 0%, 96%);
+  --sidebar-border: hsl(0, 0%, 18%);
+  --sidebar-ring: hsl(60, 100%, 70%);
   --font-sans: Inter, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
@@ -53,38 +53,38 @@
 }
 
 .dark {
-  --background: hsl(240, 10%, 3.9%);
-  --foreground: hsl(0, 0%, 98%);
-  --card: hsl(240, 10%, 3.9%);
-  --card-foreground: hsl(0, 0%, 98%);
-  --popover: hsl(240, 10%, 3.9%);
-  --popover-foreground: hsl(0, 0%, 98%);
-  --primary: hsl(262, 83%, 58%);
-  --primary-foreground: hsl(210, 20%, 98%);
-  --secondary: hsl(240, 3.7%, 15.9%);
-  --secondary-foreground: hsl(0, 0%, 98%);
-  --muted: hsl(240, 3.7%, 15.9%);
-  --muted-foreground: hsl(240, 5%, 64.9%);
-  --accent: hsl(24, 95%, 53%);
-  --accent-foreground: hsl(60, 9.1%, 97.8%);
-  --destructive: hsl(356.3, 90.6%, 54.3%);
-  --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(240, 3.7%, 15.9%);
-  --input: hsl(240, 3.7%, 15.9%);
-  --ring: hsl(262, 83%, 58%);
-  --chart-1: hsl(262, 83%, 58%);
-  --chart-2: hsl(24, 95%, 53%);
-  --chart-3: hsl(159.8, 100%, 36.1%);
-  --chart-4: hsl(147.1, 78.5%, 41.9%);
-  --chart-5: hsl(341.5, 75.2%, 50.9%);
-  --sidebar: hsl(240, 10%, 3.9%);
-  --sidebar-foreground: hsl(0, 0%, 98%);
-  --sidebar-primary: hsl(262, 83%, 58%);
-  --sidebar-primary-foreground: hsl(210, 20%, 98%);
-  --sidebar-accent: hsl(240, 3.7%, 15.9%);
-  --sidebar-accent-foreground: hsl(0, 0%, 98%);
-  --sidebar-border: hsl(240, 3.7%, 15.9%);
-  --sidebar-ring: hsl(262, 83%, 58%);
+  --background: hsl(0, 0%, 4%);
+  --foreground: hsl(0, 0%, 96%);
+  --card: hsl(0, 0%, 6%);
+  --card-foreground: hsl(0, 0%, 96%);
+  --popover: hsl(0, 0%, 6%);
+  --popover-foreground: hsl(0, 0%, 96%);
+  --primary: hsl(60, 100%, 70%);
+  --primary-foreground: hsl(0, 0%, 9%);
+  --secondary: hsl(0, 0%, 12%);
+  --secondary-foreground: hsl(0, 0%, 96%);
+  --muted: hsl(0, 0%, 14%);
+  --muted-foreground: hsl(0, 0%, 65%);
+  --accent: hsl(120, 100%, 60%);
+  --accent-foreground: hsl(0, 0%, 9%);
+  --destructive: hsl(0, 85%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(0, 0%, 18%);
+  --input: hsl(0, 0%, 14%);
+  --ring: hsl(60, 100%, 70%);
+  --chart-1: hsl(60, 100%, 70%);
+  --chart-2: hsl(120, 100%, 60%);
+  --chart-3: hsl(90, 100%, 65%);
+  --chart-4: hsl(45, 100%, 65%);
+  --chart-5: hsl(75, 100%, 65%);
+  --sidebar: hsl(0, 0%, 4%);
+  --sidebar-foreground: hsl(0, 0%, 96%);
+  --sidebar-primary: hsl(60, 100%, 70%);
+  --sidebar-primary-foreground: hsl(0, 0%, 9%);
+  --sidebar-accent: hsl(0, 0%, 14%);
+  --sidebar-accent-foreground: hsl(0, 0%, 96%);
+  --sidebar-border: hsl(0, 0%, 18%);
+  --sidebar-ring: hsl(60, 100%, 70%);
 }
 
 @layer base {
@@ -120,12 +120,41 @@
 }
 
 .crypto-glow {
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 30px rgba(255, 255, 0, 0.4);
+}
+
+.modern-glow {
+  box-shadow: 0 0 40px rgba(255, 255, 0, 0.3), 0 0 80px rgba(0, 255, 0, 0.2);
 }
 
 .hero-bg {
-  background: radial-gradient(ellipse at top, rgba(139, 92, 246, 0.1), transparent),
-              radial-gradient(ellipse at bottom right, rgba(249, 115, 22, 0.1), transparent);
+  background: radial-gradient(ellipse at top left, rgba(255, 255, 0, 0.1), transparent),
+              radial-gradient(ellipse at bottom right, rgba(0, 255, 0, 0.1), transparent);
+}
+
+/* Modern geometric shapes */
+.geometric-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 0, 0.8), rgba(0, 255, 0, 0.6));
+  animation: float 8s ease-in-out infinite;
+}
+
+.geometric-shape.triangle {
+  border-radius: 0;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 35px solid rgba(255, 255, 0, 0.7);
+  animation: float 6s ease-in-out infinite reverse;
+}
+
+.geometric-shape.square {
+  border-radius: 8px;
+  background: linear-gradient(45deg, rgba(0, 255, 0, 0.8), rgba(255, 255, 0, 0.6));
+  animation: float 10s ease-in-out infinite;
 }
 
 .animate-float {

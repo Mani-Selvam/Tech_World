@@ -41,57 +41,50 @@ export default function Navigation() {
     };
 
     return (
-        <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
+        <nav className="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex items-center space-x-4">
                         <div className="flex items-center">
-                            <ResponsiveMedia
-                                src={techaraLogo}
-                                alt="TechARA Logo"
-                                className="h-8 w-auto object-contain"
-                                loading="eager"
-                                maxHeight="32px"
-                                data-testid="nav-logo"
-                            />
+                            <span className="text-xl font-bold text-foreground">TechARA</span>
                         </div>
                     </div>
 
                     {/* Desktop Menu */}
-                    <div className="hidden lg:flex items-center space-x-4">
+                    <div className="hidden lg:flex items-center space-x-8">
                         {navigationItems.map((item) => (
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
-                                className="text-foreground hover:text-primary transition-colors text-sm"
+                                className="text-foreground hover:text-primary transition-colors text-sm font-medium"
                                 data-testid={`nav-${item.id}`}>
                                 {item.title}
                             </button>
                         ))}
                         <button
                             onClick={openRegistrationForm}
-                            className="bg-gradient-to-r from-primary to-accent px-4 py-2 rounded-lg text-primary-foreground font-medium hover:opacity-90 transition-opacity text-sm"
+                            className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-medium hover:opacity-90 transition-all duration-300 text-sm crypto-glow"
                             data-testid="button-buy-tickets-nav">
-                            Register Now
+                            Connect Wallet
                         </button>
                     </div>
 
                     {/* Medium Screen Menu */}
-                    <div className="hidden md:flex lg:hidden items-center space-x-2">
-                        {navigationItems.map((item) => (
+                    <div className="hidden md:flex lg:hidden items-center space-x-4">
+                        {navigationItems.slice(0, 3).map((item) => (
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
-                                className="text-foreground hover:text-primary transition-colors text-xs"
+                                className="text-foreground hover:text-primary transition-colors text-xs font-medium"
                                 data-testid={`nav-${item.id}-md`}>
                                 {item.title}
                             </button>
                         ))}
                         <button
                             onClick={openRegistrationForm}
-                            className="bg-gradient-to-r from-primary to-accent px-3 py-2 rounded-lg text-primary-foreground font-medium hover:opacity-90 transition-opacity text-xs"
+                            className="bg-primary text-primary-foreground px-4 py-2 rounded-full font-medium hover:opacity-90 transition-all duration-300 text-xs"
                             data-testid="button-buy-tickets-nav-md">
-                            Register
+                            Connect
                         </button>
                     </div>
 
@@ -109,7 +102,7 @@ export default function Navigation() {
                 {/* Mobile Menu */}
                 {isOpen && (
                     <div className="md:hidden">
-                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background/90 backdrop-blur-md border-t border-border">
+                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background/95 backdrop-blur-md border-t border-border/50">
                             <div className="grid grid-cols-2 gap-2">
                                 {navigationItems.map((item) => (
                                     <button
@@ -124,9 +117,9 @@ export default function Navigation() {
                             <div className="pt-2 border-t border-border/50">
                                 <button
                                     onClick={openRegistrationForm}
-                                    className="block w-full text-center px-3 py-3 bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium rounded-lg"
+                                    className="block w-full text-center px-3 py-3 bg-primary text-primary-foreground font-medium rounded-full crypto-glow"
                                     data-testid="button-buy-tickets-mobile">
-                                    Register Now
+                                    Connect Wallet
                                 </button>
                             </div>
                         </div>
