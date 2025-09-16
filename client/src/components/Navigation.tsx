@@ -56,7 +56,7 @@ export default function Navigation() {
                             Startup pitch
                         </button>
                         <button
-                            onClick={scrollToTopics}
+                            onClick={() => scrollToSection("speakers")}
                             className="text-foreground hover:text-primary transition-colors"
                             data-testid="nav-speakers">
                             Topics
@@ -103,7 +103,7 @@ export default function Navigation() {
                                 Topics
                             </button>
                             <button
-                                onClick={() => scrollToSection("sponsors")}
+                                onClick={scrollToAttendees}
                                 className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
                                 data-testid="nav-sponsors-mobile">
                                 Attendees
