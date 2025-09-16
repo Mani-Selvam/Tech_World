@@ -52,21 +52,21 @@ export default function Navigation() {
               className="text-foreground hover:text-primary transition-colors"
               data-testid="nav-tickets"
             >
-              Tickets
+              Startup pitch
             </button>
             <button 
               onClick={() => scrollToSection('speakers')}
               className="text-foreground hover:text-primary transition-colors"
               data-testid="nav-speakers"
             >
-              Speakers
+              Topics
             </button>
             <button 
               onClick={() => scrollToSection('sponsors')}
               className="text-foreground hover:text-primary transition-colors"
               data-testid="nav-sponsors"
             >
-              Sponsors
+              Attendees
             </button>
             <button 
               onClick={openRegistrationForm}
@@ -98,21 +98,21 @@ export default function Navigation() {
                 className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
                 data-testid="nav-tickets-mobile"
               >
-                Tickets
+                Startup pitch
               </button>
               <button 
                 onClick={() => scrollToSection('speakers')}
                 className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
                 data-testid="nav-speakers-mobile"
               >
-                Speakers
+                Topics
               </button>
               <button 
                 onClick={() => scrollToSection('sponsors')}
                 className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
                 data-testid="nav-sponsors-mobile"
               >
-                Sponsors
+                Attendees
               </button>
               <button 
                 onClick={openRegistrationForm}
