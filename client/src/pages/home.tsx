@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Statistics from "@/components/Statistics";
 import PhotoGallery from "@/components/PhotoGallery";
-import WhyAttend from "@/components/WhyAttend";
+import Features from "@/components/WhyAttend";
 import BullRun from "@/components/BullRun";
 import Attendees from "@/components/Attendees";
 import WhoAttends from "@/components/WhoAttends";
@@ -57,10 +57,10 @@ function HomeContent() {
         </div>
       </section>
 
-      {/* WhyAttend Section with Bubbles */}
+      {/* Features Section with Bubbles */}
       <div className="relative">
         <SectionBubbles count={4} />
-        <WhyAttend />
+        <Features />
       </div>
       
       {/* BullRun Section with Bubbles */}

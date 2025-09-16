@@ -1,75 +1,158 @@
-export default function WhyAttend() {
-  const benefits = [
+import { motion } from "framer-motion";
+
+export default function Features() {
+  const features = [
     {
-      title: "2 days save a year of work",
-      description: "The quality of connections and insights saves you a year of hard work",
+      icon: "✅",
+      title: "Industry-Recognized Certificates",
+      description: "Get certified with credentials recognized across the blockchain and crypto industry",
       color: "primary"
     },
     {
-      title: "Tips to earn more",
-      description: "Find out about the strategies of earning on the hottest crypto trends of this autumn from the stage and behind the scenes",
+      icon: "📚",
+      title: "Beginner to Advanced Level Training",
+      description: "Structured learning path from basics to expert level with progressive skill building",
       color: "accent"
     },
     {
-      title: "Founders of crypto companies",
-      description: "Meet the owners/top management of the most promising companies and coins",
+      icon: "👨‍🏫",
+      title: "Expert Mentors & Real-Time Guidance",
+      description: "Learn directly from industry experts with personalized mentorship and live support",
       color: "primary"
     },
     {
-      title: "Global crypto community",
-      description: "The forum will bring together over 15,000 prominent figures from 130 countries",
+      icon: "💻",
+      title: "Hands-On Projects & Case Studies",
+      description: "Build real-world projects and analyze actual blockchain case studies",
       color: "accent"
     },
     {
-      title: "Insider information first-hand",
-      description: "Gain exclusive insights before they hit the mainstream from the leaders of the industry",
+      icon: "🌐",
+      title: "Placement Assistance & Career Support",
+      description: "Comprehensive career services including job placement and interview preparation",
       color: "primary"
     },
     {
-      title: "The largest crypto expo",
-      description: "Interact with the most groundbreaking teams and explore their products at 200+ booths",
+      icon: "⏱️",
+      title: "Flexible Learning Options",
+      description: "Choose from online, offline, or hybrid learning modes that fit your schedule",
       color: "accent"
     },
     {
-      title: "The World Crypto Capital 2025",
-      description: "Dubai and UAE are leading crypto regulators with the best legal landscape to grow a project",
+      icon: "🧑‍🤝‍🧑",
+      title: "Community & Peer Learning Support",
+      description: "Join a vibrant community of learners and professionals for collaborative growth",
       color: "primary"
     },
     {
-      title: "Full Week of side events",
-      description: "The forum is to gather 100+ side events from October 24 to November 2",
+      icon: "🚀",
+      title: "Latest Tools & Technology Stack",
+      description: "Master cutting-edge blockchain tools and the most current technology frameworks",
       color: "accent"
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.9
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <section className="py-20 bg-background" id="why-attend">
+    <section className="py-20 bg-background" id="features">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={titleVariants}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Why attend
+              Features
             </span>
           </h2>
-        </div>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Discover what makes our academy the premier destination for blockchain education
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {benefits.map((benefit, index) => (
-            <div key={index} className="gradient-border">
-              <div className="gradient-border-content p-6 space-y-4">
-                <h3 
-                  className={`text-xl font-bold ${benefit.color === 'primary' ? 'text-primary' : 'text-accent'}`}
-                  data-testid={`benefit-title-${index}`}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={containerVariants}
+        >
+          {features.map((feature, index) => (
+            <motion.div 
+              key={index} 
+              className="gradient-border group cursor-pointer"
+              variants={cardVariants}
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.2 }
+              }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="gradient-border-content p-6 space-y-4 h-full flex flex-col">
+                <motion.div 
+                  className="text-4xl mb-2"
+                  whileHover={{ 
+                    scale: 1.2,
+                    rotate: [0, -10, 10, -10, 0],
+                    transition: { duration: 0.5 }
+                  }}
                 >
-                  {benefit.title}
+                  {feature.icon}
+                </motion.div>
+                <h3 
+                  className={`text-xl font-bold ${feature.color === 'primary' ? 'text-primary' : 'text-accent'} group-hover:text-foreground transition-colors duration-300`}
+                  data-testid={`feature-title-${index}`}
+                >
+                  {feature.title}
                 </h3>
-                <p className="text-muted-foreground" data-testid={`benefit-description-${index}`}>
-                  {benefit.description}
+                <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300 flex-grow" data-testid={`feature-description-${index}`}>
+                  {feature.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
