@@ -6,14 +6,9 @@ export default function Navigation() {
 
     const navigationItems = [
         { id: "hero", title: "Home" },
-        { id: "statistics", title: "Statistics" },
-        { id: "gallery", title: "Gallery" },
-        { id: "academy", title: "Academy" },
         { id: "features", title: "Features" },
-        { id: "bullrun", title: "Bull Run" },
         { id: "courses", title: "Courses" },
         { id: "attendees", title: "Attendees" },
-        { id: "trailer", title: "Trailer" },
         { id: "benefit", title: "Benefit" },
         { id: "testimonial", title: "Testimonial" }
     ];
@@ -55,7 +50,7 @@ export default function Navigation() {
 
                     {/* Desktop Menu */}
                     <div className="hidden lg:flex items-center space-x-4">
-                        {navigationItems.slice(0, 6).map((item) => (
+                        {navigationItems.map((item) => (
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
@@ -64,22 +59,6 @@ export default function Navigation() {
                                 {item.title}
                             </button>
                         ))}
-                        <div className="relative group">
-                            <button className="text-foreground hover:text-primary transition-colors text-sm">
-                                More
-                            </button>
-                            <div className="absolute top-full right-0 mt-2 bg-background/95 backdrop-blur-md border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[120px] z-50">
-                                {navigationItems.slice(6).map((item) => (
-                                    <button
-                                        key={item.id}
-                                        onClick={() => scrollToSection(item.id)}
-                                        className="block w-full text-left px-4 py-2 text-foreground hover:text-primary hover:bg-secondary/50 transition-colors text-sm"
-                                        data-testid={`nav-${item.id}`}>
-                                        {item.title}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
                         <button
                             onClick={openRegistrationForm}
                             className="bg-gradient-to-r from-primary to-accent px-4 py-2 rounded-lg text-primary-foreground font-medium hover:opacity-90 transition-opacity text-sm"
@@ -89,8 +68,8 @@ export default function Navigation() {
                     </div>
 
                     {/* Medium Screen Menu */}
-                    <div className="hidden md:flex lg:hidden items-center space-x-3">
-                        {navigationItems.slice(0, 4).map((item) => (
+                    <div className="hidden md:flex lg:hidden items-center space-x-2">
+                        {navigationItems.map((item) => (
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
@@ -99,22 +78,6 @@ export default function Navigation() {
                                 {item.title}
                             </button>
                         ))}
-                        <div className="relative group">
-                            <button className="text-foreground hover:text-primary transition-colors text-xs">
-                                More
-                            </button>
-                            <div className="absolute top-full right-0 mt-2 bg-background/95 backdrop-blur-md border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[120px] z-50">
-                                {navigationItems.slice(4).map((item) => (
-                                    <button
-                                        key={item.id}
-                                        onClick={() => scrollToSection(item.id)}
-                                        className="block w-full text-left px-3 py-2 text-foreground hover:text-primary hover:bg-secondary/50 transition-colors text-xs"
-                                        data-testid={`nav-${item.id}-md`}>
-                                        {item.title}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
                         <button
                             onClick={openRegistrationForm}
                             className="bg-gradient-to-r from-primary to-accent px-3 py-2 rounded-lg text-primary-foreground font-medium hover:opacity-90 transition-opacity text-xs"
