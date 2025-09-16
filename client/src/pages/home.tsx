@@ -11,6 +11,7 @@ import ForumTopics from "@/components/ForumTopics";
 import StartupPitch from "@/components/StartupPitch";
 import StickyBottomBanner from "@/components/StickyBottomBanner";
 import Footer from "@/components/Footer";
+import SectionBubbles from "@/components/SectionBubbles";
 
 function HomeContent() {
   const scrollToAttendees = () => {
@@ -23,13 +24,29 @@ function HomeContent() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navigation />
-      <Hero />
-      <Statistics />
-      <PhotoGallery />
       
-      {/* Main Title Section */}
-      <section className="py-16 bg-secondary/30">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      {/* Hero Section with Bubbles */}
+      <div className="relative">
+        <SectionBubbles count={5} />
+        <Hero />
+      </div>
+      
+      {/* Statistics Section with Bubbles */}
+      <div className="relative">
+        <SectionBubbles count={4} />
+        <Statistics />
+      </div>
+      
+      {/* PhotoGallery Section with Bubbles */}
+      <div className="relative">
+        <SectionBubbles count={6} />
+        <PhotoGallery />
+      </div>
+      
+      {/* Main Title Section with Bubbles */}
+      <section className="relative py-16 bg-secondary/30">
+        <SectionBubbles count={5} />
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               The World's Leading Web3 Academy
@@ -40,17 +57,52 @@ function HomeContent() {
         </div>
       </section>
 
-      <WhyAttend />
-      <BullRun />
-      <WhoAttends />
-      <Attendees />
-      <OfficialTrailer />
-      <ForumTopics />
-      <StartupPitch />
+      {/* WhyAttend Section with Bubbles */}
+      <div className="relative">
+        <SectionBubbles count={4} />
+        <WhyAttend />
+      </div>
       
-      {/* Call to Action Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      {/* BullRun Section with Bubbles */}
+      <div className="relative">
+        <SectionBubbles count={6} />
+        <BullRun />
+      </div>
+      
+      {/* WhoAttends Section with Bubbles */}
+      <div className="relative">
+        <SectionBubbles count={5} />
+        <WhoAttends />
+      </div>
+      
+      {/* Attendees Section with Bubbles */}
+      <div className="relative">
+        <SectionBubbles count={4} />
+        <Attendees />
+      </div>
+      
+      {/* OfficialTrailer Section with Bubbles */}
+      <div className="relative">
+        <SectionBubbles count={5} />
+        <OfficialTrailer />
+      </div>
+      
+      {/* ForumTopics Section with Bubbles */}
+      <div className="relative">
+        <SectionBubbles count={6} />
+        <ForumTopics />
+      </div>
+      
+      {/* StartupPitch Section with Bubbles */}
+      <div className="relative">
+        <SectionBubbles count={4} />
+        <StartupPitch />
+      </div>
+      
+      {/* Call to Action Section with Bubbles */}
+      <section className="relative py-20 bg-background">
+        <SectionBubbles count={5} />
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold mb-8">
             <span className="text-foreground">Ready to join the </span>
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">15th anniversary?</span>
