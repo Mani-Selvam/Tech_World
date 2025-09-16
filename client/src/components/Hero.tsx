@@ -59,80 +59,92 @@ export default function Hero() {
 
   return (
     <section 
-      className="relative min-h-screen flex items-center overflow-hidden bg-background"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background"
     >
-      {/* Modern Geometric Background Elements */}
-      <div className="absolute inset-0 z-0">
-        {/* Large Yellow Circle - Top Right */}
+      {/* TechARA Logo at Top */}
+      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20">
+        <ResponsiveMedia
+          src={techaraLogo}
+          alt="TechARA Logo"
+          className="h-16 md:h-20 lg:h-24 object-contain"
+          loading="eager"
+          maxHeight="96px"
+          data-testid="img-techara-logo-hero"
+        />
+      </div>
+
+      {/* Modern Geometric Background Elements with proper colors */}
+      <div className="absolute inset-0 z-0 hero-bg">
+        {/* Large Purple Circle - Top Right */}
         <div 
-          className="geometric-shape absolute top-20 right-32 w-64 h-64 opacity-80"
+          className="geometric-shape absolute top-20 right-16 lg:right-32 w-48 h-48 lg:w-64 lg:h-64 opacity-60"
           style={{
-            background: 'linear-gradient(135deg, rgba(255, 255, 0, 0.3), rgba(255, 255, 0, 0.1))',
+            background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.1))',
             transform: `translateY(${scrollY * 0.1}px)`,
-            opacity: opacity * 0.8
+            opacity: opacity * 0.6
           }}
         ></div>
         
-        {/* Medium Green Circle - Top Left */}
+        {/* Medium Orange Circle - Top Left */}
         <div 
-          className="geometric-shape absolute top-40 left-20 w-32 h-32 opacity-70"
+          className="geometric-shape absolute top-40 left-8 lg:left-20 w-24 h-24 lg:w-32 lg:h-32 opacity-50"
           style={{
-            background: 'linear-gradient(135deg, rgba(0, 255, 0, 0.4), rgba(0, 255, 0, 0.2))',
+            background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.4), rgba(249, 115, 22, 0.2))',
             transform: `translateY(${scrollY * -0.05}px)`,
+            opacity: opacity * 0.5
+          }}
+        ></div>
+        
+        {/* Small Purple Circle - Bottom Left */}
+        <div 
+          className="geometric-shape absolute bottom-32 left-8 lg:left-16 w-12 h-12 lg:w-16 lg:h-16 opacity-70"
+          style={{
+            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.6), rgba(139, 92, 246, 0.2))',
+            transform: `translateY(${scrollY * 0.08}px)`,
             opacity: opacity * 0.7
           }}
         ></div>
         
-        {/* Small Yellow Circle - Bottom Left */}
+        {/* Triangle Shape - Right Side (Hidden on mobile) */}
         <div 
-          className="geometric-shape absolute bottom-32 left-16 w-16 h-16 opacity-90"
-          style={{
-            background: 'radial-gradient(circle, rgba(255, 255, 0, 0.8), rgba(255, 255, 0, 0.3))',
-            transform: `translateY(${scrollY * 0.08}px)`,
-            opacity: opacity * 0.9
-          }}
-        ></div>
-        
-        {/* Triangle Shape - Right Side */}
-        <div 
-          className="absolute top-1/3 right-16"
+          className="absolute top-1/3 right-8 lg:right-16 hidden md:block"
           style={{
             transform: `translateY(${scrollY * -0.03}px)`,
-            opacity: opacity * 0.6
+            opacity: opacity * 0.4
           }}
         >
           <div className="geometric-shape triangle"></div>
         </div>
         
-        {/* Square Shape - Bottom Right */}
+        {/* Square Shape - Bottom Right (Hidden on mobile) */}
         <div 
-          className="geometric-shape square absolute bottom-20 right-24 w-12 h-12 opacity-75"
+          className="geometric-shape square absolute bottom-20 right-12 lg:right-24 w-8 h-8 lg:w-12 lg:h-12 opacity-50 hidden md:block"
           style={{
             transform: `translateY(${scrollY * 0.12}px)`,
-            opacity: opacity * 0.75
+            opacity: opacity * 0.5
           }}
         ></div>
       </div>
       
-      {/* Person Photo - Right Side with Modern Overlay */}
-      <div className="absolute right-8 lg:right-20 top-1/2 transform -translate-y-1/2 z-5">
+      {/* Person Photo - Optimized for Mobile */}
+      <div className="absolute right-4 md:right-8 lg:right-20 top-1/2 transform -translate-y-1/2 z-5">
         <div className="relative">
           <ResponsiveMedia
             src={personPhoto}
             alt="TechAra Person"
-            className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 object-cover rounded-full modern-glow"
+            className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-80 lg:h-80 xl:w-96 xl:h-96 object-cover rounded-full modern-glow border-2 border-primary/20"
             loading="eager"
             maxHeight="384px"
             style={{
               transform: `translateY(${scrollY * 0.1}px)`,
-              opacity: opacity * 0.9
+              opacity: opacity * 0.95
             }}
           />
-          {/* Yellow overlay geometric shape on person */}
+          {/* Purple overlay geometric shape on person */}
           <div 
-            className="absolute -top-4 -right-4 w-24 h-24 rounded-full opacity-80"
+            className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 w-16 h-16 lg:w-24 lg:h-24 rounded-full opacity-60"
             style={{
-              background: 'linear-gradient(45deg, rgba(255, 255, 0, 0.7), rgba(255, 255, 0, 0.3))',
+              background: 'linear-gradient(45deg, rgba(139, 92, 246, 0.7), rgba(139, 92, 246, 0.3))',
               transform: `translateY(${scrollY * -0.05}px)`,
             }}
           ></div>

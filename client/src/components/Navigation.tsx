@@ -65,7 +65,7 @@ export default function Navigation() {
                             onClick={openRegistrationForm}
                             className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-medium hover:opacity-90 transition-all duration-300 text-sm crypto-glow"
                             data-testid="button-buy-tickets-nav">
-                            Connect Wallet
+                            Register Now
                         </button>
                     </div>
 
@@ -84,7 +84,7 @@ export default function Navigation() {
                             onClick={openRegistrationForm}
                             className="bg-primary text-primary-foreground px-4 py-2 rounded-full font-medium hover:opacity-90 transition-all duration-300 text-xs"
                             data-testid="button-buy-tickets-nav-md">
-                            Connect
+                            Register
                         </button>
                     </div>
 
@@ -119,7 +119,7 @@ export default function Navigation() {
                                     onClick={openRegistrationForm}
                                     className="block w-full text-center px-3 py-3 bg-primary text-primary-foreground font-medium rounded-full crypto-glow"
                                     data-testid="button-buy-tickets-mobile">
-                                    Connect Wallet
+                                    Register Now
                                 </button>
                             </div>
                         </div>

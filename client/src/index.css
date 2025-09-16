@@ -120,23 +120,23 @@
 }
 
 .crypto-glow {
-  box-shadow: 0 0 30px rgba(255, 255, 0, 0.4);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
 }
 
 .modern-glow {
-  box-shadow: 0 0 40px rgba(255, 255, 0, 0.3), 0 0 80px rgba(0, 255, 0, 0.2);
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.4), 0 0 80px rgba(249, 115, 22, 0.2);
 }
 
 .hero-bg {
-  background: radial-gradient(ellipse at top left, rgba(255, 255, 0, 0.1), transparent),
-              radial-gradient(ellipse at bottom right, rgba(0, 255, 0, 0.1), transparent);
+  background: radial-gradient(ellipse at top, rgba(139, 92, 246, 0.1), transparent),
+              radial-gradient(ellipse at bottom right, rgba(249, 115, 22, 0.1), transparent);
 }
 
 /* Modern geometric shapes */
 .geometric-shape {
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255, 255, 0, 0.8), rgba(0, 255, 0, 0.6));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(249, 115, 22, 0.6));
   animation: float 8s ease-in-out infinite;
 }
 
@@ -147,13 +147,13 @@
   background: transparent;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
-  border-bottom: 35px solid rgba(255, 255, 0, 0.7);
+  border-bottom: 35px solid rgba(139, 92, 246, 0.7);
   animation: float 6s ease-in-out infinite reverse;
 }
 
 .geometric-shape.square {
   border-radius: 8px;
-  background: linear-gradient(45deg, rgba(0, 255, 0, 0.8), rgba(255, 255, 0, 0.6));
+  background: linear-gradient(45deg, rgba(249, 115, 22, 0.8), rgba(139, 92, 246, 0.6));
   animation: float 10s ease-in-out infinite;
 }
 
