@@ -44,9 +44,9 @@ export default function Hero() {
             {/* Animated Bubbles */}
             <SectionBubbles count={5} className="z-[1]" />
 
-            {/* Tech ARA Logo - Left Side */}
+            {/* Tech ARA Logo - Left Side on desktop, centered on mobile */}
             <div
-                className={`absolute top-[200px] left-8 z-20 transition-all duration-1000 transform ${
+                className={`absolute top-[150px] md:left-8 left-1/2 transform-gpu md:transform-none -translate-x-1/2 md:translate-x-0 z-20 transition-all duration-1000 ${
                     isVisible
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-10"
@@ -54,7 +54,7 @@ export default function Hero() {
                 <img
                     src={techaraLogo}
                     alt="Tech ARA Logo"
-                    className="w-32 h-32 object-contain hover:scale-110 transition-transform duration-300"
+                    className="w-32 h-32 object-contain hover:scale-110 transition-transform duration-300 mt-12 mb-8"
                 />
             </div>
 
@@ -63,7 +63,7 @@ export default function Hero() {
                 {/* Main Title - Centered */}
                 <div className="text-center pt-4 pb-8 px-4">
                     <h1
-                        className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-white leading-tight max-w-5xl mx-auto transition-all duration-1000 transform ${
+                        className={`text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-white leading-tight max-w-5xl mx-auto transition-all duration-1000 transform ${
                             isVisible
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-10"

@@ -52,7 +52,6 @@ export default function Attendees() {
     const [showForm, setShowForm] = useState(false);
     const [showThankYou, setShowThankYou] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [lastActivity, setLastActivity] = useState(Date.now());
 
     const form = useForm<RegistrationFormData>({
         resolver: zodResolver(registrationSchema),
@@ -88,49 +87,27 @@ export default function Attendees() {
 
         return () => clearInterval(timer);
     }, []);
-    
-    // Auto-close form after 5 seconds of inactivity
-    useEffect(() => {
-        if (!showForm) return;
-        
-        const inactivityTimer = setInterval(() => {
-            const now = Date.now();
-            if (now - lastActivity > 5000) { // 5 seconds
-                setShowForm(false);
-            }
-        }, 1000);
-        
-        // Reset activity timer on user interaction
-        const resetActivity = () => setLastActivity(Date.now());
-        const formElement = document.querySelector('.registration-form-modal');
-        if (formElement) {
-            formElement.addEventListener('mousemove', resetActivity);
-            formElement.addEventListener('click', resetActivity);
-            formElement.addEventListener('keydown', resetActivity);
-        }
-        
-        return () => {
-            clearInterval(inactivityTimer);
-            if (formElement) {
-                formElement.removeEventListener('mousemove', resetActivity);
-                formElement.removeEventListener('click', resetActivity);
-                formElement.removeEventListener('keydown', resetActivity);
-            }
-        };
-    }, [showForm, lastActivity]);
-    
+
+    // Auto-close functionality has been removed as requested
+
     // Scroll-to-close functionality has been removed as requested
-    
+
     // Listen for custom event to open registration form
     useEffect(() => {
         const handleOpenRegistrationForm = () => {
             setShowForm(true);
         };
-        
-        document.addEventListener('openRegistrationForm', handleOpenRegistrationForm);
-        
+
+        document.addEventListener(
+            "openRegistrationForm",
+            handleOpenRegistrationForm
+        );
+
         return () => {
-            document.removeEventListener('openRegistrationForm', handleOpenRegistrationForm);
+            document.removeEventListener(
+                "openRegistrationForm",
+                handleOpenRegistrationForm
+            );
         };
     }, []);
 
