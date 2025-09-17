@@ -52,6 +52,7 @@ export default function Attendees() {
     const [showForm, setShowForm] = useState(false);
     const [showThankYou, setShowThankYou] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [lastActivity, setLastActivity] = useState(Date.now());
 
     const form = useForm<RegistrationFormData>({
         resolver: zodResolver(registrationSchema),
@@ -86,6 +87,51 @@ export default function Attendees() {
         }, 1000);
 
         return () => clearInterval(timer);
+    }, []);
+    
+    // Auto-close form after 5 seconds of inactivity
+    useEffect(() => {
+        if (!showForm) return;
+        
+        const inactivityTimer = setInterval(() => {
+            const now = Date.now();
+            if (now - lastActivity > 5000) { // 5 seconds
+                setShowForm(false);
+            }
+        }, 1000);
+        
+        // Reset activity timer on user interaction
+        const resetActivity = () => setLastActivity(Date.now());
+        const formElement = document.querySelector('.registration-form-modal');
+        if (formElement) {
+            formElement.addEventListener('mousemove', resetActivity);
+            formElement.addEventListener('click', resetActivity);
+            formElement.addEventListener('keydown', resetActivity);
+        }
+        
+        return () => {
+            clearInterval(inactivityTimer);
+            if (formElement) {
+                formElement.removeEventListener('mousemove', resetActivity);
+                formElement.removeEventListener('click', resetActivity);
+                formElement.removeEventListener('keydown', resetActivity);
+            }
+        };
+    }, [showForm, lastActivity]);
+    
+    // Scroll-to-close functionality has been removed as requested
+    
+    // Listen for custom event to open registration form
+    useEffect(() => {
+        const handleOpenRegistrationForm = () => {
+            setShowForm(true);
+        };
+        
+        document.addEventListener('openRegistrationForm', handleOpenRegistrationForm);
+        
+        return () => {
+            document.removeEventListener('openRegistrationForm', handleOpenRegistrationForm);
+        };
     }, []);
 
     const onSubmit = async (data: RegistrationFormData) => {
@@ -355,7 +401,24 @@ export default function Attendees() {
                             {/* Register Button */}
                             <div className="text-center mt-8">
                                 <button
-                                    onClick={() => setShowForm(true)}
+                                    onClick={() => {
+                                        setShowForm(true);
+                                        // Scroll to form with a slight delay to ensure it's rendered
+                                        setTimeout(() => {
+                                            const attendeesSection =
+                                                document.getElementById(
+                                                    "attendees"
+                                                );
+                                            if (attendeesSection) {
+                                                attendeesSection.scrollIntoView(
+                                                    {
+                                                        behavior: "smooth",
+                                                        block: "center",
+                                                    }
+                                                );
+                                            }
+                                        }, 300);
+                                    }}
                                     className="bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-lg text-lg font-semibold text-primary-foreground hover:opacity-90 transition-opacity crypto-glow"
                                     data-testid="button-register-countdown">
                                     Register Now
@@ -367,8 +430,8 @@ export default function Attendees() {
 
                 {/* Registration Form Modal */}
                 {showForm && (
-                    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-                        <div className="bg-background border border-border rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
+                    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto registration-form-modal">
+                        <div className="bg-background border border-border rounded-2xl p-8 max-w-md w-full my-10 shadow-xl">
                             <div className="text-center mb-6">
                                 <h3 className="text-2xl font-bold text-foreground mb-2">
                                     Register for TechAra Academy
@@ -381,7 +444,7 @@ export default function Attendees() {
                             <Form {...form}>
                                 <form
                                     onSubmit={form.handleSubmit(onSubmit)}
-                                    className="space-y-4">
+                                    className="space-y-6">
                                     <FormField
                                         control={form.control}
                                         name="name"
@@ -468,19 +531,19 @@ export default function Attendees() {
                                         )}
                                     />
 
-                                    <div className="flex gap-3 pt-4">
+                                    <div className="flex gap-3 pt-6 mt-2">
                                         <Button
                                             type="button"
                                             variant="outline"
                                             onClick={() => setShowForm(false)}
-                                            className="flex-1"
+                                            className="flex-1 py-6"
                                             data-testid="button-cancel">
                                             Cancel
                                         </Button>
                                         <Button
                                             type="submit"
                                             disabled={isSubmitting}
-                                            className="flex-1 bg-gradient-to-r from-primary to-accent text-primary-foreground"
+                                            className="flex-1 bg-gradient-to-r from-primary to-accent text-primary-foreground py-6"
                                             data-testid="button-submit">
                                             {isSubmitting
                                                 ? "Submitting..."

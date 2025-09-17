@@ -42,18 +42,18 @@ export default function Hero() {
 
   const openRegistrationForm = () => {
     setShowRegistrationForm(true);
-    // Scroll to attendees section to trigger the form
+    // Scroll to attendees section and directly show the form
     setTimeout(() => {
       const attendeesSection = document.getElementById('attendees');
       if (attendeesSection) {
-        attendeesSection.scrollIntoView({ behavior: 'smooth' });
-        // Trigger the registration form in attendees component
-        const registerButton = document.querySelector('[data-testid="button-register-countdown"]') as HTMLButtonElement;
-        if (registerButton) {
-          registerButton.click();
-        }
+        // Scroll to center of viewport for better visibility
+        attendeesSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Directly set showForm to true in the Attendees component using custom event
+        const event = new CustomEvent('openRegistrationForm');
+        document.dispatchEvent(event);
       }
-    }, 100);
+    }, 300);
   };
 
 
