@@ -1,52 +1,13 @@
 import techaraLogo from "@/assets/techara-logo.png";
-import hudGif from "@assets/download_1758039224106.gif";
-import personPhoto from "@assets/Techara_1758039233159.png";
-import { useState, useEffect } from "react";
+import sindhuraImage from "@assets/Desktop a- 4_1758097850181.png";
 import { ResponsiveMedia } from "./ResponsiveMedia";
 
 export default function Hero() {
-  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const [opacity, setOpacity] = useState(1);
-
-  useEffect(() => {
-    let ticking = false;
-    
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          setScrollY(currentScrollY);
-          
-          // Calculate opacity based on scroll position (throttled)
-          const maxScroll = 400;
-          const newOpacity = Math.max(0, 1 - currentScrollY / maxScroll);
-          setOpacity(newOpacity);
-          
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToAttendees = () => {
-    const attendeesSection = document.getElementById('attendees');
-    if (attendeesSection) {
-      attendeesSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const openRegistrationForm = () => {
-    setShowRegistrationForm(true);
     // Scroll to attendees section and directly show the form
     setTimeout(() => {
       const attendeesSection = document.getElementById('attendees');
       if (attendeesSection) {
-        // Scroll to center of viewport for better visibility
         attendeesSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
         // Directly set showForm to true in the Attendees component using custom event
@@ -56,158 +17,149 @@ export default function Hero() {
     }, 300);
   };
 
+  // Sample profile avatars for the left side
+  const profileAvatars = [
+    { id: 1, avatar: "👩‍💼" },
+    { id: 2, avatar: "👨‍💻" },
+    { id: 3, avatar: "👩‍🎓" },
+    { id: 4, avatar: "👨‍🔬" },
+  ];
 
   return (
-    <section 
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background"
-    >
-      {/* TechARA Logo at Top */}
-      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20">
-        <ResponsiveMedia
-          src={techaraLogo}
-          alt="TechARA Logo"
-          className="h-16 md:h-20 lg:h-24 object-contain"
-          loading="eager"
-          maxHeight="96px"
-          data-testid="img-techara-logo-hero"
-        />
-      </div>
-
-      {/* Modern Geometric Background Elements with proper colors */}
-      <div className="absolute inset-0 z-0 hero-bg">
-        {/* Large Purple Circle - Top Right */}
-        <div 
-          className="geometric-shape absolute top-20 right-16 lg:right-32 w-48 h-48 lg:w-64 lg:h-64 opacity-60"
-          style={{
-            background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.1))',
-            transform: `translateY(${scrollY * 0.1}px)`,
-            opacity: opacity * 0.6
-          }}
-        ></div>
-        
-        {/* Medium Orange Circle - Top Left */}
-        <div 
-          className="geometric-shape absolute top-40 left-8 lg:left-20 w-24 h-24 lg:w-32 lg:h-32 opacity-50"
-          style={{
-            background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.4), rgba(249, 115, 22, 0.2))',
-            transform: `translateY(${scrollY * -0.05}px)`,
-            opacity: opacity * 0.5
-          }}
-        ></div>
-        
-        {/* Small Purple Circle - Bottom Left */}
-        <div 
-          className="geometric-shape absolute bottom-32 left-8 lg:left-16 w-12 h-12 lg:w-16 lg:h-16 opacity-70"
-          style={{
-            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.6), rgba(139, 92, 246, 0.2))',
-            transform: `translateY(${scrollY * 0.08}px)`,
-            opacity: opacity * 0.7
-          }}
-        ></div>
-        
-        {/* Triangle Shape - Right Side (Hidden on mobile) */}
-        <div 
-          className="absolute top-1/3 right-8 lg:right-16 hidden md:block"
-          style={{
-            transform: `translateY(${scrollY * -0.03}px)`,
-            opacity: opacity * 0.4
-          }}
-        >
-          <div className="geometric-shape triangle"></div>
-        </div>
-        
-        {/* Square Shape - Bottom Right (Hidden on mobile) */}
-        <div 
-          className="geometric-shape square absolute bottom-20 right-12 lg:right-24 w-8 h-8 lg:w-12 lg:h-12 opacity-50 hidden md:block"
-          style={{
-            transform: `translateY(${scrollY * 0.12}px)`,
-            opacity: opacity * 0.5
-          }}
-        ></div>
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Dark Gradient Background */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          background: 'linear-gradient(135deg, #000000 0%, #1a0b2e 40%, #4a1a3d 80%, #000000 100%)',
+        }}
+      />
       
-      {/* Person Photo - Optimized for Mobile */}
-      <div className="absolute right-4 md:right-8 lg:right-20 top-1/2 transform -translate-y-1/2 z-5">
-        <div className="relative">
+      {/* Network Grid Pattern */}
+      <div 
+        className="absolute inset-0 z-1 opacity-20"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }}
+      />
+
+      {/* TechARA Logo - Top Left */}
+      <div className="absolute top-8 left-8 z-20">
+        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
           <ResponsiveMedia
-            src={personPhoto}
-            alt="TechAra Person"
-            className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-80 lg:h-80 xl:w-96 xl:h-96 object-cover rounded-full modern-glow border-2 border-primary/20"
+            src={techaraLogo}
+            alt="TechARA Logo"
+            className="h-10 w-10 object-contain"
             loading="eager"
-            maxHeight="384px"
-            style={{
-              transform: `translateY(${scrollY * 0.1}px)`,
-              opacity: opacity * 0.95
-            }}
+            maxHeight="40px"
+            data-testid="img-techara-logo-hero"
           />
-          {/* Purple overlay geometric shape on person */}
-          <div 
-            className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 w-16 h-16 lg:w-24 lg:h-24 rounded-full opacity-60"
-            style={{
-              background: 'linear-gradient(45deg, rgba(139, 92, 246, 0.7), rgba(139, 92, 246, 0.3))',
-              transform: `translateY(${scrollY * -0.05}px)`,
-            }}
-          ></div>
         </div>
       </div>
 
-      {/* Main Content - Left Side */}
+      {/* Main Content Container */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="lg:w-3/5">
-          <div 
-            className="text-left"
-            style={{
-              transform: `translateY(${scrollY * 0.05}px)`,
-              opacity: opacity
-            }}
-          >
-            {/* Web3_Sindhu Title */}
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-muted-foreground mb-2" data-testid="text-event-date">
-              Web3_Sindhu
-            </h2>
-            
-            {/* TechARA Academy */}
-            <p className="text-lg md:text-xl text-muted-foreground mb-6" data-testid="text-event-location">
-              • TechARA Academy
-            </p>
-
-            {/* Main Title - Large and Bold */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-tight" data-testid="text-main-title">
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                15th anniversary
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Left Side Content */}
+          <div className="text-center lg:text-left">
+            {/* Main Heading */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight" data-testid="text-main-title">
+              India's First All in One
+              <br />
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Web3 Academy
               </span>
-              <br />
-              <span className="text-foreground">Forum on</span>
-              <br />
-              <span className="text-foreground">Web3 and crypto</span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg leading-relaxed">
-              TechARA Academy hosts the 15th anniversary Forum on Web3 and crypto, bringing together industry leaders and innovators.
-            </p>
+            {/* Profile Avatars Section - Bottom Left */}
+            <div className="mb-8 lg:mb-12">
+              <div className="flex justify-center lg:justify-start items-center gap-2 mb-4">
+                {profileAvatars.map((profile) => (
+                  <div 
+                    key={profile.id}
+                    className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-lg"
+                  >
+                    {profile.avatar}
+                  </div>
+                ))}
+              </div>
+              <div className="text-left max-w-xs">
+                <h3 className="text-white font-semibold text-lg mb-2">
+                  Sindhu turns technology into inspiration
+                </h3>
+                <button className="text-purple-400 hover:text-purple-300 transition-colors underline text-sm">
+                  See Story
+                </button>
+              </div>
+            </div>
+          </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button 
-                onClick={openRegistrationForm}
-                className="bg-primary text-primary-foreground px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all duration-300 crypto-glow"
-                data-testid="button-buy-tickets-hero"
-              >
-                Get Started
-              </button>
-              <button 
-                onClick={scrollToAttendees}
-                className="text-foreground px-8 py-4 rounded-full text-lg font-semibold hover:text-primary transition-colors duration-300 flex items-center gap-2"
-                data-testid="button-learn-more-hero"
-              >
-                Learn More
-                <span className="ml-2">→</span>
-              </button>
+          {/* Right Side - Sindhu Image and Elements */}
+          <div className="relative flex items-center justify-center">
+            {/* Central Circle Image of Sindhu */}
+            <div className="relative">
+              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+                <ResponsiveMedia
+                  src={sindhuraImage}
+                  alt="Sindhu - Web3 Expert"
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                  maxHeight="384px"
+                  data-testid="img-sindhu-hero"
+                />
+              </div>
+              
+              {/* Floating Elements around Sindhu */}
+              
+              {/* Sparkle Icons - Top Right */}
+              <div className="absolute -top-4 -right-4 text-yellow-400">
+                <div className="text-2xl">✨</div>
+                <div className="text-lg ml-4 mt-2">✨</div>
+              </div>
+              
+              {/* Inspirational Quote - Right Side */}
+              <div className="absolute top-1/2 -right-20 lg:-right-32 transform -translate-y-1/2 max-w-xs">
+                <div className="bg-black/80 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                  <p className="text-white text-sm leading-relaxed">
+                    Building the future, one block at a time - that's the spirit of Web3 Sindhu.
+                  </p>
+                </div>
+              </div>
+              
+              {/* Book a Demo Button */}
+              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+                <button 
+                  onClick={openRegistrationForm}
+                  className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg"
+                  data-testid="button-book-demo-hero"
+                >
+                  Book a Demo
+                </button>
+              </div>
+              
+              {/* 500+ Reviews Badge - Bottom Right */}
+              <div className="absolute -bottom-4 -right-12 lg:-right-20">
+                <div className="bg-white rounded-full px-4 py-2 flex items-center gap-2 shadow-lg">
+                  <div className="text-center">
+                    <div className="text-black font-bold text-lg">500+</div>
+                    <div className="text-black text-xs">Positive Reviews</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Floating Geometric Elements */}
+      <div className="absolute top-20 left-20 w-4 h-4 bg-purple-500 rounded-full opacity-60 animate-pulse" />
+      <div className="absolute bottom-32 right-20 w-6 h-6 bg-pink-500 rotate-45 opacity-40" />
+      <div className="absolute top-1/2 left-10 w-3 h-3 bg-blue-400 rounded-full opacity-50" />
     </section>
   );
 }
