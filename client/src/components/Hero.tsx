@@ -46,7 +46,7 @@ export default function Hero() {
 
             {/* Tech ARA Logo - Left Side on desktop, centered on mobile */}
             <div
-                className={`absolute top-[150px] md:left-8 left-1/2 transform-gpu md:transform-none -translate-x-1/2 md:translate-x-0 z-20 transition-all duration-1000 ${
+                className={`absolute top-[80px] md:left-8 left-1/2 transform-gpu md:transform-none -translate-x-1/2 md:translate-x-0 z-20 transition-all duration-1000 ${
                     isVisible
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-10"
@@ -54,7 +54,7 @@ export default function Hero() {
                 <img
                     src={techaraLogo}
                     alt="Tech ARA Logo"
-                    className="w-32 h-32 object-contain hover:scale-110 transition-transform duration-300 mt-12 mb-8"
+                    className="w-32 h-32 object-contain hover:scale-110 transition-transform duration-300 mt-12 mb-1"
                 />
             </div>
 
@@ -86,7 +86,7 @@ export default function Hero() {
                         <div className="relative">
                             {/* Red Circle Background */}
                             <div
-                                className={`w-[380px] h-[340px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] rounded-full relative mx-auto -translate-x-10 -translate-y-10 transition-all duration-1000 transform ${
+                                className={`w-[380px] h-[340px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px]    rounded-full relative mx-auto -translate-x-20 -translate-y-10 transition-all duration-1000 transform  ${
                                     isVisible
                                         ? "opacity-100 scale-100"
                                         : "opacity-0 scale-90"
@@ -100,7 +100,7 @@ export default function Hero() {
 
                                 {/* Sindhu Image - Positioned in center of red circle */}
                                 <div
-                                    className={`absolute top-[50px] left-[50px] right-[50px] bottom-[50px] lg:top-[60px] lg:left-[60px] lg:right-[60px] lg:bottom-[60px] rounded-full overflow-hidden translate-x-20 transition-all duration-1000 delay-300 transform ${
+                                    className={`absolute top-[50px] left-[10px] right-[50px] bottom-[50px] lg:top-[60px] lg:left-[60px] lg:right-[60px] lg:bottom-[60px] rounded-full overflow-hidden translate-x-20 transition-all duration-1000 delay-300 transform ${
                                         isVisible
                                             ? "opacity-100 rotate-0"
                                             : "opacity-0 rotate-12"
@@ -170,11 +170,14 @@ export default function Hero() {
                                 <h3 className="text-white font-semibold text-base mb-2">
                                     Sindhu turns technology into inspiration
                                 </h3>
-                                <button
-                                    className="text-purple-400 hover:text-purple-300 transition-colors underline text-sm"
+                                <a
+                                    href="https://www.instagram.com/web3_sindhu?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-purple-400 hover:text-purple-300 transition-colors underline text-sm cursor-pointer"
                                     data-testid="button-see-story">
                                     See Story
-                                </button>
+                                </a>
                             </div>
                         </div>
 
@@ -202,7 +205,7 @@ export default function Hero() {
                 {/* Mobile Layout */}
                 <div className="md:hidden px-4">
                     {/* Central Sindhu Circle for Mobile */}
-                    <div className="flex justify-center mb-8">
+                    <div className="flex justify-center mt-10 mb-10">
                         <div
                             className={`relative w-72 h-72 sm:w-80 sm:h-80 transition-all duration-1000 transform ${
                                 isVisible
@@ -218,7 +221,7 @@ export default function Hero() {
 
                             {/* Sindhu Image for Mobile */}
                             <div
-                                className={`absolute top-12 left-12 right-12 bottom-12 rounded-full overflow-hidden transition-all duration-1000 delay-300 transform ${
+                                className={`absolute top-18 left-12 right-12 bottom-12 rounded-full overflow-hidden transition-all duration-1000 delay-300 transform ${
                                     isVisible
                                         ? "opacity-100 rotate-0"
                                         : "opacity-0 rotate-12"
@@ -277,11 +280,14 @@ export default function Hero() {
                         <h3 className="text-white font-semibold text-lg mb-2">
                             Sindhu turns technology into inspiration
                         </h3>
-                        <button
-                            className="text-purple-400 hover:text-purple-300 hover:scale-110 transition-all duration-300 underline text-base"
-                            data-testid="button-see-story-mobile">
+                        <a
+                            href="https://www.instagram.com/web3_sindhu?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-purple-400 hover:text-purple-300 transition-colors underline text-sm cursor-pointer"
+                            data-testid="button-see-story">
                             See Story
-                        </button>
+                        </a>
                     </div>
 
                     {/* Reviews Badge for Mobile */}
