@@ -37,7 +37,7 @@ export default function Hero() {
       
       {/* Network Grid Pattern */}
       <div 
-        className="absolute inset-0 z-1 opacity-20"
+        className="absolute inset-0 z-[1] opacity-20"
         style={{
           backgroundImage: `
             linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
@@ -92,7 +92,10 @@ export default function Hero() {
                 <h3 className="text-white font-semibold text-lg mb-2">
                   Sindhu turns technology into inspiration
                 </h3>
-                <button className="text-purple-400 hover:text-purple-300 transition-colors underline text-sm">
+                <button 
+                  className="text-purple-400 hover:text-purple-300 transition-colors underline text-sm"
+                  data-testid="button-see-story"
+                >
                   See Story
                 </button>
               </div>
