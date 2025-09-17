@@ -2,10 +2,6 @@ import { neon, neonConfig } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import { Agent, setGlobalDispatcher } from "undici";
 import * as schema from "@shared/schema";
-import dotenv from "dotenv";
-
-// Load environment variables from .env file
-dotenv.config();
 
 // Fix TLS certificate issues in Replit dev environment only
 if (process.env.REPL_ID) {
