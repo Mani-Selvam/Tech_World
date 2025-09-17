@@ -1,5 +1,7 @@
-import techaraLogo from "@/assets/techara-logo.png";
-import sindhuraImage from "@assets/Desktop a- 4_1758097850181.png";
+import sindhuraImage from "@assets/Techara 1_1758098365301.png";
+import profileAvatars from "@assets/Group 58_1758098365301.png";
+import redCircle from "@assets/Ellipse 17_1758098365301.png";
+import purpleCircle from "@assets/Ellipse 19_1758098365301.png";
 import { ResponsiveMedia } from "./ResponsiveMedia";
 
 export default function Hero() {
@@ -17,83 +19,71 @@ export default function Hero() {
     }, 300);
   };
 
-  // Sample profile avatars for the left side
-  const profileAvatars = [
-    { id: 1, avatar: "👩‍💼" },
-    { id: 2, avatar: "👨‍💻" },
-    { id: 3, avatar: "👩‍🎓" },
-    { id: 4, avatar: "👨‍🔬" },
-  ];
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen pt-20 overflow-hidden">
       {/* Dark Gradient Background */}
       <div 
         className="absolute inset-0 z-0"
         style={{
-          background: 'linear-gradient(135deg, #000000 0%, #1a0b2e 40%, #4a1a3d 80%, #000000 100%)',
+          background: 'linear-gradient(135deg, #000000 0%, #1a0b2e 30%, #4a1a3d 70%, #000000 100%)',
         }}
       />
       
-      {/* Network Grid Pattern */}
-      <div 
-        className="absolute inset-0 z-[1] opacity-20"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }}
-      />
-
-      {/* TechARA Logo - Top Left */}
-      <div className="absolute top-8 left-8 z-20">
-        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-          <ResponsiveMedia
-            src={techaraLogo}
-            alt="TechARA Logo"
-            className="h-10 w-10 object-contain"
-            loading="eager"
-            maxHeight="40px"
-            data-testid="img-techara-logo-hero"
-          />
-        </div>
+      {/* Red Circle Background Element */}
+      <div className="absolute top-1/4 right-0 w-96 h-96 opacity-40">
+        <ResponsiveMedia
+          src={redCircle}
+          alt=""
+          className="w-full h-full object-contain"
+          loading="eager"
+        />
+      </div>
+      
+      {/* Purple Circle Background Element */}
+      <div className="absolute top-0 left-0 w-64 h-64 opacity-30">
+        <ResponsiveMedia
+          src={purpleCircle}
+          alt=""
+          className="w-full h-full object-contain"
+          loading="eager"
+        />
       </div>
 
       {/* Main Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
           
           {/* Left Side Content */}
-          <div className="text-center lg:text-left">
+          <div className="text-left space-y-8">
             {/* Main Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight" data-testid="text-main-title">
-              India's First All in One
-              <br />
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Web3 Academy
-              </span>
-            </h1>
+            <div>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4" data-testid="text-main-title">
+                India's First All in One
+              </h1>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent">
+                  Web3 Academy
+                </span>
+              </h1>
+            </div>
 
-            {/* Profile Avatars Section - Bottom Left */}
-            <div className="mb-8 lg:mb-12">
-              <div className="flex justify-center lg:justify-start items-center gap-2 mb-4">
-                {profileAvatars.map((profile) => (
-                  <div 
-                    key={profile.id}
-                    className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-lg"
-                  >
-                    {profile.avatar}
-                  </div>
-                ))}
+            {/* Profile Avatars Section */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-1">
+                <ResponsiveMedia
+                  src={profileAvatars}
+                  alt="Profile Avatars"
+                  className="h-16 w-auto object-contain"
+                  loading="eager"
+                  data-testid="img-profile-avatars"
+                />
               </div>
-              <div className="text-left max-w-xs">
-                <h3 className="text-white font-semibold text-lg mb-2">
+              <div>
+                <h3 className="text-white font-semibold text-xl mb-2">
                   Sindhu turns technology into inspiration
                 </h3>
                 <button 
-                  className="text-purple-400 hover:text-purple-300 transition-colors underline text-sm"
+                  className="text-purple-400 hover:text-purple-300 transition-colors underline text-base font-medium"
                   data-testid="button-see-story"
                 >
                   See Story
@@ -102,32 +92,41 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Side - Sindhu Image and Elements */}
+          {/* Right Side - Sindhu Image Circle with Overlay */}
           <div className="relative flex items-center justify-center">
-            {/* Central Circle Image of Sindhu */}
-            <div className="relative">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+            {/* Main Circle Container */}
+            <div className="relative w-96 h-96 lg:w-[450px] lg:h-[450px]">
+              
+              {/* Background Gradient Circle */}
+              <div 
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: 'linear-gradient(135deg, #ff4444 0%, #cc0000 50%, #000000 100%)',
+                }}
+              />
+              
+              {/* Sindhu Image */}
+              <div className="absolute inset-4 rounded-full overflow-hidden">
                 <ResponsiveMedia
                   src={sindhuraImage}
                   alt="Sindhu - Web3 Expert"
                   className="w-full h-full object-cover"
                   loading="eager"
-                  maxHeight="384px"
                   data-testid="img-sindhu-hero"
                 />
               </div>
               
-              {/* Floating Elements around Sindhu */}
-              
-              {/* Sparkle Icons - Top Right */}
-              <div className="absolute -top-4 -right-4 text-yellow-400">
-                <div className="text-2xl">✨</div>
-                <div className="text-lg ml-4 mt-2">✨</div>
+              {/* Text Overlay on Circle */}
+              <div className="absolute top-8 left-8 right-8 text-center">
+                <h2 className="text-white font-bold text-lg leading-tight">
+                  India's First All in One<br />
+                  Web3 Academy
+                </h2>
               </div>
               
-              {/* Inspirational Quote - Right Side */}
-              <div className="absolute top-1/2 -right-20 lg:-right-32 transform -translate-y-1/2 max-w-xs">
-                <div className="bg-black/80 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+              {/* Quote Overlay */}
+              <div className="absolute bottom-16 left-8 right-8">
+                <div className="bg-black/80 backdrop-blur-sm rounded-xl p-4 text-center">
                   <p className="text-white text-sm leading-relaxed">
                     Building the future, one block at a time - that's the spirit of Web3 Sindhu.
                   </p>
@@ -145,24 +144,47 @@ export default function Hero() {
                 </button>
               </div>
               
-              {/* 500+ Reviews Badge - Bottom Right */}
-              <div className="absolute -bottom-4 -right-12 lg:-right-20">
-                <div className="bg-white rounded-full px-4 py-2 flex items-center gap-2 shadow-lg">
+              {/* 500+ Reviews Badge */}
+              <div className="absolute -bottom-4 -right-8">
+                <div className="bg-white rounded-full px-6 py-3 shadow-lg">
                   <div className="text-center">
-                    <div className="text-black font-bold text-lg">500+</div>
+                    <div className="text-black font-bold text-xl">500+</div>
                     <div className="text-black text-xs">Positive Reviews</div>
                   </div>
                 </div>
               </div>
             </div>
+            
+            {/* Sparkle Icons */}
+            <div className="absolute top-8 right-8 text-yellow-400">
+              <div className="text-3xl animate-pulse">✨</div>
+            </div>
+            <div className="absolute top-16 right-16 text-yellow-400">
+              <div className="text-xl animate-pulse" style={{ animationDelay: '0.5s' }}>✨</div>
+            </div>
+            
+            {/* Geometric Decorations */}
+            <div className="absolute bottom-8 left-8 w-4 h-4 bg-purple-500 rotate-45 opacity-60" />
+            <div className="absolute top-1/3 -right-4 w-6 h-6 bg-orange-500 rounded-full opacity-50" />
           </div>
         </div>
       </div>
 
-      {/* Floating Geometric Elements */}
-      <div className="absolute top-20 left-20 w-4 h-4 bg-purple-500 rounded-full opacity-60 animate-pulse" />
-      <div className="absolute bottom-32 right-20 w-6 h-6 bg-pink-500 rotate-45 opacity-40" />
-      <div className="absolute top-1/2 left-10 w-3 h-3 bg-blue-400 rounded-full opacity-50" />
+      {/* Bottom Section */}
+      <div className="absolute bottom-0 left-0 right-0 z-20">
+        <div className="flex justify-between items-center px-8 py-4">
+          <div className="text-red-500 font-bold text-sm tracking-wider">
+            HIGH DEMAND
+          </div>
+          <button 
+            onClick={openRegistrationForm}
+            className="bg-orange-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-600 transition-all duration-300"
+            data-testid="button-register-bottom"
+          >
+            REGISTER NOW
+          </button>
+        </div>
+      </div>
     </section>
   );
 }
