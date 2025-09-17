@@ -46,7 +46,7 @@ export default function Hero() {
 
             {/* Tech ARA Logo - Left Side on desktop, centered on mobile */}
             <div
-                className={`absolute top-[80px] md:left-8 left-1/2 transform-gpu md:transform-none -translate-x-1/2 md:translate-x-0 z-20 transition-all duration-1000 ${
+                className={`absolute top-[80px] md:left-8 left-1/2 transform-gpu md:transform-none -translate-x-1/1 md:translate-x-0 z-20 transition-all duration-1000 ${
                     isVisible
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-10"
@@ -54,7 +54,7 @@ export default function Hero() {
                 <img
                     src={techaraLogo}
                     alt="Tech ARA Logo"
-                    className="w-32 h-32 object-contain hover:scale-110 transition-transform duration-300 mt-12 mb-1"
+                    className="w-50 h-60 object-contain hover:scale-110 transition-transform duration-300 mt-12 mb-1"
                 />
             </div>
 
@@ -86,7 +86,7 @@ export default function Hero() {
                         <div className="relative">
                             {/* Red Circle Background */}
                             <div
-                                className={`w-[380px] h-[340px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px]    rounded-full relative mx-auto -translate-x-20 -translate-y-10 transition-all duration-1000 transform  ${
+                                className={`w-[380px] h-[340px] md:w-[400px] md:h-[400px] lg:w-[430px] lg:h-[420px] xl:w-[450px] xl:h-[450px]    rounded-full relative mx-auto -translate-x-20 -translate-y-10 transition-all duration-1000 transform  ${
                                     isVisible
                                         ? "opacity-100 scale-100"
                                         : "opacity-0 scale-90"
