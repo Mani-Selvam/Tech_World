@@ -60,7 +60,6 @@ export default function Hero() {
 
             {/* Main Content Container */}
             <div className="relative z-10 w-full h-full">
-                {/* Main Title - Centered */}
                 <div className="text-center pt-4 pb-8 px-4">
                     <h1
                         className={`text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-white leading-tight max-w-5xl mx-auto transition-all duration-1000 transform ${
@@ -68,14 +67,42 @@ export default function Hero() {
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-10"
                         }`}
-                        data-testid="text-main-title">
-                        <span className="inline-block transition-transform duration-700 delay-300 transform hover:scale-105">
+                        data-testid="text-main-title"
+                        style={{ animation: "float 3s ease-in-out infinite" }}>
+                        <span
+                            className="inline-block transition-transform duration-700 delay-300 transform hover:scale-105"
+                            style={{
+                                animation: "pulseText 2s ease-in-out infinite",
+                            }}>
                             India's First All in One
                         </span>
                         <br />
-                        <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 transition-all duration-700 delay-500 transform hover:scale-105">
+                        <span
+                            className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 transition-all duration-700 delay-500 transform hover:scale-105"
+                            style={{
+                                animation: "gradientMove 4s ease infinite",
+                                backgroundSize: "200% 200%",
+                            }}>
                             Web3 Academy
                         </span>
+
+                        {/* Inline keyframes */}
+                        <style>
+                            {`
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
+        }
+        @keyframes pulseText {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+        @keyframes gradientMove {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+      `}
+                        </style>
                     </h1>
                 </div>
 

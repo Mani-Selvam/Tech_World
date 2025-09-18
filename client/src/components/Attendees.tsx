@@ -194,7 +194,7 @@ export default function Attendees() {
         },
         {
             percentage: "29%",
-            category: "Miners",
+            category: "Students",
             color: "primary",
             icon: Pickaxe,
             image: "https://blockchain-life.com/wp-content/uploads/2023/11/miners.jpg",
