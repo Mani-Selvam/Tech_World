@@ -40,7 +40,7 @@ export default function StartupPitch() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
+                    <h2 className="text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                         Testimonial
                     </h2>
                     <p className="text-white opacity-70 mt-2">
