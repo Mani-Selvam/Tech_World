@@ -57,7 +57,7 @@ function HomeContent() {
                     <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                                The World's Leading Web3 Academy
+                                The World's Leading Web3 Academy All in One
                             </span>
                             <br />
                             <span className="text-foreground">
@@ -75,6 +75,13 @@ function HomeContent() {
                     <Features />
                 </div>
             </ScrollReveal>
+            {/* Attendees Section with Bubbles */}
+            <ScrollReveal variant="fade-up" duration={800} delay={200}>
+                <div className="relative" id="attendees">
+                    <SectionBubbles count={4} />
+                    <Attendees />
+                </div>
+            </ScrollReveal>
 
             {/* BullRun Section with Bubbles */}
             <ScrollReveal variant="fade-up" duration={900} delay={150}>
@@ -89,14 +96,6 @@ function HomeContent() {
                 <div className="relative" id="courses">
                     <SectionBubbles count={5} />
                     <ExploreCourses />
-                </div>
-            </ScrollReveal>
-
-            {/* Attendees Section with Bubbles */}
-            <ScrollReveal variant="fade-up" duration={800} delay={200}>
-                <div className="relative" id="attendees">
-                    <SectionBubbles count={4} />
-                    <Attendees />
                 </div>
             </ScrollReveal>
 

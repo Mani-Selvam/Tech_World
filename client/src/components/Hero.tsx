@@ -131,7 +131,7 @@ export default function Hero() {
 
                         {/* Quote Text Box - Right Side */}
                         <div
-                            className={`absolute top-1/1 -translate-y-1/2 right-0 w-80 max-w-sm transition-all duration-1000 transform ${
+                            className={`absolute top-1/1 -translate-y-1/2  right-20 w-80 max-w-sm transition-all duration-1000 transform ${
                                 isVisible
                                     ? "opacity-100 translate-x-0"
                                     : "opacity-0 translate-x-20"
@@ -207,7 +207,7 @@ export default function Hero() {
                     {/* Central Sindhu Circle for Mobile */}
                     <div className="flex justify-center mt-10 mb-10">
                         <div
-                            className={`relative w-72 h-72 sm:w-80 sm:h-80 transition-all duration-1000 transform ${
+                            className={`relative w-72 h-72 sm:w-80 sm:h-80 transition-all duration-1000 transform -translate-x-10 ${
                                 isVisible
                                     ? "opacity-100 scale-100"
                                     : "opacity-0 scale-90"
@@ -221,7 +221,7 @@ export default function Hero() {
 
                             {/* Sindhu Image for Mobile */}
                             <div
-                                className={`absolute top-18 left-12 right-12 bottom-12 rounded-full overflow-hidden transition-all duration-1000 delay-300 transform ${
+                                className={`absolute top-18 left-12 right-12 bottom-12 rounded-full overflow-hidden transition-all translate-x-10 duration-1000 delay-300 transform ${
                                     isVisible
                                         ? "opacity-100 rotate-0"
                                         : "opacity-0 rotate-12"
