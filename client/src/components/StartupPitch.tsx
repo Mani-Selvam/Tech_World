@@ -7,17 +7,17 @@ export default function StartupPitch() {
     const speakers = [
         {
             video: "https://dms.licdn.com/playlist/vid/v2/C5605AQFt2bF34XpjBg/feedshare-ambry-analyzed_servable_progressive_video/feedshare-ambry-analyzed_servable_progressive_video/0/1673665874366?e=1758780000&v=beta&t=1bEDpu9OeE7cIdoylBz1Ge2Jts4HvgOoagcvyonV2_Q",
-            alt: "Speaker - 1",
+            alt: "Student",
             title: "🤝 Blockchain Technology  Feedback — Kongu Engineering College 🤝",
         },
         {
             video: "https://dms.licdn.com/playlist/vid/v2/D5605AQFtiByCLICsfQ/mp4-640p-30fp-crf28/mp4-640p-30fp-crf28/0/1715002785436?e=1758780000&v=beta&t=9tl10iBfi4tTwnwNIL3Bo5-H2pLUE1aVxAE3iSUnF6Y",
-            alt: "Speaker - 2",
+            alt: "Student",
             title: "🤝 Rave Reviews — Velalar College of Engineering & Technology, Erode 🤝",
         },
         {
             video: "https://dms.licdn.com/playlist/vid/v2/D5605AQF0VJqTJv4r6g/mp4-640p-30fp-crf28/mp4-640p-30fp-crf28/0/1715002901758?e=1758780000&v=beta&t=TO4MzNrq0hZKjzk14Ch_76VZzqIcR0FQe_lzVZsdlwQ",
-            alt: "Speaker - 3",
+            alt: "Student",
             title: "💁🏻‍♀️💚🤝 Glowing Praise Feedback — KSR College,             Thiruchengode 🌟💁🏻‍♀️💚🤝",
         },
     ];

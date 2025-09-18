@@ -139,7 +139,7 @@ export default function Hero() {
                             <div className="backdrop-blur-sm rounded-2xl p-6 bg-gradient-to-br from-purple-900/30 to-black/50 hover:from-purple-800/40 hover:to-black/60 transition-all duration-500 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
                                 <p className="text-white text-sm leading-relaxed mb-4">
                                     Building the future, one block at a time -
-                                    that's the spirit of Web3 Sindhu.
+                                    that's the spirit of Web3_Sindhu.
                                 </p>
                                 <button
                                     onClick={openRegistrationForm}
@@ -251,7 +251,7 @@ export default function Hero() {
                         } shadow-[0_0_15px_rgba(168,85,247,0.3)]`}>
                         <p className="text-white text-base leading-relaxed mb-6 text-center">
                             Building the future, one block at a time - that's
-                            the spirit of Web3 Sindhu.
+                            the spirit of Web3_Sindhu.
                         </p>
                         <button
                             onClick={openRegistrationForm}

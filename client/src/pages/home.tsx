@@ -57,11 +57,11 @@ function HomeContent() {
                     <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                                The World's Leading Web3 Academy All in One
+                                The World's Leading All-in-One
                             </span>
                             <br />
-                            <span className="text-foreground">
-                                TechARA Academy
+                            <span className="text-foreground text-4xl">
+                                Web3 Academy TechARA
                             </span>
                         </h2>
                     </div>
