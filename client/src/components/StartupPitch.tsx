@@ -1,113 +1,104 @@
-// Import the AI-generated speaker images
-import speaker1 from '@assets/generated_images/Startup_founder_presenting_confidently_0655559c.png';
-import speaker2 from '@assets/generated_images/Female_tech_entrepreneur_speaking_5c26dd22.png';
-import speaker3 from '@assets/generated_images/Cryptocurrency_expert_presenting_data_7ad804c8.png';
-import speaker4 from '@assets/generated_images/Young_startup_leader_pitching_94675300.png';
-import speaker5 from '@assets/generated_images/Senior_executive_discussing_blockchain_3d9ca94d.png';
-import speaker6 from '@assets/generated_images/Venture_capitalist_at_forum_59f9b7a2.png';
+import { useRef, useState } from "react";
 
 export default function StartupPitch() {
-  // Speaker data for the hexagonal cards with AI-generated images
-  const speakers = [
-    {
-      image: speaker1,
-      alt: "Startup founder presenting confidently at tech conference"
-    },
-    {
-      image: speaker2, 
-      alt: "Female tech entrepreneur speaking at blockchain conference"
-    },
-    {
-      image: speaker3,
-      alt: "Cryptocurrency expert presenting market data and trends"
-    },
-    {
-      image: speaker4,
-      alt: "Young startup leader pitching innovative ideas to investors"
-    },
-    {
-      image: speaker5,
-      alt: "Senior executive discussing blockchain technology solutions"
-    },
-    {
-      image: speaker6,
-      alt: "International venture capitalist speaking at crypto forum"
-    }
-  ];
+    const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const topSpeakers = speakers.slice(0, 3);
-  const bottomSpeakers = speakers.slice(3, 6);
+    const speakers = [
+        {
+            video: "https://dms.licdn.com/playlist/vid/v2/C5605AQFt2bF34XpjBg/feedshare-ambry-analyzed_servable_progressive_video/feedshare-ambry-analyzed_servable_progressive_video/0/1673665874366?e=1758780000&v=beta&t=1bEDpu9OeE7cIdoylBz1Ge2Jts4HvgOoagcvyonV2_Q",
+            alt: "Speaker - 1",
+            title: "🤝 Blockchain Technology  Feedback — Kongu Engineering College 🤝",
+        },
+        {
+            video: "https://dms.licdn.com/playlist/vid/v2/D5605AQFtiByCLICsfQ/mp4-640p-30fp-crf28/mp4-640p-30fp-crf28/0/1715002785436?e=1758780000&v=beta&t=9tl10iBfi4tTwnwNIL3Bo5-H2pLUE1aVxAE3iSUnF6Y",
+            alt: "Speaker - 2",
+            title: "🤝 Rave Reviews — Velalar College of Engineering & Technology, Erode 🤝",
+        },
+        {
+            video: "https://dms.licdn.com/playlist/vid/v2/D5605AQF0VJqTJv4r6g/mp4-640p-30fp-crf28/mp4-640p-30fp-crf28/0/1715002901758?e=1758780000&v=beta&t=TO4MzNrq0hZKjzk14Ch_76VZzqIcR0FQe_lzVZsdlwQ",
+            alt: "Speaker - 3",
+            title: "💁🏻‍♀️💚🤝 Glowing Praise Feedback — KSR College,             Thiruchengode 🌟💁🏻‍♀️💚🤝",
+        },
+    ];
 
-  return (
-    <section className="py-20 bg-[#0A1733] text-white relative" id="startup-pitch">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Desktop: Orbital Container */}
-        <div className="hidden md:block">
-          <div className="relative mx-auto w-[600px] h-[600px] flex items-center justify-center">
-          
-          {/* Center Text */}
-          <div className="absolute text-center z-10">
-            <h2 className="text-4xl md:text-6xl font-bold text-white" data-testid="heading-testimonial">
-              Testimonial
-            </h2>
-          </div>
+    const handlePlay = (index: number) => {
+        videoRefs.current.forEach((video, i) => {
+            if (video && i !== index) {
+                video.pause();
+            }
+        });
+        setActiveIndex(index);
+    };
 
-          {/* Orbiting Images */}
-          <div className="orbit-ring absolute inset-0">
-            {speakers.map((speaker, index) => {
-              const angle = index * 60; // 360 / 6 speakers = 60 degrees each
-              return (
-                <div
-                  key={index}
-                  className="orbit-item absolute"
-                  style={{
-                    '--angle': `${angle}deg`,
-                    '--radius': '250px'
-                  } as React.CSSProperties}
-                  data-testid={`orbit-speaker-${index}`}
-                >
-                  <div className="card rounded-full w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 border-4 border-[#F59E0B] shadow-lg overflow-hidden">
-                    <img
-                      src={speaker.image}
-                      alt={speaker.alt}
-                      className="w-full h-full object-cover"
-                      data-testid={`img-speaker-orbit-${index}`}
-                    />
-                  </div>
+    const handlePause = () => {
+        setActiveIndex(null);
+    };
+
+    return (
+        <section className="py-20 bg-black text-white" id="startup-pitch">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Section Header */}
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
+                        Testimonial
+                    </h2>
+                    <p className="text-white opacity-70 mt-2">
+                        Meet the minds shaping the future
+                    </p>
                 </div>
-              );
-            })}
-          </div>
-          </div>
-        </div>
 
-        {/* Mobile: Simple Grid */}
-        <div className="md:hidden">
-          {/* Center Text */}
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-white" data-testid="heading-testimonial-mobile">
-              Testimonial
-            </h2>
-          </div>
-          
-          {/* Mobile Grid */}
-          <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto">
-            {speakers.map((speaker, index) => (
-              <div
-                key={index}
-                className="rounded-full w-20 h-20 border-4 border-[#F59E0B] shadow-lg overflow-hidden mx-auto"
-                data-testid={`img-speaker-mobile-${index}`}
-              >
-                <img
-                  src={speaker.image}
-                  alt={speaker.alt}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+                {/* Speaker Video Cards */}
+                <div className="flex flex-wrap justify-center gap-6">
+                    {speakers.map((speaker, index) => {
+                        const isActive = activeIndex === index;
+                        const isBlurred =
+                            activeIndex !== null && activeIndex !== index;
+
+                        return (
+                            <div
+                                key={index}
+                                className={`bg-gradient-to-br from-[#0A1733] to-[#1F2A44] p-4 rounded-xl shadow-xl border flex flex-col items-center transition-all duration-300 ${
+                                    isActive
+                                        ? "z-10 scale-105 border-[#38BDF8] shadow-2xl"
+                                        : "border-[#1E293B]"
+                                } ${isBlurred ? "blur-sm opacity-60" : ""}`}
+                                style={{ width: "320px" }}>
+                                <div
+                                    className={`mb-4 rounded-lg overflow-hidden border-4 transition-all duration-300 ${
+                                        isActive
+                                            ? "border-[#38BDF8]"
+                                            : "border-[#1E293B]"
+                                    }`}
+                                    style={{ width: "320px", height: "400px" }}>
+                                    <video
+                                        ref={(el) =>
+                                            (videoRefs.current[index] = el)
+                                        }
+                                        src={speaker.video}
+                                        controls
+                                        className="w-full h-full object-cover"
+                                        preload="metadata"
+                                        onPlay={() => handlePlay(index)}
+                                        onPause={handlePause}
+                                    />
+                                </div>
+                                <h3
+                                    className={`text-base font-semibold text-center transition-colors duration-300 ${
+                                        isActive
+                                            ? "text-[#38BDF8]"
+                                            : "text-white"
+                                    }`}>
+                                    {speaker.title}
+                                </h3>
+                                <p className="text-sm text-white opacity-80 text-center mt-2">
+                                    {speaker.alt}
+                                </p>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </section>
+    );
 }
