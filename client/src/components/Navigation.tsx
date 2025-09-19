@@ -9,9 +9,9 @@ export default function Navigation() {
     const navigationItems = [
         { id: "hero", title: "Home" },
         { id: "features", title: "Features" },
-        { id: "courses", title: "Courses" },
         { id: "attendees", title: "Attendees" },
-        { id: "benefit", title: "Benefit" },
+        { id: "courses", title: "Courses" },
+        { id: "benefit", title: "Benefits" },
         { id: "testimonial", title: "Testimonial" },
     ];
 

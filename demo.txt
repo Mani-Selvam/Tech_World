@@ -1,0 +1,236 @@
+import { useEffect, useRef, useState } from "react";
+
+export default function StartupPitch() {
+    const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+    const currentVideoRef = useRef<HTMLVideoElement | null>(null);
+    const scrollRef = useRef<HTMLDivElement | null>(null);
+    const [activeIndex, setActiveIndex] = useState<number>(0);
+    const [isPaused, setIsPaused] = useState(false);
+
+    const speakers = [
+        {
+            video: "https://dms.licdn.com/playlist/vid/v2/C5605AQFt2bF34XpjBg/feedshare-ambry-analyzed_servable_progressive_video/feedshare-ambry-analyzed_servable_progressive_video/0/1673665874366?e=1758780000&v=beta&t=1bEDpu9OeE7cIdoylBz1Ge2Jts4HvgOoagcvyonV2_Q",
+            alt: "Student",
+            title: "🤝 Blockchain Technology Feedback — Kongu Engineering College 🤝",
+        },
+        {
+            video: "https://dms.licdn.com/playlist/vid/v2/D5605AQFtiByCLICsfQ/mp4-640p-30fp-crf28/mp4-640p-30fp-crf28/0/1715002785436?e=1758780000&v=beta&t=9tl10iBfi4tTwnwNIL3Bo5-H2pLUE1aVxAE3iSUnF6Y",
+            alt: "Student",
+            title: "🤝 Rave Reviews — Velalar College of Engineering & Technology 🤝",
+        },
+        {
+            video: "https://dms.licdn.com/playlist/vid/v2/D5605AQF0VJqTJv4r6g/mp4-640p-30fp-crf28/mp4-640p-30fp-crf28/0/1715002901758?e=1758780000&v=beta&t=TO4MzNrq0hZKjzk14Ch_76VZzqIcR0FQe_lzVZsdlwQ",
+            alt: "Student",
+            title: "💁🏻‍♀️💚🤝 Glowing Praise Feedback — KSR College, Thiruchengode 🌟",
+        },
+    ];
+
+    // Handle video play
+    const handlePlay = (videoEl: HTMLVideoElement, index: number) => {
+        if (currentVideoRef.current && currentVideoRef.current !== videoEl) {
+            currentVideoRef.current.pause();
+            currentVideoRef.current.currentTime = 0;
+        }
+        currentVideoRef.current = videoEl;
+        setActiveIndex(index);
+        setIsPaused(true);
+
+        // Scroll to center on mobile
+        if (scrollRef.current && window.innerWidth < 768) {
+            const card = scrollRef.current.children[index] as HTMLElement;
+            card?.scrollIntoView({ behavior: "smooth", inline: "center" });
+        }
+    };
+
+    const handlePause = () => {
+        setIsPaused(false);
+    };
+
+    // Auto-scroll for mobile
+    useEffect(() => {
+        if (window.innerWidth >= 768) return;
+        const container = scrollRef.current;
+        if (!container) return;
+
+        let index = 0;
+        const delay = 4000;
+
+        const scrollStep = () => {
+            if (isPaused) return;
+
+            index++;
+            if (index >= speakers.length) index = 0;
+            setActiveIndex(index);
+
+            const card = container.children[index] as HTMLElement;
+            card?.scrollIntoView({ behavior: "smooth", inline: "center" });
+        };
+
+        const interval = setInterval(scrollStep, delay);
+        return () => clearInterval(interval);
+    }, [isPaused, speakers.length]);
+
+    // Update activeIndex on manual scroll
+    useEffect(() => {
+        const container = scrollRef.current;
+        if (!container) return;
+
+        const handleScroll = () => {
+            if (isPaused) return;
+
+            const children = Array.from(container.children) as HTMLElement[];
+            const containerCenter = container.offsetWidth / 2;
+
+            let closestIndex = 0;
+            let closestDistance = Infinity;
+
+            children.forEach((child, i) => {
+                const childCenter =
+                    child.offsetLeft -
+                    container.scrollLeft +
+                    child.offsetWidth / 2;
+                const distance = Math.abs(containerCenter - childCenter);
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestIndex = i;
+                }
+            });
+
+            setActiveIndex(closestIndex);
+        };
+
+        container.addEventListener("scroll", handleScroll, { passive: true });
+        return () => container.removeEventListener("scroll", handleScroll);
+    }, [isPaused]);
+
+    // Mobile speakers array with active card moved to end for proper z-index
+    const mobileSpeakers = [...speakers];
+    if (window.innerWidth < 768 && activeIndex !== null) {
+        const [activeCard] = mobileSpeakers.splice(activeIndex, 1);
+        mobileSpeakers.push(activeCard);
+    }
+
+    return (
+        <section className="py-20 bg-black text-white" id="startup-pitch">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Section Header */}
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                        Testimonial
+                    </h2>
+                    <p className="text-white opacity-70 mt-2">
+                        Meet the minds shaping the future
+                    </p>
+                </div>
+
+                {/* Desktop Grid */}
+                <div className="hidden md:flex flex-wrap justify-center gap-6">
+                    {speakers.map((speaker, index) => {
+                        const isActive = activeIndex === index;
+                        const isBlurred =
+                            activeIndex !== null && activeIndex !== index;
+
+                        return (
+                            <div
+                                key={index}
+                                className={`bg-gradient-to-br from-[#0A1733] to-[#1F2A44] p-4 rounded-xl shadow-xl border flex flex-col items-center transition-all duration-300 w-[320px] ${
+                                    isActive
+                                        ? "z-10 scale-105 border-[#38BDF8] shadow-2xl"
+                                        : "border-[#1E293B]"
+                                } ${isBlurred ? "blur-sm opacity-60" : ""}`}>
+                                <div
+                                    className={`mb-4 rounded-lg overflow-hidden border-4 transition-all duration-300 ${
+                                        isActive
+                                            ? "border-[#38BDF8]"
+                                            : "border-[#1E293B]"
+                                    }`}
+                                    style={{ height: "400px" }}>
+                                    <video
+                                        ref={(el) =>
+                                            (videoRefs.current[index] = el)
+                                        }
+                                        src={speaker.video}
+                                        controls
+                                        className="w-full h-full object-cover"
+                                        preload="metadata"
+                                        onPlay={(e) =>
+                                            handlePlay(e.currentTarget, index)
+                                        }
+                                        onPause={handlePause}
+                                    />
+                                </div>
+                                <h3
+                                    className={`text-base font-semibold text-center transition-colors duration-300 ${
+                                        isActive
+                                            ? "text-[#38BDF8]"
+                                            : "text-white"
+                                    }`}>
+                                    {speaker.title}
+                                </h3>
+                                <p className="text-sm text-white opacity-80 text-center mt-2">
+                                    {speaker.alt}
+                                </p>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* Mobile Carousel */}
+                <div
+                    ref={scrollRef}
+                    className={`flex md:hidden snap-x snap-mandatory scrollbar-hide px-6 overflow-x-auto ${
+                        isPaused ? "overflow-x-visible" : "overflow-x-auto"
+                    }`}>
+                    {mobileSpeakers.map((speaker, idx) => {
+                        // Map index back to original speakers index
+                        const index = speakers.indexOf(speaker);
+                        const isActive = activeIndex === index;
+                        const isPlaying =
+                            currentVideoRef.current ===
+                            videoRefs.current[index];
+
+                        return (
+                            <div
+                                key={index}
+                                className="flex-shrink-0 snap-center bg-gradient-to-br from-[#0A1733] to-[#1F2A44] p-4 rounded-xl shadow-xl border flex flex-col items-center transition-all duration-500 mx-2"
+                                style={{
+                                    width: "85%",
+                                    maxWidth: "320px",
+                                    scrollSnapAlign: "center",
+                                    transform: isActive
+                                        ? "scale(1.05)"
+                                        : "scale(0.9)",
+                                    opacity: isActive ? 1 : 0.3,
+                                    zIndex: isActive ? 20 : 1,
+                                }}>
+                                <div
+                                    className="mb-4 rounded-lg overflow-hidden border-4 transition-all duration-500"
+                                    style={{ height: "400px" }}>
+                                    <video
+                                        ref={(el) =>
+                                            (videoRefs.current[index] = el)
+                                        }
+                                        src={speaker.video}
+                                        controls
+                                        className="w-full h-full object-cover"
+                                        preload="metadata"
+                                        onPlay={(e) =>
+                                            handlePlay(e.currentTarget, index)
+                                        }
+                                        onPause={handlePause}
+                                    />
+                                </div>
+                                <h3 className="text-base font-semibold text-center text-white">
+                                    {speaker.title}
+                                </h3>
+                                <p className="text-sm text-white opacity-80 text-center mt-2">
+                                    {speaker.alt}
+                                </p>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </section>
+    );
+}

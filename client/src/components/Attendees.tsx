@@ -654,7 +654,7 @@ export default function Attendees() {
                 </div>
 
                 {/* World Map and Regional Distribution */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                {/*   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
                     <div className="space-y-4">
                         <h3 className="text-2xl font-bold text-foreground mb-6">
                             Regional Distribution
@@ -679,7 +679,7 @@ export default function Attendees() {
                                         {region.percentage}
                                     </span>
                                 </div>
-                                {/* Progress bar */}
+                               
                                 <div className="mt-2 w-full bg-secondary/50 rounded-full h-2">
                                     <div
                                         className={`h-2 rounded-full ${
@@ -706,10 +706,10 @@ export default function Attendees() {
                             />
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Top 10 Countries */}
-                <div className="bg-card/20 border border-border/30 rounded-2xl p-8">
+                {/* <div className="bg-card/20 border border-border/30 rounded-2xl p-8">
                     <h3 className="text-2xl font-bold text-center mb-8 text-foreground">
                         Top 10 countries-attendees:
                     </h3>
@@ -738,7 +738,7 @@ export default function Attendees() {
                         *Data is based on the customers survey while tickets
                         purchasing. Attendees can choose several options.
                     </p>
-                </div>
+                </div> */}
             </div>
         </section>
     );

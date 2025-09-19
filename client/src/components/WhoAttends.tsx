@@ -1,62 +1,55 @@
 import { motion } from "framer-motion";
-import {
-    Code,
-    Database,
-    Cloud,
-    Shield,
-    Smartphone,
-    Blocks,
-} from "lucide-react";
+import { Blocks, Bitcoin, Code, Image } from "lucide-react";
 
 export default function ExploreCourses() {
     const courses = [
         {
-            title: "Full Stack Web Development",
+            title: "Blockchain Courses",
             description:
-                "Master both **frontend and backend** technologies. Build complete web applications with modern frameworks and databases.",
+                "Master the core concepts, history, and real-world power of blockchain. Advance to building scalable networks and enterprise-grade solutions.",
+            icon: Blocks,
+            color: "primary",
+            technologies: ["Foundations", "Architecture", "Enterprise Scaling"],
+        },
+        {
+            title: "Crypto Courses",
+            description:
+                "Learn crypto basics, market analysis, and advanced wealth-building strategies with DeFi, DAOs, and Tokenomics.",
+            icon: Bitcoin,
+            color: "accent",
+            technologies: [
+                "Investing",
+                "Trading",
+                "DeFi",
+                "DAOs",
+                "Tokenomics",
+            ],
+        },
+        {
+            title: "Blockchain Coding Courses",
+            description:
+                "Begin coding smart contracts, then progress to building decentralized applications with full-stack Web3 skills.",
             icon: Code,
             color: "primary",
-            technologies: ["React", "Node.js", "MongoDB", "Express"],
+            technologies: [
+                "Solidity",
+                "Smart Contracts",
+                "DApps",
+                "Full-Stack Web3",
+            ],
         },
         {
-            title: "Data Science & Machine Learning",
+            title: "NFT Courses",
             description:
-                "Learn to **analyze data** and build intelligent systems. Master Python, ML algorithms, and data visualization techniques.",
-            icon: Database,
+                "From minting your first NFT to launching utility-based collections and building thriving communities.",
+            icon: Image,
             color: "accent",
-            technologies: ["Python", "TensorFlow", "Pandas", "Scikit-learn"],
-        },
-        {
-            title: "Cloud Computing (AWS & Azure)",
-            description:
-                "Deploy and manage **scalable applications** in the cloud. Master cloud architecture and DevOps practices.",
-            icon: Cloud,
-            color: "primary",
-            technologies: ["AWS", "Azure", "Docker", "Kubernetes"],
-        },
-        {
-            title: "Cybersecurity & Ethical Hacking",
-            description:
-                "Protect systems from **cyber threats**. Learn penetration testing, security analysis, and ethical hacking techniques.",
-            icon: Shield,
-            color: "accent",
-            technologies: ["Kali Linux", "Metasploit", "OWASP", "Wireshark"],
-        },
-        {
-            title: "Mobile App Development",
-            description:
-                "Build **cross-platform mobile apps** that work on iOS and Android. Create engaging user experiences.",
-            icon: Smartphone,
-            color: "primary",
-            technologies: ["React Native", "Flutter", "Dart", "Firebase"],
-        },
-        {
-            title: "Blockchain Technology & Web3",
-            description:
-                "Develop **decentralized applications** and smart contracts. Master the future of digital transactions.",
-            icon: Blocks,
-            color: "accent",
-            technologies: ["Solidity", "Ethereum", "Web3.js", "DeFi"],
+            technologies: [
+                "Minting",
+                "NFT Collections",
+                "Utilities",
+                "Community Building",
+            ],
         },
     ];
 
@@ -75,19 +68,12 @@ export default function ExploreCourses() {
     };
 
     const cardVariants = {
-        hidden: {
-            opacity: 0,
-            y: 60,
-            scale: 0.8,
-        },
+        hidden: { opacity: 0, y: 60, scale: 0.8 },
         visible: {
             opacity: 1,
             y: 0,
             scale: 1,
-            transition: {
-                duration: 0.6,
-                ease: "easeOut",
-            },
+            transition: { duration: 0.6, ease: "easeOut" },
         },
     };
 
@@ -96,10 +82,7 @@ export default function ExploreCourses() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: {
-                duration: 0.8,
-                ease: "easeOut",
-            },
+            transition: { duration: 0.8, ease: "easeOut" },
         },
     };
 
@@ -108,16 +91,14 @@ export default function ExploreCourses() {
         visible: {
             scale: 1,
             rotate: 0,
-            transition: {
-                duration: 0.6,
-                ease: "easeOut",
-            },
+            transition: { duration: 0.6, ease: "easeOut" },
         },
     };
 
     return (
         <section className="py-20 bg-background" id="courses">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Title */}
                 <motion.div
                     className="text-center mb-16"
                     initial="hidden"
@@ -135,31 +116,30 @@ export default function ExploreCourses() {
                             }}>
                             Explore Our Best Courses
                         </span>
-
                         <style>
                             {`
-      @keyframes gradientMove {
-        0% { background-position: 0% 0%; }
-        25% { background-position: 100% 0%; }
-        50% { background-position: 100% 100%; }
-        75% { background-position: 0% 100%; }
-        100% { background-position: 0% 0%; }
-      }
-
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-8px); }
-      }
-    `}
+        @keyframes gradientMove {
+          0% { background-position: 0% 0%; }
+          25% { background-position: 100% 0%; }
+          50% { background-position: 100% 100%; }
+          75% { background-position: 0% 100%; }
+          100% { background-position: 0% 0%; }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+      `}
                         </style>
                     </h2>
-
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                        Choose from our comprehensive range of industry-leading
-                        courses designed to accelerate your tech career
+                        Choose from our comprehensive range of blockchain,
+                        crypto, coding, and NFT programs — designed to
+                        accelerate your tech career.
                     </p>
                 </motion.div>
 
+                {/* Cards */}
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                     initial="hidden"
@@ -200,8 +180,7 @@ export default function ExploreCourses() {
                                             course.color === "primary"
                                                 ? "text-primary"
                                                 : "text-accent"
-                                        } group-hover:text-foreground transition-colors duration-300`}
-                                        data-testid={`course-title-${index}`}>
+                                        } group-hover:text-foreground transition-colors duration-300`}>
                                         {course.title}
                                     </h3>
 
@@ -212,7 +191,6 @@ export default function ExploreCourses() {
                                                 course.description
                                             ),
                                         }}
-                                        data-testid={`course-description-${index}`}
                                     />
 
                                     <div className="flex flex-wrap gap-2 mt-4">

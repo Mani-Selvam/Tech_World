@@ -54,15 +54,41 @@ function HomeContent() {
                     className="relative py-16 bg-secondary/30"
                     id="academy">
                     <SectionBubbles count={5} />
-                    <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                    <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10 p-4">
+                        <h2 className="text-2xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                            <span
+                                className="inline-block transition-transform duration-700 delay-300 transform hover:scale-105 p-4"
+                                style={{
+                                    animation:
+                                        "pulseText 2s ease-in-out infinite",
+                                }}>
                                 The World's Leading All-in-One
                             </span>
                             <br />
-                            <span className="text-foreground text-4xl">
+                            <span
+                                className="inline-block text-3xl bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 transition-all duration-700 delay-500 transform hover:scale-105"
+                                style={{
+                                    animation: "gradientMove 4s ease infinite",
+                                    backgroundSize: "200% 200%",
+                                }}>
                                 Web3 Academy TechARA
                             </span>
+                            <style>
+                                {`
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
+        }
+        @keyframes pulseText {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+        @keyframes gradientMove {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+      `}
+                            </style>
                         </h2>
                     </div>
                 </section>
