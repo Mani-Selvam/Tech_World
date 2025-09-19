@@ -4,7 +4,7 @@ import redCircle from "@assets/Ellipse 17_1758099227458.png";
 import { ResponsiveMedia } from "./ResponsiveMedia";
 import { useEffect, useState } from "react";
 import SectionBubbles from "./SectionBubbles";
-import techaraLogo from "@/assets/techara-logo.png";
+// import techaraLogo from "@/assets/techara-logo.png";
 
 export default function Hero() {
     const [isVisible, setIsVisible] = useState(false);
@@ -45,7 +45,7 @@ export default function Hero() {
             <SectionBubbles count={5} className="z-[1]" />
 
             {/* Tech ARA Logo - Left Side on desktop, centered on mobile */}
-            <div
+            {/* <div
                 className={`absolute top-[80px] md:left-8 left-1/2 transform-gpu md:transform-none -translate-x-1/1 md:translate-x-0 z-20 transition-all duration-1000 ${
                     isVisible
                         ? "opacity-100 translate-y-0"
@@ -56,7 +56,7 @@ export default function Hero() {
                     alt="Tech ARA Logo"
                     className="w-50 h-60 object-contain hover:scale-110 transition-transform duration-300 mt-12 mb-1"
                 />
-            </div>
+            </div> */}
 
             {/* Main Content Container */}
             <div className="relative z-10 w-full h-full">

@@ -64,25 +64,54 @@ export default function Attendees() {
     });
 
     useEffect(() => {
-        // Set target date for countdown (30 days from now)
-        const targetDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+        const getNextSessionStart = () => {
+            const now = new Date();
+            const day = now.getDay(); // Sunday=0, Monday=1, ..., Friday=5
+
+            // Days until Friday
+            const daysUntilFriday = (6 - day + 7) % 7;
+
+            // Session start = Next Friday 7:00 PM
+            const sessionStart = new Date(now);
+            sessionStart.setDate(now.getDate() + daysUntilFriday);
+            sessionStart.setHours(19, 0, 0, 0); // 7:00 PM
+
+            // Session end = start + 90 minutes
+            const sessionEnd = new Date(sessionStart);
+            sessionEnd.setMinutes(sessionStart.getMinutes() + 90); // 8:30 PM
+
+            // If already past today's session end → go to next week
+            if (now > sessionEnd) {
+                sessionStart.setDate(sessionStart.getDate() + 7);
+            }
+
+            return sessionStart;
+        };
+
+        let targetDate = getNextSessionStart();
 
         const timer = setInterval(() => {
             const now = new Date().getTime();
             const distance = targetDate.getTime() - now;
 
-            if (distance > 0) {
-                setTimeLeft({
-                    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-                    hours: Math.floor(
-                        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-                    ),
-                    minutes: Math.floor(
-                        (distance % (1000 * 60 * 60)) / (1000 * 60)
-                    ),
-                    seconds: Math.floor((distance % (1000 * 60)) / 1000),
-                });
+            // If the session time passed → move to next week's Friday
+            if (distance <= 0) {
+                targetDate = getNextSessionStart();
             }
+
+            const updatedDistance = targetDate.getTime() - now;
+            const safeDistance = Math.max(updatedDistance, 0);
+
+            setTimeLeft({
+                days: Math.floor(safeDistance / (1000 * 60 * 60 * 24)),
+                hours: Math.floor(
+                    (safeDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+                ),
+                minutes: Math.floor(
+                    (safeDistance % (1000 * 60 * 60)) / (1000 * 60)
+                ),
+                seconds: Math.floor((safeDistance % (1000 * 60)) / 1000),
+            });
         }, 1000);
 
         return () => clearInterval(timer);
