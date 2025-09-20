@@ -6,11 +6,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import BubbleAnimation from "@/components/BubbleAnimation";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
+import Enrollment from "@/pages/enrollment";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/enrollment" component={Enrollment} />
       <Route component={NotFound} />
     </Switch>
   );

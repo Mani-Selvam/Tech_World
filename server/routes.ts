@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertAttendeeSchema } from "@shared/schema";
+import { insertAttendeeSchema, insertEnrollmentSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -47,6 +47,61 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ 
         error: "Internal server error", 
         message: "Failed to fetch attendees" 
+      });
+    }
+  });
+
+  // Enrollment endpoint
+  app.post("/api/enroll", async (req, res) => {
+    try {
+      const result = insertEnrollmentSchema.safeParse(req.body);
+      
+      if (!result.success) {
+        return res.status(400).json({ 
+          error: "Validation failed", 
+          details: fromZodError(result.error).toString() 
+        });
+      }
+
+      const enrollment = await storage.createEnrollment(result.data);
+      
+      res.status(201).json({ 
+        success: true, 
+        message: "Enrollment successful!",
+        enrollment: {
+          id: enrollment.id,
+          fullName: enrollment.fullName,
+          email: enrollment.email
+        }
+      });
+    } catch (error) {
+      console.error("Enrollment error:", error);
+      res.status(500).json({ 
+        error: "Internal server error", 
+        message: "Failed to process enrollment" 
+      });
+    }
+  });
+
+  // Get all enrollments endpoint (for admin use only - requires admin key)
+  app.get("/api/enrollments", async (req, res) => {
+    try {
+      // Basic admin protection - require admin key in header
+      const adminKey = req.headers['x-admin-key'];
+      if (!adminKey || adminKey !== process.env.ADMIN_KEY) {
+        return res.status(401).json({ 
+          error: "Unauthorized", 
+          message: "Admin access required" 
+        });
+      }
+
+      const enrollments = await storage.getEnrollments();
+      res.json({ enrollments });
+    } catch (error) {
+      console.error("Error fetching enrollments:", error);
+      res.status(500).json({ 
+        error: "Internal server error", 
+        message: "Failed to fetch enrollments" 
       });
     }
   });

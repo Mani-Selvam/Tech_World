@@ -1,5 +1,8 @@
 // client/src/components/Footer.tsx
 import React from "react";
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
+import { GraduationCap } from "lucide-react";
 import techaraLogo from "@/assets/techara-logo.png"; // Adjust path if needed
 
 export default function Footer() {
@@ -7,6 +10,31 @@ export default function Footer() {
         <footer className="bg-secondary/80 py-16" id="contact">
             {/* Container */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Enroll Now CTA Section */}
+                <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-lg p-8 mb-12 text-center border border-purple-500/30">
+                    <div className="flex flex-col items-center space-y-4">
+                        <GraduationCap className="w-12 h-12 text-purple-400" />
+                        <h2 className="text-2xl md:text-3xl font-bold">
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+                                Ready to Start Your Web3 Journey?
+                            </span>
+                        </h2>
+                        <p className="text-muted-foreground max-w-2xl">
+                            Join thousands of students who have transformed their careers with our comprehensive Web3 and blockchain courses.
+                        </p>
+                        <Link href="/enrollment">
+                            <Button
+                                size="lg"
+                                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                                data-testid="button-enroll-now"
+                            >
+                                <GraduationCap className="w-5 h-5 mr-2" />
+                                Enroll Now - Limited Seats
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* Brand Section */}
 

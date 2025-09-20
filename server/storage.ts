@@ -1,4 +1,4 @@
-import { users, attendees, type User, type InsertUser, type Attendee, type InsertAttendee } from "@shared/schema";
+import { users, attendees, enrollments, type User, type InsertUser, type Attendee, type InsertAttendee, type Enrollment, type InsertEnrollment } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 
@@ -11,6 +11,8 @@ export interface IStorage {
   createUser(user: InsertUser): Promise<User>;
   createAttendee(attendee: InsertAttendee): Promise<Attendee>;
   getAttendees(): Promise<Attendee[]>;
+  createEnrollment(enrollment: InsertEnrollment): Promise<Enrollment>;
+  getEnrollments(): Promise<Enrollment[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -42,6 +44,18 @@ export class DatabaseStorage implements IStorage {
 
   async getAttendees(): Promise<Attendee[]> {
     return await db.select().from(attendees);
+  }
+
+  async createEnrollment(insertEnrollment: InsertEnrollment): Promise<Enrollment> {
+    const [enrollment] = await db
+      .insert(enrollments)
+      .values(insertEnrollment)
+      .returning();
+    return enrollment;
+  }
+
+  async getEnrollments(): Promise<Enrollment[]> {
+    return await db.select().from(enrollments);
   }
 }
 
