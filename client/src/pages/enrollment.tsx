@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SectionBubbles from "@/components/SectionBubbles";
@@ -23,6 +23,15 @@ function EnrollmentPage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'auto'
+    });
+  }, []);
 
   const form = useForm<InsertEnrollment>({
     resolver: zodResolver(insertEnrollmentSchema),
