@@ -119,4 +119,57 @@ export class DatabaseStorage implements IStorage {
 // Use in-memory storage by default until database is properly configured
 // The user can provision a PostgreSQL database through the Replit Database tool
 // and the application will automatically use it when DATABASE_URL is available
-export const storage = new MemStorage();
+
+// Lazy storage initialization to ensure environment variables are loaded first
+let storageInstance: IStorage | null = null;
+let isInitializing = false;
+
+// Initialize storage based on environment
+async function initializeStorage(): Promise<IStorage> {
+  if (storageInstance) {
+    return storageInstance;
+  }
+
+  if (isInitializing) {
+    // Wait for initialization to complete
+    while (isInitializing) {
+      await new Promise(resolve => setTimeout(resolve, 10));
+    }
+    return storageInstance!;
+  }
+
+  isInitializing = true;
+
+  try {
+    console.log("🔍 Environment variables check:");
+    console.log("- DATABASE_URL exists:", !!process.env.DATABASE_URL);
+    console.log("- DATABASE_URL value:", process.env.DATABASE_URL ? process.env.DATABASE_URL.substring(0, 50) + "..." : "not found");
+
+    if (process.env.DATABASE_URL) {
+      const { db } = await import("./db");
+      storageInstance = new DatabaseStorage(db);
+      console.log("✅ Using DatabaseStorage with Neon database");
+    } else {
+      storageInstance = new MemStorage();
+      console.log("⚠️  Using MemStorage - DATABASE_URL not found");
+    }
+  } catch (error) {
+    console.error("Failed to initialize database storage:", error);
+    console.log("⚠️  Falling back to MemStorage");
+    storageInstance = new MemStorage();
+  } finally {
+    isInitializing = false;
+  }
+
+  return storageInstance;
+}
+
+// Create a proxy that handles lazy initialization
+export const storage = new Proxy({} as IStorage, {
+  get(target, prop) {
+    return async (...args: any[]) => {
+      const instance = await initializeStorage();
+      return (instance as any)[prop](...args);
+    };
+  }
+});

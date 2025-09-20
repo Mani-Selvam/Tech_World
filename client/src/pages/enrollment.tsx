@@ -7,6 +7,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
+    ArrowLeft,
+    GraduationCap,
+    Users,
+    Code,
+    TrendingUp,
+    Trophy,
+    Briefcase,
+    Rocket,
+    Star,
+    Target,
+    Zap,
+} from "lucide-react";
+
+import {
     Select,
     SelectContent,
     SelectItem,
@@ -29,32 +43,17 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { Link } from "wouter";
-import {
-    ArrowLeft,
-    GraduationCap,
-    Users,
-    Code,
-    TrendingUp,
-    Trophy,
-    Briefcase,
-    Rocket,
-    Star,
-    Target,
-    Zap,
-} from "lucide-react";
 
 function EnrollmentPage() {
     const { toast } = useToast();
     const queryClient = useQueryClient();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Scroll to top when page loads
+    // 🌟 NEW: step state
+    // 1=Personal, 2=Courses, 3=Preferences
+
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "auto",
-        });
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }, []);
 
     const form = useForm<InsertEnrollment>({
@@ -80,17 +79,13 @@ function EnrollmentPage() {
         mutationFn: async (data: InsertEnrollment) => {
             const response = await fetch("/api/enroll", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
-
             if (!response.ok) {
                 const error = await response.json();
                 throw new Error(error.message || "Enrollment failed");
             }
-
             return response.json();
         },
         onSuccess: () => {
@@ -101,6 +96,7 @@ function EnrollmentPage() {
             });
             form.reset();
             queryClient.invalidateQueries({ queryKey: ["/api/enrollments"] });
+            setStep(1); // reset to first step
         },
         onError: (error: any) => {
             toast({
@@ -120,6 +116,12 @@ function EnrollmentPage() {
             setIsSubmitting(false);
         }
     };
+
+    // 🌟 step navigation handlers
+    const [step, setStep] = useState(1);
+
+    const nextStep = () => setStep((s) => Math.min(s + 1, 3));
+    const prevStep = () => setStep((s) => Math.max(s - 1, 1));
 
     return (
         <div className="min-h-screen bg-background text-foreground overflow-hidden scrollbar-none ">
@@ -517,49 +519,27 @@ function EnrollmentPage() {
                                     <form
                                         onSubmit={form.handleSubmit(onSubmit)}
                                         className="space-y-8">
-                                        {/* Personal Information */}
-                                        <div className="space-y-6">
-                                            <h3 className="text-lg font-semibold text-purple-300">
-                                                Personal Information
-                                            </h3>
-
-                                            <FormField
-                                                control={form.control}
-                                                name="fullName"
-                                                render={({ field }) => (
-                                                    <FormItem>
-                                                        <FormLabel className="text-gray-200">
-                                                            Full Name *
-                                                        </FormLabel>
-                                                        <FormControl>
-                                                            <Input
-                                                                {...field}
-                                                                placeholder="Enter your full name"
-                                                                className="bg-background/50 text-black placeholder-gray-400 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
-                                                            />
-                                                        </FormControl>
-                                                        <FormMessage />
-                                                    </FormItem>
-                                                )}
-                                            />
-
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        {/* =================== STEP 1 =================== */}
+                                        {step === 1 && (
+                                            <div className="space-y-6">
+                                                <h3 className="text-lg font-semibold text-purple-300">
+                                                    Personal Information
+                                                </h3>
+                                                {/* ---- all your Personal Information fields unchanged ---- */}
+                                                {/* Full Name */}
                                                 <FormField
                                                     control={form.control}
-                                                    name="mobile"
+                                                    name="fullName"
                                                     render={({ field }) => (
                                                         <FormItem>
                                                             <FormLabel className="text-gray-200">
-                                                                Mobile Number
-                                                                (WhatsApp
-                                                                Preferred) *
+                                                                Full Name *
                                                             </FormLabel>
                                                             <FormControl>
                                                                 <Input
                                                                     {...field}
-                                                                    placeholder="+1 234 567 8900"
-                                                                    data-testid="input-mobile"
-                                                                    className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                                                                    placeholder="Enter your full name"
+                                                                    className="bg-background/50 text-black placeholder-gray-400 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                                                                 />
                                                             </FormControl>
                                                             <FormMessage />
@@ -567,59 +547,130 @@ function EnrollmentPage() {
                                                     )}
                                                 />
 
-                                                <FormField
-                                                    control={form.control}
-                                                    name="email"
-                                                    render={({ field }) => (
-                                                        <FormItem>
-                                                            <FormLabel className="text-gray-200">
-                                                                Email ID *
-                                                            </FormLabel>
-                                                            <FormControl>
-                                                                <Input
-                                                                    {...field}
-                                                                    type="email"
-                                                                    placeholder="your.email@example.com"
-                                                                    data-testid="input-email"
-                                                                    className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
-                                                                />
-                                                            </FormControl>
-                                                            <FormMessage />
-                                                        </FormItem>
-                                                    )}
-                                                />
-                                            </div>
+                                                {/* Mobile & Email */}
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                    {/* Mobile */}
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="mobile"
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormLabel className="text-gray-200">
+                                                                    Mobile
+                                                                    Number
+                                                                    (WhatsApp
+                                                                    Preferred) *
+                                                                </FormLabel>
+                                                                <FormControl>
+                                                                    <Input
+                                                                        {...field}
+                                                                        placeholder="+1 234 567 8900"
+                                                                        data-testid="input-mobile"
+                                                                        className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                                                                    />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    {/* Email */}
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="email"
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormLabel className="text-gray-200">
+                                                                    Email ID *
+                                                                </FormLabel>
+                                                                <FormControl>
+                                                                    <Input
+                                                                        {...field}
+                                                                        type="email"
+                                                                        placeholder="your.email@example.com"
+                                                                        data-testid="input-email"
+                                                                        className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                                                                    />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                </div>
 
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                <FormField
-                                                    control={form.control}
-                                                    name="city"
-                                                    render={({ field }) => (
-                                                        <FormItem>
-                                                            <FormLabel className="text-gray-200">
-                                                                City / Location
-                                                                *
-                                                            </FormLabel>
-                                                            <FormControl>
-                                                                <Input
-                                                                    {...field}
-                                                                    placeholder="Enter your city"
-                                                                    data-testid="input-city"
-                                                                    className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
-                                                                />
-                                                            </FormControl>
-                                                            <FormMessage />
-                                                        </FormItem>
-                                                    )}
-                                                />
+                                                {/* City & Age */}
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="city"
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormLabel className="text-gray-200">
+                                                                    City /
+                                                                    Location *
+                                                                </FormLabel>
+                                                                <FormControl>
+                                                                    <Input
+                                                                        {...field}
+                                                                        placeholder="Enter your city"
+                                                                        data-testid="input-city"
+                                                                        className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                                                                    />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="ageGroup"
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormLabel className="text-gray-200">
+                                                                    Age Group *
+                                                                </FormLabel>
+                                                                <Select
+                                                                    onValueChange={
+                                                                        field.onChange
+                                                                    }
+                                                                    defaultValue={
+                                                                        field.value
+                                                                    }>
+                                                                    <FormControl>
+                                                                        <SelectTrigger
+                                                                            data-testid="select-agegroup"
+                                                                            className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                            <SelectValue placeholder="Select age group" />
+                                                                        </SelectTrigger>
+                                                                    </FormControl>
+                                                                    <SelectContent>
+                                                                        <SelectItem value="15-20">
+                                                                            15-20
+                                                                        </SelectItem>
+                                                                        <SelectItem value="21-25">
+                                                                            21-25
+                                                                        </SelectItem>
+                                                                        <SelectItem value="26-30">
+                                                                            26-30
+                                                                        </SelectItem>
+                                                                        <SelectItem value="31+">
+                                                                            31+
+                                                                        </SelectItem>
+                                                                    </SelectContent>
+                                                                </Select>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                </div>
 
+                                                {/* Current Role */}
                                                 <FormField
                                                     control={form.control}
-                                                    name="ageGroup"
+                                                    name="currentRole"
                                                     render={({ field }) => (
                                                         <FormItem>
                                                             <FormLabel className="text-gray-200">
-                                                                Age Group *
+                                                                Current Role *
                                                             </FormLabel>
                                                             <Select
                                                                 onValueChange={
@@ -630,23 +681,25 @@ function EnrollmentPage() {
                                                                 }>
                                                                 <FormControl>
                                                                     <SelectTrigger
-                                                                        data-testid="select-agegroup"
+                                                                        data-testid="select-currentrole"
                                                                         className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
-                                                                        <SelectValue placeholder="Select age group" />
+                                                                        <SelectValue placeholder="Select your current role" />
                                                                     </SelectTrigger>
                                                                 </FormControl>
                                                                 <SelectContent>
-                                                                    <SelectItem value="15-20">
-                                                                        15-20
+                                                                    <SelectItem value="Student">
+                                                                        Student
                                                                     </SelectItem>
-                                                                    <SelectItem value="21-25">
-                                                                        21-25
+                                                                    <SelectItem value="Working Professional">
+                                                                        Working
+                                                                        Professional
                                                                     </SelectItem>
-                                                                    <SelectItem value="26-30">
-                                                                        26-30
+                                                                    <SelectItem value="Business Owner">
+                                                                        Business
+                                                                        Owner
                                                                     </SelectItem>
-                                                                    <SelectItem value="31+">
-                                                                        31+
+                                                                    <SelectItem value="Others">
+                                                                        Others
                                                                     </SelectItem>
                                                                 </SelectContent>
                                                             </Select>
@@ -655,197 +708,223 @@ function EnrollmentPage() {
                                                     )}
                                                 />
                                             </div>
+                                        )}
 
-                                            <FormField
-                                                control={form.control}
-                                                name="currentRole"
-                                                render={({ field }) => (
-                                                    <FormItem>
-                                                        <FormLabel className="text-gray-200">
-                                                            Current Role *
-                                                        </FormLabel>
-                                                        <Select
-                                                            onValueChange={
-                                                                field.onChange
-                                                            }
-                                                            defaultValue={
-                                                                field.value
-                                                            }>
-                                                            <FormControl>
-                                                                <SelectTrigger
-                                                                    data-testid="select-currentrole"
-                                                                    className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
-                                                                    <SelectValue placeholder="Select your current role" />
-                                                                </SelectTrigger>
-                                                            </FormControl>
-                                                            <SelectContent>
-                                                                <SelectItem value="Student">
-                                                                    Student
-                                                                </SelectItem>
-                                                                <SelectItem value="Working Professional">
-                                                                    Working
-                                                                    Professional
-                                                                </SelectItem>
-                                                                <SelectItem value="Business Owner">
+                                        {/* =================== STEP 2 =================== */}
+                                        {step === 2 && (
+                                            <div className="space-y-6">
+                                                <h3 className="text-lg font-semibold text-purple-300">
+                                                    Interested Courses
+                                                </h3>
+                                                {/* ---- your Interested Courses fields unchanged ---- */}
+                                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                                    {/* Blockchain */}
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="blockchainCoding"
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormLabel className="text-gray-200">
+                                                                    Blockchain
+                                                                    Coding
+                                                                </FormLabel>
+                                                                <Select
+                                                                    onValueChange={
+                                                                        field.onChange
+                                                                    }
+                                                                    defaultValue={
+                                                                        field.value
+                                                                    }>
+                                                                    <FormControl>
+                                                                        <SelectTrigger className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                            <SelectValue placeholder="Select level" />
+                                                                        </SelectTrigger>
+                                                                    </FormControl>
+                                                                    <SelectContent>
+                                                                        <SelectItem value="Beginner">
+                                                                            Beginner
+                                                                        </SelectItem>
+                                                                        <SelectItem value="Intermediate">
+                                                                            Intermediate
+                                                                        </SelectItem>
+                                                                        <SelectItem value="Advanced">
+                                                                            Advanced
+                                                                        </SelectItem>
+                                                                    </SelectContent>
+                                                                </Select>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    {/* Crypto */}
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="cryptoDefi"
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormLabel className="text-gray-200">
+                                                                    Crypto &
+                                                                    DeFi
+                                                                </FormLabel>
+                                                                <Select
+                                                                    onValueChange={
+                                                                        field.onChange
+                                                                    }
+                                                                    defaultValue={
+                                                                        field.value
+                                                                    }>
+                                                                    <FormControl>
+                                                                        <SelectTrigger className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                            <SelectValue placeholder="Select level" />
+                                                                        </SelectTrigger>
+                                                                    </FormControl>
+                                                                    <SelectContent>
+                                                                        <SelectItem value="Beginner">
+                                                                            Beginner
+                                                                        </SelectItem>
+                                                                        <SelectItem value="Intermediate">
+                                                                            Intermediate
+                                                                        </SelectItem>
+                                                                        <SelectItem value="Advanced">
+                                                                            Advanced
+                                                                        </SelectItem>
+                                                                    </SelectContent>
+                                                                </Select>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    {/* NFT */}
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="nftWeb3"
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormLabel className="text-gray-200">
+                                                                    NFT & Web3
                                                                     Business
-                                                                    Owner
-                                                                </SelectItem>
-                                                                <SelectItem value="Others">
-                                                                    Others
-                                                                </SelectItem>
-                                                            </SelectContent>
-                                                        </Select>
-                                                        <FormMessage />
-                                                    </FormItem>
-                                                )}
-                                            />
-                                        </div>
-
-                                        {/* Course Interests */}
-                                        <div className="space-y-6">
-                                            <h3 className="text-lg font-semibold text-purple-300">
-                                                Interested Courses
-                                            </h3>
-
-                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                                {/* Blockchain */}
-                                                <FormField
-                                                    control={form.control}
-                                                    name="blockchainCoding"
-                                                    render={({ field }) => (
-                                                        <FormItem>
-                                                            <FormLabel className="text-gray-200">
-                                                                Blockchain
-                                                                Coding
-                                                            </FormLabel>
-                                                            <Select
-                                                                onValueChange={
-                                                                    field.onChange
-                                                                }
-                                                                defaultValue={
-                                                                    field.value
-                                                                }>
-                                                                <FormControl>
-                                                                    <SelectTrigger
-                                                                        data-testid="select-blockchain"
-                                                                        className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
-                                                                        <SelectValue placeholder="Select level" />
-                                                                    </SelectTrigger>
-                                                                </FormControl>
-                                                                <SelectContent>
-                                                                    <SelectItem value="Beginner">
-                                                                        Beginner
-                                                                    </SelectItem>
-                                                                    <SelectItem value="Intermediate">
-                                                                        Intermediate
-                                                                    </SelectItem>
-                                                                    <SelectItem value="Advanced">
-                                                                        Advanced
-                                                                    </SelectItem>
-                                                                </SelectContent>
-                                                            </Select>
-                                                            <FormMessage />
-                                                        </FormItem>
-                                                    )}
-                                                />
-
-                                                {/* Crypto */}
-                                                <FormField
-                                                    control={form.control}
-                                                    name="cryptoDefi"
-                                                    render={({ field }) => (
-                                                        <FormItem>
-                                                            <FormLabel className="text-gray-200">
-                                                                Crypto & DeFi
-                                                            </FormLabel>
-                                                            <Select
-                                                                onValueChange={
-                                                                    field.onChange
-                                                                }
-                                                                defaultValue={
-                                                                    field.value
-                                                                }>
-                                                                <FormControl>
-                                                                    <SelectTrigger
-                                                                        data-testid="select-crypto"
-                                                                        className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
-                                                                        <SelectValue placeholder="Select level" />
-                                                                    </SelectTrigger>
-                                                                </FormControl>
-                                                                <SelectContent>
-                                                                    <SelectItem value="Beginner">
-                                                                        Beginner
-                                                                    </SelectItem>
-                                                                    <SelectItem value="Intermediate">
-                                                                        Intermediate
-                                                                    </SelectItem>
-                                                                    <SelectItem value="Advanced">
-                                                                        Advanced
-                                                                    </SelectItem>
-                                                                </SelectContent>
-                                                            </Select>
-                                                            <FormMessage />
-                                                        </FormItem>
-                                                    )}
-                                                />
-
-                                                {/* NFT */}
-                                                <FormField
-                                                    control={form.control}
-                                                    name="nftWeb3"
-                                                    render={({ field }) => (
-                                                        <FormItem>
-                                                            <FormLabel className="text-gray-200">
-                                                                NFT & Web3
-                                                                Business
-                                                            </FormLabel>
-                                                            <Select
-                                                                onValueChange={
-                                                                    field.onChange
-                                                                }
-                                                                defaultValue={
-                                                                    field.value
-                                                                }>
-                                                                <FormControl>
-                                                                    <SelectTrigger
-                                                                        data-testid="select-nft"
-                                                                        className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
-                                                                        <SelectValue placeholder="Select level" />
-                                                                    </SelectTrigger>
-                                                                </FormControl>
-                                                                <SelectContent>
-                                                                    <SelectItem value="Beginner">
-                                                                        Beginner
-                                                                    </SelectItem>
-                                                                    <SelectItem value="Intermediate">
-                                                                        Intermediate
-                                                                    </SelectItem>
-                                                                    <SelectItem value="Advanced">
-                                                                        Advanced
-                                                                    </SelectItem>
-                                                                </SelectContent>
-                                                            </Select>
-                                                            <FormMessage />
-                                                        </FormItem>
-                                                    )}
-                                                />
+                                                                </FormLabel>
+                                                                <Select
+                                                                    onValueChange={
+                                                                        field.onChange
+                                                                    }
+                                                                    defaultValue={
+                                                                        field.value
+                                                                    }>
+                                                                    <FormControl>
+                                                                        <SelectTrigger className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                            <SelectValue placeholder="Select level" />
+                                                                        </SelectTrigger>
+                                                                    </FormControl>
+                                                                    <SelectContent>
+                                                                        <SelectItem value="Beginner">
+                                                                            Beginner
+                                                                        </SelectItem>
+                                                                        <SelectItem value="Intermediate">
+                                                                            Intermediate
+                                                                        </SelectItem>
+                                                                        <SelectItem value="Advanced">
+                                                                            Advanced
+                                                                        </SelectItem>
+                                                                    </SelectContent>
+                                                                </Select>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
+                                        )}
 
-                                        {/* Preferences */}
-                                        <div className="space-y-6">
-                                            <h3 className="text-lg font-semibold text-purple-300">
-                                                Preferences
-                                            </h3>
-
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        {/* =================== STEP 3 =================== */}
+                                        {step === 3 && (
+                                            <div className="space-y-6">
+                                                <h3 className="text-lg font-semibold text-purple-300">
+                                                    Preferences
+                                                </h3>
+                                                {/* ---- your Preferences fields unchanged ---- */}
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="preferredMode"
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormLabel className="text-gray-200">
+                                                                    Preferred
+                                                                    Mode *
+                                                                </FormLabel>
+                                                                <Select
+                                                                    onValueChange={
+                                                                        field.onChange
+                                                                    }
+                                                                    defaultValue={
+                                                                        field.value
+                                                                    }>
+                                                                    <FormControl>
+                                                                        <SelectTrigger className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                            <SelectValue placeholder="Select mode" />
+                                                                        </SelectTrigger>
+                                                                    </FormControl>
+                                                                    <SelectContent>
+                                                                        <SelectItem value="Online">
+                                                                            Online
+                                                                        </SelectItem>
+                                                                        <SelectItem value="Offline">
+                                                                            Offline
+                                                                        </SelectItem>
+                                                                    </SelectContent>
+                                                                </Select>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="preferredTiming"
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormLabel className="text-gray-200">
+                                                                    Preferred
+                                                                    Batch Timing
+                                                                    *
+                                                                </FormLabel>
+                                                                <Select
+                                                                    onValueChange={
+                                                                        field.onChange
+                                                                    }
+                                                                    defaultValue={
+                                                                        field.value
+                                                                    }>
+                                                                    <FormControl>
+                                                                        <SelectTrigger className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                            <SelectValue placeholder="Select timing" />
+                                                                        </SelectTrigger>
+                                                                    </FormControl>
+                                                                    <SelectContent>
+                                                                        <SelectItem value="Morning">
+                                                                            Morning
+                                                                        </SelectItem>
+                                                                        <SelectItem value="Afternoon">
+                                                                            Afternoon
+                                                                        </SelectItem>
+                                                                        <SelectItem value="Evening">
+                                                                            Evening
+                                                                        </SelectItem>
+                                                                    </SelectContent>
+                                                                </Select>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                </div>
                                                 <FormField
                                                     control={form.control}
-                                                    name="preferredMode"
+                                                    name="hearAboutUs"
                                                     render={({ field }) => (
                                                         <FormItem>
                                                             <FormLabel className="text-gray-200">
-                                                                Preferred Mode *
+                                                                How did you hear
+                                                                about us? *
                                                             </FormLabel>
                                                             <Select
                                                                 onValueChange={
@@ -855,18 +934,25 @@ function EnrollmentPage() {
                                                                     field.value
                                                                 }>
                                                                 <FormControl>
-                                                                    <SelectTrigger
-                                                                        data-testid="select-mode"
-                                                                        className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
-                                                                        <SelectValue placeholder="Select mode" />
+                                                                    <SelectTrigger className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                        <SelectValue placeholder="Select source" />
                                                                     </SelectTrigger>
                                                                 </FormControl>
                                                                 <SelectContent>
-                                                                    <SelectItem value="Online">
-                                                                        Online
+                                                                    <SelectItem value="Instagram">
+                                                                        Instagram
                                                                     </SelectItem>
-                                                                    <SelectItem value="Offline">
-                                                                        Offline
+                                                                    <SelectItem value="WhatsApp">
+                                                                        WhatsApp
+                                                                    </SelectItem>
+                                                                    <SelectItem value="Friend">
+                                                                        Friend
+                                                                    </SelectItem>
+                                                                    <SelectItem value="College">
+                                                                        College
+                                                                    </SelectItem>
+                                                                    <SelectItem value="Other">
+                                                                        Other
                                                                     </SelectItem>
                                                                 </SelectContent>
                                                             </Select>
@@ -874,126 +960,60 @@ function EnrollmentPage() {
                                                         </FormItem>
                                                     )}
                                                 />
-
                                                 <FormField
                                                     control={form.control}
-                                                    name="preferredTiming"
+                                                    name="whyLearn"
                                                     render={({ field }) => (
                                                         <FormItem>
-                                                            <FormLabel className="text-gray-200">
-                                                                Preferred Batch
-                                                                Timing *
+                                                            <FormLabel className="text-black">
+                                                                Why do you want
+                                                                to learn this? *
                                                             </FormLabel>
-                                                            <Select
-                                                                onValueChange={
-                                                                    field.onChange
-                                                                }
-                                                                defaultValue={
-                                                                    field.value
-                                                                }>
-                                                                <FormControl>
-                                                                    <SelectTrigger
-                                                                        data-testid="select-timing"
-                                                                        className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
-                                                                        <SelectValue placeholder="Select timing" />
-                                                                    </SelectTrigger>
-                                                                </FormControl>
-                                                                <SelectContent>
-                                                                    <SelectItem value="Morning">
-                                                                        Morning
-                                                                    </SelectItem>
-                                                                    <SelectItem value="Afternoon">
-                                                                        Afternoon
-                                                                    </SelectItem>
-                                                                    <SelectItem value="Evening">
-                                                                        Evening
-                                                                    </SelectItem>
-                                                                </SelectContent>
-                                                            </Select>
-                                                            <FormMessage />
-                                                        </FormItem>
-                                                    )}
-                                                />
-                                            </div>
-
-                                            <FormField
-                                                control={form.control}
-                                                name="hearAboutUs"
-                                                render={({ field }) => (
-                                                    <FormItem>
-                                                        <FormLabel className="text-gray-200">
-                                                            How did you hear
-                                                            about us? *
-                                                        </FormLabel>
-                                                        <Select
-                                                            onValueChange={
-                                                                field.onChange
-                                                            }
-                                                            defaultValue={
-                                                                field.value
-                                                            }>
                                                             <FormControl>
-                                                                <SelectTrigger
-                                                                    data-testid="select-hearabout"
-                                                                    className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
-                                                                    <SelectValue placeholder="Select source" />
-                                                                </SelectTrigger>
+                                                                <Textarea
+                                                                    {...field}
+                                                                    placeholder="Tell us about your motivation and goals..."
+                                                                    data-testid="textarea-whylearn"
+                                                                    className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 min-h-20 px-4 py-2 rounded-lg"
+                                                                />
                                                             </FormControl>
-                                                            <SelectContent>
-                                                                <SelectItem value="Instagram">
-                                                                    Instagram
-                                                                </SelectItem>
-                                                                <SelectItem value="WhatsApp">
-                                                                    WhatsApp
-                                                                </SelectItem>
-                                                                <SelectItem value="Friend">
-                                                                    Friend
-                                                                </SelectItem>
-                                                                <SelectItem value="College">
-                                                                    College
-                                                                </SelectItem>
-                                                                <SelectItem value="Other">
-                                                                    Other
-                                                                </SelectItem>
-                                                            </SelectContent>
-                                                        </Select>
-                                                        <FormMessage />
-                                                    </FormItem>
-                                                )}
-                                            />
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
+                                            </div>
+                                        )}
 
-                                            <FormField
-                                                control={form.control}
-                                                name="whyLearn"
-                                                render={({ field }) => (
-                                                    <FormItem>
-                                                        <FormLabel className="text-black">
-                                                            Why do you want to
-                                                            learn this? *
-                                                        </FormLabel>
-                                                        <FormControl>
-                                                            <Textarea
-                                                                {...field}
-                                                                placeholder="Tell us about your motivation and goals..."
-                                                                data-testid="textarea-whylearn"
-                                                                className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 min-h-20 px-4 py-2 rounded-lg"
-                                                            />
-                                                        </FormControl>
-                                                        <FormMessage />
-                                                    </FormItem>
-                                                )}
-                                            />
+                                        {/* ---- Navigation Buttons ---- */}
+                                        <div className="flex justify-between pt-4">
+                                            {step > 1 && (
+                                                <Button
+                                                    type="button"
+                                                    variant="outline"
+                                                    onClick={prevStep}>
+                                                    Back
+                                                </Button>
+                                            )}
+                                            {step < 3 && (
+                                                <Button
+                                                    type="button"
+                                                    className="ml-auto bg-purple-600 hover:bg-purple-700"
+                                                    onClick={nextStep}>
+                                                    Next
+                                                </Button>
+                                            )}
+                                            {step === 3 && (
+                                                <Button
+                                                    type="submit"
+                                                    className="ml-auto bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+                                                    disabled={isSubmitting}
+                                                    data-testid="button-submit">
+                                                    {isSubmitting
+                                                        ? "Enrolling..."
+                                                        : "Enroll Now - Secure Your Spot"}
+                                                </Button>
+                                            )}
                                         </div>
-
-                                        <Button
-                                            type="submit"
-                                            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
-                                            disabled={isSubmitting}
-                                            data-testid="button-submit">
-                                            {isSubmitting
-                                                ? "Enrolling..."
-                                                : "Enroll Now - Secure Your Spot"}
-                                        </Button>
                                     </form>
                                 </Form>
                             </div>
@@ -1001,10 +1021,7 @@ function EnrollmentPage() {
                     </div>
                 </section>
             </ScrollReveal>
-
-            {/* <Footer /> */}
         </div>
     );
 }
-
 export default EnrollmentPage;
