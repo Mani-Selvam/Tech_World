@@ -104,10 +104,6 @@ function EnrollmentPage() {
         <div className="relative py-20 bg-gradient-to-br from-purple-900/20 to-pink-900/20">
           <SectionBubbles count={4} />
           <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
-            <Link href="/" className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 mb-6 transition-colors">
-              <ArrowLeft size={20} />
-              Back to Home
-            </Link>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
                 Enroll Now

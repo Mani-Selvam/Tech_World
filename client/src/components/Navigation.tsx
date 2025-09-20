@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ResponsiveMedia } from "./ResponsiveMedia";
+import { useLocation } from "wouter";
 import techaraLogo from "@/assets/techara-logo.png";
 
 export default function Navigation() {
     const [isOpen, setIsOpen] = useState(false);
+    const [location, navigate] = useLocation();
 
     const navigationItems = [
         { id: "hero", title: "Home" },
@@ -16,27 +18,61 @@ export default function Navigation() {
     ];
 
     const scrollToSection = (sectionId: string) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-        }
         setIsOpen(false);
+        
+        // If we're not on the home page, navigate to home first
+        if (location !== "/") {
+            navigate("/");
+            // Wait for navigation to complete, then scroll to section
+            setTimeout(() => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                }
+            }, 100);
+        } else {
+            // We're already on home page, just scroll
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
     };
 
     const openRegistrationForm = () => {
         setIsOpen(false);
-        setTimeout(() => {
-            const attendeesSection = document.getElementById("attendees");
-            if (attendeesSection) {
-                attendeesSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                });
-                // Directly set showForm to true in the Attendees component using custom event
-                const event = new CustomEvent("openRegistrationForm");
-                document.dispatchEvent(event);
-            }
-        }, 300);
+        
+        // If we're not on the home page, navigate to home first
+        if (location !== "/") {
+            navigate("/");
+            // Wait for navigation to complete, then scroll and open form
+            setTimeout(() => {
+                const attendeesSection = document.getElementById("attendees");
+                if (attendeesSection) {
+                    attendeesSection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center",
+                    });
+                    // Directly set showForm to true in the Attendees component using custom event
+                    const event = new CustomEvent("openRegistrationForm");
+                    document.dispatchEvent(event);
+                }
+            }, 300);
+        } else {
+            // We're already on home page, just scroll and open form
+            setTimeout(() => {
+                const attendeesSection = document.getElementById("attendees");
+                if (attendeesSection) {
+                    attendeesSection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center",
+                    });
+                    // Directly set showForm to true in the Attendees component using custom event
+                    const event = new CustomEvent("openRegistrationForm");
+                    document.dispatchEvent(event);
+                }
+            }, 300);
+        }
     };
 
     return (
