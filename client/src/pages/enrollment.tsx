@@ -539,7 +539,19 @@ function EnrollmentPage() {
                                                                 <Input
                                                                     {...field}
                                                                     placeholder="Enter your full name"
-                                                                    className="bg-background/50 text-black placeholder-gray-400 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                                                                    className="
+        bg-background/50 
+        text-black 
+        placeholder-gray-400 
+        placeholder:text-[14px] text-[14px]    /* 📱 Mobile: ~14px */
+        sm:placeholder:text-[12px] sm:text-[12px] /* Tablet: ~12px */
+        md:placeholder:text-[14px] md:text-[14px] /* Desktop: ~14px */
+        px-4 py-2 
+        border border-gray-300 
+        rounded-[10px] 
+        focus:border-purple-500 
+        focus:ring-1 focus:ring-purple-500
+    "
                                                                 />
                                                             </FormControl>
                                                             <FormMessage />
@@ -566,7 +578,10 @@ function EnrollmentPage() {
                                                                         {...field}
                                                                         placeholder="+1 234 567 8900"
                                                                         data-testid="input-mobile"
-                                                                        className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                                                                        className="bg-background/50 text-black placeholder-gray-400 
+                                                                         placeholder:text-[14px] text-[14px]    /* 📱 Mobile: ~14px */
+        sm:placeholder:text-[12px] sm:text-[12px] /* Tablet: ~12px */
+        md:placeholder:text-[14px] md:text-[14px] /* Desktop: ~14px */ focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                                                                     />
                                                                 </FormControl>
                                                                 <FormMessage />
@@ -588,7 +603,10 @@ function EnrollmentPage() {
                                                                         type="email"
                                                                         placeholder="your.email@example.com"
                                                                         data-testid="input-email"
-                                                                        className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                                                                        className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500
+                                                                         placeholder:text-[14px] text-[14px]    /* 📱 Mobile: ~14px */
+        sm:placeholder:text-[12px] sm:text-[12px] /* Tablet: ~12px */
+        md:placeholder:text-[14px] md:text-[14px] /* Desktop: ~14px */"
                                                                     />
                                                                 </FormControl>
                                                                 <FormMessage />
@@ -613,7 +631,9 @@ function EnrollmentPage() {
                                                                         {...field}
                                                                         placeholder="Enter your city"
                                                                         data-testid="input-city"
-                                                                        className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                                                                        className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500  placeholder:text-[14px] text-[14px]    /* 📱 Mobile: ~14px */
+        sm:placeholder:text-[12px] sm:text-[12px] /* Tablet: ~12px */
+        md:placeholder:text-[14px] md:text-[14px] /* Desktop: ~14px */"
                                                                     />
                                                                 </FormControl>
                                                                 <FormMessage />
