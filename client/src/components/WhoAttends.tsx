@@ -118,18 +118,18 @@ export default function ExploreCourses() {
                         </span>
                         <style>
                             {`
-        @keyframes gradientMove {
-          0% { background-position: 0% 0%; }
-          25% { background-position: 100% 0%; }
-          50% { background-position: 100% 100%; }
-          75% { background-position: 0% 100%; }
-          100% { background-position: 0% 0%; }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-        }
-      `}
+              @keyframes gradientMove {
+                0% { background-position: 0% 0%; }
+                25% { background-position: 100% 0%; }
+                50% { background-position: 100% 100%; }
+                75% { background-position: 0% 100%; }
+                100% { background-position: 0% 0%; }
+              }
+              @keyframes float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-8px); }
+              }
+            `}
                         </style>
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -139,7 +139,7 @@ export default function ExploreCourses() {
                     </p>
                 </motion.div>
 
-                {/* Cards */}
+                {/* Cards grid */}
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                     initial="hidden"
@@ -148,10 +148,15 @@ export default function ExploreCourses() {
                     variants={containerVariants}>
                     {courses.map((course, index) => {
                         const IconComponent = course.icon;
+                        // Center the 4th card under a 3-col grid
+                        const cardClass =
+                            courses.length === 4 && index === 3
+                                ? "gradient-border group cursor-pointer col-span-1 lg:col-span-1 lg:col-start-2 mx-auto"
+                                : "gradient-border group cursor-pointer";
                         return (
                             <motion.div
                                 key={index}
-                                className="gradient-border group cursor-pointer"
+                                className={cardClass}
                                 variants={cardVariants}
                                 whileHover={{
                                     scale: 1.05,

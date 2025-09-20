@@ -145,9 +145,9 @@ export default function Benefits() {
                     </p>
                 </motion.div>
 
-                {/* Benefit Cards */}
+                {/* Benefit Cards with flex wrap to auto-center last row */}
                 <motion.div
-                    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                    className="flex flex-wrap justify-center gap-6"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
@@ -163,8 +163,9 @@ export default function Benefits() {
                                     rotateY: 5,
                                     transition: { duration: 0.3 },
                                 }}
-                                whileTap={{ scale: 0.95 }}>
-                                <Card className="group bg-card/50 border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 cursor-pointer h-full">
+                                whileTap={{ scale: 0.95 }}
+                                className="flex justify-center">
+                                <Card className="group bg-card/50 border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 cursor-pointer h-full w-[250px]">
                                     <CardContent className="p-8 text-center flex flex-col items-center h-full">
                                         {/* Icon */}
                                         <motion.div

@@ -1,4 +1,7 @@
 import { useRef, useState } from "react";
+import { GraduationCap } from "lucide-react";
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
 
 export default function StartupPitch() {
     const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -37,7 +40,7 @@ export default function StartupPitch() {
 
     return (
         <section className="py-20 bg-black text-white" id="startup-pitch">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6  lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-12">
                     <h2
@@ -122,178 +125,42 @@ export default function StartupPitch() {
                         );
                     })}
                 </div>
-            </div>
-            <section className="py-20 bg-background" id="outcomes">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Title */}
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                            <span
-                                className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
-                                style={{
-                                    backgroundSize: "300% 300%",
-                                    animation:
-                                        "gradientMove 6s ease infinite, float 3s ease-in-out infinite",
-                                    display: "inline-block",
-                                }}>
-                                Outcomes
+                <br />
+                <br />
+                <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-lg p-8 mb-12 text-center border border-purple-500/30">
+                    <div className="flex flex-col items-center space-y-4">
+                        <GraduationCap className="w-12 h-12 text-purple-400" />
+                        <h2 className="text-2xl md:text-3xl font-bold">
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+                                Ready to Start Your Web3 Journey?
                             </span>
                         </h2>
-                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                            What you’ll achieve by learning with Techara Academy
+                        <p className="text-muted-foreground max-w-2xl">
+                            Join thousands of students who have transformed
+                            their careers with our comprehensive Web3 and
+                            blockchain courses.
                         </p>
-
-                        <style>
-                            {`
-          @keyframes gradientMove {
-            0% { background-position: 0% 0%; }
-            25% { background-position: 100% 0%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 0% 100%; }
-            100% { background-position: 0% 0%; }
-          }
-
-          @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-          }
-
-          @keyframes pulseGlow {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99,102,241,0.6); }
-            50% { transform: scale(1.05); box-shadow: 0 0 20px 4px rgba(99,102,241,0.4); }
-          }
-
-          .icon-animate {
-            animation: float 3s ease-in-out infinite, pulseGlow 4s infinite;
-            transition: transform 0.4s ease;
-          }
-
-          .icon-animate:hover {
-            transform: scale(1.2) rotate(12deg);
-          }
-
-          .box-animate {
-            transition: all 0.4s ease;
-          }
-
-          .box-animate:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-            border-color: rgba(99,102,241,0.4);
-          }
-        `}
-                        </style>
-                    </div>
-
-                    {/* Outcomes Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {/* Outcome 1 */}
-                        <div className="relative p-8 bg-card/40 rounded-2xl border border-border/50 backdrop-blur-sm shadow-md box-animate">
-                            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-pink-200 flex items-center justify-center icon-animate">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="w-8 h-8 text-pink-600"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M12 14l9-5-9-5-9 5 9 5zm0 7v-7m0 0L3 9m9 5l9-5"
-                                    />
-                                </svg>
-                            </div>
-                            <h3 className="text-xl font-semibold text-center mt-10">
-                                Become Job-Ready in 60 Days
-                            </h3>
-                            <p className="text-muted-foreground text-center mt-2">
-                                Gain industry-ready skills and land blockchain &
-                                crypto jobs faster.
-                            </p>
-                        </div>
-
-                        {/* Outcome 2 */}
-                        <div className="relative p-8 bg-card/40 rounded-2xl border border-border/50 backdrop-blur-sm shadow-md box-animate">
-                            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-green-100 flex items-center justify-center icon-animate">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="w-8 h-8 text-green-500"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 0V4m0 12v4m-6-4h12"
-                                    />
-                                </svg>
-                            </div>
-                            <h3 className="text-xl font-semibold text-center mt-10">
-                                Turn Knowledge into Passive Income
-                            </h3>
-                            <p className="text-muted-foreground text-center mt-2">
-                                Learn to monetize your skills through DeFi,
-                                NFTs, and crypto strategies.
-                            </p>
-                        </div>
-
-                        {/* Outcome 3 */}
-                        <div className="relative p-8 bg-card/40 rounded-2xl border border-border/50 backdrop-blur-sm shadow-md box-animate">
-                            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center icon-animate">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="w-8 h-8 text-yellow-500"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M11 3a1 1 0 012 0v1a7 7 0 016.938 6.125A6.992 6.992 0 0118 21H6a6.992 6.992 0 01-1.938-10.875A7 7 0 0111 4V3z"
-                                    />
-                                </svg>
-                            </div>
-                            <h3 className="text-xl font-semibold text-center mt-10">
-                                Learn Future Skills Before the World Adopts Them
-                            </h3>
-                            <p className="text-muted-foreground text-center mt-2">
-                                Stay ahead of the curve with Web3, blockchain,
-                                and crypto mastery.
-                            </p>
-                        </div>
-
-                        {/* Outcome 4 */}
-                        <div className="relative p-8 bg-card/40 rounded-2xl border border-border/50 backdrop-blur-sm shadow-md box-animate">
-                            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center icon-animate">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="w-8 h-8 text-purple-500"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M5 13l4 4L19 7M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"
-                                    />
-                                </svg>
-                            </div>
-                            <h3 className="text-xl font-semibold text-center mt-10">
-                                Build Your Own Web3 Startup / NFT Collection /
-                                Crypto Portfolio
-                            </h3>
-                            <p className="text-muted-foreground text-center mt-2">
-                                Go from learner to entrepreneur with your own
-                                blockchain projects.
-                            </p>
-                        </div>
+                        <Link href="/enrollment">
+                            <Button
+                                size="lg"
+                                className="
+    bg-gradient-to-r from-purple-600 to-pink-600 
+    hover:from-purple-700 hover:to-pink-700 
+    text-white font-semibold 
+    px-6 sm:px-8 py-3 rounded-lg 
+    transition-all duration-300 transform 
+    hover:scale-105 shadow-lg hover:shadow-xl
+    w-full sm:w-auto max-w-xs mx-auto
+    flex justify-center items-center
+  "
+                                data-testid="button-enroll-now">
+                                <GraduationCap className="w-5 h-5 mr-2" />
+                                Enroll Now - Limited Seats
+                            </Button>
+                        </Link>
                     </div>
                 </div>
-            </section>
+            </div>
         </section>
     );
 }
