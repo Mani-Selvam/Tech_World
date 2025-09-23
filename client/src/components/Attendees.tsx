@@ -144,7 +144,7 @@ export default function Attendees() {
         setIsSubmitting(true);
 
         try {
-            // Submit registration data to backend
+            // 👉 1️⃣ Submit registration data to your backend (no change)
             const response = await fetch("/api/register", {
                 method: "POST",
                 headers: {
@@ -161,7 +161,18 @@ export default function Attendees() {
                 );
             }
 
-            // Registration successful
+            // 👉 2️⃣ Also send data to n8n webhook for email
+            // (Runs in parallel, we don't block the user if it fails)
+            fetch("https://brotechapp.app.n8n.cloud/webhook/TechAra", {
+                // 🔹 Replace with your n8n webhook URL
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            }).catch((err) => console.error("n8n error:", err));
+
+            // 👉 3️⃣ Registration successful (original flow)
             setIsSubmitting(false);
             setShowForm(false);
             setShowThankYou(true);
