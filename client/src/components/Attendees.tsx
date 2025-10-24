@@ -1,3 +1,4 @@
+// src/components/AttendeesDemographics.jsx
 import {
     TrendingUp,
     BarChart3,
@@ -7,750 +8,223 @@ import {
     Settings,
     Rocket,
     MoreHorizontal,
-    Clock,
-    User,
-    Mail,
-    Phone,
-    Building2,
-    CheckCircle,
+    Sparkles,
+    ArrowUp,
 } from "lucide-react";
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
-// Registration form schema
-const registrationSchema = z.object({
-    name: z.string().min(2, "Name must be at least 2 characters"),
-    email: z.string().email("Please enter a valid email address"),
-    mobile: z.string().min(10, "Mobile number must be at least 10 digits"),
-    companyName: z.string().optional(),
-});
-
-type RegistrationFormData = z.infer<typeof registrationSchema>;
-
-export default function Attendees() {
-    // Countdown Timer State
-    const [timeLeft, setTimeLeft] = useState({
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-    });
-
-    // Registration form state
-    const [showForm, setShowForm] = useState(false);
-    const [showThankYou, setShowThankYou] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-
-    const form = useForm<RegistrationFormData>({
-        resolver: zodResolver(registrationSchema),
-        defaultValues: {
-            name: "",
-            email: "",
-            mobile: "",
-            companyName: "",
-        },
-    });
-
-    useEffect(() => {
-        const getNextSessionStart = () => {
-            const now = new Date();
-            const day = now.getDay(); // Sunday=0, Monday=1, ..., Friday=5
-
-            // Days until Friday
-            const daysUntilFriday = (6 - day + 7) % 7;
-
-            // Session start = Next Friday 7:00 PM
-            const sessionStart = new Date(now);
-            sessionStart.setDate(now.getDate() + daysUntilFriday);
-            sessionStart.setHours(19, 0, 0, 0); // 7:00 PM
-
-            // Session end = start + 90 minutes
-            const sessionEnd = new Date(sessionStart);
-            sessionEnd.setMinutes(sessionStart.getMinutes() + 90); // 8:30 PM
-
-            // If already past today's session end → go to next week
-            if (now > sessionEnd) {
-                sessionStart.setDate(sessionStart.getDate() + 7);
-            }
-
-            return sessionStart;
-        };
-
-        let targetDate = getNextSessionStart();
-
-        const timer = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = targetDate.getTime() - now;
-
-            // If the session time passed → move to next week's Friday
-            if (distance <= 0) {
-                targetDate = getNextSessionStart();
-            }
-
-            const updatedDistance = targetDate.getTime() - now;
-            const safeDistance = Math.max(updatedDistance, 0);
-
-            setTimeLeft({
-                days: Math.floor(safeDistance / (1000 * 60 * 60 * 24)),
-                hours: Math.floor(
-                    (safeDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-                ),
-                minutes: Math.floor(
-                    (safeDistance % (1000 * 60 * 60)) / (1000 * 60)
-                ),
-                seconds: Math.floor((safeDistance % (1000 * 60)) / 1000),
-            });
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, []);
-
-    // Auto-close functionality has been removed as requested
-
-    // Scroll-to-close functionality has been removed as requested
-
-    // Listen for custom event to open registration form
-    useEffect(() => {
-        const handleOpenRegistrationForm = () => {
-            setShowForm(true);
-        };
-
-        document.addEventListener(
-            "openRegistrationForm",
-            handleOpenRegistrationForm
-        );
-
-        return () => {
-            document.removeEventListener(
-                "openRegistrationForm",
-                handleOpenRegistrationForm
-            );
-        };
-    }, []);
-
-    const onSubmit = async (data: RegistrationFormData) => {
-        setIsSubmitting(true);
-
-        try {
-            // 👉 1️⃣ Submit registration data to your backend (no change)
-            const response = await fetch("/api/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-
-            const result = await response.json();
-
-            if (!response.ok) {
-                throw new Error(
-                    result.details || result.message || "Registration failed"
-                );
-            }
-
-            // 👉 2️⃣ Also send data to n8n webhook for email
-            // (Runs in parallel, we don't block the user if it fails)
-            fetch("https://brotechapp.app.n8n.cloud/webhook/TechAra", {
-                // 🔹 Replace with your n8n webhook URL
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            }).catch((err) => console.error("n8n error:", err));
-
-            // 👉 3️⃣ Registration successful (original flow)
-            setIsSubmitting(false);
-            setShowForm(false);
-            setShowThankYou(true);
-
-            // Get WhatsApp number from environment variable
-            const whatsappNumber =
-                import.meta.env.VITE_WHATSAPP_NUMBER || "+919345791995";
-            const message = "interested";
-
-            // Open WhatsApp with pre-filled message
-            setTimeout(() => {
-                const whatsappUrl = `https://wa.me/${whatsappNumber.replace(
-                    /[^0-9]/g,
-                    ""
-                )}?text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, "_blank");
-            }, 2000);
-        } catch (error) {
-            console.error("Registration error:", error);
-            setIsSubmitting(false);
-
-            // Show error message to user
-            alert(
-                error instanceof Error
-                    ? error.message
-                    : "Registration failed. Please try again."
-            );
-        }
-    };
-
+export default function AttendeesDemographics() {
     const demographics = [
+        {
+            percentage: "83%",
+            category: "Crypto traders",
+            color: "from-purple-500 to-pink-500",
+            icon: BarChart3,
+            image: "https://blockchain-life.com/wp-content/uploads/2023/11/traders.jpg",
+            description: "Professional traders and investors",
+        },
+        {
+            percentage: "80%",
+            category: "Students",
+            color: "from-blue-500 to-cyan-500",
+            icon: Pickaxe,
+            image: "https://blockchain-life.com/wp-content/uploads/2023/11/miners.jpg",
+            description: "University and college students",
+        },
+        {
+            percentage: "70%",
+            category: "Developers",
+            color: "from-green-500 to-emerald-500",
+            icon: Code,
+            image: "https://blockchain-life.com/wp-content/uploads/2023/11/developers.jpg",
+            description: "Software developers and engineers",
+        },
         {
             percentage: "67%",
             category: "Investors/Funds",
-            color: "primary",
+            color: "from-orange-500 to-red-500",
             icon: TrendingUp,
             image: "https://blockchain-life.com/wp-content/uploads/2023/11/investors.jpg",
+            description: "Institutional and retail investors",
         },
         {
-            percentage: "34%",
-            category: "Crypto traders",
-            color: "accent",
-            icon: BarChart3,
-            image: "https://blockchain-life.com/wp-content/uploads/2023/11/traders.jpg",
-        },
-        {
-            percentage: "31%",
+            percentage: "47%",
             category: "Entrepreneurs",
-            color: "primary",
+            color: "from-indigo-500 to-purple-500",
             icon: Users,
             image: "https://blockchain-life.com/wp-content/uploads/2023/11/entrepreneurs.jpg",
-        },
-        {
-            percentage: "30%",
-            category: "Developers",
-            color: "accent",
-            icon: Code,
-            image: "https://blockchain-life.com/wp-content/uploads/2023/11/developers.jpg",
-        },
-        {
-            percentage: "29%",
-            category: "Students",
-            color: "primary",
-            icon: Pickaxe,
-            image: "https://blockchain-life.com/wp-content/uploads/2023/11/miners.jpg",
-        },
-        {
-            percentage: "26%",
-            category: "Service providers",
-            color: "accent",
-            icon: Settings,
-            image: "https://blockchain-life.com/wp-content/uploads/2023/11/services.jpg",
+            description: "Business owners and founders",
         },
         {
             percentage: "24%",
             category: "Startups",
-            color: "primary",
+            color: "from-pink-500 to-rose-500",
             icon: Rocket,
             image: "https://blockchain-life.com/wp-content/uploads/2023/11/startups.jpg",
+            description: "Early-stage companies",
+        },
+        {
+            percentage: "26%",
+            category: "Service providers",
+            color: "from-cyan-500 to-blue-500",
+            icon: Settings,
+            image: "https://blockchain-life.com/wp-content/uploads/2023/11/services.jpg",
+            description: "Consultants and service companies",
         },
         {
             percentage: "4%",
             category: "Others",
-            color: "accent",
+            color: "from-gray-500 to-slate-500",
             icon: MoreHorizontal,
             image: "https://blockchain-life.com/wp-content/uploads/2023/11/others.jpg",
+            description: "Various other professionals",
         },
     ];
 
-    const regions = [
-        { name: "NORTH AMERICA", percentage: "18%", color: "primary" },
-        { name: "EUROPE", percentage: "37%", color: "accent" },
-        { name: "ASIA", percentage: "37%", color: "primary" },
-        { name: "AFRICA", percentage: "3%", color: "accent" },
-        { name: "South America", percentage: "3%", color: "primary" },
-        { name: "Australia", percentage: "2%", color: "accent" },
-    ];
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.1 },
+        },
+    };
 
-    const countries = [
-        {
-            name: "UAE",
-            flag: "https://blockchain-life.com/wp-content/uploads/2025/03/f1.png",
+    const cardVariants = {
+        hidden: { opacity: 0, y: 30, scale: 0.9 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: { duration: 0.5, ease: "easeOut" },
         },
-        {
-            name: "Russia",
-            flag: "https://blockchain-life.com/wp-content/uploads/2025/03/f2.png",
-        },
-        {
-            name: "USA",
-            flag: "https://blockchain-life.com/wp-content/uploads/2025/03/f3.png",
-        },
-        {
-            name: "UK",
-            flag: "https://blockchain-life.com/wp-content/uploads/2025/03/f5.png",
-        },
-        {
-            name: "Germany",
-            flag: "https://blockchain-life.com/wp-content/uploads/2025/03/f4.png",
-        },
-        {
-            name: "Spain",
-            flag: "https://blockchain-life.com/wp-content/uploads/2025/03/flag_of_spain_svg_1.webp",
-        },
-        {
-            name: "China",
-            flag: "https://blockchain-life.com/wp-content/uploads/2025/03/f7.png",
-        },
-        {
-            name: "Ukraine",
-            flag: "https://blockchain-life.com/wp-content/uploads/2025/03/flag_of_ukraine_svg_1.webp",
-        },
-        {
-            name: "Kazakhstan",
-            flag: "https://blockchain-life.com/wp-content/uploads/2025/06/Kazahstan.png",
-        },
-        {
-            name: "Canada",
-            flag: "https://blockchain-life.com/wp-content/uploads/2025/03/f8.png",
-        },
-    ];
+    };
 
     return (
-        <section
-            className="py-20 bg-secondary/30 relative overflow-hidden"
-            id="attendees">
-            {/* Background Decorative Elements */}
-            <div className="absolute top-20 left-10 w-32 h-32 bg-primary/5 rounded-full blur-xl"></div>
-            <div className="absolute bottom-20 right-10 w-48 h-48 bg-accent/5 rounded-full blur-xl"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-primary/3 to-accent/3 rounded-full blur-3xl"></div>
+        <div className="relative py-16">
+            {/* Background Effects */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute top-20 left-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+                <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+            </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-                {/* Countdown Timer Section */}
-                <div className="mb-8">
-                    <div className="text-center mb-4">
-                        <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-                            Event Starts In
-                        </h3>
-                        <p className="text-muted-foreground text-lg">
-                            Don't miss out on TechAra Academy
-                        </p>
-                    </div>
-
-                    <div className="max-w-4xl mx-auto">
-                        <div className="bg-gradient-to-br from-primary/10 to-accent/10 backdrop-blur-sm border border-border/30 rounded-2xl p-8">
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                                {/* Days */}
-                                <div className="text-center">
-                                    <div className="bg-gradient-to-br from-primary/20 to-primary/10 backdrop-blur-sm border border-primary/30 rounded-xl p-6 mb-2">
-                                        <div className="flex items-center justify-center mb-2">
-                                            <Clock className="w-6 h-6 text-primary mr-2" />
-                                        </div>
-                                        <div
-                                            className="text-3xl md:text-4xl font-bold text-primary mb-1"
-                                            data-testid="countdown-days">
-                                            {timeLeft.days
-                                                .toString()
-                                                .padStart(2, "0")}
-                                        </div>
-                                    </div>
-                                    <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                                        Days
-                                    </div>
-                                </div>
-
-                                {/* Hours */}
-                                <div className="text-center">
-                                    <div className="bg-gradient-to-br from-accent/20 to-accent/10 backdrop-blur-sm border border-accent/30 rounded-xl p-6 mb-2">
-                                        <div className="flex items-center justify-center mb-2">
-                                            <Clock className="w-6 h-6 text-accent mr-2" />
-                                        </div>
-                                        <div
-                                            className="text-3xl md:text-4xl font-bold text-accent mb-1"
-                                            data-testid="countdown-hours">
-                                            {timeLeft.hours
-                                                .toString()
-                                                .padStart(2, "0")}
-                                        </div>
-                                    </div>
-                                    <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                                        Hours
-                                    </div>
-                                </div>
-
-                                {/* Minutes */}
-                                <div className="text-center">
-                                    <div className="bg-gradient-to-br from-primary/20 to-primary/10 backdrop-blur-sm border border-primary/30 rounded-xl p-6 mb-2">
-                                        <div className="flex items-center justify-center mb-2">
-                                            <Clock className="w-6 h-6 text-primary mr-2" />
-                                        </div>
-                                        <div
-                                            className="text-3xl md:text-4xl font-bold text-primary mb-1"
-                                            data-testid="countdown-minutes">
-                                            {timeLeft.minutes
-                                                .toString()
-                                                .padStart(2, "0")}
-                                        </div>
-                                    </div>
-                                    <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                                        Minutes
-                                    </div>
-                                </div>
-
-                                {/* Seconds */}
-                                <div className="text-center">
-                                    <div className="bg-gradient-to-br from-accent/20 to-accent/10 backdrop-blur-sm border border-accent/30 rounded-xl p-6 mb-2">
-                                        <div className="flex items-center justify-center mb-2">
-                                            <Clock className="w-6 h-6 text-accent mr-2" />
-                                        </div>
-                                        <div
-                                            className="text-3xl md:text-4xl font-bold text-accent mb-1"
-                                            data-testid="countdown-seconds">
-                                            {timeLeft.seconds
-                                                .toString()
-                                                .padStart(2, "0")}
-                                        </div>
-                                    </div>
-                                    <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                                        Seconds
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Register Button */}
-                            <div className="text-center mt-8">
-                                <button
-                                    onClick={() => {
-                                        setShowForm(true);
-                                        // Scroll to form with a slight delay to ensure it's rendered
-                                        setTimeout(() => {
-                                            const attendeesSection =
-                                                document.getElementById(
-                                                    "attendees"
-                                                );
-                                            if (attendeesSection) {
-                                                attendeesSection.scrollIntoView(
-                                                    {
-                                                        behavior: "smooth",
-                                                        block: "center",
-                                                    }
-                                                );
-                                            }
-                                        }, 300);
-                                    }}
-                                    className="bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-lg text-lg font-semibold text-primary-foreground hover:opacity-90 transition-opacity crypto-glow"
-                                    data-testid="button-register-countdown">
-                                    Register Now
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Registration Form Modal */}
-                {showForm && (
-                    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto registration-form-modal">
-                        <div className="bg-background border border-border rounded-2xl p-8 max-w-md w-full my-10 shadow-xl">
-                            <div className="text-center mb-6">
-                                <h3 className="text-2xl font-bold text-foreground mb-2">
-                                    Register for TechAra Academy
-                                </h3>
-                                <p className="text-muted-foreground">
-                                    Fill in your details to register
-                                </p>
-                            </div>
-
-                            <Form {...form}>
-                                <form
-                                    onSubmit={form.handleSubmit(onSubmit)}
-                                    className="space-y-6">
-                                    <FormField
-                                        control={form.control}
-                                        name="name"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="flex items-center gap-2">
-                                                    <User className="w-4 h-4" />
-                                                    Name *
-                                                </FormLabel>
-                                                <FormControl>
-                                                    <Input
-                                                        placeholder="Enter your full name"
-                                                        {...field}
-                                                        data-testid="input-name"
-                                                    />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-
-                                    <FormField
-                                        control={form.control}
-                                        name="email"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="flex items-center gap-2">
-                                                    <Mail className="w-4 h-4" />
-                                                    Email *
-                                                </FormLabel>
-                                                <FormControl>
-                                                    <Input
-                                                        type="email"
-                                                        placeholder="Enter your email address"
-                                                        {...field}
-                                                        data-testid="input-email"
-                                                    />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-
-                                    <FormField
-                                        control={form.control}
-                                        name="mobile"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="flex items-center gap-2">
-                                                    <Phone className="w-4 h-4" />
-                                                    Mobile Number *
-                                                </FormLabel>
-                                                <FormControl>
-                                                    <Input
-                                                        type="tel"
-                                                        placeholder="Enter your mobile number"
-                                                        {...field}
-                                                        data-testid="input-mobile"
-                                                    />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-
-                                    <FormField
-                                        control={form.control}
-                                        name="companyName"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="flex items-center gap-2">
-                                                    <Building2 className="w-4 h-4" />
-                                                    Company Name (Optional)
-                                                </FormLabel>
-                                                <FormControl>
-                                                    <Input
-                                                        placeholder="Enter your company name"
-                                                        {...field}
-                                                        data-testid="input-company"
-                                                    />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-
-                                    <div className="flex gap-3 pt-6 mt-2">
-                                        <Button
-                                            type="button"
-                                            variant="outline"
-                                            onClick={() => setShowForm(false)}
-                                            className="flex-1 py-6"
-                                            data-testid="button-cancel">
-                                            Cancel
-                                        </Button>
-                                        <Button
-                                            type="submit"
-                                            disabled={isSubmitting}
-                                            className="flex-1 bg-gradient-to-r from-primary to-accent text-primary-foreground py-6"
-                                            data-testid="button-submit">
-                                            {isSubmitting
-                                                ? "Submitting..."
-                                                : "Submit"}
-                                        </Button>
-                                    </div>
-                                </form>
-                            </Form>
-                        </div>
-                    </div>
-                )}
-
-                {/* Thank You Modal */}
-                {showThankYou && (
-                    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-                        <div className="bg-background border border-border rounded-2xl p-8 max-w-md w-full text-center">
-                            <div className="mb-6">
-                                <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                                <h3 className="text-2xl font-bold text-foreground mb-2">
-                                    Thank You!
-                                </h3>
-                                <p className="text-muted-foreground mb-4">
-                                    Your registration has been received
-                                    successfully.
-                                </p>
-                                <p className="text-sm text-muted-foreground">
-                                    You will be redirected to WhatsApp to
-                                    complete your registration process.
-                                </p>
-                            </div>
-
-                            <Button
-                                onClick={() => setShowThankYou(false)}
-                                className="bg-gradient-to-r from-primary to-accent text-primary-foreground"
-                                data-testid="button-close-thanks">
-                                Close
-                            </Button>
-                        </div>
-                    </div>
-                )}
-
-                {/* Attendees Section Title */}
+            {/* Main Container with Left and Right Gaps */}
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+                {/* Section Title */}
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                        Attendees
+                    <div className="inline-flex items-center gap-2 bg-purple-500/10 backdrop-blur-sm border border-purple-500/30 rounded-full px-4 py-2 mb-6">
+                        <Sparkles className="w-4 h-4 text-purple-400" />
+                        <span className="text-purple-300 text-sm font-medium">
+                            Who Attends
+                        </span>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                        <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+                            Our Community
+                        </span>
                     </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                        A diverse group of professionals passionate about Web3
+                        technology
+                    </p>
                 </div>
 
                 {/* Attendee Categories */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+                <motion.div
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={containerVariants}>
                     {demographics.map((demo, index) => {
                         const IconComponent = demo.icon;
                         return (
-                            <div key={index} className="group relative">
-                                {/* Background Card */}
-                                <div className="relative bg-card/50 border border-border/50 rounded-xl p-6 text-center space-y-4 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 overflow-hidden">
+                            <motion.div
+                                key={index}
+                                className="group relative"
+                                variants={cardVariants}
+                                whileHover={{
+                                    y: -10,
+                                    transition: { duration: 0.3 },
+                                }}>
+                                {/* Card Glow Effect */}
+                                <div
+                                    className={`absolute -inset-1 bg-gradient-to-r ${demo.color} rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200`}></div>
+
+                                {/* Card Content */}
+                                <div className="relative h-full bg-slate-900/80 backdrop-blur-sm border border-white/10 rounded-2xl p-6 flex flex-col overflow-hidden">
                                     {/* Background Pattern */}
                                     <div className="absolute inset-0 opacity-5">
-                                        <div className="w-full h-full bg-gradient-to-br from-primary to-accent"></div>
+                                        <div
+                                            className={`w-full h-full bg-gradient-to-br ${demo.color}`}></div>
                                     </div>
 
-                                    {/* Icon */}
-                                    <div className="relative flex justify-center">
-                                        <div
-                                            className={`p-3 rounded-lg ${
-                                                demo.color === "primary"
-                                                    ? "bg-primary/20"
-                                                    : "bg-accent/20"
-                                            } group-hover:scale-110 transition-transform`}>
-                                            <IconComponent
-                                                className={`w-8 h-8 ${
-                                                    demo.color === "primary"
-                                                        ? "text-primary"
-                                                        : "text-accent"
-                                                }`}
-                                            />
+                                    {/* Progress Ring */}
+                                    <div className="relative mb-4 flex justify-center">
+                                        <div className="relative w-20 h-20">
+                                            <svg className="w-20 h-20 transform -rotate-90">
+                                                <circle
+                                                    cx="40"
+                                                    cy="40"
+                                                    r="36"
+                                                    stroke="currentColor"
+                                                    strokeWidth="4"
+                                                    fill="none"
+                                                    className="text-slate-700"
+                                                />
+                                                <circle
+                                                    cx="40"
+                                                    cy="40"
+                                                    r="36"
+                                                    stroke="currentColor"
+                                                    strokeWidth="4"
+                                                    fill="none"
+                                                    strokeDasharray={`${
+                                                        parseInt(
+                                                            demo.percentage
+                                                        ) * 2.26
+                                                    } 226`}
+                                                    className={`text-transparent bg-gradient-to-r ${demo.color} bg-clip-text`}
+                                                />
+                                            </svg>
+                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                <span className="text-2xl font-bold text-white">
+                                                    {demo.percentage}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    {/* Percentage */}
-                                    <h3
-                                        className={`text-3xl font-bold ${
-                                            demo.color === "primary"
-                                                ? "text-primary"
-                                                : "text-accent"
-                                        } relative`}
-                                        data-testid={`attendee-percentage-${index}`}>
-                                        {demo.percentage}
-                                    </h3>
+                                    {/* Icon */}
+                                    <div className="relative flex justify-center mb-4">
+                                        <div
+                                            className={`p-3 rounded-xl bg-gradient-to-r ${demo.color} p-0.5`}>
+                                            <div className="w-full h-full bg-slate-900 rounded-xl flex items-center justify-center">
+                                                <IconComponent className="w-6 h-6 text-white" />
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     {/* Category */}
-                                    <p
-                                        className="text-muted-foreground font-medium relative"
-                                        data-testid={`attendee-category-${index}`}>
+                                    <h3 className="text-lg font-bold text-white text-center mb-2">
                                         {demo.category}
+                                    </h3>
+
+                                    {/* Description */}
+                                    <p className="text-gray-400 text-sm text-center mb-4 flex-grow">
+                                        {demo.description}
                                     </p>
+
+                                    {/* Trend Indicator */}
+                                    <div className="flex items-center justify-center text-green-400 text-sm">
+                                        <ArrowUp className="w-4 h-4 mr-1" />
+                                        <span>Growing segment</span>
+                                    </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         );
                     })}
-                </div>
-
-                {/* World Map and Regional Distribution */}
-                {/*   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-                    <div className="space-y-4">
-                        <h3 className="text-2xl font-bold text-foreground mb-6">
-                            Regional Distribution
-                        </h3>
-                        {regions.map((region, index) => (
-                            <div
-                                key={index}
-                                className="bg-card/30 border border-border/30 rounded-lg p-4 hover:border-primary/30 transition-colors">
-                                <div className="flex justify-between items-center">
-                                    <span
-                                        className="text-foreground font-medium"
-                                        data-testid={`region-name-${index}`}>
-                                        {region.name}
-                                    </span>
-                                    <span
-                                        className={`font-bold text-lg ${
-                                            region.color === "primary"
-                                                ? "text-primary"
-                                                : "text-accent"
-                                        }`}
-                                        data-testid={`region-percentage-${index}`}>
-                                        {region.percentage}
-                                    </span>
-                                </div>
-                               
-                                <div className="mt-2 w-full bg-secondary/50 rounded-full h-2">
-                                    <div
-                                        className={`h-2 rounded-full ${
-                                            region.color === "primary"
-                                                ? "bg-gradient-to-r from-primary to-primary/80"
-                                                : "bg-gradient-to-r from-accent to-accent/80"
-                                        }`}
-                                        style={{
-                                            width: region.percentage,
-                                        }}></div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="text-center">
-                        <div className="relative inline-block">
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-xl"></div>
-                            <img
-                                src="https://blockchain-life.com/wp-content/themes/cpalife/assets/img/asia1/attendees_map.svg"
-                                alt="World map showing attendees distribution by region"
-                                className="w-full max-w-lg mx-auto relative z-10 p-6 bg-card/20 rounded-2xl border border-border/30"
-                                data-testid="img-world-map"
-                            />
-                        </div>
-                    </div>
-                </div> */}
-
-                {/* Top 10 Countries */}
-                {/* <div className="bg-card/20 border border-border/30 rounded-2xl p-8">
-                    <h3 className="text-2xl font-bold text-center mb-8 text-foreground">
-                        Top 10 countries-attendees:
-                    </h3>
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-                        {countries.map((country, index) => (
-                            <div key={index} className="group">
-                                <div className="flex items-center space-x-3 p-3 rounded-lg bg-card/30 border border-border/20 hover:border-primary/30 hover:bg-card/50 transition-all duration-300 hover:shadow-md">
-                                    <div className="relative">
-                                        <img
-                                            src={country.flag}
-                                            alt={`${country.name} flag`}
-                                            className="w-8 h-6 object-cover rounded shadow-sm group-hover:scale-110 transition-transform"
-                                            data-testid={`country-flag-${index}`}
-                                        />
-                                    </div>
-                                    <span
-                                        className="text-foreground font-medium group-hover:text-primary transition-colors"
-                                        data-testid={`country-name-${index}`}>
-                                        {country.name}
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-6 text-center opacity-70">
-                        *Data is based on the customers survey while tickets
-                        purchasing. Attendees can choose several options.
-                    </p>
-                </div> */}
+                </motion.div>
             </div>
-        </section>
+        </div>
     );
 }

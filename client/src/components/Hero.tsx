@@ -4,7 +4,8 @@ import redCircle from "@assets/Ellipse 17_1758099227458.png";
 import { ResponsiveMedia } from "./ResponsiveMedia";
 import { useEffect, useState } from "react";
 import SectionBubbles from "./SectionBubbles";
-// import techaraLogo from "@/assets/techara-logo.png";
+import OrbitIcons from "./OrbitIcons";
+import { MessageCircle, Sparkles, Star, Users } from "lucide-react";
 
 export default function Hero() {
     const [isVisible, setIsVisible] = useState(false);
@@ -31,38 +32,36 @@ export default function Hero() {
         }, 300);
     };
 
+    const handleBookDemo = () => {
+        const whatsappNumber = "+918056880222";
+        const whatsappMessage = `Hi Sindhu 👋  I'm really interested in learning about Blockchain and Crypto! 💻✨ I'd love to know more about your upcoming session and how I can join your Free workshop, Internship, or Master Courses. 🚀`;
+
+        const url = `https://wa.me/${whatsappNumber.replace(
+            /\s/g,
+            ""
+        )}?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(url, "_blank");
+    };
+
     return (
-        <section className="relative min-h-screen pt-20 overflow-hidden">
-            {/* Black Background */}
+        <section className="relative min-h-screen pt-12 sm:pt-16 md:pt-20 overflow-hidden">
+            {/* Black Background with gradient overlay */}
             <div
                 className="absolute inset-0 z-0"
                 style={{
-                    background: "#000000",
+                    background:
+                        "linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%)",
                 }}
             />
 
             {/* Animated Bubbles */}
             <SectionBubbles count={5} className="z-[1]" />
 
-            {/* Tech ARA Logo - Left Side on desktop, centered on mobile */}
-            {/* <div
-                className={`absolute top-[80px] md:left-8 left-1/2 transform-gpu md:transform-none -translate-x-1/1 md:translate-x-0 z-20 transition-all duration-1000 ${
-                    isVisible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-10"
-                }`}>
-                <img
-                    src={techaraLogo}
-                    alt="Tech ARA Logo"
-                    className="w-50 h-60 object-contain hover:scale-110 transition-transform duration-300 mt-12 mb-1"
-                />
-            </div> */}
-
             {/* Main Content Container */}
             <div className="relative z-10 w-full h-full">
-                <div className="text-center pt-4 pb-8 px-4">
+                <div className="text-center pt-7 sm:pt-4 pb-4 sm:pb-8 px-2 sm:px-4">
                     <h1
-                        className={`text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-white leading-tight max-w-5xl mx-auto transition-all duration-1000 transform ${
+                        className={`text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight max-w-4xl lg:max-w-5xl mx-auto transition-all duration-1000 transform ${
                             isVisible
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-10"
@@ -74,16 +73,17 @@ export default function Hero() {
                             style={{
                                 animation: "pulseText 2s ease-in-out infinite",
                             }}>
-                            India's First All in One
+                            Empowering India's Web3 Future
                         </span>
                         <br />
                         <span
-                            className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 transition-all duration-700 delay-500 transform hover:scale-105"
+                            className="inline-block text-sm sm:text-base md:text-lg lg:text-xl bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 transition-all duration-700 delay-500 transform hover:scale-105"
                             style={{
                                 animation: "gradientMove 4s ease infinite",
                                 backgroundSize: "200% 200%",
                             }}>
-                            Web3 Academy
+                            Er. SH — Blockchain & Fintech Innovator, Educator,
+                            Visionary
                         </span>
 
                         {/* Inline keyframes */}
@@ -107,13 +107,13 @@ export default function Hero() {
                 </div>
 
                 {/* Main Layout - Desktop */}
-                <div className="hidden md:block relative">
+                <div className="hidden lg:block relative">
                     <div className="flex items-center justify-center min-h-[450px] relative">
                         {/* Central Sindhu Circle */}
                         <div className="relative">
                             {/* Red Circle Background */}
                             <div
-                                className={`w-[380px] h-[340px] md:w-[400px] md:h-[400px] lg:w-[430px] lg:h-[420px] xl:w-[450px] xl:h-[450px]    rounded-full relative mx-auto -translate-x-20 -translate-y-10 transition-all duration-1000 transform  ${
+                                className={`w-[320px] h-[320px] md:w-[380px] md:h-[340px] lg:w-[400px] lg:h-[400px] xl:w-[430px] xl:h-[420px] 2xl:w-[450px] 2xl:h-[450px] rounded-full relative mx-auto -translate-x-20 -translate-y-10 transition-all duration-1000 transform  ${
                                     isVisible
                                         ? "opacity-100 scale-100"
                                         : "opacity-0 scale-90"
@@ -127,7 +127,7 @@ export default function Hero() {
 
                                 {/* Sindhu Image - Positioned in center of red circle */}
                                 <div
-                                    className={`absolute top-[50px] left-[10px] right-[50px] bottom-[50px] lg:top-[60px] lg:left-[60px] lg:right-[60px] lg:bottom-[60px] rounded-full overflow-hidden translate-x-20 transition-all duration-1000 delay-300 transform ${
+                                    className={`absolute top-[40px] left-[10px] right-[40px] bottom-[40px] md:top-[50px] md:left-[10px] md:right-[50px] md:bottom-[50px] lg:top-[60px] lg:left-[60px] lg:right-[60px] lg:bottom-[60px] rounded-full overflow-hidden translate-x-20 transition-all duration-1000 delay-300 transform ${
                                         isVisible
                                             ? "opacity-100 rotate-0"
                                             : "opacity-0 rotate-12"
@@ -140,38 +140,40 @@ export default function Hero() {
                                         data-testid="img-sindhu-hero"
                                     />
                                 </div>
+                                <OrbitIcons />
                             </div>
 
                             {/* Sparkle Icons - Top Right of Circle */}
                             <div
-                                className={`absolute -top-4 -right-80 text-yellow-400 transition-all duration-1000 delay-700 ${
+                                className={`absolute -top-4 -right-60 md:-right-80 text-yellow-400 transition-all duration-1000 delay-700 ${
                                     isVisible ? "opacity-100" : "opacity-0"
                                 }`}>
-                                <div className="text-2xl mb-2 animate-bounce">
-                                    ✨
+                                <div className="text-xl md:text-2xl mb-2 animate-bounce">
+                                    <Sparkles className="w-6 h-6 md:w-8 md:h-8" />
                                 </div>
-                                <div className="text-lg ml-8 animate-ping">
-                                    ✨
+                                <div className="text-base md:text-lg ml-8 animate-ping">
+                                    <Star className="w-5 h-5 md:w-6 md:h-6" />
                                 </div>
                             </div>
                         </div>
 
                         {/* Quote Text Box - Right Side */}
                         <div
-                            className={`absolute top-1/1 -translate-y-1/2  right-20 w-80 max-w-sm transition-all duration-1000 transform ${
+                            className={`absolute top-1/1 -translate-y-1/2 right-4 md:right-10 lg:right-20 w-64 md:w-72 lg:w-80 max-w-sm transition-all duration-1000 transform ${
                                 isVisible
                                     ? "opacity-100 translate-x-0"
                                     : "opacity-0 translate-x-20"
                             }`}>
-                            <div className="backdrop-blur-sm rounded-2xl p-6 bg-gradient-to-br from-purple-900/30 to-black/50 hover:from-purple-800/40 hover:to-black/60 transition-all duration-500 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
-                                <p className="text-white text-sm leading-relaxed mb-4">
+                            <div className="backdrop-blur-sm rounded-2xl p-4 md:p-6 bg-gradient-to-br from-purple-900/40 to-black/60 hover:from-purple-800/50 hover:to-black/70 transition-all duration-500 shadow-[0_0_20px_rgba(168,85,247,0.4)] border border-purple-500/20">
+                                <p className="text-white text-xs md:text-sm leading-relaxed mb-4">
                                     Building the future, one block at a time -
                                     that's the spirit of Web3_Sindhu.
                                 </p>
                                 <button
-                                    onClick={openRegistrationForm}
-                                    className="bg-white text-black px-1 py-2 rounded-full font-semibold hover:bg-purple-100 hover:scale-105 transition-all duration-300 shadow-lg w-full"
+                                    onClick={handleBookDemo}
+                                    className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full font-semibold hover:from-green-600 hover:to-green-700 hover:scale-105 transition-all duration-300 shadow-lg w-full flex items-center justify-center gap-2"
                                     data-testid="button-book-demo-hero">
+                                    <MessageCircle className="w-4 h-4" />
                                     Book a Demo
                                 </button>
                             </div>
@@ -179,7 +181,7 @@ export default function Hero() {
 
                         {/* Profile Avatars - Bottom Left */}
                         <div
-                            className={`absolute bottom-0 left-4 lg:left-8 xl:left-16 transition-all duration-1000 delay-500 transform ${
+                            className={`absolute bottom-0 left-2 md:left-4 lg:left-8 xl:left-16 transition-all duration-1000 delay-500 transform ${
                                 isVisible
                                     ? "opacity-100 translate-y-0"
                                     : "opacity-0 translate-y-10"
@@ -188,21 +190,22 @@ export default function Hero() {
                                 <ResponsiveMedia
                                     src={profileAvatars}
                                     alt="Profile Avatars"
-                                    className="h-12 w-auto object-contain hover:scale-110 transition-transform duration-300"
+                                    className="h-10 md:h-12 w-auto object-contain hover:scale-110 transition-transform duration-300"
                                     loading="eager"
                                     data-testid="img-profile-avatars"
                                 />
                             </div>
                             <div className="max-w-xs mb-8">
-                                <h3 className="text-white font-semibold text-base mb-2">
+                                <h3 className="text-white font-semibold text-sm md:text-base mb-2">
                                     Sindhu turns technology into inspiration
                                 </h3>
                                 <a
                                     href="https://www.instagram.com/web3_sindhu?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-purple-400 hover:text-purple-300 transition-colors underline text-sm cursor-pointer"
+                                    className="text-purple-400 hover:text-purple-300 transition-colors underline text-xs md:text-sm cursor-pointer flex items-center gap-1"
                                     data-testid="button-see-story">
+                                    <Users className="w-3 h-3" />
                                     See Story
                                 </a>
                             </div>
@@ -210,17 +213,18 @@ export default function Hero() {
 
                         {/* 500+ Reviews Badge - Bottom Right */}
                         <div
-                            className={`absolute bottom-10 right-4 lg:right-8 xl:right-56 transition-all duration-1000 delay-700 transform ${
+                            className={`absolute bottom-10 right-2 md:right-4 lg:right-8 xl:right-56 transition-all duration-1000 delay-700 transform ${
                                 isVisible
                                     ? "opacity-100 translate-y-0"
                                     : "opacity-0 translate-y-10"
                             }`}>
-                            <div className="bg-white rounded-full px-6 py-3 shadow-xl hover:shadow-purple-500/20 hover:scale-110 transition-all duration-300">
+                            <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-full px-4 md:px-6 py-2 md:py-3 shadow-xl hover:shadow-purple-500/30 hover:scale-110 transition-all duration-300">
                                 <div className="text-center">
-                                    <div className="text-black font-bold text-lg">
+                                    <div className="text-white font-bold text-base md:text-lg flex items-center justify-center gap-1">
+                                        <Star className="w-4 h-4 md:w-5 md:h-5 fill-yellow-300 text-yellow-300" />
                                         500+
                                     </div>
-                                    <div className="text-black text-xs">
+                                    <div className="text-white text-xs md:text-xs">
                                         Positive Reviews
                                     </div>
                                 </div>
@@ -229,12 +233,126 @@ export default function Hero() {
                     </div>
                 </div>
 
-                {/* Mobile Layout */}
-                <div className="md:hidden px-4">
-                    {/* Central Sindhu Circle for Mobile */}
-                    <div className="flex justify-center mt-10 mb-10">
+                {/* Tablet Layout */}
+                <div className="hidden md:block lg:hidden px-4">
+                    {/* Central Sindhu Circle for Tablet */}
+                    <div className="flex justify-center mt-8 mb-8">
                         <div
-                            className={`relative w-72 h-72 sm:w-80 sm:h-80 transition-all duration-1000 transform -translate-x-10 ${
+                            className={`relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 transition-all duration-1000 transform -translate-x-10 ${
+                                isVisible
+                                    ? "opacity-100 scale-100"
+                                    : "opacity-0 scale-90"
+                            }`}>
+                            <ResponsiveMedia
+                                src={redCircle}
+                                alt=""
+                                className="w-full h-full object-cover animate-pulse-slow"
+                                loading="eager"
+                            />
+
+                            {/* Sindhu Image for Tablet */}
+                            <div
+                                className={`absolute top-12 left-12 right-12 bottom-12 rounded-full overflow-hidden transition-all translate-x-10 duration-1000 delay-300 transform ${
+                                    isVisible
+                                        ? "opacity-100 rotate-0"
+                                        : "opacity-0 rotate-12"
+                                }`}>
+                                <ResponsiveMedia
+                                    src={sindhuraImage}
+                                    alt="Sindhu - Web3 Expert"
+                                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                                    loading="eager"
+                                    data-testid="img-sindhu-hero-tablet"
+                                />
+                            </div>
+
+                            {/* Sparkle for Tablet */}
+                            <div className="absolute -top-2 -right-2 text-yellow-400">
+                                <Sparkles className="w-6 h-6" />
+                            </div>
+                            <OrbitIcons />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Quote Section for Tablet */}
+                        <div
+                            className={`bg-black/90 backdrop-blur-sm rounded-2xl p-4 md:p-6 bg-gradient-to-br from-purple-900/40 to-black/60 transition-all duration-1000 transform ${
+                                isVisible
+                                    ? "opacity-100 translate-y-0"
+                                    : "opacity-0 translate-y-10"
+                            } shadow-[0_0_20px_rgba(168,85,247,0.4)] border border-purple-500/20`}>
+                            <p className="text-white text-sm md:text-base leading-relaxed mb-4 md:mb-6">
+                                Building the future, one block at a time -
+                                that's the spirit of Web3_Sindhu.
+                            </p>
+                            <button
+                                onClick={handleBookDemo}
+                                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 md:px-8 py-2 md:py-4 rounded-full font-semibold hover:from-green-600 hover:to-green-700 hover:scale-105 transition-all duration-300 shadow-lg w-full flex items-center justify-center gap-2"
+                                data-testid="button-book-demo-hero-tablet">
+                                <MessageCircle className="w-4 h-4" />
+                                Book a Demo
+                            </button>
+                        </div>
+
+                        {/* Profile Avatars for Tablet */}
+                        <div
+                            className={`bg-black/90 backdrop-blur-sm rounded-2xl p-4 md:p-6 bg-gradient-to-br from-purple-900/40 to-black/60 transition-all duration-1000 delay-500 transform ${
+                                isVisible
+                                    ? "opacity-100 translate-y-0"
+                                    : "opacity-0 translate-y-10"
+                            } shadow-[0_0_20px_rgba(168,85,247,0.4)] border border-purple-500/20`}>
+                            <div className="flex items-center gap-2 mb-4">
+                                <ResponsiveMedia
+                                    src={profileAvatars}
+                                    alt="Profile Avatars"
+                                    className="h-10 md:h-12 w-auto object-contain hover:scale-110 transition-transform duration-300"
+                                    loading="eager"
+                                    data-testid="img-profile-avatars-tablet"
+                                />
+                            </div>
+                            <h3 className="text-white font-semibold text-sm md:text-base mb-2">
+                                Sindhu turns technology into inspiration
+                            </h3>
+                            <a
+                                href="https://www.instagram.com/web3_sindhu?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-purple-400 hover:text-purple-300 transition-colors underline text-xs md:text-sm cursor-pointer flex items-center gap-1"
+                                data-testid="button-see-story-tablet">
+                                <Users className="w-3 h-3" />
+                                See Story
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Reviews Badge for Tablet */}
+                    <div
+                        className={`flex justify-center mt-8 pb-8 transition-all duration-1000 delay-700 transform ${
+                            isVisible
+                                ? "opacity-100 translate-y-0"
+                                : "opacity-0 translate-y-10"
+                        }`}>
+                        <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-full px-6 md:px-8 py-3 md:py-4 shadow-xl hover:shadow-purple-500/30 hover:scale-110 transition-all duration-300">
+                            <div className="text-center">
+                                <div className="text-white font-bold text-lg md:text-xl flex items-center justify-center gap-1">
+                                    <Star className="w-5 h-5 md:w-6 md:h-6 fill-yellow-300 text-yellow-300" />
+                                    500+
+                                </div>
+                                <div className="text-white text-sm">
+                                    Positive Reviews
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Mobile Layout */}
+                <div className="md:hidden px-2 sm:px-4">
+                    {/* Central Sindhu Circle for Mobile */}
+                    <div className="flex justify-center mt-6 mb-6">
+                        <div
+                            className={`relative w-56 h-56 sm:w-64 sm:h-64 transition-all duration-1000 transform -translate-x-10 ${
                                 isVisible
                                     ? "opacity-100 scale-100"
                                     : "opacity-0 scale-90"
@@ -248,7 +366,7 @@ export default function Hero() {
 
                             {/* Sindhu Image for Mobile */}
                             <div
-                                className={`absolute top-18 left-12 right-12 bottom-12 rounded-full overflow-hidden transition-all translate-x-10 duration-1000 delay-300 transform ${
+                                className={`absolute top-10 left-10 right-10 bottom-10 rounded-full overflow-hidden transition-all translate-x-10 duration-1000 delay-300 transform ${
                                     isVisible
                                         ? "opacity-100 rotate-0"
                                         : "opacity-0 rotate-12"
@@ -264,33 +382,35 @@ export default function Hero() {
 
                             {/* Sparkle for Mobile */}
                             <div className="absolute -top-2 -right-2 text-yellow-400">
-                                <div className="text-xl">★</div>
+                                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />
                             </div>
+                            <OrbitIcons />
                         </div>
                     </div>
 
                     {/* Quote Section for Mobile */}
                     <div
-                        className={`bg-black/90 backdrop-blur-sm rounded-2xl p-6 mb-8 mx-2 bg-gradient-to-br from-purple-900/30 to-black/50 transition-all duration-1000 transform ${
+                        className={`bg-black/90 backdrop-blur-sm rounded-2xl p-4 sm:p-6 mb-6 mx-2 bg-gradient-to-br from-purple-900/40 to-black/60 transition-all duration-1000 transform ${
                             isVisible
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-10"
-                        } shadow-[0_0_15px_rgba(168,85,247,0.3)]`}>
-                        <p className="text-white text-base leading-relaxed mb-6 text-center">
+                        } shadow-[0_0_20px_rgba(168,85,247,0.4)] border border-purple-500/20`}>
+                        <p className="text-white text-sm leading-relaxed mb-4 sm:mb-6 text-center">
                             Building the future, one block at a time - that's
                             the spirit of Web3_Sindhu.
                         </p>
                         <button
-                            onClick={openRegistrationForm}
-                            className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-purple-100 hover:scale-105 transition-all duration-300 shadow-lg w-full"
+                            onClick={handleBookDemo}
+                            className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:from-green-600 hover:to-green-700 hover:scale-105 transition-all duration-300 shadow-lg w-full flex items-center justify-center gap-2"
                             data-testid="button-book-demo-hero-mobile">
+                            <MessageCircle className="w-4 h-4" />
                             Book a Demo
                         </button>
                     </div>
 
                     {/* Profile Avatars for Mobile */}
                     <div
-                        className={`text-center mb-24 transition-all duration-1000 delay-500 transform ${
+                        className={`text-center mb-6 transition-all duration-1000 delay-500 transform ${
                             isVisible
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-10"
@@ -299,37 +419,39 @@ export default function Hero() {
                             <ResponsiveMedia
                                 src={profileAvatars}
                                 alt="Profile Avatars"
-                                className="h-12 w-auto object-contain hover:scale-110 transition-transform duration-300"
+                                className="h-10 w-auto object-contain hover:scale-110 transition-transform duration-300"
                                 loading="eager"
                                 data-testid="img-profile-avatars-mobile"
                             />
                         </div>
-                        <h3 className="text-white font-semibold text-lg mb-2">
+                        <h3 className="text-white font-semibold text-base mb-2">
                             Sindhu turns technology into inspiration
                         </h3>
                         <a
                             href="https://www.instagram.com/web3_sindhu?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-purple-400 hover:text-purple-300 transition-colors underline text-sm cursor-pointer"
+                            className="text-purple-400 hover:text-purple-300 transition-colors underline text-sm cursor-pointer flex items-center justify-center gap-1"
                             data-testid="button-see-story">
+                            <Users className="w-3 h-3" />
                             See Story
                         </a>
                     </div>
 
                     {/* Reviews Badge for Mobile */}
                     <div
-                        className={`flex justify-center pb-16 transition-all duration-1000 delay-700 transform ${
+                        className={`flex justify-center pb-12 transition-all duration-1000 delay-700 transform ${
                             isVisible
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-10"
                         }`}>
-                        <div className="bg-white rounded-full px-8 py-4 shadow-xl hover:shadow-purple-500/20 hover:scale-110 transition-all duration-300">
+                        <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-full px-6 sm:px-8 py-3 sm:py-4 shadow-xl hover:shadow-purple-500/30 hover:scale-110 transition-all duration-300">
                             <div className="text-center">
-                                <div className="text-black font-bold text-xl">
+                                <div className="text-white font-bold text-lg sm:text-xl flex items-center justify-center gap-1">
+                                    <Star className="w-5 h-5 sm:w-6 sm:h-6 fill-yellow-300 text-yellow-300" />
                                     500+
                                 </div>
-                                <div className="text-black text-sm">
+                                <div className="text-white text-sm">
                                     Positive Reviews
                                 </div>
                             </div>

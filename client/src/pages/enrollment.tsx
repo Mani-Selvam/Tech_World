@@ -124,415 +124,148 @@ function EnrollmentPage() {
     const prevStep = () => setStep((s) => Math.max(s - 1, 1));
 
     return (
-        <div className="min-h-screen bg-background text-foreground overflow-hidden scrollbar-none ">
+        <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-foreground overflow-hidden scrollbar-none">
             <Navigation />
-
-            {/* Modern Hero Section */}
-            <ScrollReveal variant="fade-up" duration={400}>
-                <div className="relative min-h-screen flex items-center justify-center ">
-                    <SectionBubbles count={6} />
-
-                    {/* Animated Background Elements */}
-                    <div className="absolute inset-0 parallax-layer">
-                        <div className="absolute top-20 left-20 w-32 h-32 rounded-full bg-gradient-to-r from-cyan-500/20 to-transparent animate-spin-slow"></div>
-                        <div className="absolute top-40 right-32 w-24 h-24 rounded-full bg-gradient-to-r from-fuchsia-500/20 to-transparent animate-pulse"></div>
-                        <div className="absolute bottom-32 left-1/3 w-40 h-40 rounded-full bg-gradient-to-r from-purple-500/20 to-transparent animate-bounce"></div>
-                    </div>
-
-                    <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
-                        {/* Glass Hero Card */}
-                        <div className="glass-card-strong rounded-3xl p-12 mx-auto max-w-4xl modern-glow-purple">
-                            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
-                                <span
-                                    className="bg-clip-text text-transparent"
-                                    style={{
-                                        backgroundImage:
-                                            "var(--gradient-aurora)",
-                                    }}>
-                                    Transform Your Future
-                                </span>
-                                <br />
-                                <span className="text-3xl md:text-4xl text-foreground/90 font-normal">
-                                    with Web3 Mastery
-                                </span>
-                            </h1>
-                            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-                                Join thousands of innovators who've launched
-                                successful Web3 careers. Master blockchain
-                                technology, DeFi protocols, and decentralized
-                                applications with expert guidance.
-                            </p>
-
-                            {/* CTA Button */}
-                            <button
-                                onClick={() =>
-                                    document
-                                        .getElementById("enrollment-form")
-                                        ?.scrollIntoView({ behavior: "smooth" })
-                                }
-                                className="animated-gradient-btn text-white px-12 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-transform duration-300 neon-pulse">
-                                Start Your Journey Today
-                            </button>
-
-                            {/* Trust Indicators */}
-                            <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-sm text-muted-foreground">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                                    <span>5000+ Graduates</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
-                                    <span>Industry Certified</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></div>
-                                    <span>Career Guaranteed</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </ScrollReveal>
-
-            {/* Enhanced Course Benefits Section */}
-            {/* <ScrollReveal variant="fade-up" duration={800} delay={200}>
-                <section className="py-24 relative">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                                <span
-                                    className="bg-clip-text text-transparent"
-                                    style={{
-                                        backgroundImage:
-                                            "var(--gradient-aurora)",
-                                    }}>
-                                    Why Choose TechARA Academy?
-                                </span>
-                            </h2>
-                            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                                Experience the future of education with our
-                                cutting-edge curriculum and immersive learning
-                                environment
-                            </p>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 staggered-grid">
-                            <div className="glass-card rounded-2xl p-8 text-center tilt-hover hover:scale-105 transition-all duration-300 modern-glow-cyan">
-                                <div
-                                    className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 neon-ring"
-                                    style={{
-                                        background: "var(--gradient-cta)",
-                                    }}>
-                                    <Code className="w-10 h-10 text-white" />
-                                </div>
-                                <h3 className="text-2xl font-semibold mb-4 text-cyan-300">
-                                    Hands-on Coding
-                                </h3>
-                                <p className="text-muted-foreground leading-relaxed">
-                                    Build real-world DApps, smart contracts, and
-                                    blockchain solutions with our project-based
-                                    learning approach
-                                </p>
-                                <div className="mt-6 flex justify-center">
-                                    <div className="h-1 w-16 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"></div>
-                                </div>
-                            </div>
-
-                            <div className="glass-card rounded-2xl p-8 text-center tilt-hover hover:scale-105 transition-all duration-300 modern-glow-magenta">
-                                <div
-                                    className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 neon-ring"
-                                    style={{
-                                        background: "var(--gradient-cta)",
-                                    }}>
-                                    <Users className="w-10 h-10 text-white" />
-                                </div>
-                                <h3 className="text-2xl font-semibold mb-4 text-purple-300">
-                                    Expert Mentorship
-                                </h3>
-                                <p className="text-muted-foreground leading-relaxed">
-                                    Learn directly from industry veterans who've
-                                    built successful Web3 companies and
-                                    protocols
-                                </p>
-                                <div className="mt-6 flex justify-center">
-                                    <div className="h-1 w-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full"></div>
-                                </div>
-                            </div>
-
-                            <div className="glass-card rounded-2xl p-8 text-center tilt-hover hover:scale-105 transition-all duration-300 modern-glow-purple">
-                                <div
-                                    className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 neon-ring"
-                                    style={{
-                                        background: "var(--gradient-cta)",
-                                    }}>
-                                    <TrendingUp className="w-10 h-10 text-white" />
-                                </div>
-                                <h3 className="text-2xl font-semibold mb-4 text-pink-300">
-                                    Career Growth
-                                </h3>
-                                <p className="text-muted-foreground leading-relaxed">
-                                    Join our network of 5000+ alumni working at
-                                    top Web3 companies with 300% average salary
-                                    increase
-                                </p>
-                                <div className="mt-6 flex justify-center">
-                                    <div className="h-1 w-16 bg-gradient-to-r from-pink-400 to-cyan-500 rounded-full"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </ScrollReveal> */}
-
-            {/* Outcomes Section */}
-            <ScrollReveal variant="fade-up" duration={800} delay={400}>
-                <section className="py-24 bg-gradient-to-br from-slate-900/50 to-purple-900/20 relative overflow-hidden">
-                    {/* Background Effects */}
-                    <div className="absolute inset-0">
-                        <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-gradient-to-r from-cyan-500/10 to-transparent animate-pulse"></div>
-                        <div className="absolute bottom-20 left-20 w-48 h-48 rounded-full bg-gradient-to-r from-purple-500/10 to-transparent animate-bounce"></div>
-                    </div>
-
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                                <span
-                                    className="bg-clip-text text-transparent"
-                                    style={{
-                                        backgroundImage:
-                                            "var(--gradient-aurora)",
-                                    }}>
-                                    What You'll Achieve
-                                </span>
-                            </h2>
-                            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-                                Our graduates don't just learn Web3 — they
-                                become industry leaders, innovators, and
-                                successful entrepreneurs
-                            </p>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 staggered-grid">
-                            {/* Outcome Card 1 */}
-                            <div className="glass-card rounded-2xl p-8 tilt-hover group hover:scale-105 transition-all duration-500 modern-glow-cyan">
-                                <div className="flex items-center justify-between mb-6">
-                                    <div className="w-12 h-12 rounded-full flex items-center justify-center neon-ring bg-gradient-to-r from-cyan-400 to-blue-500">
-                                        <Trophy className="w-6 h-6 text-white" />
-                                    </div>
-                                    <span className="text-2xl font-bold text-cyan-300">
-                                        01
-                                    </span>
-                                </div>
-                                <h3 className="text-xl font-bold mb-3 text-cyan-300">
-                                    Industry Recognition
-                                </h3>
-                                <p className="text-muted-foreground mb-4 leading-relaxed">
-                                    Earn certifications recognized by top Web3
-                                    companies like Coinbase, Uniswap, and
-                                    ConsenSys
-                                </p>
-                                <div className="h-1 w-full bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full group-hover:animate-pulse"></div>
-                            </div>
-
-                            {/* Outcome Card 2 */}
-                            <div className="glass-card rounded-2xl p-8 tilt-hover group hover:scale-105 transition-all duration-500 modern-glow-magenta">
-                                <div className="flex items-center justify-between mb-6">
-                                    <div className="w-12 h-12 rounded-full flex items-center justify-center neon-ring bg-gradient-to-r from-purple-400 to-pink-500">
-                                        <Briefcase className="w-6 h-6 text-white" />
-                                    </div>
-                                    <span className="text-2xl font-bold text-purple-300">
-                                        02
-                                    </span>
-                                </div>
-                                <h3 className="text-xl font-bold mb-3 text-purple-300">
-                                    Dream Job Placement
-                                </h3>
-                                <p className="text-muted-foreground mb-4 leading-relaxed">
-                                    95% job placement rate with average starting
-                                    salaries of $120K+ in blockchain development
-                                    roles
-                                </p>
-                                <div className="h-1 w-full bg-gradient-to-r from-purple-400 to-pink-500 rounded-full group-hover:animate-pulse"></div>
-                            </div>
-
-                            {/* Outcome Card 3 */}
-                            <div className="glass-card rounded-2xl p-8 tilt-hover group hover:scale-105 transition-all duration-500 modern-glow-purple">
-                                <div className="flex items-center justify-between mb-6">
-                                    <div className="w-12 h-12 rounded-full flex items-center justify-center neon-ring bg-gradient-to-r from-pink-400 to-red-500">
-                                        <Rocket className="w-6 h-6 text-white" />
-                                    </div>
-                                    <span className="text-2xl font-bold text-pink-300">
-                                        03
-                                    </span>
-                                </div>
-                                <h3 className="text-xl font-bold mb-3 text-pink-300">
-                                    Launch Your Startup
-                                </h3>
-                                <p className="text-muted-foreground mb-4 leading-relaxed">
-                                    Join our incubator program and get funding
-                                    for your Web3 startup with our investor
-                                    network
-                                </p>
-                                <div className="h-1 w-full bg-gradient-to-r from-pink-400 to-red-500 rounded-full group-hover:animate-pulse"></div>
-                            </div>
-
-                            {/* Outcome Card 4 */}
-                            <div className="glass-card rounded-2xl p-8 tilt-hover group hover:scale-105 transition-all duration-500 modern-glow-cyan">
-                                <div className="flex items-center justify-between mb-6">
-                                    <div className="w-12 h-12 rounded-full flex items-center justify-center neon-ring bg-gradient-to-r from-green-400 to-cyan-500">
-                                        <Star className="w-6 h-6 text-white" />
-                                    </div>
-                                    <span className="text-2xl font-bold text-green-300">
-                                        04
-                                    </span>
-                                </div>
-                                <h3 className="text-xl font-bold mb-3 text-green-300">
-                                    Build Real DApps
-                                </h3>
-                                <p className="text-muted-foreground mb-4 leading-relaxed">
-                                    Create 5+ production-ready decentralized
-                                    applications that solve real-world problems
-                                </p>
-                                <div className="h-1 w-full bg-gradient-to-r from-green-400 to-cyan-500 rounded-full group-hover:animate-pulse"></div>
-                            </div>
-
-                            {/* Outcome Card 5 */}
-                            <div className="glass-card rounded-2xl p-8 tilt-hover group hover:scale-105 transition-all duration-500 modern-glow-magenta">
-                                <div className="flex items-center justify-between mb-6">
-                                    <div className="w-12 h-12 rounded-full flex items-center justify-center neon-ring bg-gradient-to-r from-yellow-400 to-orange-500">
-                                        <Target className="w-6 h-6 text-white" />
-                                    </div>
-                                    <span className="text-2xl font-bold text-yellow-300">
-                                        05
-                                    </span>
-                                </div>
-                                <h3 className="text-xl font-bold mb-3 text-yellow-300">
-                                    Master DeFi Protocols
-                                </h3>
-                                <p className="text-muted-foreground mb-4 leading-relaxed">
-                                    Become an expert in yield farming, liquidity
-                                    mining, and automated market makers
-                                </p>
-                                <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full group-hover:animate-pulse"></div>
-                            </div>
-
-                            {/* Outcome Card 6 */}
-                            <div className="glass-card rounded-2xl p-8 tilt-hover group hover:scale-105 transition-all duration-500 modern-glow-purple">
-                                <div className="flex items-center justify-between mb-6">
-                                    <div className="w-12 h-12 rounded-full flex items-center justify-center neon-ring bg-gradient-to-r from-indigo-400 to-purple-500">
-                                        <Zap className="w-6 h-6 text-white" />
-                                    </div>
-                                    <span className="text-2xl font-bold text-indigo-300">
-                                        06
-                                    </span>
-                                </div>
-                                <h3 className="text-xl font-bold mb-3 text-indigo-300">
-                                    Global Network Access
-                                </h3>
-                                <p className="text-muted-foreground mb-4 leading-relaxed">
-                                    Connect with 5000+ alumni worldwide and
-                                    access exclusive Web3 job opportunities
-                                </p>
-                                <div className="h-1 w-full bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full group-hover:animate-pulse"></div>
-                            </div>
-                        </div>
-
-                        {/* Stats Banner */}
-                        <div className="mt-20 glass-card-strong rounded-3xl p-8">
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                                <div>
-                                    <div className="text-3xl md:text-4xl font-bold text-cyan-300 mb-2">
-                                        5000+
-                                    </div>
-                                    <div className="text-muted-foreground">
-                                        Success Stories
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="text-3xl md:text-4xl font-bold text-purple-300 mb-2">
-                                        95%
-                                    </div>
-                                    <div className="text-muted-foreground">
-                                        Job Placement
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="text-3xl md:text-4xl font-bold text-pink-300 mb-2">
-                                        $120K+
-                                    </div>
-                                    <div className="text-muted-foreground">
-                                        Average Salary
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="text-3xl md:text-4xl font-bold text-green-300 mb-2">
-                                        50+
-                                    </div>
-                                    <div className="text-muted-foreground">
-                                        Partner Companies
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </ScrollReveal>
 
             {/* Modern Enrollment Form Section */}
             <ScrollReveal variant="fade-up" duration={800} delay={300}>
-                <section className="py-24 relative" id="enrollment-form">
+                <section
+                    className="py-12 md:py-20 lg:py-24 relative"
+                    id="enrollment-form">
                     {/* Background Effects */}
-                    <div className="absolute inset-0">
-                        <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-gradient-to-r from-purple-500/10 to-transparent animate-spin-slow"></div>
-                        <div className="absolute bottom-10 right-20 w-24 h-24 rounded-full bg-gradient-to-r from-cyan-500/10 to-transparent animate-pulse"></div>
+                    <div className="absolute inset-0 overflow-hidden">
+                        <div className="absolute top-20 left-10 w-32 h-32 md:w-64 md:h-64 rounded-full bg-gradient-to-r from-purple-500/10 to-transparent animate-spin-slow"></div>
+                        <div className="absolute bottom-10 right-20 w-24 h-24 md:w-48 md:h-48 rounded-full bg-gradient-to-r from-cyan-500/10 to-transparent animate-pulse"></div>
+                        <div className="absolute top-1/2 left-1/4 w-20 h-20 md:w-40 md:h-40 rounded-full bg-gradient-to-r from-pink-500/10 to-transparent animate-pulse"></div>
                     </div>
 
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                        <div className="glass-card-strong rounded-3xl overflow-hidden modern-glow-purple">
-                            <div className="text-center p-12 bg-gradient-to-br from-purple-900/20 to-pink-900/20">
+                        <div className="glass-card-strong rounded-3xl overflow-hidden modern-glow-purple shadow-2xl">
+                            {/* Header Section */}
+                            <div className="text-center p-8 md:p-12 bg-gradient-to-br from-purple-900/40 via-pink-900/30 to-indigo-900/40 backdrop-blur-sm">
                                 <div
-                                    className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 neon-ring"
+                                    className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 neon-ring"
                                     style={{
-                                        background: "var(--gradient-cta)",
+                                        background:
+                                            "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                                     }}>
-                                    <GraduationCap className="w-10 h-10 text-white" />
+                                    <GraduationCap className="w-8 h-8 md:w-10 md:h-10 text-white" />
                                 </div>
-                                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">
                                     <span
                                         className="bg-clip-text text-transparent"
                                         style={{
                                             backgroundImage:
-                                                "var(--gradient-aurora)",
+                                                "linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
                                         }}>
                                         Secure Your Future Today
                                     </span>
                                 </h2>
-                                <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                                <p className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
                                     Join the next generation of Web3 innovators.
                                     Limited seats available for our upcoming
                                     batch.
                                 </p>
                             </div>
 
-                            <div className="p-12">
+                            {/* Progress Indicator */}
+                            <div className="px-6 md:px-8 pt-6 md:pt-8">
+                                <div className="flex items-center justify-between mb-6 md:mb-8">
+                                    <div className="flex items-center">
+                                        <div
+                                            className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center ${
+                                                step >= 1
+                                                    ? "bg-gradient-to-r from-purple-600 to-pink-600"
+                                                    : "bg-gray-700"
+                                            }`}>
+                                            <span className="text-white text-sm md:text-base font-semibold">
+                                                1
+                                            </span>
+                                        </div>
+                                        <span
+                                            className={`ml-2 md:ml-3 text-sm md:text-base font-medium ${
+                                                step >= 1
+                                                    ? "text-purple-300"
+                                                    : "text-gray-500"
+                                            }`}>
+                                            Personal
+                                        </span>
+                                    </div>
+                                    <div
+                                        className={`flex-1 h-1 mx-2 md:mx-4 ${
+                                            step >= 2
+                                                ? "bg-gradient-to-r from-purple-600 to-pink-600"
+                                                : "bg-gray-700"
+                                        }`}></div>
+                                    <div className="flex items-center">
+                                        <div
+                                            className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center ${
+                                                step >= 2
+                                                    ? "bg-gradient-to-r from-purple-600 to-pink-600"
+                                                    : "bg-gray-700"
+                                            }`}>
+                                            <span className="text-white text-sm md:text-base font-semibold">
+                                                2
+                                            </span>
+                                        </div>
+                                        <span
+                                            className={`ml-2 md:ml-3 text-sm md:text-base font-medium ${
+                                                step >= 2
+                                                    ? "text-purple-300"
+                                                    : "text-gray-500"
+                                            }`}>
+                                            Courses
+                                        </span>
+                                    </div>
+                                    <div
+                                        className={`flex-1 h-1 mx-2 md:mx-4 ${
+                                            step >= 3
+                                                ? "bg-gradient-to-r from-purple-600 to-pink-600"
+                                                : "bg-gray-700"
+                                        }`}></div>
+                                    <div className="flex items-center">
+                                        <div
+                                            className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center ${
+                                                step >= 3
+                                                    ? "bg-gradient-to-r from-purple-600 to-pink-600"
+                                                    : "bg-gray-700"
+                                            }`}>
+                                            <span className="text-white text-sm md:text-base font-semibold">
+                                                3
+                                            </span>
+                                        </div>
+                                        <span
+                                            className={`ml-2 md:ml-3 text-sm md:text-base font-medium ${
+                                                step >= 3
+                                                    ? "text-purple-300"
+                                                    : "text-gray-500"
+                                            }`}>
+                                            Preferences
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="p-6 md:p-8 lg:p-12">
                                 <Form {...form}>
                                     <form
                                         onSubmit={form.handleSubmit(onSubmit)}
-                                        className="space-y-8">
+                                        className="space-y-6 md:space-y-8">
                                         {/* =================== STEP 1 =================== */}
                                         {step === 1 && (
-                                            <div className="space-y-6">
-                                                <h3 className="text-lg font-semibold text-purple-300">
+                                            <div className="space-y-4 md:space-y-6">
+                                                <h3 className="text-lg md:text-xl font-semibold text-purple-300 flex items-center">
+                                                    <Users className="w-5 h-5 mr-2" />
                                                     Personal Information
                                                 </h3>
-                                                {/* ---- all your Personal Information fields unchanged ---- */}
+
                                                 {/* Full Name */}
                                                 <FormField
                                                     control={form.control}
                                                     name="fullName"
                                                     render={({ field }) => (
                                                         <FormItem>
-                                                            <FormLabel className="text-gray-200">
+                                                            <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                 Full Name *
                                                             </FormLabel>
                                                             <FormControl>
@@ -540,18 +273,17 @@ function EnrollmentPage() {
                                                                     {...field}
                                                                     placeholder="Enter your full name"
                                                                     className="
-        bg-background/50 
-        text-black 
-        placeholder-gray-400 
-        placeholder:text-[14px] text-[14px]    /* 📱 Mobile: ~14px */
-        sm:placeholder:text-[12px] sm:text-[12px] /* Tablet: ~12px */
-        md:placeholder:text-[14px] md:text-[14px] /* Desktop: ~14px */
-        px-4 py-2 
-        border border-gray-300 
-        rounded-[10px] 
-        focus:border-purple-500 
-        focus:ring-1 focus:ring-purple-500
-    "
+                                                                        bg-white/10 
+                                                                        text-white 
+                                                                        placeholder-gray-400 
+                                                                        border border-white/20 
+                                                                        rounded-lg 
+                                                                        focus:border-purple-500 
+                                                                        focus:ring-2 focus:ring-purple-500/50
+                                                                        focus:bg-white/15
+                                                                        transition-all duration-200
+                                                                        py-3 px-4
+                                                                    "
                                                                 />
                                                             </FormControl>
                                                             <FormMessage />
@@ -560,14 +292,14 @@ function EnrollmentPage() {
                                                 />
 
                                                 {/* Mobile & Email */}
-                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                                                     {/* Mobile */}
                                                     <FormField
                                                         control={form.control}
                                                         name="mobile"
                                                         render={({ field }) => (
                                                             <FormItem>
-                                                                <FormLabel className="text-gray-200">
+                                                                <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                     Mobile
                                                                     Number
                                                                     (WhatsApp
@@ -578,10 +310,7 @@ function EnrollmentPage() {
                                                                         {...field}
                                                                         placeholder="+1 234 567 8900"
                                                                         data-testid="input-mobile"
-                                                                        className="bg-background/50 text-black placeholder-gray-400 
-                                                                         placeholder:text-[14px] text-[14px]    /* 📱 Mobile: ~14px */
-        sm:placeholder:text-[12px] sm:text-[12px] /* Tablet: ~12px */
-        md:placeholder:text-[14px] md:text-[14px] /* Desktop: ~14px */ focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                                                                        className="bg-white/10 text-white placeholder-gray-400 border border-white/20 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:bg-white/15 transition-all duration-200 py-3 px-4"
                                                                     />
                                                                 </FormControl>
                                                                 <FormMessage />
@@ -594,7 +323,7 @@ function EnrollmentPage() {
                                                         name="email"
                                                         render={({ field }) => (
                                                             <FormItem>
-                                                                <FormLabel className="text-gray-200">
+                                                                <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                     Email ID *
                                                                 </FormLabel>
                                                                 <FormControl>
@@ -603,10 +332,7 @@ function EnrollmentPage() {
                                                                         type="email"
                                                                         placeholder="your.email@example.com"
                                                                         data-testid="input-email"
-                                                                        className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500
-                                                                         placeholder:text-[14px] text-[14px]    /* 📱 Mobile: ~14px */
-        sm:placeholder:text-[12px] sm:text-[12px] /* Tablet: ~12px */
-        md:placeholder:text-[14px] md:text-[14px] /* Desktop: ~14px */"
+                                                                        className="bg-white/10 text-white placeholder-gray-400 border border-white/20 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:bg-white/15 transition-all duration-200 py-3 px-4"
                                                                     />
                                                                 </FormControl>
                                                                 <FormMessage />
@@ -616,13 +342,13 @@ function EnrollmentPage() {
                                                 </div>
 
                                                 {/* City & Age */}
-                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                                                     <FormField
                                                         control={form.control}
                                                         name="city"
                                                         render={({ field }) => (
                                                             <FormItem>
-                                                                <FormLabel className="text-gray-200">
+                                                                <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                     City /
                                                                     Location *
                                                                 </FormLabel>
@@ -631,9 +357,7 @@ function EnrollmentPage() {
                                                                         {...field}
                                                                         placeholder="Enter your city"
                                                                         data-testid="input-city"
-                                                                        className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 px-4 py-2 border border-gray-300 rounded-[10px] focus:border-purple-500 focus:ring-1 focus:ring-purple-500  placeholder:text-[14px] text-[14px]    /* 📱 Mobile: ~14px */
-        sm:placeholder:text-[12px] sm:text-[12px] /* Tablet: ~12px */
-        md:placeholder:text-[14px] md:text-[14px] /* Desktop: ~14px */"
+                                                                        className="bg-white/10 text-white placeholder-gray-400 border border-white/20 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:bg-white/15 transition-all duration-200 py-3 px-4"
                                                                     />
                                                                 </FormControl>
                                                                 <FormMessage />
@@ -645,7 +369,7 @@ function EnrollmentPage() {
                                                         name="ageGroup"
                                                         render={({ field }) => (
                                                             <FormItem>
-                                                                <FormLabel className="text-gray-200">
+                                                                <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                     Age Group *
                                                                 </FormLabel>
                                                                 <Select
@@ -658,21 +382,29 @@ function EnrollmentPage() {
                                                                     <FormControl>
                                                                         <SelectTrigger
                                                                             data-testid="select-agegroup"
-                                                                            className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                            className="bg-white/10 text-white border border-white/20 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:bg-white/15 transition-all duration-200 py-3 px-4">
                                                                             <SelectValue placeholder="Select age group" />
                                                                         </SelectTrigger>
                                                                     </FormControl>
-                                                                    <SelectContent>
-                                                                        <SelectItem value="15-20">
+                                                                    <SelectContent className="bg-slate-800 border border-white/20">
+                                                                        <SelectItem
+                                                                            value="15-20"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             15-20
                                                                         </SelectItem>
-                                                                        <SelectItem value="21-25">
+                                                                        <SelectItem
+                                                                            value="21-25"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             21-25
                                                                         </SelectItem>
-                                                                        <SelectItem value="26-30">
+                                                                        <SelectItem
+                                                                            value="26-30"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             26-30
                                                                         </SelectItem>
-                                                                        <SelectItem value="31+">
+                                                                        <SelectItem
+                                                                            value="31+"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             31+
                                                                         </SelectItem>
                                                                     </SelectContent>
@@ -689,7 +421,7 @@ function EnrollmentPage() {
                                                     name="currentRole"
                                                     render={({ field }) => (
                                                         <FormItem>
-                                                            <FormLabel className="text-gray-200">
+                                                            <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                 Current Role *
                                                             </FormLabel>
                                                             <Select
@@ -702,23 +434,31 @@ function EnrollmentPage() {
                                                                 <FormControl>
                                                                     <SelectTrigger
                                                                         data-testid="select-currentrole"
-                                                                        className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                        className="bg-white/10 text-white border border-white/20 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:bg-white/15 transition-all duration-200 py-3 px-4">
                                                                         <SelectValue placeholder="Select your current role" />
                                                                     </SelectTrigger>
                                                                 </FormControl>
-                                                                <SelectContent>
-                                                                    <SelectItem value="Student">
+                                                                <SelectContent className="bg-slate-800 border border-white/20">
+                                                                    <SelectItem
+                                                                        value="Student"
+                                                                        className="text-white hover:bg-purple-600/20">
                                                                         Student
                                                                     </SelectItem>
-                                                                    <SelectItem value="Working Professional">
+                                                                    <SelectItem
+                                                                        value="Working Professional"
+                                                                        className="text-white hover:bg-purple-600/20">
                                                                         Working
                                                                         Professional
                                                                     </SelectItem>
-                                                                    <SelectItem value="Business Owner">
+                                                                    <SelectItem
+                                                                        value="Business Owner"
+                                                                        className="text-white hover:bg-purple-600/20">
                                                                         Business
                                                                         Owner
                                                                     </SelectItem>
-                                                                    <SelectItem value="Others">
+                                                                    <SelectItem
+                                                                        value="Others"
+                                                                        className="text-white hover:bg-purple-600/20">
                                                                         Others
                                                                     </SelectItem>
                                                                 </SelectContent>
@@ -732,19 +472,20 @@ function EnrollmentPage() {
 
                                         {/* =================== STEP 2 =================== */}
                                         {step === 2 && (
-                                            <div className="space-y-6">
-                                                <h3 className="text-lg font-semibold text-purple-300">
+                                            <div className="space-y-4 md:space-y-6">
+                                                <h3 className="text-lg md:text-xl font-semibold text-purple-300 flex items-center">
+                                                    <Code className="w-5 h-5 mr-2" />
                                                     Interested Courses
                                                 </h3>
-                                                {/* ---- your Interested Courses fields unchanged ---- */}
-                                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                                                     {/* Blockchain */}
                                                     <FormField
                                                         control={form.control}
                                                         name="blockchainCoding"
                                                         render={({ field }) => (
                                                             <FormItem>
-                                                                <FormLabel className="text-gray-200">
+                                                                <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                     Blockchain
                                                                     Coding
                                                                 </FormLabel>
@@ -756,18 +497,24 @@ function EnrollmentPage() {
                                                                         field.value
                                                                     }>
                                                                     <FormControl>
-                                                                        <SelectTrigger className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                        <SelectTrigger className="bg-white/10 text-white border border-white/20 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:bg-white/15 transition-all duration-200 py-3 px-4">
                                                                             <SelectValue placeholder="Select level" />
                                                                         </SelectTrigger>
                                                                     </FormControl>
-                                                                    <SelectContent>
-                                                                        <SelectItem value="Beginner">
+                                                                    <SelectContent className="bg-slate-800 border border-white/20">
+                                                                        <SelectItem
+                                                                            value="Beginner"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Beginner
                                                                         </SelectItem>
-                                                                        <SelectItem value="Intermediate">
+                                                                        <SelectItem
+                                                                            value="Intermediate"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Intermediate
                                                                         </SelectItem>
-                                                                        <SelectItem value="Advanced">
+                                                                        <SelectItem
+                                                                            value="Advanced"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Advanced
                                                                         </SelectItem>
                                                                     </SelectContent>
@@ -782,7 +529,7 @@ function EnrollmentPage() {
                                                         name="cryptoDefi"
                                                         render={({ field }) => (
                                                             <FormItem>
-                                                                <FormLabel className="text-gray-200">
+                                                                <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                     Crypto &
                                                                     DeFi
                                                                 </FormLabel>
@@ -794,18 +541,24 @@ function EnrollmentPage() {
                                                                         field.value
                                                                     }>
                                                                     <FormControl>
-                                                                        <SelectTrigger className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                        <SelectTrigger className="bg-white/10 text-white border border-white/20 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:bg-white/15 transition-all duration-200 py-3 px-4">
                                                                             <SelectValue placeholder="Select level" />
                                                                         </SelectTrigger>
                                                                     </FormControl>
-                                                                    <SelectContent>
-                                                                        <SelectItem value="Beginner">
+                                                                    <SelectContent className="bg-slate-800 border border-white/20">
+                                                                        <SelectItem
+                                                                            value="Beginner"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Beginner
                                                                         </SelectItem>
-                                                                        <SelectItem value="Intermediate">
+                                                                        <SelectItem
+                                                                            value="Intermediate"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Intermediate
                                                                         </SelectItem>
-                                                                        <SelectItem value="Advanced">
+                                                                        <SelectItem
+                                                                            value="Advanced"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Advanced
                                                                         </SelectItem>
                                                                     </SelectContent>
@@ -820,7 +573,7 @@ function EnrollmentPage() {
                                                         name="nftWeb3"
                                                         render={({ field }) => (
                                                             <FormItem>
-                                                                <FormLabel className="text-gray-200">
+                                                                <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                     NFT & Web3
                                                                     Business
                                                                 </FormLabel>
@@ -832,18 +585,24 @@ function EnrollmentPage() {
                                                                         field.value
                                                                     }>
                                                                     <FormControl>
-                                                                        <SelectTrigger className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                        <SelectTrigger className="bg-white/10 text-white border border-white/20 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:bg-white/15 transition-all duration-200 py-3 px-4">
                                                                             <SelectValue placeholder="Select level" />
                                                                         </SelectTrigger>
                                                                     </FormControl>
-                                                                    <SelectContent>
-                                                                        <SelectItem value="Beginner">
+                                                                    <SelectContent className="bg-slate-800 border border-white/20">
+                                                                        <SelectItem
+                                                                            value="Beginner"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Beginner
                                                                         </SelectItem>
-                                                                        <SelectItem value="Intermediate">
+                                                                        <SelectItem
+                                                                            value="Intermediate"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Intermediate
                                                                         </SelectItem>
-                                                                        <SelectItem value="Advanced">
+                                                                        <SelectItem
+                                                                            value="Advanced"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Advanced
                                                                         </SelectItem>
                                                                     </SelectContent>
@@ -858,18 +617,19 @@ function EnrollmentPage() {
 
                                         {/* =================== STEP 3 =================== */}
                                         {step === 3 && (
-                                            <div className="space-y-6">
-                                                <h3 className="text-lg font-semibold text-purple-300">
+                                            <div className="space-y-4 md:space-y-6">
+                                                <h3 className="text-lg md:text-xl font-semibold text-purple-300 flex items-center">
+                                                    <Target className="w-5 h-5 mr-2" />
                                                     Preferences
                                                 </h3>
-                                                {/* ---- your Preferences fields unchanged ---- */}
-                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                                                     <FormField
                                                         control={form.control}
                                                         name="preferredMode"
                                                         render={({ field }) => (
                                                             <FormItem>
-                                                                <FormLabel className="text-gray-200">
+                                                                <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                     Preferred
                                                                     Mode *
                                                                 </FormLabel>
@@ -881,15 +641,19 @@ function EnrollmentPage() {
                                                                         field.value
                                                                     }>
                                                                     <FormControl>
-                                                                        <SelectTrigger className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                        <SelectTrigger className="bg-white/10 text-white border border-white/20 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:bg-white/15 transition-all duration-200 py-3 px-4">
                                                                             <SelectValue placeholder="Select mode" />
                                                                         </SelectTrigger>
                                                                     </FormControl>
-                                                                    <SelectContent>
-                                                                        <SelectItem value="Online">
+                                                                    <SelectContent className="bg-slate-800 border border-white/20">
+                                                                        <SelectItem
+                                                                            value="Online"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Online
                                                                         </SelectItem>
-                                                                        <SelectItem value="Offline">
+                                                                        <SelectItem
+                                                                            value="Offline"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Offline
                                                                         </SelectItem>
                                                                     </SelectContent>
@@ -903,7 +667,7 @@ function EnrollmentPage() {
                                                         name="preferredTiming"
                                                         render={({ field }) => (
                                                             <FormItem>
-                                                                <FormLabel className="text-gray-200">
+                                                                <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                     Preferred
                                                                     Batch Timing
                                                                     *
@@ -916,18 +680,24 @@ function EnrollmentPage() {
                                                                         field.value
                                                                     }>
                                                                     <FormControl>
-                                                                        <SelectTrigger className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                        <SelectTrigger className="bg-white/10 text-white border border-white/20 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:bg-white/15 transition-all duration-200 py-3 px-4">
                                                                             <SelectValue placeholder="Select timing" />
                                                                         </SelectTrigger>
                                                                     </FormControl>
-                                                                    <SelectContent>
-                                                                        <SelectItem value="Morning">
+                                                                    <SelectContent className="bg-slate-800 border border-white/20">
+                                                                        <SelectItem
+                                                                            value="Morning"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Morning
                                                                         </SelectItem>
-                                                                        <SelectItem value="Afternoon">
+                                                                        <SelectItem
+                                                                            value="Afternoon"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Afternoon
                                                                         </SelectItem>
-                                                                        <SelectItem value="Evening">
+                                                                        <SelectItem
+                                                                            value="Evening"
+                                                                            className="text-white hover:bg-purple-600/20">
                                                                             Evening
                                                                         </SelectItem>
                                                                     </SelectContent>
@@ -942,7 +712,7 @@ function EnrollmentPage() {
                                                     name="hearAboutUs"
                                                     render={({ field }) => (
                                                         <FormItem>
-                                                            <FormLabel className="text-gray-200">
+                                                            <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                 How did you hear
                                                                 about us? *
                                                             </FormLabel>
@@ -954,24 +724,34 @@ function EnrollmentPage() {
                                                                     field.value
                                                                 }>
                                                                 <FormControl>
-                                                                    <SelectTrigger className="bg-background/50 text-white placeholder-gray-400 px-4 py-2 rounded-lg">
+                                                                    <SelectTrigger className="bg-white/10 text-white border border-white/20 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:bg-white/15 transition-all duration-200 py-3 px-4">
                                                                         <SelectValue placeholder="Select source" />
                                                                     </SelectTrigger>
                                                                 </FormControl>
-                                                                <SelectContent>
-                                                                    <SelectItem value="Instagram">
+                                                                <SelectContent className="bg-slate-800 border border-white/20">
+                                                                    <SelectItem
+                                                                        value="Instagram"
+                                                                        className="text-white hover:bg-purple-600/20">
                                                                         Instagram
                                                                     </SelectItem>
-                                                                    <SelectItem value="WhatsApp">
+                                                                    <SelectItem
+                                                                        value="WhatsApp"
+                                                                        className="text-white hover:bg-purple-600/20">
                                                                         WhatsApp
                                                                     </SelectItem>
-                                                                    <SelectItem value="Friend">
+                                                                    <SelectItem
+                                                                        value="Friend"
+                                                                        className="text-white hover:bg-purple-600/20">
                                                                         Friend
                                                                     </SelectItem>
-                                                                    <SelectItem value="College">
+                                                                    <SelectItem
+                                                                        value="College"
+                                                                        className="text-white hover:bg-purple-600/20">
                                                                         College
                                                                     </SelectItem>
-                                                                    <SelectItem value="Other">
+                                                                    <SelectItem
+                                                                        value="Other"
+                                                                        className="text-white hover:bg-purple-600/20">
                                                                         Other
                                                                     </SelectItem>
                                                                 </SelectContent>
@@ -985,7 +765,7 @@ function EnrollmentPage() {
                                                     name="whyLearn"
                                                     render={({ field }) => (
                                                         <FormItem>
-                                                            <FormLabel className="text-black">
+                                                            <FormLabel className="text-gray-200 text-sm md:text-base">
                                                                 Why do you want
                                                                 to learn this? *
                                                             </FormLabel>
@@ -994,7 +774,7 @@ function EnrollmentPage() {
                                                                     {...field}
                                                                     placeholder="Tell us about your motivation and goals..."
                                                                     data-testid="textarea-whylearn"
-                                                                    className="bg-background/50 text-black placeholder-gray-400 focus:placeholder-gray-500 min-h-20 px-4 py-2 rounded-lg"
+                                                                    className="bg-white/10 text-white placeholder-gray-400 border border-white/20 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:bg-white/15 transition-all duration-200 min-h-24 py-3 px-4 resize-none"
                                                                 />
                                                             </FormControl>
                                                             <FormMessage />
@@ -1005,32 +785,44 @@ function EnrollmentPage() {
                                         )}
 
                                         {/* ---- Navigation Buttons ---- */}
-                                        <div className="flex justify-between pt-4">
+                                        <div className="flex justify-between pt-6 md:pt-8">
                                             {step > 1 && (
                                                 <Button
                                                     type="button"
                                                     variant="outline"
-                                                    onClick={prevStep}>
+                                                    onClick={prevStep}
+                                                    className="bg-white/10 border-white/20 text-white hover:bg-white/20 transition-all duration-200 py-2 px-4 md:py-3 md:px-6">
+                                                    <ArrowLeft className="w-4 h-4 mr-2" />
                                                     Back
                                                 </Button>
                                             )}
                                             {step < 3 && (
                                                 <Button
                                                     type="button"
-                                                    className="ml-auto bg-purple-600 hover:bg-purple-700"
+                                                    className="ml-auto bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
                                                     onClick={nextStep}>
                                                     Next
+                                                    <ArrowLeft className="w-4 h-4 ml-2 rotate-180" />
                                                 </Button>
                                             )}
                                             {step === 3 && (
                                                 <Button
                                                     type="submit"
-                                                    className="ml-auto bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+                                                    className="ml-auto bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center"
                                                     disabled={isSubmitting}
                                                     data-testid="button-submit">
-                                                    {isSubmitting
-                                                        ? "Enrolling..."
-                                                        : "Enroll Now - Secure Your Spot"}
+                                                    {isSubmitting ? (
+                                                        <>
+                                                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                                                            Enrolling...
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            Enroll Now - Secure
+                                                            Your Spot
+                                                            <Rocket className="w-4 h-4 ml-2" />
+                                                        </>
+                                                    )}
                                                 </Button>
                                             )}
                                         </div>
@@ -1041,6 +833,7 @@ function EnrollmentPage() {
                     </div>
                 </section>
             </ScrollReveal>
+            <Footer />
         </div>
     );
 }

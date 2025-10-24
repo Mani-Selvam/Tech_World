@@ -13,6 +13,9 @@ import StickyBottomBanner from "@/components/StickyBottomBanner";
 import Footer from "@/components/Footer";
 import SectionBubbles from "@/components/SectionBubbles";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import DesignLancerAbout from "@/components/DesignLancerAbout";
+import Visitors from "@/components/Visitors";
+import CountdownTimer from "@/components/CountdownTimer";
 
 function HomeContent() {
     const scrollToAttendees = () => {
@@ -32,46 +35,28 @@ function HomeContent() {
                 <Hero />
             </div>
 
-            {/* Statistics Section with Bubbles */}
-            <ScrollReveal variant="fade-up" duration={800} delay={100}>
-                <div className="relative" id="statistics">
-                    <SectionBubbles count={4} />
-                    <Statistics />
-                </div>
-            </ScrollReveal>
-
-            {/* PhotoGallery Section with Bubbles */}
-            <ScrollReveal variant="fade-up" duration={800} delay={200}>
-                <div className="relative" id="gallery">
-                    <SectionBubbles count={6} />
-                    <PhotoGallery />
-                </div>
-            </ScrollReveal>
-
-            {/* Main Title Section with Bubbles */}
+            {/* Academy Section - No padding */}
             <ScrollReveal variant="scale-up" duration={1000} delay={100}>
-                <section
-                    className="relative py-16 bg-secondary/30"
-                    id="academy">
+                <section className="relative bg-secondary/30" id="academy">
                     <SectionBubbles count={5} />
                     <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10 p-4">
-                        <h2 className="text-2xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                        <h2 className="text-2xl md:text-5xl lg:text-4xl font-bold leading-tight">
                             <span
                                 className="inline-block transition-transform duration-700 delay-300 transform hover:scale-105 p-4"
                                 style={{
                                     animation:
                                         "pulseText 2s ease-in-out infinite",
                                 }}>
-                                The World's Leading All-in-One
+                                The World's Leading All-in-One Web3 Academy
                             </span>
                             <br />
                             <span
-                                className="inline-block text-3xl bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 transition-all duration-700 delay-500 transform hover:scale-105"
+                                className="inline-block text-5xl bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 transition-all duration-700 delay-500 transform hover:scale-105"
                                 style={{
                                     animation: "gradientMove 4s ease infinite",
                                     backgroundSize: "200% 200%",
                                 }}>
-                                Web3 Academy TechARA
+                                TechARA
                             </span>
                             <style>
                                 {`
@@ -94,46 +79,30 @@ function HomeContent() {
                 </section>
             </ScrollReveal>
 
-            {/* Features Section with Bubbles */}
-            <ScrollReveal variant="slide-left" duration={800} delay={100}>
-                <div className="relative" id="features">
+            {/* Statistics Section - No spacing */}
+            <ScrollReveal variant="fade-up" duration={800} delay={100}>
+                <div className="relative" id="statistics">
                     <SectionBubbles count={4} />
-                    <Features />
+                    <Statistics />
                 </div>
             </ScrollReveal>
-            {/* Attendees Section with Bubbles */}
+
+            {/* PhotoGallery Section - No spacing */}
             <ScrollReveal variant="fade-up" duration={800} delay={200}>
-                <div className="relative" id="attendees">
-                    <SectionBubbles count={4} />
-                    <Attendees />
-                </div>
-            </ScrollReveal>
-
-            {/* BullRun Section with Bubbles */}
-            <ScrollReveal variant="fade-up" duration={900} delay={150}>
-                <div className="relative" id="bullrun">
+                <div className="relative" id="gallery">
                     <SectionBubbles count={6} />
-                    <BullRun />
+                    <PhotoGallery />
                 </div>
             </ScrollReveal>
 
-            {/* Explore Our Best Courses Section with Bubbles */}
-            <ScrollReveal variant="slide-right" duration={800} delay={100}>
-                <div className="relative" id="courses">
-                    <SectionBubbles count={5} />
-                    <ExploreCourses />
+            {/* About Section - No spacing */}
+            <ScrollReveal variant="fade-up" duration={800} delay={200}>
+                <div className="relative" id="about">
+                    <SectionBubbles count={4} />
+                    <DesignLancerAbout />
                 </div>
             </ScrollReveal>
-
-            {/* OfficialTrailer Section with Bubbles */}
-            {/* <ScrollReveal variant="scale-up" duration={1000} delay={100}>
-        <div className="relative" id="trailer">
-          <SectionBubbles count={5} />
-          <OfficialTrailer />
-        </div>
-      </ScrollReveal> */}
-
-            {/* Benefit Section with Bubbles */}
+            {/* Skills Section - No spacing */}
             <ScrollReveal variant="slide-left" duration={900} delay={150}>
                 <div className="relative" id="benefit">
                     <SectionBubbles count={6} />
@@ -141,42 +110,42 @@ function HomeContent() {
                 </div>
             </ScrollReveal>
 
-            {/* Testimonial Section with Bubbles */}
-            <ScrollReveal variant="fade-up" duration={800} delay={100}>
-                <div className="relative" id="testimonial">
+            {/* Passinate Section - No spacing */}
+
+            <ScrollReveal variant="slide-right" duration={800} delay={100}>
+                <div className="relative" id="courses">
+                    <SectionBubbles count={5} />
+                    <ExploreCourses />
+                </div>
+            </ScrollReveal>
+            {/* Features Section - No spacing */}
+            <ScrollReveal variant="slide-left" duration={800} delay={100}>
+                <div className="relative" id="features">
                     <SectionBubbles count={4} />
-                    <StartupPitch />
+                    <Features />
                 </div>
             </ScrollReveal>
 
-            {/* Call to Action Section with Bubbles */}
-            {/* <ScrollReveal variant="scale-up" duration={1000} delay={200}>
-                <section className="relative py-20 bg-background">
+            {/* Attendees Section - No spacing */}
+            <ScrollReveal variant="fade-up" duration={800} delay={200}>
+                <div className="relative" id="attendees">
+                    <SectionBubbles count={4} />
+                    <Attendees />
+                </div>
+            </ScrollReveal>
+            <ScrollReveal variant="fade-up" duration={800} delay={200}>
+                <div className="relative" id="timer">
+                    <SectionBubbles count={4} />
+                    <CountdownTimer />
+                </div>
+            </ScrollReveal>
+
+            <ScrollReveal variant="slide-right" duration={800} delay={100}>
+                <div className="relative" id="visitors">
                     <SectionBubbles count={5} />
-                    <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                            <span className="text-foreground">
-                                Ready to join the{" "}
-                            </span>
-                            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                                Web3 Academy
-                            </span>
-                        </h2>
-                        <p className="text-xl text-muted-foreground mb-12">
-                            Don't miss out on the world's leading blockchain and
-                            crypto forum. Secure your spot today!
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                            <button
-                                data-testid="button-buy-tickets-cta"
-                                onClick={scrollToAttendees}
-                                className="bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-lg text-lg font-semibold text-primary-foreground hover:opacity-90 transition-opacity crypto-glow">
-                                Register Now
-                            </button>
-                        </div>
-                    </div>
-                </section>
-            </ScrollReveal> */}
+                    <Visitors />
+                </div>
+            </ScrollReveal>
 
             <ScrollReveal variant="fade-in" duration={600} delay={100}>
                 <Footer />
