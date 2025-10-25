@@ -426,11 +426,15 @@ export default function Dashboard() {
                         <div className="flex items-center space-x-4">
                             <button
                                 onClick={fetchData}
+                                data-testid="button-refresh"
                                 className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
                                 title="Refresh Data">
                                 <RefreshCw className="w-5 h-5" />
                             </button>
-                            <button className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors">
+                            <button 
+                                data-testid="button-filter"
+                                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                                title="Filter Data">
                                 <Filter className="w-5 h-5" />
                             </button>
                         </div>

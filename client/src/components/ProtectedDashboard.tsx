@@ -85,7 +85,7 @@ export default function ProtectedDashboard() {
     return (
         <div className="relative">
             {/* Logout Button */}
-            <div className="fixed top-4 right-4 z-[100]">
+            <div className="fixed top-4 right-32 z-[100]">
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
