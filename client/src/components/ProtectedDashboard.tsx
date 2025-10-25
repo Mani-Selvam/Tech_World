@@ -85,12 +85,13 @@ export default function ProtectedDashboard() {
     return (
         <div className="relative">
             {/* Logout Button */}
-            <div className="fixed top-4 right-4 z-50">
+            <div className="fixed top-4 right-4 z-[100]">
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleLogout}
-                    className="flex items-center space-x-2 px-4 py-2 bg-red-500/20 border border-red-500/30 backdrop-blur-sm rounded-lg text-red-300 hover:bg-red-500/30 transition-all">
+                    data-testid="button-logout"
+                    className="flex items-center space-x-2 px-4 py-2 bg-red-500/20 border border-red-500/30 backdrop-blur-sm rounded-lg text-red-300 hover:bg-red-500/30 transition-all shadow-lg">
                     <LogOut className="w-4 h-4" />
                     <span className="text-sm font-medium">Logout</span>
                 </motion.button>
