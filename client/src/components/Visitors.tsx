@@ -145,8 +145,8 @@ export default function PassionateEducator() {
                                         src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7172462144091832320?compact=1"
                                         height="399"
                                         width="100%"
-                                        frameborder="0"
-                                        allowfullscreen=""
+                                        frameBorder="0"
+                                        allowFullScreen=""
                                         title="Embedded post"
                                         className="w-full h-full"></iframe>
                                 </div>
@@ -228,14 +228,23 @@ export default function PassionateEducator() {
                                 <ChevronRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                             </motion.button>
 
+                            {/* ===== FIXED BUTTON ===== */}
                             <motion.button
                                 onClick={handleViewCourses}
-                                className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold px-8 py-4 rounded-xl shadow-lg flex items-center justify-center gap-3"
+                                className="group backdrop-blur-sm border border-white/20 text-white font-semibold px-8 py-4 rounded-xl shadow-lg flex items-center justify-center gap-3"
+                                // Set the initial state explicitly for Framer Motion
+                                initial={{
+                                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                                }}
                                 whileHover={{
                                     scale: 1.05,
                                     backgroundColor: "rgba(147, 51, 234, 0.2)",
                                 }}
-                                whileTap={{ scale: 0.98 }}>
+                                whileTap={{ scale: 0.98 }}
+                                // Also set it in the style to ensure it's applied correctly
+                                style={{
+                                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                                }}>
                                 <BookOpen className="w-5 h-5" />
                                 <span>View Courses</span>
                             </motion.button>

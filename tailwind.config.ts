@@ -95,6 +95,20 @@ export default {
             },
         },
     },
+    // === ADD THIS SAFELIST ===
+    safelist: [
+        // Safelist all text colors for your benefits icons and titles
+        {
+            pattern:
+                /text-(red|blue|green|orange|purple|indigo|yellow|pink|teal|rose|amber|slate|zinc|gray|neutral|stone)-\d{2,3}/,
+        },
+        // Safelist all background colors for your progress bars
+        {
+            pattern:
+                /bg-(red|blue|green|orange|purple|indigo|yellow|pink|teal|rose|amber|slate|zinc|gray|neutral|stone)-\d{2,3}/,
+        },
+    ],
+    // =========================
     plugins: [
         require("tailwindcss-animate"),
         require("@tailwindcss/typography"),

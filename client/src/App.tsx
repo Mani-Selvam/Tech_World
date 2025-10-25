@@ -7,31 +7,35 @@ import BubbleAnimation from "@/components/BubbleAnimation";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Enrollment from "@/pages/enrollment";
+import Login from "@/components/Login";
+import ProtectedDashboard from "@/components/ProtectedDashboard";
 
 function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/enrollment" component={Enrollment} />
-      <Route component={NotFound} />
-    </Switch>
-  );
+    return (
+        <Switch>
+            <Route path="/" component={Home} />
+            <Route path="/enrollment" component={Enrollment} />
+            <Route path="/login" component={Login} />
+            <Route component={NotFound} />
+        </Switch>
+    );
 }
 
 function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <div className="relative">
-          <BubbleAnimation />
-          <div className="relative z-10">
-            <Toaster />
-            <Router />
-          </div>
-        </div>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
+    return (
+        <QueryClientProvider client={queryClient}>
+            <TooltipProvider>
+                <div className="relative">
+                    <BubbleAnimation />
+                    <div className="relative z-10">
+                        <Toaster />
+                        <Router />
+                        {/* <ProtectedDashboard /> */}
+                    </div>
+                </div>
+            </TooltipProvider>
+        </QueryClientProvider>
+    );
 }
 
 export default App;

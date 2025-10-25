@@ -523,8 +523,8 @@ export default function AboutSection() {
                         </motion.h3>
                     </div>
 
-                    {/* Simple Grid Layout */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    {/* Single Row Layout - No Scroll */}
+                    <div className="grid grid-cols-3 gap-2 md:gap-8">
                         {stats.map((stat, index) => (
                             <motion.div
                                 key={stat.label}
@@ -536,21 +536,21 @@ export default function AboutSection() {
                                     delay: index * 0.2,
                                 }}
                                 viewport={{ once: true }}>
-                                {/* Simple Card */}
-                                <div className="rounded-xl p-6 h-full">
-                                    {/* Icon */}
-                                    <div className="flex justify-center mb-4">
-                                        <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 p-0.5">
+                                {/* Responsive Card */}
+                                <div className=" p-3 md:p-6 h-full">
+                                    {/* Icon - Smaller on mobile */}
+                                    <div className="flex justify-center mb-2 md:mb-4">
+                                        <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 p-0.5">
                                             <div className="w-full h-full bg-slate-900 rounded-full flex items-center justify-center">
-                                                <div className="text-purple-400 text-2xl">
+                                                <div className="text-purple-400 text-lg md:text-2xl">
                                                     {stat.icon}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Value */}
-                                    <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+                                    {/* Value - Responsive font size */}
+                                    <div className="text-1xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-1 md:mb-2">
                                         {animatedStats[index] ? (
                                             <span className="inline-block">
                                                 {counters[index]}
@@ -564,12 +564,10 @@ export default function AboutSection() {
                                         )}
                                     </div>
 
-                                    {/* Label */}
-                                    <div className="text-gray-300 font-medium mb-3">
+                                    {/* Label - Responsive text size */}
+                                    <div className="text-gray-300 font-medium text-xs md:text-sm">
                                         {stat.label}
                                     </div>
-
-                                    {/* Simple Progress Bar - Height 50px */}
                                 </div>
                             </motion.div>
                         ))}

@@ -69,12 +69,12 @@ export default function Footer() {
     ];
 
     const resources = [
-        { name: "Blockchain Basics", href: "#" },
-        { name: "Crypto Trading", href: "#" },
-        { name: "Web3 Development", href: "#" },
-        { name: "NFT Guide", href: "#" },
-        { name: "DeFi Protocols", href: "#" },
-        { name: "Career Opportunities", href: "#" },
+        { name: "Blockchain Basics" },
+        { name: "Crypto Trading" },
+        { name: "Web3 Development" },
+        { name: "NFT Guide" },
+        { name: "DeFi Protocols" },
+        { name: "Career Opportunities" },
     ];
 
     const socialLinks = [
@@ -184,27 +184,43 @@ export default function Footer() {
                         <ul className="space-y-4">
                             <li className="flex items-start">
                                 <Mail className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
-                                <span className="text-gray-300">
+                                <a
+                                    href="mailto:info@techara.in"
+                                    className="text-gray-300 hover:text-purple-400 transition-colors duration-300"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
                                     info@techara.in
-                                </span>
+                                </a>
                             </li>
                             <li className="flex items-start">
                                 <Phone className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
-                                <span className="text-gray-300">
+                                <a
+                                    href="https://wa.me/918056880222"
+                                    className="text-gray-300 hover:text-purple-400 transition-colors duration-300"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
                                     +91 80568 80222
-                                </span>
+                                </a>
                             </li>
                             <li className="flex items-start">
                                 <MapPin className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
-                                <span className="text-gray-300">
+                                <a
+                                    href="https://maps.app.goo.gl/PUhSJUmoXi4DL7oB7"
+                                    className="text-gray-300 hover:text-purple-400 transition-colors duration-300"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
                                     Erode, Tamilnadu
-                                </span>
+                                </a>
                             </li>
                             <li className="flex items-start">
                                 <Globe className="w-5 h-5 text-purple-400 mr-3 mt-0.5" />
-                                <span className="text-gray-300">
+                                <a
+                                    href="https://www.techara.in"
+                                    className="text-gray-300 hover:text-purple-400 transition-colors duration-300"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
                                     www.techara.in
-                                </span>
+                                </a>
                             </li>
                         </ul>
                     </div>

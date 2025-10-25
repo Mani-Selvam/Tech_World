@@ -38,21 +38,21 @@ export default function TopLinearIcons() {
 
     const icons = [
         {
-            icon: <FaGlobe />,
+            icon: <FaGlobe color="#1DA1F2" />,
             href: "https://techara.in/",
             title: "Explore Techara",
             position: "9", // 9 o'clock position
             size: 70, // Base size for 9 o'clock position
         },
         {
-            icon: <FaInstagram />,
+            icon: <FaInstagram color="#E1306C" />,
             href: "https://www.instagram.com/web3_sindhu",
             title: "Follow @web3_sindhu",
             position: "8", // 8 o'clock position
             size: 65, // Base size for 8 o'clock position
         },
         {
-            icon: <FaWhatsapp />,
+            icon: <FaWhatsapp color="#25D366" />,
             href: "https://wa.me/8056880222",
             title: "Book Consultation",
             position: "7", // 7 o'clock position
@@ -131,10 +131,10 @@ export default function TopLinearIcons() {
                                 href={item.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative flex items-center justify-center 
-                             bg-gradient-to-r from-purple-500 to-pink-500 
-                             text-white rounded-full shadow-lg 
-                             hover:scale-110 transition-all duration-300 hover:shadow-pink-500/50"
+                                className={`group relative flex items-center justify-center ${item.bgColor} 
+                        text-white rounded-full shadow-lg 
+                        hover:scale-110 transition-all duration-300 
+                        hover:shadow-lg`}
                                 style={{
                                     width: `${responsiveSize}px`,
                                     height: `${responsiveSize}px`,
