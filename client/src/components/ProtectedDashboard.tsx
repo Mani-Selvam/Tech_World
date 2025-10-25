@@ -55,6 +55,7 @@ export default function ProtectedDashboard() {
         localStorage.removeItem("isAdminLoggedIn");
         localStorage.removeItem("loginTime");
         setIsAuthenticated(false);
+        window.location.replace("/");
     };
 
     // Show loading while checking auth

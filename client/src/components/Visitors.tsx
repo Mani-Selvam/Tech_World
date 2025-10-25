@@ -15,10 +15,13 @@ import { GraduationCap } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { X, Maximize2 } from "lucide-react";
 
 export default function PassionateEducator() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+    const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+    const [isLandscape, setIsLandscape] = useState(false);
 
     const whatsappNumber = "+918056880222";
     const whatsappMessage = ` Hi Sindhu 👋  I'm really interested in learning about Blockchain and Crypto! 💻✨ I'd love to know more about your upcoming session and how I can join your Free workshop, Internship, or Master Courses. 🚀`;
@@ -34,6 +37,60 @@ export default function PassionateEducator() {
     const handleViewCourses = () => {
         window.open("https://techara.in/", "_blank");
     };
+
+    const openVideoModal = () => {
+        setIsVideoModalOpen(true);
+        if (window.innerWidth < 768) {
+            try {
+                const orientation = screen.orientation as any;
+                if (orientation && orientation.lock) {
+                    orientation.lock("landscape").catch((err: any) => {
+                        console.log("Screen orientation lock not supported:", err);
+                    });
+                }
+            } catch (err) {
+                console.log("Orientation API not supported");
+            }
+        }
+    };
+
+    const closeVideoModal = () => {
+        setIsVideoModalOpen(false);
+        if (window.innerWidth < 768) {
+            try {
+                const orientation = screen.orientation as any;
+                if (orientation && orientation.unlock) {
+                    orientation.unlock();
+                }
+            } catch (err) {
+                console.log("Orientation API not supported");
+            }
+        }
+    };
+
+    useEffect(() => {
+        const handleOrientationChange = () => {
+            setIsLandscape(window.matchMedia("(orientation: landscape)").matches);
+        };
+
+        handleOrientationChange();
+        window.addEventListener("resize", handleOrientationChange);
+
+        return () => {
+            window.removeEventListener("resize", handleOrientationChange);
+        };
+    }, []);
+
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === "Escape" && isVideoModalOpen) {
+                closeVideoModal();
+            }
+        };
+
+        window.addEventListener("keydown", handleEscape);
+        return () => window.removeEventListener("keydown", handleEscape);
+    }, [isVideoModalOpen]);
 
     return (
         <section className="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
@@ -138,7 +195,10 @@ export default function PassionateEducator() {
                         viewport={{ once: true }}>
                         <div className="relative group">
                             {/* Main Video Container */}
-                            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div 
+                                className="relative rounded-2xl overflow-hidden shadow-2xl cursor-pointer"
+                                onClick={openVideoModal}
+                                data-testid="video-container">
                                 {/* LinkedIn Video Embed */}
                                 <div className="relative aspect-video bg-gradient-to-br from-purple-600/20 to-indigo-600/20 backdrop-blur-sm border border-purple-500/30">
                                     <iframe
@@ -146,9 +206,17 @@ export default function PassionateEducator() {
                                         height="399"
                                         width="100%"
                                         frameBorder="0"
-                                        allowFullScreen=""
+                                        allowFullScreen
                                         title="Embedded post"
-                                        className="w-full h-full"></iframe>
+                                        className="w-full h-full pointer-events-none"></iframe>
+                                    
+                                    {/* Maximize Overlay */}
+                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                        <div className="bg-white/20 backdrop-blur-md rounded-full p-4">
+                                            <Maximize2 className="w-8 h-8 text-white" />
+                                        </div>
+                                        <p className="absolute bottom-4 text-white font-medium">Click to maximize video</p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -277,6 +345,51 @@ export default function PassionateEducator() {
                     </div>
                 </div>
             </div>
+
+            {/* Video Modal - Maximized View */}
+            {isVideoModalOpen && (
+                <div className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4">
+                    {/* Close Button */}
+                    <button
+                        onClick={closeVideoModal}
+                        className="absolute top-4 right-4 z-[10000] bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-all backdrop-blur-md"
+                        data-testid="button-close-video">
+                        <X className="w-6 h-6" />
+                    </button>
+
+                    {/* Mobile Landscape Hint */}
+                    {window.innerWidth < 768 && !isLandscape && (
+                        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 bg-purple-600/90 text-white px-4 py-2 rounded-lg text-sm backdrop-blur-md">
+                            Rotate your device for better viewing
+                        </div>
+                    )}
+
+                    {/* Video Container */}
+                    <motion.div
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.9, opacity: 0 }}
+                        className="w-full max-w-6xl">
+                        <div className="relative aspect-video bg-gradient-to-br from-purple-600/20 to-indigo-600/20 rounded-2xl overflow-hidden shadow-2xl border border-purple-500/30">
+                            <iframe
+                                src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7172462144091832320?compact=1"
+                                height="100%"
+                                width="100%"
+                                frameBorder="0"
+                                allowFullScreen={true}
+                                title="Passionate Blockchain Educator Video"
+                                className="w-full h-full"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            />
+                        </div>
+                        
+                        {/* Video Controls Info */}
+                        <div className="mt-4 text-center text-gray-300 text-sm">
+                            <p>Use the video player controls to play/pause. Press ESC or click the X to close.</p>
+                        </div>
+                    </motion.div>
+                </div>
+            )}
         </section>
     );
 }
