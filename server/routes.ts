@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertAttendeeSchema, insertEnrollmentSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
+import { Parser } from "json2csv";
 
 export async function registerRoutes(app: Express): Promise<Server> {
     // Registration endpoint
@@ -93,6 +94,68 @@ export async function registerRoutes(app: Express): Promise<Server> {
             res.status(500).json({
                 error: "Internal server error",
                 message: "Failed to fetch enrollments",
+            });
+        }
+    });
+
+    // CSV Export endpoint
+    app.get("/api/export/:type", async (req, res) => {
+        try {
+            const { type } = req.params;
+            const { role, ageGroup, mode, search } = req.query;
+
+            if (type !== "attendees" && type !== "enrollments") {
+                return res.status(400).json({ 
+                    error: "Invalid export type. Must be 'attendees' or 'enrollments'" 
+                });
+            }
+
+            let data: any[] = [];
+
+            if (type === "attendees") {
+                data = await storage.getAttendees();
+            } else if (type === "enrollments") {
+                let enrollments = await storage.getEnrollments();
+                
+                // Apply filters if provided
+                if (role && role !== "All") {
+                    enrollments = enrollments.filter(e => e.currentRole === role);
+                }
+                if (ageGroup && ageGroup !== "All") {
+                    enrollments = enrollments.filter(e => e.ageGroup === ageGroup);
+                }
+                if (mode && mode !== "All") {
+                    enrollments = enrollments.filter(e => e.preferredMode === mode);
+                }
+                if (search) {
+                    const searchTerm = String(search).toLowerCase();
+                    enrollments = enrollments.filter(e => 
+                        e.fullName?.toLowerCase().includes(searchTerm) ||
+                        e.email?.toLowerCase().includes(searchTerm) ||
+                        e.city?.toLowerCase().includes(searchTerm)
+                    );
+                }
+                
+                data = enrollments;
+            }
+
+            // Convert to CSV
+            const parser = new Parser();
+            const csv = parser.parse(data);
+
+            // Set headers for CSV download
+            res.setHeader("Content-Type", "text/csv");
+            res.setHeader(
+                "Content-Disposition",
+                `attachment; filename="${type}-export-${new Date().toISOString().split("T")[0]}.csv"`
+            );
+
+            res.status(200).send(csv);
+        } catch (error) {
+            console.error("Error exporting data:", error);
+            res.status(500).json({ 
+                error: "Failed to export data",
+                message: error instanceof Error ? error.message : "Unknown error"
             });
         }
     });
