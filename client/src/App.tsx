@@ -7,7 +7,6 @@ import BubbleAnimation from "@/components/BubbleAnimation";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Enrollment from "@/pages/enrollment";
-import Login from "@/components/Login";
 import ProtectedDashboard from "@/components/ProtectedDashboard";
 
 function Router() {
@@ -15,7 +14,7 @@ function Router() {
         <Switch>
             <Route path="/" component={Home} />
             <Route path="/enrollment" component={Enrollment} />
-            <Route path="/login" component={Login} />
+            <Route path="/dashboard" component={ProtectedDashboard} />
             <Route component={NotFound} />
         </Switch>
     );
