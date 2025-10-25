@@ -76,7 +76,8 @@ const apiService = {
         try {
             const response = await fetch("/api/attendees");
             if (!response.ok) throw new Error("Failed to fetch attendees");
-            return await response.json();
+            const data = await response.json();
+            return data.attendees || [];
         } catch (error) {
             console.error("Error fetching attendees:", error);
             throw error;
@@ -88,7 +89,8 @@ const apiService = {
         try {
             const response = await fetch("/api/enrollments");
             if (!response.ok) throw new Error("Failed to fetch enrollments");
-            return await response.json();
+            const data = await response.json();
+            return data.enrollments || [];
         } catch (error) {
             console.error("Error fetching enrollments:", error);
             throw error;

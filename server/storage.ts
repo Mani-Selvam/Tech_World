@@ -117,7 +117,13 @@ export class DatabaseStorage implements IStorage {
     }
 
     async getAttendees(): Promise<Attendee[]> {
-        return await this.db.select().from(attendees);
+        try {
+            const result = await this.db.select().from(attendees);
+            return result || [];
+        } catch (error) {
+            console.error("Error in getAttendees:", error);
+            return [];
+        }
     }
 
     async createEnrollment(
@@ -131,7 +137,13 @@ export class DatabaseStorage implements IStorage {
     }
 
     async getEnrollments(): Promise<Enrollment[]> {
-        return await this.db.select().from(enrollments);
+        try {
+            const result = await this.db.select().from(enrollments);
+            return result || [];
+        } catch (error) {
+            console.error("Error in getEnrollments:", error);
+            return [];
+        }
     }
 }
 

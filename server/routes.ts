@@ -83,18 +83,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
     });
 
-    // Get all enrollments endpoint (for admin use only - requires admin key)
+    // Get all enrollments endpoint (for admin use)
     app.get("/api/enrollments", async (req, res) => {
         try {
-            // Basic admin protection - require admin key in header
-            const adminKey = req.headers["x-admin-key"];
-            if (!adminKey || adminKey !== process.env.ADMIN_KEY) {
-                return res.status(401).json({
-                    error: "Unauthorized",
-                    message: "Admin access required",
-                });
-            }
-
             const enrollments = await storage.getEnrollments();
             res.json({ enrollments });
         } catch (error) {
