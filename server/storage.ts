@@ -1,23 +1,18 @@
 import {
     attendees,
     enrollments,
-    type User,
-    type InsertUser,
     type Attendee,
     type InsertAttendee,
     type Enrollment,
     type InsertEnrollment,
 } from "@shared/schema";
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import { nanoid } from "nanoid";
 
 // modify the interface with any CRUD methods
 // you might need
 
 export interface IStorage {
-    getUser(id: string): Promise<User | undefined>;
-    getUserByUsername(username: string): Promise<User | undefined>;
-    createUser(user: InsertUser): Promise<User>;
     createAttendee(attendee: InsertAttendee): Promise<Attendee>;
     getAttendees(): Promise<Attendee[]>;
     createEnrollment(enrollment: InsertEnrollment): Promise<Enrollment>;
@@ -25,26 +20,8 @@ export interface IStorage {
 }
 
 export class MemStorage implements IStorage {
-    // private users: User[] = [];
     private attendees: Attendee[] = [];
     private enrollments: Enrollment[] = [];
-
-    // async getUser(id: string): Promise<User | undefined> {
-    //     return this.users.find((user) => user.id === id);
-    // }
-
-    // async getUserByUsername(username: string): Promise<User | undefined> {
-    //     return this.users.find((user) => user.username === username);
-    // }
-
-    // async createUser(insertUser: InsertUser): Promise<User> {
-    //     const user: User = {
-    //         id: nanoid(),
-    //         ...insertUser,
-    //     };
-    //     this.users.push(user);
-    //     return user;
-    // }
 
     async createAttendee(insertAttendee: InsertAttendee): Promise<Attendee> {
         const attendee: Attendee = {
@@ -84,36 +61,29 @@ export class MemStorage implements IStorage {
 export class DatabaseStorage implements IStorage {
     constructor(private db: any) {}
 
-    // async getUser(id: string): Promise<User | undefined> {
-    //     const [user] = await this.db
-    //         .select()
-    //         .from(users)
-    //         .where(eq(users.id, id));
-    //     return user || undefined;
-    // }
-
-    // async getUserByUsername(username: string): Promise<User | undefined> {
-    //     const [user] = await this.db
-    //         .select()
-    //         .from(users)
-    //         .where(eq(users.username, username));
-    //     return user || undefined;
-    // }
-
-    // async createUser(insertUser: InsertUser): Promise<User> {
-    //     const [user] = await this.db
-    //         .insert(users)
-    //         .values(insertUser)
-    //         .returning();
-    //     return user;
-    // }
-
     async createAttendee(insertAttendee: InsertAttendee): Promise<Attendee> {
-        const [attendee] = await this.db
-            .insert(attendees)
-            .values(insertAttendee)
-            .returning();
-        return attendee;
+        try {
+            await this.db
+                .insert(attendees)
+                .values(insertAttendee);
+            
+            // Query back the inserted record since .returning() doesn't work with Neon HTTP
+            const inserted = await this.db
+                .select()
+                .from(attendees)
+                .where(eq(attendees.email, insertAttendee.email))
+                .orderBy(desc(attendees.registeredAt))
+                .limit(1);
+            
+            if (!inserted || inserted.length === 0) {
+                throw new Error("Failed to retrieve created attendee");
+            }
+            
+            return inserted[0];
+        } catch (error) {
+            console.error("Error in createAttendee:", error);
+            throw error;
+        }
     }
 
     async getAttendees(): Promise<Attendee[]> {
@@ -129,11 +99,28 @@ export class DatabaseStorage implements IStorage {
     async createEnrollment(
         insertEnrollment: InsertEnrollment
     ): Promise<Enrollment> {
-        const [enrollment] = await this.db
-            .insert(enrollments)
-            .values(insertEnrollment)
-            .returning();
-        return enrollment;
+        try {
+            await this.db
+                .insert(enrollments)
+                .values(insertEnrollment);
+            
+            // Query back the inserted record since .returning() doesn't work with Neon HTTP
+            const inserted = await this.db
+                .select()
+                .from(enrollments)
+                .where(eq(enrollments.email, insertEnrollment.email))
+                .orderBy(desc(enrollments.enrolledAt))
+                .limit(1);
+            
+            if (!inserted || inserted.length === 0) {
+                throw new Error("Failed to retrieve created enrollment");
+            }
+            
+            return inserted[0];
+        } catch (error) {
+            console.error("Error in createEnrollment:", error);
+            throw error;
+        }
     }
 
     async getEnrollments(): Promise<Enrollment[]> {
