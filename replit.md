@@ -4,6 +4,12 @@ This is a modern full-stack web application for TechARA Academy's Web3 and block
 
 # Recent Changes
 
+**2025-10-25**: Enhanced user experience with improved logout, registration, and video features
+- **Dashboard Logout**: Fixed logout to prevent back navigation using window.location.replace("/")
+- **Registration WhatsApp Integration**: Confirmed automatic WhatsApp redirect (2s delay) after successful registration
+- **Video Player Modal**: Added maximized video viewing with click-to-expand, ESC key close, and mobile landscape mode support
+- Enhanced video player with visual maximize overlay and responsive modal UI
+
 **2025-09-16**: Successfully imported and configured GitHub project for Replit environment
 - Set up frontend workflow on port 5000 with webview output type
 - Configured PostgreSQL database with Drizzle ORM integration
