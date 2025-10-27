@@ -32,23 +32,69 @@ export default defineConfig({
         emptyOutDir: true,
         minify: 'terser',
         cssMinify: true,
+        cssCodeSplit: true,
+        target: 'esnext',
         terserOptions: {
             compress: {
                 drop_console: true,
                 drop_debugger: true,
+                pure_funcs: ['console.log', 'console.info'],
+                passes: 2,
+            },
+            mangle: {
+                safari10: true,
+            },
+            format: {
+                comments: false,
             },
         },
         rollupOptions: {
             output: {
-                manualChunks: {
-                    'react-vendor': ['react', 'react-dom', 'wouter'],
-                    'ui-vendor': ['framer-motion', 'lucide-react'],
-                    'query-vendor': ['@tanstack/react-query'],
+                manualChunks: (id) => {
+                    if (id.includes('node_modules')) {
+                        if (id.includes('react') || id.includes('react-dom') || id.includes('wouter')) {
+                            return 'react-vendor';
+                        }
+                        if (id.includes('framer-motion')) {
+                            return 'framer-vendor';
+                        }
+                        if (id.includes('recharts') || id.includes('d3-')) {
+                            return 'charts-vendor';
+                        }
+                        if (id.includes('lucide-react')) {
+                            return 'icons-vendor';
+                        }
+                        if (id.includes('@tanstack/react-query')) {
+                            return 'query-vendor';
+                        }
+                        if (id.includes('@radix-ui')) {
+                            return 'ui-vendor';
+                        }
+                        return 'vendor';
+                    }
                 },
+                assetFileNames: (assetInfo) => {
+                    if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
+                    if (/\.(png|jpe?g|svg|gif|tiff|bmp|ico|webp)$/i.test(assetInfo.name)) {
+                        return `assets/images/[name]-[hash][extname]`;
+                    }
+                    if (/\.(woff2?|eot|ttf|otf)$/i.test(assetInfo.name)) {
+                        return `assets/fonts/[name]-[hash][extname]`;
+                    }
+                    return `assets/[name]-[hash][extname]`;
+                },
+                chunkFileNames: 'assets/js/[name]-[hash].js',
+                entryFileNames: 'assets/js/[name]-[hash].js',
+            },
+            treeshake: {
+                moduleSideEffects: false,
+                propertyReadSideEffects: false,
             },
         },
-        chunkSizeWarningLimit: 1000,
+        chunkSizeWarningLimit: 600,
         sourcemap: false,
+        assetsInlineLimit: 4096,
+        reportCompressedSize: false,
     },
     server: {
         fs: {
