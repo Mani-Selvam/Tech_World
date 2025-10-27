@@ -5,6 +5,7 @@ interface ResponsiveMediaProps {
   src: string;
   alt: string;
   className?: string;
+  srcset?: string;
   sizes?: string;
   loading?: 'lazy' | 'eager';
   fetchpriority?: 'high' | 'low' | 'auto';
@@ -22,6 +23,7 @@ export function ResponsiveMedia({
   src,
   alt,
   className,
+  srcset,
   sizes = '100vw',
   loading = 'lazy',
   fetchpriority,
@@ -61,6 +63,10 @@ export function ResponsiveMedia({
     style: maxHeight ? { maxHeight, ...style } : style,
     'data-testid': dataTestId
   };
+
+  if (srcset) {
+    imgProps.srcSet = srcset;
+  }
 
   if (width) {
     imgProps.width = width;

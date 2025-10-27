@@ -30,9 +30,18 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
   </noscript>
 
-  <!-- ✅ Preload Critical Hero Images for LCP Optimization -->
-  <link rel="preload" as="image" href="/attached_assets/Techara 1_1758098717539.png" fetchpriority="high" />
-  <link rel="preload" as="image" href="/attached_assets/Ellipse 17_1758099227458.png" />
+  <!-- ✅ Preload Critical Hero Images for LCP Optimization (WebP with Responsive Sizes) -->
+  <link rel="preload" as="image" 
+    href="/attached_assets/hero-sindhu.webp"
+    imagesrcset="/attached_assets/hero-sindhu-400w.webp 400w, /attached_assets/hero-sindhu-800w.webp 800w, /attached_assets/hero-sindhu-1200w.webp 1200w"
+    imagesizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 400px"
+    type="image/webp" 
+    fetchpriority="high" />
+  <link rel="preload" as="image" 
+    href="/attached_assets/hero-circle.webp"
+    imagesrcset="/attached_assets/hero-circle-400w.webp 400w, /attached_assets/hero-circle-800w.webp 800w, /attached_assets/hero-circle-1200w.webp 1200w"
+    imagesizes="(max-width: 768px) 320px, (max-width: 1024px) 400px, 450px"
+    type="image/webp" />
 
   <!-- ✅ Robots and Canonical -->
   <meta name="robots" content="index, follow" />
