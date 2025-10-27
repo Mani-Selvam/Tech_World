@@ -7,6 +7,7 @@ interface ResponsiveMediaProps {
   className?: string;
   sizes?: string;
   loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
   decoding?: 'async' | 'sync' | 'auto';
   aspectRatio?: 'square' | 'video' | 'auto';
   objectFit?: 'contain' | 'cover' | 'fill';
@@ -21,6 +22,7 @@ export function ResponsiveMedia({
   className,
   sizes = '100vw',
   loading = 'lazy',
+  fetchpriority,
   decoding = 'async',
   aspectRatio = 'auto',
   objectFit = 'contain',
@@ -45,6 +47,7 @@ export function ResponsiveMedia({
       src={src}
       alt={alt}
       loading={loading}
+      fetchPriority={fetchpriority}
       decoding={decoding}
       sizes={sizes}
       className={cn(
