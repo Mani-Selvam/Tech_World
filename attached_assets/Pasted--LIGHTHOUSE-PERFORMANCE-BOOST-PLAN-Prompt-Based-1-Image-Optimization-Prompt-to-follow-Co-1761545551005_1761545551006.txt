@@ -1,0 +1,106 @@
+⚡ LIGHTHOUSE PERFORMANCE BOOST PLAN (Prompt-Based)
+🧩 1️⃣ Image Optimization
+
+Prompt to follow:
+
+“Compress all images before build using TinyPNG or Squoosh.
+Convert every .jpg / .png to .webp.
+Use lazy loading (loading='lazy') for images below the fold.
+Keep hero images under 150 KB.”
+
+Goal: FCP & LCP faster by 25–30%.
+
+🧩 2️⃣ Font Optimization
+
+Prompt to follow:
+
+“Reduce Google Fonts usage to 1–2 families.
+Preload fonts with <link rel='preload' as='style'>.
+Use display=swap to avoid blocking render.
+Optionally self-host fonts with @fontsource.”
+
+Goal: Remove render-blocking delay (~300ms).
+
+🧩 3️⃣ Code Splitting & Lazy Loading
+
+Prompt to follow:
+
+“Split large JS bundles.
+Lazy-load route components and heavy sections.
+Only load third-party libraries when necessary.”
+
+Goal: Reduce JS load from 3 MB → under 1 MB.
+
+🧩 4️⃣ Unused JavaScript & CSS
+
+Prompt to follow:
+
+“Remove unused imports/components.
+Delete dead code & unused styles.
+Use tree-shaking during build.
+Minify CSS/JS and drop console.log in production.”
+
+Goal: Improve TBT (Total Blocking Time) & load speed.
+
+🧩 5️⃣ Caching & Asset Lifetime
+
+Prompt to follow:
+
+“Set long cache lifetime for static assets (1 year).
+Enable compression (gzip or brotli) in the server.
+Avoid re-downloading fonts or libraries every visit.”
+
+Goal: Boost repeat-visit load times.
+
+🧩 6️⃣ Render-Blocking Requests
+
+Prompt to follow:
+
+“Defer or async all scripts.
+Inline critical CSS for above-the-fold content.
+Preconnect Google Fonts and critical CDNs.”
+
+Goal: Reduce render delay & improve FCP.
+
+🧩 7️⃣ Server & Network Optimization
+
+Prompt to follow:
+
+“Use CDN (like Cloudflare) for all assets.
+Enable HTTP/2 or HTTP/3 for faster multiplexing.
+Keep total network payload under 2 MB.”
+
+Goal: 2x faster initial load.
+
+🧩 8️⃣ Performance Testing & Benchmark
+
+Prompt to follow:
+
+“After build, test with Lighthouse (Mobile mode, 4G).
+Repeat until:
+
+Performance ≥ 90
+
+Accessibility ≥ 90
+
+Best Practices ≥ 90
+
+SEO ≥ 90”
+
+Goal: Ensure consistency across audits.
+
+🧩 9️⃣ Optional (for extra 5–10%)
+
+Prompt to follow:
+
+“Add a service worker for offline caching.
+Use lazy hydration for React components.
+Use smaller icons (SVG instead of PNG).”
+
+✅ Final Expected Outcome
+Metric	Target	Gain
+Performance	90+	🚀 Faster load, better UX
+FCP (First Contentful Paint)	< 3s	+25%
+LCP (Largest Contentful Paint)	< 4s	+20%
+TBT (Total Blocking Time)	< 150ms	+15%
+CLS (Cumulative Layout Shift)	< 0.1	+5%
