@@ -46,7 +46,12 @@ const testimonials = [
     },
 ];
 
-const TestimonialSlide = ({ testimonial, isActive }) => {
+interface TestimonialSlideProps {
+    testimonial: typeof testimonials[0];
+    isActive: boolean;
+}
+
+const TestimonialSlide = ({ testimonial, isActive }: TestimonialSlideProps) => {
     return (
         <motion.div
             className="absolute inset-0 flex items-center justify-center px-4"
@@ -237,24 +242,15 @@ export default function Testimonials() {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
     };
 
-    const handleDotClick = (index) => {
+    const handleDotClick = (index: number) => {
         setCurrentIndex(index);
     };
 
     return (
         <>
-            {/* Add Poppins font */}
-            <style jsx global>{`
-                @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-                body {
-                    font-family: "Poppins", sans-serif;
-                }
-            `}</style>
-
             <section
                 ref={containerRef}
-                className="relative h-[90vh] bg-black overflow-hidden"
-                style={{ fontFamily: "Poppins, sans-serif" }}>
+                className="relative h-[90vh] bg-black overflow-hidden">
                 {/* Animated Background - Responsive */}
                 <div className="absolute inset-0 overflow-hidden">
                     <motion.div

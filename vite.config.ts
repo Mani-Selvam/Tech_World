@@ -30,6 +30,25 @@ export default defineConfig({
     build: {
         outDir: path.resolve(import.meta.dirname, "dist/public"),
         emptyOutDir: true,
+        minify: 'terser',
+        cssMinify: true,
+        terserOptions: {
+            compress: {
+                drop_console: true,
+                drop_debugger: true,
+            },
+        },
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    'react-vendor': ['react', 'react-dom', 'wouter'],
+                    'ui-vendor': ['framer-motion', 'lucide-react'],
+                    'query-vendor': ['@tanstack/react-query'],
+                },
+            },
+        },
+        chunkSizeWarningLimit: 1000,
+        sourcemap: false,
     },
     server: {
         fs: {

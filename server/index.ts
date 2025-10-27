@@ -11,11 +11,31 @@ dotenv.config({ path: envPath });
 // Now load other modules after environment is set up
 
 import express, { type Request, Response, NextFunction } from "express";
+import compression from "compression";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+
 const app = express();
+
+app.use(compression());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+    if (process.env.NODE_ENV === 'production') {
+        if (req.url.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|webp)$/)) {
+            res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        } else if (req.url.includes('/assets/')) {
+            res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        } else {
+            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        }
+    } else {
+        res.setHeader('Cache-Control', 'no-store, must-revalidate');
+    }
+    next();
+});
 
 app.use((req, res, next) => {
     const start = Date.now();
