@@ -10,18 +10,18 @@ import {
     Star,
     Zap,
     Globe,
+    Maximize2,
+    Minimize2,
 } from "lucide-react";
 import { GraduationCap } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-
-import { useState, useEffect } from "react";
-import { X, Maximize2 } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 export default function PassionateEducator() {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-    const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-    const [isLandscape, setIsLandscape] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    const videoContainerRef = useRef<HTMLDivElement>(null);
 
     const whatsappNumber = "+918056880222";
     const whatsappMessage = ` Hi Sindhu 👋  I'm really interested in learning about Blockchain and Crypto! 💻✨ I'd love to know more about your upcoming session and how I can join your Free workshop, Internship, or Master Courses. 🚀`;
@@ -38,65 +38,71 @@ export default function PassionateEducator() {
         window.open("https://techara.in/", "_blank");
     };
 
-    const openVideoModal = () => {
-        setIsVideoModalOpen(true);
-        if (window.innerWidth < 768) {
-            try {
-                const orientation = screen.orientation as any;
-                if (orientation && orientation.lock) {
-                    orientation.lock("landscape").catch((err: any) => {
-                        console.log("Screen orientation lock not supported:", err);
-                    });
-                }
-            } catch (err) {
-                console.log("Orientation API not supported");
+    // ✅ Fullscreen handler (like YouTube)
+    const handleFullscreen = () => {
+        const container = videoContainerRef.current;
+        if (!container) return;
+
+        if (!isFullscreen) {
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if ((container as any).webkitRequestFullscreen) {
+                (container as any).webkitRequestFullscreen();
+            } else if ((container as any).msRequestFullscreen) {
+                (container as any).msRequestFullscreen();
+            }
+
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock("landscape").catch(() => {});
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if ((document as any).webkitExitFullscreen) {
+                (document as any).webkitExitFullscreen();
+            } else if ((document as any).msExitFullscreen) {
+                (document as any).msExitFullscreen();
+            }
+
+            if (screen.orientation && screen.orientation.unlock) {
+                screen.orientation.unlock();
             }
         }
     };
 
-    const closeVideoModal = () => {
-        setIsVideoModalOpen(false);
-        if (window.innerWidth < 768) {
-            try {
-                const orientation = screen.orientation as any;
-                if (orientation && orientation.unlock) {
-                    orientation.unlock();
-                }
-            } catch (err) {
-                console.log("Orientation API not supported");
-            }
-        }
-    };
-
+    // ✅ Detect fullscreen change and update state
     useEffect(() => {
-        const handleOrientationChange = () => {
-            setIsLandscape(window.matchMedia("(orientation: landscape)").matches);
+        const handleFullscreenChange = () => {
+            setIsFullscreen(!!document.fullscreenElement);
         };
 
-        handleOrientationChange();
-        window.addEventListener("resize", handleOrientationChange);
+        document.addEventListener("fullscreenchange", handleFullscreenChange);
+        document.addEventListener(
+            "webkitfullscreenchange",
+            handleFullscreenChange
+        );
+        document.addEventListener("msfullscreenchange", handleFullscreenChange);
 
         return () => {
-            window.removeEventListener("resize", handleOrientationChange);
+            document.removeEventListener(
+                "fullscreenchange",
+                handleFullscreenChange
+            );
+            document.removeEventListener(
+                "webkitfullscreenchange",
+                handleFullscreenChange
+            );
+            document.removeEventListener(
+                "msfullscreenchange",
+                handleFullscreenChange
+            );
         };
     }, []);
 
-    useEffect(() => {
-        const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === "Escape" && isVideoModalOpen) {
-                closeVideoModal();
-            }
-        };
-
-        window.addEventListener("keydown", handleEscape);
-        return () => window.removeEventListener("keydown", handleEscape);
-    }, [isVideoModalOpen]);
-
     return (
         <section className="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
-            {/* Animated Background Elements */}
+            {/* Background effects */}
             <div className="absolute inset-0 overflow-hidden">
-                {/* Floating Particles */}
                 {[...Array(20)].map((_, i) => (
                     <motion.div
                         key={i}
@@ -117,36 +123,10 @@ export default function PassionateEducator() {
                         }}
                     />
                 ))}
-
-                {/* Gradient Orbs */}
-                <motion.div
-                    className="absolute top-20 left-20 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
-                    animate={{
-                        x: [0, 100, 0],
-                        y: [0, -50, 0],
-                    }}
-                    transition={{
-                        duration: 20,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                    }}
-                />
-                <motion.div
-                    className="absolute bottom-20 right-20 w-96 h-96 bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
-                    animate={{
-                        x: [0, -100, 0],
-                        y: [0, 50, 0],
-                    }}
-                    transition={{
-                        duration: 25,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                    }}
-                />
             </div>
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Section Header */}
+                {/* Header */}
                 <motion.div
                     className="text-center mb-16"
                     initial={{ opacity: 0, y: 30 }}
@@ -157,12 +137,7 @@ export default function PassionateEducator() {
                         className="inline-flex items-center gap-2 bg-purple-500/10 backdrop-blur-sm border border-purple-500/30 rounded-full px-4 py-2 mb-6 cursor-pointer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={handleWhatsAppClick}
-                        transition={{
-                            type: "spring",
-                            stiffness: 400,
-                            damping: 10,
-                        }}>
+                        onClick={handleWhatsAppClick}>
                         <Zap className="w-4 h-4 text-purple-400" />
                         <span className="text-purple-300 text-sm font-medium">
                             Meet Your Mentor
@@ -184,22 +159,17 @@ export default function PassionateEducator() {
                     </p>
                 </motion.div>
 
-                {/* Main Content Grid */}
+                {/* Video + Info */}
                 <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-                    {/* Left Column - Video/Image */}
+                    {/* ✅ Left Column with fullscreen video */}
                     <motion.div
                         className="relative"
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                         viewport={{ once: true }}>
-                        <div className="relative group">
-                            {/* Main Video Container */}
-                            <div 
-                                className="relative rounded-2xl overflow-hidden shadow-2xl cursor-pointer"
-                                onClick={openVideoModal}
-                                data-testid="video-container">
-                                {/* LinkedIn Video Embed */}
+                        <div ref={videoContainerRef} className="relative group">
+                            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                                 <div className="relative aspect-video bg-gradient-to-br from-purple-600/20 to-indigo-600/20 backdrop-blur-sm border border-purple-500/30">
                                     <iframe
                                         src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7172462144091832320?compact=1"
@@ -208,53 +178,19 @@ export default function PassionateEducator() {
                                         frameBorder="0"
                                         allowFullScreen
                                         title="Embedded post"
-                                        className="w-full h-full pointer-events-none"></iframe>
-                                    
-                                    {/* Maximize Overlay */}
-                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                        <div className="bg-white/20 backdrop-blur-md rounded-full p-4">
-                                            <Maximize2 className="w-8 h-8 text-white" />
-                                        </div>
-                                        <p className="absolute bottom-4 text-white font-medium">Click to maximize video</p>
-                                    </div>
+                                        className="w-full h-full"></iframe>
                                 </div>
+                                {/* ✅ Fullscreen toggle button over video */}
+                                <button
+                                    onClick={handleFullscreen}
+                                    className="absolute bottom-3 right-3 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition">
+                                    {isFullscreen ? (
+                                        <Minimize2 className="w-5 h-5" />
+                                    ) : (
+                                        <Maximize2 className="w-5 h-5" />
+                                    )}
+                                </button>
                             </div>
-
-                            {/* Floating Badges */}
-                            <motion.div
-                                className="absolute -top-4 -right-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-full shadow-lg"
-                                animate={{
-                                    y: [0, -10, 0],
-                                }}
-                                transition={{
-                                    duration: 3,
-                                    repeat: Infinity,
-                                }}>
-                                <div className="flex items-center gap-2">
-                                    <Star className="w-4 h-4 fill-yellow-300 text-yellow-300" />
-                                    <span className="font-semibold">
-                                        Top Rated
-                                    </span>
-                                </div>
-                            </motion.div>
-
-                            <motion.div
-                                className="absolute -bottom-4 -left-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full shadow-lg"
-                                animate={{
-                                    y: [0, -10, 0],
-                                }}
-                                transition={{
-                                    duration: 3,
-                                    repeat: Infinity,
-                                    delay: 1,
-                                }}>
-                                <div className="flex items-center gap-2">
-                                    <Award className="w-4 h-4" />
-                                    <span className="font-semibold">
-                                        Expert Certified
-                                    </span>
-                                </div>
-                            </motion.div>
                         </div>
                     </motion.div>
 
@@ -265,7 +201,6 @@ export default function PassionateEducator() {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
                         viewport={{ once: true }}>
-                        {/* Bio Text */}
                         <div className="space-y-4">
                             <p className="text-lg text-gray-300 leading-relaxed">
                                 With over 6+ years of experience in blockchain
@@ -281,7 +216,6 @@ export default function PassionateEducator() {
                             </p>
                         </div>
 
-                        {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 pt-4">
                             <motion.button
                                 onClick={handleWhatsAppClick}
@@ -296,23 +230,14 @@ export default function PassionateEducator() {
                                 <ChevronRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                             </motion.button>
 
-                            {/* ===== FIXED BUTTON ===== */}
                             <motion.button
                                 onClick={handleViewCourses}
-                                className="group backdrop-blur-sm border border-white/20 text-white font-semibold px-8 py-4 rounded-xl shadow-lg flex items-center justify-center gap-3"
-                                // Set the initial state explicitly for Framer Motion
-                                initial={{
-                                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                                }}
+                                className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold px-8 py-4 rounded-xl shadow-lg flex items-center justify-center gap-3"
                                 whileHover={{
                                     scale: 1.05,
                                     backgroundColor: "rgba(147, 51, 234, 0.2)",
                                 }}
-                                whileTap={{ scale: 0.98 }}
-                                // Also set it in the style to ensure it's applied correctly
-                                style={{
-                                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                                }}>
+                                whileTap={{ scale: 0.98 }}>
                                 <BookOpen className="w-5 h-5" />
                                 <span>View Courses</span>
                             </motion.button>
@@ -320,76 +245,34 @@ export default function PassionateEducator() {
                     </motion.div>
                 </div>
 
-                {/* Stats Section */}
-
-                <div>
-                    <div className="flex flex-col items-center space-y-4">
+                {/* Bottom Section unchanged */}
+                <div className="flex flex-col items-center space-y-4">
+                    <motion.div
+                        className="relative w-full max-w-md"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}>
                         <Link href="/enrollment">
                             <Button
                                 size="lg"
                                 className="
-    bg-gradient-to-r from-purple-600 to-pink-600 
-    hover:from-purple-700 hover:to-pink-700 
-    text-white font-semibold 
-    px-6 sm:px-8 py-3 rounded-lg 
-    transition-all duration-300 transform 
-    hover:scale-105 shadow-lg hover:shadow-xl
-    w-full sm:w-auto max-w-xs mx-auto
-    flex justify-center items-center
-  "
+                                    bg-gradient-to-r from-purple-600 to-pink-600 
+                                    hover:from-purple-700 hover:to-pink-700 
+                                    text-white font-bold 
+                                    px-10 py-6 rounded-xl 
+                                    transition-all duration-300 transform 
+                                    hover:scale-105 shadow-xl hover:shadow-2xl
+                                    w-full
+                                    flex justify-center items-center
+                                    text-lg
+                                "
                                 data-testid="button-enroll-now">
-                                <GraduationCap className="w-5 h-5 mr-2" />
+                                <GraduationCap className="w-6 h-6 mr-3" />
                                 Enroll Now - Limited Seats
                             </Button>
                         </Link>
-                    </div>
-                </div>
-            </div>
-
-            {/* Video Modal - Maximized View */}
-            {isVideoModalOpen && (
-                <div className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4">
-                    {/* Close Button */}
-                    <button
-                        onClick={closeVideoModal}
-                        className="absolute top-4 right-4 z-[10000] bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-all backdrop-blur-md"
-                        data-testid="button-close-video">
-                        <X className="w-6 h-6" />
-                    </button>
-
-                    {/* Mobile Landscape Hint */}
-                    {window.innerWidth < 768 && !isLandscape && (
-                        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 bg-purple-600/90 text-white px-4 py-2 rounded-lg text-sm backdrop-blur-md">
-                            Rotate your device for better viewing
-                        </div>
-                    )}
-
-                    {/* Video Container */}
-                    <motion.div
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.9, opacity: 0 }}
-                        className="w-full max-w-6xl">
-                        <div className="relative aspect-video bg-gradient-to-br from-purple-600/20 to-indigo-600/20 rounded-2xl overflow-hidden shadow-2xl border border-purple-500/30">
-                            <iframe
-                                src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7172462144091832320?compact=1"
-                                height="100%"
-                                width="100%"
-                                frameBorder="0"
-                                allowFullScreen={true}
-                                title="Passionate Blockchain Educator Video"
-                                className="w-full h-full"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            />
-                        </div>
-                        
-                        {/* Video Controls Info */}
-                        <div className="mt-4 text-center text-gray-300 text-sm">
-                            <p>Use the video player controls to play/pause. Press ESC or click the X to close.</p>
-                        </div>
                     </motion.div>
                 </div>
-            )}
+            </div>
         </section>
     );
 }

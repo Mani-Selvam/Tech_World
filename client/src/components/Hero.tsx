@@ -134,9 +134,9 @@ export default function Hero() {
                                     }`}>
                                     <ResponsiveMedia
                                         src={sindhuraImage}
+                                        loading="lazy"
                                         alt="Sindhu - Web3 Expert"
                                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                                        loading="eager"
                                         data-testid="img-sindhu-hero"
                                     />
                                 </div>
@@ -192,7 +192,7 @@ export default function Hero() {
                                     src={profileAvatars}
                                     alt="Profile Avatars"
                                     className="h-10 md:h-12 w-auto object-contain hover:scale-110 transition-transform duration-300"
-                                    loading="eager"
+                                    loading="lazy"
                                     data-testid="img-profile-avatars"
                                 />
                             </div>
@@ -262,7 +262,7 @@ export default function Hero() {
                                     src={sindhuraImage}
                                     alt="Sindhu - Web3 Expert"
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                                    loading="eager"
+                                    loading="lazy"
                                     data-testid="img-sindhu-hero-tablet"
                                 />
                             </div>
@@ -310,7 +310,7 @@ export default function Hero() {
                                     src={profileAvatars}
                                     alt="Profile Avatars"
                                     className="h-10 md:h-12 w-auto object-contain hover:scale-110 transition-transform duration-300"
-                                    loading="eager"
+                                    loading="lazy"
                                     data-testid="img-profile-avatars-tablet"
                                 />
                             </div>
@@ -378,7 +378,7 @@ export default function Hero() {
                                     src={sindhuraImage}
                                     alt="Sindhu - Web3 Expert"
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                                    loading="eager"
+                                    loading="lazy"
                                     data-testid="img-sindhu-hero-mobile"
                                 />
                             </div>
@@ -425,7 +425,7 @@ export default function Hero() {
                                 src={profileAvatars}
                                 alt="Profile Avatars"
                                 className="h-10 w-auto object-contain hover:scale-110 transition-transform duration-300"
-                                loading="eager"
+                                loading="lazy"
                                 data-testid="img-profile-avatars-mobile"
                             />
                         </div>

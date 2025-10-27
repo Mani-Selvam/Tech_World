@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import sindhura from "@assets/Tech.png";
+import sindhura from "@assets/Tech.jpg";
 import { ResponsiveMedia } from "./ResponsiveMedia";
 import { motion } from "framer-motion";
 import {
@@ -339,9 +339,9 @@ export default function AboutSection() {
                             <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-500/30">
                                 <ResponsiveMedia
                                     src={sindhura}
+                                    loading="lazy"
                                     alt="Sindhu - Web3 Expert"
                                     className="w-full h-auto object-cover"
-                                    loading="eager"
                                     data-testid="img-sindhu-hero"
                                 />
 

@@ -6,7 +6,6 @@ import image5 from "@assets/image 5.jpg";
 import image6 from "@assets/image 6.jpeg";
 import { useEffect, useRef, useState } from "react";
 
-
 export default function PhotoGallery() {
     const images = [
         {
@@ -44,7 +43,7 @@ export default function PhotoGallery() {
         // Set scroll speed based on screen size
         const updateScrollSpeed = () => {
             if (window.innerWidth < 640) {
-                setScrollSpeed(10); // Fast on mobile
+                setScrollSpeed(12); // Fast on mobile
             } else if (window.innerWidth < 1024) {
                 setScrollSpeed(12); // Medium on tablet
             } else {
@@ -105,6 +104,7 @@ export default function PhotoGallery() {
                                 <img
                                     src={image.src}
                                     alt={image.alt}
+                                    loading="lazy"
                                     className="w-60 sm:w-72 md:w-80 h-48 sm:h-56 md:h-60 object-cover rounded-lg transition-transform duration-1000"
                                     data-testid={`gallery-image-${index}`}
                                 />
