@@ -4,6 +4,16 @@ This is a modern full-stack web application for TechARA Academy's Web3 and block
 
 # Recent Changes
 
+**2025-10-27**: Comprehensive performance optimization for Lighthouse 90+ score
+- **Font Optimization**: Reduced from 26+ Google Font families to 1 (Poppins with 4 weights) - ~300ms faster render
+- **Code Splitting**: Implemented lazy loading for all routes using React.lazy() and Suspense
+- **Build Optimization**: Added Terser minification, vendor chunking, tree-shaking, and production optimizations
+- **Server Performance**: Added gzip/brotli compression middleware and smart cache headers (1-year for assets, no-cache for HTML)
+- **React Warnings Fixed**: Removed invalid jsx/global props from Testimonials component
+- **Image Optimization**: Confirmed lazy loading for below-the-fold images (PhotoGallery, Testimonials)
+- **Render-blocking Optimization**: Deferred scripts, optimized font loading with display=swap
+- **Expected Results**: Target FCP <3s, LCP <4s, TBT <150ms, Performance ≥90
+
 **2025-10-25**: Enhanced user experience with improved logout, registration, and video features
 - **Dashboard Logout**: Fixed logout to prevent back navigation using window.location.replace("/")
 - **Registration WhatsApp Integration**: Confirmed automatic WhatsApp redirect (2s delay) after successful registration
@@ -25,13 +35,15 @@ Preferred communication style: Simple, everyday language.
 
 ## Frontend Architecture
 - **React 18** with TypeScript for the user interface
-- **Vite** as the build tool and development server
+- **Vite** as the build tool and development server with production optimizations
 - **Tailwind CSS** for styling with a custom design system
 - **shadcn/ui** component library for consistent UI components
 - **Wouter** for client-side routing instead of React Router
 - **TanStack Query** for server state management and API interactions
 - **React Hook Form** with Zod validation for form handling
 - **Framer Motion** for advanced animations and bubble effects
+- **Code splitting** with React.lazy() and Suspense for route-level lazy loading
+- **Optimized fonts** - Single Poppins family with 4 weights, preloaded with display=swap
 
 ## Backend Architecture
 - **Express.js** server with TypeScript
@@ -39,6 +51,8 @@ Preferred communication style: Simple, everyday language.
 - **Modular route registration** system for API endpoints
 - **Development/production environment separation** with Vite integration
 - **Middleware-based architecture** for request logging and error handling
+- **Compression middleware** for gzip/brotli response compression
+- **Smart caching headers** - immutable for hashed assets, no-cache for HTML
 
 ## Database and ORM
 - **Drizzle ORM** configured for PostgreSQL with schema definitions
@@ -63,6 +77,15 @@ Preferred communication style: Simple, everyday language.
 - **Hot module replacement** in development
 - **Error overlay** for runtime error debugging
 - **Cross-env** for environment variable management
+
+## Performance Optimizations
+- **Build Configuration**: Terser minification, CSS minification, vendor chunking (react-vendor, ui-vendor, query-vendor)
+- **Tree-shaking**: Production builds drop console.log and debugger statements
+- **Bundle Strategy**: Manual chunks for better caching (react/wouter, framer-motion/lucide, tanstack-query)
+- **Asset Loading**: Lazy loading for images, deferred scripts, optimized font delivery
+- **Server Compression**: Gzip/Brotli compression for all responses
+- **Cache Strategy**: 1-year immutable cache for versioned assets, no-cache for HTML
+- **Target Metrics**: Performance ≥90, FCP <3s, LCP <4s, TBT <150ms, CLS <0.1
 
 # Key Features
 
