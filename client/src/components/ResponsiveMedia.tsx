@@ -42,22 +42,25 @@ export function ResponsiveMedia({
     fill: 'object-fill'
   };
 
-  return (
-    <img
-      src={src}
-      alt={alt}
-      loading={loading}
-      fetchPriority={fetchpriority}
-      decoding={decoding}
-      sizes={sizes}
-      className={cn(
-        'max-w-full h-auto',
-        aspectRatioClasses[aspectRatio],
-        objectFitClasses[objectFit],
-        className
-      )}
-      style={maxHeight ? { maxHeight, ...style } : style}
-      data-testid={dataTestId}
-    />
-  );
+  const imgProps: any = {
+    src,
+    alt,
+    loading,
+    decoding,
+    sizes,
+    className: cn(
+      'max-w-full h-auto',
+      aspectRatioClasses[aspectRatio],
+      objectFitClasses[objectFit],
+      className
+    ),
+    style: maxHeight ? { maxHeight, ...style } : style,
+    'data-testid': dataTestId
+  };
+
+  if (fetchpriority) {
+    imgProps.fetchpriority = fetchpriority;
+  }
+
+  return <img {...imgProps} />;
 }
