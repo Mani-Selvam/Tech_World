@@ -401,7 +401,7 @@ export default function AboutSection() {
                         viewport={{ once: true }}>
                         {/* Dynamic Role Text */}
                         <div className="mb-6">
-                            <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-2">
+                            <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-2">
                                 I Am An{" "}
                                 <span
                                     className={`inline-block min-h-[1.2em] transition-all duration-500 ${
@@ -418,7 +418,7 @@ export default function AboutSection() {
                                     }}>
                                     {roles[currentRoleIndex]}
                                 </span>
-                            </h1>
+                            </h2>
 
                             <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse"></div>

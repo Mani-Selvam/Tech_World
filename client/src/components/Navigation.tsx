@@ -103,6 +103,7 @@ export default function Navigation() {
                             <button
                                 onClick={() => setIsOpen(!isOpen)}
                                 className="text-foreground hover:text-primary"
+                                aria-label={isOpen ? "Close menu" : "Open menu"}
                                 data-testid="button-mobile-menu">
                                 {isOpen ? <X size={24} /> : <Menu size={24} />}
                             </button>
