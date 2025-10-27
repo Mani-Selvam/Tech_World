@@ -4,6 +4,23 @@ This is a modern full-stack web application for TechARA Academy's Web3 and block
 
 # Recent Changes
 
+**2025-10-27**: Additional Lighthouse Optimization - Accessibility, Security, and Best Practices
+- **Accessibility Improvements**:
+  - Fixed viewport meta tag: changed maximum-scale from 1 to 5 to allow proper zoom for accessibility
+  - Added dynamic aria-label to mobile menu button ("Open menu" / "Close menu") for screen readers
+  - Fixed heading hierarchy: changed About section h1 to h2 for proper SEO structure (only one h1 per page)
+- **Security Headers Implementation**:
+  - Content Security Policy (CSP): Protects against XSS attacks with proper directives for scripts, styles, fonts, images
+  - HTTP Strict Transport Security (HSTS): Forces HTTPS in production with 1-year max-age
+  - Cross-Origin Opener Policy (COOP): Set to 'same-origin' for better cross-origin isolation
+  - X-Frame-Options: Set to 'SAMEORIGIN' to prevent clickjacking attacks
+  - X-Content-Type-Options: Set to 'nosniff' to prevent MIME-type sniffing
+  - Referrer-Policy: Set to 'strict-origin-when-cross-origin' for privacy
+  - Permissions-Policy: Restricts geolocation, microphone, and camera access
+  - CSP allows WebSocket (ws:/wss:) for Vite HMR in development while maintaining production security
+- **HTML Preload Optimization**: Corrected image preload paths to /attached_assets/ for proper LCP optimization
+- **Expected Results**: Accessibility ≥95, Best Practices ≥90, maintaining Performance ≥90 and SEO 100
+
 **2025-10-27**: Complete Lighthouse Performance Optimization - Targeting 90+ Mobile, 95+ Desktop
 - **Image Optimization**: Converted all JPG/JPEG/PNG images to WebP format (85% quality) with responsive variants
   - Created 400w, 800w, 1200w variants for all images using Sharp image optimization script
