@@ -124,6 +124,7 @@ export default function Hero() {
                                         src={sindhuraImage}
                                         loading="eager"
                                         fetchpriority="high"
+                                        decoding="sync"
                                         alt="Sindhu - Web3 Expert"
                                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                         data-testid="img-sindhu-hero"
@@ -245,6 +246,7 @@ export default function Hero() {
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                     loading="eager"
                                     fetchpriority="high"
+                                    decoding="sync"
                                     data-testid="img-sindhu-hero-tablet"
                                 />
                             </div>
@@ -354,6 +356,7 @@ export default function Hero() {
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                     loading="eager"
                                     fetchpriority="high"
+                                    decoding="sync"
                                     data-testid="img-sindhu-hero-mobile"
                                 />
                             </div>
