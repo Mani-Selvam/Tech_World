@@ -466,12 +466,12 @@ Speed > Optimization > Polish > Lossless (or Lossy)
 - [x] Animation delay removal
 - [x] Sync decoding for LCP
 - [x] Fix fetchPriority console warning
+- [x] Add explicit width/height to prevent CLS (Desktop: 400x400, Tablet: 320x320, Mobile: 256x256)
 
 ### Phase 2: High Priority (This Week)
 - [ ] Convert hero images to WebP
 - [ ] Generate responsive image sizes (400w, 800w, 1200w)
 - [ ] Add srcset + sizes to hero images
-- [ ] Add explicit width/height to prevent CLS
 - [ ] Update HTML preload to WebP
 
 ### Phase 3: Nice to Have (Next Sprint)

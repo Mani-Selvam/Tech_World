@@ -12,6 +12,8 @@ interface ResponsiveMediaProps {
   aspectRatio?: 'square' | 'video' | 'auto';
   objectFit?: 'contain' | 'cover' | 'fill';
   maxHeight?: string;
+  width?: number;
+  height?: number;
   style?: CSSProperties;
   'data-testid'?: string;
 }
@@ -27,6 +29,8 @@ export function ResponsiveMedia({
   aspectRatio = 'auto',
   objectFit = 'contain',
   maxHeight,
+  width,
+  height,
   style,
   'data-testid': dataTestId
 }: ResponsiveMediaProps) {
@@ -57,6 +61,14 @@ export function ResponsiveMedia({
     style: maxHeight ? { maxHeight, ...style } : style,
     'data-testid': dataTestId
   };
+
+  if (width) {
+    imgProps.width = width;
+  }
+
+  if (height) {
+    imgProps.height = height;
+  }
 
   if (fetchpriority) {
     imgProps.fetchpriority = fetchpriority;

@@ -113,6 +113,8 @@ export default function Hero() {
                                 <ResponsiveMedia
                                     src={redCircle}
                                     alt=""
+                                    width={450}
+                                    height={450}
                                     className="w-full h-full object-cover animate-pulse-slow"
                                     loading="eager"
                                 />
@@ -125,6 +127,8 @@ export default function Hero() {
                                         loading="eager"
                                         fetchpriority="high"
                                         decoding="sync"
+                                        width={400}
+                                        height={400}
                                         alt="Sindhu - Web3 Expert"
                                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                         data-testid="img-sindhu-hero"
@@ -233,6 +237,8 @@ export default function Hero() {
                             <ResponsiveMedia
                                 src={redCircle}
                                 alt=""
+                                width={320}
+                                height={320}
                                 className="w-full h-full object-cover animate-pulse-slow"
                                 loading="eager"
                             />
@@ -243,6 +249,8 @@ export default function Hero() {
                                 <ResponsiveMedia
                                     src={sindhuraImage}
                                     alt="Sindhu - Web3 Expert"
+                                    width={320}
+                                    height={320}
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                     loading="eager"
                                     fetchpriority="high"
@@ -343,6 +351,8 @@ export default function Hero() {
                             <ResponsiveMedia
                                 src={redCircle}
                                 alt=""
+                                width={256}
+                                height={256}
                                 className="w-full h-full object-cover animate-pulse-slow"
                                 loading="eager"
                             />
@@ -353,6 +363,8 @@ export default function Hero() {
                                 <ResponsiveMedia
                                     src={sindhuraImage}
                                     alt="Sindhu - Web3 Expert"
+                                    width={256}
+                                    height={256}
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                     loading="eager"
                                     fetchpriority="high"
