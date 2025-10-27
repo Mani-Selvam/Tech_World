@@ -23,7 +23,7 @@ export default function PassionateEducator() {
     const [isFullscreen, setIsFullscreen] = useState(false);
     const videoContainerRef = useRef<HTMLDivElement>(null);
 
-    const whatsappNumber = "+918056880222";
+    const whatsappNumber = "+919345791995";
     const whatsappMessage = ` Hi Sindhu 👋  I'm really interested in learning about Blockchain and Crypto! 💻✨ I'd love to know more about your upcoming session and how I can join your Free workshop, Internship, or Master Courses. 🚀`;
 
     const handleWhatsAppClick = () => {

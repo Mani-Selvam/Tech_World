@@ -39,7 +39,7 @@ export default function Hero() {
     };
 
     const handleBookDemo = () => {
-        const whatsappNumber = "+918056880222";
+        const whatsappNumber = "+919345791995";
         const whatsappMessage = `Hi Sindhu 👋  I'm really interested in learning about Blockchain and Crypto! 💻✨ I'd love to know more about your upcoming session and how I can join your Free workshop, Internship, or Master Courses. 🚀`;
 
         const url = `https://wa.me/${whatsappNumber.replace(
@@ -114,8 +114,7 @@ export default function Hero() {
                         {/* Central Sindhu Circle */}
                         <div className="relative">
                             {/* Red Circle Background */}
-                            <div
-                                className="w-[320px] h-[320px] md:w-[380px] md:h-[340px] lg:w-[400px] lg:h-[400px] xl:w-[430px] xl:h-[420px] 2xl:w-[450px] 2xl:h-[450px] rounded-full relative mx-auto -translate-x-20 -translate-y-10 opacity-100 scale-100">
+                            <div className="w-[320px] h-[320px] md:w-[380px] md:h-[340px] lg:w-[400px] lg:h-[400px] xl:w-[430px] xl:h-[420px] 2xl:w-[450px] 2xl:h-[450px] rounded-full relative mx-auto -translate-x-20 -translate-y-10 opacity-100 scale-100">
                                 <ResponsiveMedia
                                     src={redCircle}
                                     srcset={`${redCircle400} 400w, ${redCircle800} 800w, ${redCircle1200} 1200w`}
@@ -128,8 +127,7 @@ export default function Hero() {
                                 />
 
                                 {/* Sindhu Image - Positioned in center of red circle */}
-                                <div
-                                    className="absolute top-[40px] left-[10px] right-[40px] bottom-[40px] md:top-[50px] md:left-[10px] md:right-[50px] md:bottom-[50px] lg:top-[60px] lg:left-[60px] lg:right-[60px] lg:bottom-[60px] rounded-full overflow-hidden translate-x-20 opacity-100 rotate-0">
+                                <div className="absolute top-[40px] left-[10px] right-[40px] bottom-[40px] md:top-[50px] md:left-[10px] md:right-[50px] md:bottom-[50px] lg:top-[60px] lg:left-[60px] lg:right-[60px] lg:bottom-[60px] rounded-full overflow-hidden translate-x-20 opacity-100 rotate-0">
                                     <ResponsiveMedia
                                         src={sindhuraImage}
                                         srcset={`${sindhuraImage400} 400w, ${sindhuraImage800} 800w, ${sindhuraImage1200} 1200w`}
@@ -242,8 +240,7 @@ export default function Hero() {
                 <div className="hidden md:block lg:hidden px-4">
                     {/* Central Sindhu Circle for Tablet */}
                     <div className="flex justify-center mt-8 mb-8">
-                        <div
-                            className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 -translate-x-10 opacity-100 scale-100">
+                        <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 -translate-x-10 opacity-100 scale-100">
                             <ResponsiveMedia
                                 src={redCircle}
                                 srcset={`${redCircle400} 400w, ${redCircle800} 800w`}
@@ -256,8 +253,7 @@ export default function Hero() {
                             />
 
                             {/* Sindhu Image for Tablet */}
-                            <div
-                                className="absolute top-12 left-12 right-12 bottom-12 rounded-full overflow-hidden translate-x-10 opacity-100 rotate-0">
+                            <div className="absolute top-12 left-12 right-12 bottom-12 rounded-full overflow-hidden translate-x-10 opacity-100 rotate-0">
                                 <ResponsiveMedia
                                     src={sindhuraImage}
                                     srcset={`${sindhuraImage400} 400w, ${sindhuraImage800} 800w`}
@@ -360,8 +356,7 @@ export default function Hero() {
                 <div className="md:hidden px-2 sm:px-4">
                     {/* Central Sindhu Circle for Mobile */}
                     <div className="flex justify-center mt-6 mb-6">
-                        <div
-                            className="relative w-56 h-56 sm:w-64 sm:h-64 -translate-x-10 opacity-100 scale-100">
+                        <div className="relative w-56 h-56 sm:w-64 sm:h-64 -translate-x-10 opacity-100 scale-100">
                             <ResponsiveMedia
                                 src={redCircle}
                                 srcset={`${redCircle400} 400w, ${redCircle800} 800w`}
@@ -374,8 +369,7 @@ export default function Hero() {
                             />
 
                             {/* Sindhu Image for Mobile */}
-                            <div
-                                className="absolute top-10 left-10 right-10 bottom-10 rounded-full overflow-hidden translate-x-10 opacity-100 rotate-0">
+                            <div className="absolute top-10 left-10 right-10 bottom-10 rounded-full overflow-hidden translate-x-10 opacity-100 rotate-0">
                                 <ResponsiveMedia
                                     src={sindhuraImage}
                                     srcset={`${sindhuraImage400} 400w, ${sindhuraImage800} 800w`}
