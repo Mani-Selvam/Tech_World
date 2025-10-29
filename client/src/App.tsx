@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Route, Router, Switch } from "wouter";
 import { lazy, Suspense } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -208,16 +208,16 @@ const LoadingSpinner = () => {
     );
 };
 
-function Router() {
+function AppRouter() {
     return (
-        <Suspense fallback={<LoadingSpinner />}>
-            <Switch>
+        <Router base="/">
+            <Suspense fallback={<LoadingSpinner />}>
                 <Route path="/" component={Home} />
                 <Route path="/enrollment" component={Enrollment} />
                 <Route path="/dashboard" component={ProtectedDashboard} />
-                <Route component={NotFound} />
-            </Switch>
-        </Suspense>
+                <Route path="*" component={NotFound} />
+            </Suspense>
+        </Router>
     );
 }
 
@@ -229,7 +229,7 @@ function App() {
                     <BubbleAnimation />
                     <div className="relative z-10">
                         <Toaster />
-                        <Router />
+                        <AppRouter />
                         {/* <ProtectedDashboard /> */}
                     </div>
                 </div>
