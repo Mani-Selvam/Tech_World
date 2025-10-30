@@ -227,7 +227,7 @@ export default function CountdownTimer({ onRegisterClick }) {
                                 variants={itemVariants}>
                                 <Calendar className="w-6 h-6 text-purple-400 mx-auto mb-2" />
                                 <div className="text-white font-semibold">
-                                    Every Friday
+                                    Every Saturday
                                 </div>
                                 <div className="text-gray-400 text-sm">
                                     Weekly Session
@@ -239,7 +239,7 @@ export default function CountdownTimer({ onRegisterClick }) {
                                 variants={itemVariants}>
                                 <Clock className="w-6 h-6 text-blue-400 mx-auto mb-2" />
                                 <div className="text-white font-semibold">
-                                    7:00 PM - 8:30 PM
+                                    19:00 – 20:30 IST
                                 </div>
                                 <div className="text-gray-400 text-sm">
                                     90 Minutes

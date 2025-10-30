@@ -229,19 +229,6 @@ export default function Login({ onLogin }: LoginProps) {
                     </form>
 
                     {/* Demo Credentials */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.6 }}
-                        className="mt-6 p-4 bg-purple-500/10 border border-purple-500/20 rounded-lg">
-                        <p className="text-xs text-purple-300 text-center">
-                            <strong>Demo Credentials:</strong>
-                            <br />
-                            Username: admin
-                            <br />
-                            Password: admin123
-                        </p>
-                    </motion.div>
                 </div>
             </motion.div>
         </div>

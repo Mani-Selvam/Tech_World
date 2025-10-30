@@ -121,7 +121,7 @@ function HomeContent() {
                     </Suspense>
                 </div>
             </ScrollReveal>
-            
+
             {/* Countdown Timer - Lazy loaded with preserved anchor */}
             <ScrollReveal variant="fade-up" duration={800} delay={200}>
                 <div className="relative" id="timer">
@@ -136,6 +136,9 @@ function HomeContent() {
             <ScrollReveal variant="fade-in" duration={600} delay={100}>
                 <Footer />
             </ScrollReveal>
+            <br />
+            <br />
+            <br />
             <StickyBottomBanner />
         </div>
     );

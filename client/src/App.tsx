@@ -212,10 +212,12 @@ function AppRouter() {
     return (
         <Router base="/">
             <Suspense fallback={<LoadingSpinner />}>
-                <Route path="/" component={Home} />
-                <Route path="/enrollment" component={Enrollment} />
-                <Route path="/dashboard" component={ProtectedDashboard} />
-                <Route path="*" component={NotFound} />
+                <Switch>
+                    <Route path="/" component={Home} />
+                    <Route path="/enrollment" component={Enrollment} />
+                    <Route path="/dashboard" component={ProtectedDashboard} />
+                    <Route path="*" component={NotFound} />
+                </Switch>
             </Suspense>
         </Router>
     );

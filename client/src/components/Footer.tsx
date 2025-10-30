@@ -234,7 +234,7 @@ export default function Footer() {
                                 Weekly Sessions
                             </h4>
                             <p className="text-gray-300 text-sm">
-                                Every Friday
+                                Every Saturday
                             </p>
                         </div>
                         <div className="flex flex-col items-center">
@@ -243,7 +243,7 @@ export default function Footer() {
                                 Session Time
                             </h4>
                             <p className="text-gray-300 text-sm">
-                                7:00 PM - 8:30 PM
+                                19:00 – 20:30 IST
                             </p>
                         </div>
                         <div className="flex flex-col items-center">
