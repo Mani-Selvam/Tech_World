@@ -12,19 +12,23 @@ export default function Navigation() {
     const [location, navigate] = useLocation();
 
     const navigationItems = [
-        { id: "hero", title: "Home" },
-        { id: "about", title: "About" },
-        { id: "benefit", title: "Skills" },
-        { id: "courses", title: "WhatWeDo" },
-        { id: "features", title: "Features" },
-        { id: "attendees", title: "Attendees" },
+        { id: "hero", title: "Home", path: "/" },
+        { id: "about", title: "About", path: "/" },
+        { id: "benefit", title: "Skills", path: "/" },
+        { id: "courses", title: "WhatWeDo", path: "/" },
+        { id: "features", title: "Features", path: "/" },
+        { id: "attendees", title: "Attendees", path: "/" },
+        { id: "academy", title: "Academy", path: "/academy" },
     ];
 
-    const scrollToSection = (sectionId: string) => {
+    const scrollToSection = (sectionId: string, path: string) => {
         setIsOpen(false);
 
-        // If we're not on the home page, navigate to home first
-        if (location !== "/") {
+        // If it's an external page link
+        if (path && path !== "/" && path !== location) {
+            navigate(path);
+        } else if (path === "/" && location !== "/") {
+            // If we're not on the home page, navigate to home first
             navigate("/");
             // Wait for navigation to complete, then scroll to section
             setTimeout(() => {
@@ -65,7 +69,9 @@ export default function Navigation() {
                             {navigationItems.map((item) => (
                                 <button
                                     key={item.id}
-                                    onClick={() => scrollToSection(item.id)}
+                                    onClick={() =>
+                                        scrollToSection(item.id, item.path)
+                                    }
                                     className="text-foreground hover:text-primary transition-colors text-sm font-medium"
                                     data-testid={`nav-${item.id}`}>
                                     {item.title}
@@ -84,7 +90,9 @@ export default function Navigation() {
                             {navigationItems.slice(0, 3).map((item) => (
                                 <button
                                     key={item.id}
-                                    onClick={() => scrollToSection(item.id)}
+                                    onClick={() =>
+                                        scrollToSection(item.id, item.path)
+                                    }
                                     className="text-foreground hover:text-primary transition-colors text-xs font-medium"
                                     data-testid={`nav-${item.id}-md`}>
                                     {item.title}
@@ -119,7 +127,10 @@ export default function Navigation() {
                                         <button
                                             key={item.id}
                                             onClick={() =>
-                                                scrollToSection(item.id)
+                                                scrollToSection(
+                                                    item.id,
+                                                    item.path
+                                                )
                                             }
                                             className="block px-3 py-2 text-foreground hover:text-primary transition-colors text-sm rounded-lg hover:bg-secondary/30"
                                             data-testid={`nav-${item.id}-mobile`}>

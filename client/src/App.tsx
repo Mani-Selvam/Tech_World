@@ -11,6 +11,7 @@ import { Loader2, Sparkles, Zap, BookOpen } from "lucide-react";
 const Home = lazy(() => import("@/pages/home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const Enrollment = lazy(() => import("@/pages/enrollment"));
+const Academy = lazy(() => import("@/pages/academy"));
 const ProtectedDashboard = lazy(
     () => import("@/components/ProtectedDashboard")
 );
@@ -215,6 +216,7 @@ function AppRouter() {
                 <Switch>
                     <Route path="/" component={Home} />
                     <Route path="/enrollment" component={Enrollment} />
+                    <Route path="/academy" component={Academy} />
                     <Route path="/dashboard" component={ProtectedDashboard} />
                     <Route path="*" component={NotFound} />
                 </Switch>
