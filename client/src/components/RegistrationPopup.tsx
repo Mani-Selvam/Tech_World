@@ -58,7 +58,12 @@ export default function RegistrationPopup({ isOpen, onClose }) {
 
         try {
             // Submit registration data to your backend
-            const response = await fetch(`${getApiBase()}/api/register`, {
+            const apiBase = getApiBase();
+            const url = `${apiBase}/api/register`;
+            console.log("Registration API URL:", url);
+            console.log("Registration data:", data);
+            
+            const response = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -66,7 +71,10 @@ export default function RegistrationPopup({ isOpen, onClose }) {
                 body: JSON.stringify(data),
             });
 
+            console.log("Registration response status:", response.status);
+            
             const result = await response.json();
+            console.log("Registration result:", result);
 
             if (!response.ok) {
                 throw new Error(
