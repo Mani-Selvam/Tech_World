@@ -30,13 +30,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
   </noscript>
 
-  <!-- ✅ Preload Critical Hero Images for LCP Optimization (WebP with Responsive Sizes) -->
-  <link rel="preload" as="image" href="/attached_assets/hero-sindhu-800w.webp"
-    imagesrcset="/attached_assets/hero-sindhu-400w.webp 400w, /attached_assets/hero-sindhu-800w.webp 800w, /attached_assets/hero-sindhu-1200w.webp 1200w"
-    imagesizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px" type="image/webp" fetchpriority="high" />
-  <link rel="preload" as="image" href="/attached_assets/hero-circle-800w.webp"
-    imagesrcset="/attached_assets/hero-circle-400w.webp 400w, /attached_assets/hero-circle-800w.webp 800w, /attached_assets/hero-circle-1200w.webp 1200w"
-    imagesizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px" type="image/webp" />
+  <!-- ✅ Preload Critical Hero Images for LCP Optimization (WebP, Compressed) -->
+  <link rel="preload" as="image" href="/attached_assets/hero-sindhu.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/attached_assets/hero-circle.webp" type="image/webp" />
 
   <!-- ✅ Robots and Canonical Tags -->
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />

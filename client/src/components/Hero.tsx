@@ -119,6 +119,7 @@ export default function Hero() {
                                     height={450}
                                     className="w-full h-full object-cover"
                                     loading="eager"
+                                    decoding="async"
                                 />
 
                                 {/* Sindhu Image - Positioned in center of red circle */}
@@ -128,7 +129,7 @@ export default function Hero() {
                                         sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 400px"
                                         loading="eager"
                                         fetchpriority="high"
-                                        decoding="sync"
+                                        decoding="async"
                                         width={400}
                                         height={400}
                                         alt="Sindhu - Web3 Expert"
@@ -243,6 +244,7 @@ export default function Hero() {
                                 height={320}
                                 className="w-full h-full object-cover animate-pulse-slow"
                                 loading="eager"
+                                decoding="async"
                             />
 
                             {/* Sindhu Image for Tablet */}
@@ -256,7 +258,7 @@ export default function Hero() {
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                     loading="eager"
                                     fetchpriority="high"
-                                    decoding="sync"
+                                    decoding="async"
                                     data-testid="img-sindhu-hero-tablet"
                                 />
                             </div>
@@ -370,7 +372,7 @@ export default function Hero() {
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                     loading="eager"
                                     fetchpriority="high"
-                                    decoding="sync"
+                                    decoding="async"
                                     data-testid="img-sindhu-hero-mobile"
                                 />
                             </div>
