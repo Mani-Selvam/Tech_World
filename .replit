@@ -45,4 +45,6 @@ build = ["npm", "run", "build"]
 [userenv]
 
 [userenv.development]
-VITE_API_URL = "http://localhost:3000"
+
+[userenv.shared]
+VITE_API_URL = "http://localhost:5000"
