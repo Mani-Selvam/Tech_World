@@ -33,16 +33,16 @@ export default function BubbleAnimation() {
     const observer = new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
         if (entry.entryType === 'largest-contentful-paint') {
-          // Delay start by 200ms after LCP for smooth transition
-          setTimeout(() => setIsLCPComplete(true), 200);
+          // Delay start by 500ms after LCP for smooth transition
+          setTimeout(() => setIsLCPComplete(true), 500);
         }
       }
     });
 
     observer.observe({ entryTypes: ['largest-contentful-paint'] });
 
-    // Fallback: if LCP doesn't trigger in 3 seconds, start anyway
-    const timeout = setTimeout(() => setIsLCPComplete(true), 3000);
+    // Fallback: if LCP doesn't trigger in 5 seconds, start anyway
+    const timeout = setTimeout(() => setIsLCPComplete(true), 5000);
 
     return () => {
       observer.disconnect();
@@ -68,10 +68,10 @@ export default function BubbleAnimation() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize 10 bubbles
+    // Initialize 6 bubbles (reduced from 10 for better performance)
     const initializeBubbles = () => {
       bubblesRef.current = [];
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 6; i++) {
         bubblesRef.current.push({
           x: Math.random() * canvas.width,
           y: canvas.height + 50, // Start below screen

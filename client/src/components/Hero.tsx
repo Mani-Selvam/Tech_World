@@ -112,10 +112,10 @@ export default function Hero() {
                                 <ResponsiveMedia
                                     src={redCircle}
                                     sizes="(max-width: 768px) 320px, (max-width: 1024px) 400px, 450px"
-                                    alt=""
+                                    alt="Hero background circle"
                                     width={450}
                                     height={450}
-                                    className="w-full h-full object-cover animate-pulse-slow"
+                                    className="w-full h-full object-cover"
                                     loading="eager"
                                 />
 
