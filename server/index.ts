@@ -156,13 +156,12 @@ app.use((req, res, next) => {
         throw err;
     });
 
-    // In development, the server only serves API routes
-    // The client is served separately by Vite dev server on port 5000
-    // In production, serve the built static client files
-    if (app.get("env") === "production") {
+    // Setup frontend serving
+    if (app.get("env") === "development") {
+        await setupVite(app, server);
+    } else {
         serveStatic(app);
     }
-    // In development mode, don't setup Vite - let the separate Vite dev server handle the client
 
     // ALWAYS serve the app on the port specified in the environment variable PORT
     // Other ports are firewalled. Default to 5000 if not specified.
