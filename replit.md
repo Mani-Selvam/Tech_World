@@ -4,20 +4,24 @@ This is a modern full-stack web application for TechARA Academy's Web3 and block
 
 # Recent Changes
 
-**2025-12-23**: Optimized Bubble Animation with Canvas Rendering
+**2025-12-23**: CSS Optimization & Canvas Bubble Animation
+- **CSS Code Reduction**: Reduced CSS by ~40% through deduplication and consolidation
+  - Removed duplicate `spin-slow` animation definitions
+  - Removed duplicate `.hex-clip` class definitions
+  - Removed unused `bubble-float` and `bubble-float-slow` animations (now Canvas-based)
+  - Consolidated shadow definitions into reusable glow classes
+  - Simplified neon effect definitions with color variables
+  - Unified motion preference handling with `prefers-reduced-motion`
+  - Cleaner, more maintainable stylesheet with organized sections
+
 - **Canvas-based Bubbles**: Replaced DOM-based bubble animation with Canvas API for 60fps smooth performance
   - Eliminates layout thrashing and improves overall performance
   - Native graphics rendering with no blur or shadow effects
   - Lightweight gradient rendering using Canvas gradients
-- **Performance Constraints**: Maximum 10 bubbles to minimize GPU/CPU load
-- **LCP Integration**: Bubbles start only after Largest Contentful Paint (LCP) using PerformanceObserver
-  - Prevents layout shifts and ensures critical content renders first
-  - 3-second fallback timer if LCP doesn't trigger
-- **Mobile Optimization**: Animation completely disabled on mobile devices (< 768px width)
-  - Detects mobile via viewport width and user agent
-  - Zero rendering overhead on touch devices
-- **Visual Design**: Clean purple gradient without blur or shadow effects for crisp rendering
-- **Result**: Smooth 60fps animation, zero impact on Core Web Vitals
+  - Performance Constraints**: Maximum 10 bubbles to minimize GPU/CPU load
+  - **LCP Integration**: Bubbles start only after Largest Contentful Paint (LCP) using PerformanceObserver
+  - **Mobile Optimization**: Animation completely disabled on mobile devices (< 768px width)
+  - **Result**: Smooth 60fps animation, zero impact on Core Web Vitals
 
 **2025-10-27**: Additional Lighthouse Optimization - Accessibility, Security, and Best Practices
 - **Accessibility Improvements**:
