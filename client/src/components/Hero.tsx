@@ -1,12 +1,6 @@
 import sindhuraImage from "@assets/hero-sindhu.webp";
-import sindhuraImage400 from "@assets/hero-sindhu-400w.webp";
-import sindhuraImage800 from "@assets/hero-sindhu-800w.webp";
-import sindhuraImage1200 from "@assets/hero-sindhu-1200w.webp";
 import profileAvatars from "@assets/Group 58_1758098717538.png";
 import redCircle from "@assets/hero-circle.webp";
-import redCircle400 from "@assets/hero-circle-400w.webp";
-import redCircle800 from "@assets/hero-circle-800w.webp";
-import redCircle1200 from "@assets/hero-circle-1200w.webp";
 import { ResponsiveMedia } from "./ResponsiveMedia";
 import { useEffect, useState } from "react";
 import SectionBubbles from "./SectionBubbles";
@@ -117,7 +111,6 @@ export default function Hero() {
                             <div className="w-[320px] h-[320px] md:w-[380px] md:h-[340px] lg:w-[400px] lg:h-[400px] xl:w-[430px] xl:h-[420px] 2xl:w-[450px] 2xl:h-[450px] rounded-full relative mx-auto -translate-x-20 -translate-y-10 opacity-100 scale-100">
                                 <ResponsiveMedia
                                     src={redCircle}
-                                    srcset={`${redCircle400} 400w, ${redCircle800} 800w, ${redCircle1200} 1200w`}
                                     sizes="(max-width: 768px) 320px, (max-width: 1024px) 400px, 450px"
                                     alt=""
                                     width={450}
@@ -130,7 +123,6 @@ export default function Hero() {
                                 <div className="absolute top-[40px] left-[10px] right-[40px] bottom-[40px] md:top-[50px] md:left-[10px] md:right-[50px] md:bottom-[50px] lg:top-[60px] lg:left-[60px] lg:right-[60px] lg:bottom-[60px] rounded-full overflow-hidden translate-x-20 opacity-100 rotate-0">
                                     <ResponsiveMedia
                                         src={sindhuraImage}
-                                        srcset={`${sindhuraImage400} 400w, ${sindhuraImage800} 800w, ${sindhuraImage1200} 1200w`}
                                         sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 400px"
                                         loading="eager"
                                         fetchpriority="high"
@@ -243,7 +235,6 @@ export default function Hero() {
                         <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 -translate-x-10 opacity-100 scale-100">
                             <ResponsiveMedia
                                 src={redCircle}
-                                srcset={`${redCircle400} 400w, ${redCircle800} 800w`}
                                 sizes="(max-width: 640px) 256px, 320px"
                                 alt=""
                                 width={320}
@@ -256,7 +247,6 @@ export default function Hero() {
                             <div className="absolute top-12 left-12 right-12 bottom-12 rounded-full overflow-hidden translate-x-10 opacity-100 rotate-0">
                                 <ResponsiveMedia
                                     src={sindhuraImage}
-                                    srcset={`${sindhuraImage400} 400w, ${sindhuraImage800} 800w`}
                                     sizes="(max-width: 640px) 200px, 280px"
                                     alt="Sindhu - Web3 Expert"
                                     width={320}
@@ -359,7 +349,6 @@ export default function Hero() {
                         <div className="relative w-56 h-56 sm:w-64 sm:h-64 -translate-x-10 opacity-100 scale-100">
                             <ResponsiveMedia
                                 src={redCircle}
-                                srcset={`${redCircle400} 400w, ${redCircle800} 800w`}
                                 sizes="(max-width: 640px) 224px, 256px"
                                 alt=""
                                 width={256}
@@ -372,7 +361,6 @@ export default function Hero() {
                             <div className="absolute top-10 left-10 right-10 bottom-10 rounded-full overflow-hidden translate-x-10 opacity-100 rotate-0">
                                 <ResponsiveMedia
                                     src={sindhuraImage}
-                                    srcset={`${sindhuraImage400} 400w, ${sindhuraImage800} 800w`}
                                     sizes="(max-width: 640px) 176px, 200px"
                                     alt="Sindhu - Web3 Expert"
                                     width={256}

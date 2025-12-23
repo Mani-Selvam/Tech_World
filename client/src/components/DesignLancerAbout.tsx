@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import sindhura from "@assets/Tech.webp";
-import sindhura400 from "@assets/Tech-400w.webp";
-import sindhura800 from "@assets/Tech-800w.webp";
-import sindhura1200 from "@assets/Tech-1200w.webp";
+import sindhura from "@assets/Tech.jpg";
 import { ResponsiveMedia } from "./ResponsiveMedia";
 import { motion } from "framer-motion";
 import {
@@ -342,7 +339,6 @@ export default function AboutSection() {
                             <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-500/30">
                                 <ResponsiveMedia
                                     src={sindhura}
-                                    srcset={`${sindhura400} 400w, ${sindhura800} 800w, ${sindhura1200} 1200w`}
                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
                                     loading="lazy"
                                     alt="Sindhu - Web3 Expert"

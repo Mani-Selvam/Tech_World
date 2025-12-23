@@ -1,53 +1,41 @@
-import image1 from "@assets/Image 1.webp";
-import image1_400 from "@assets/Image 1-400w.webp";
-import image1_800 from "@assets/Image 1-800w.webp";
-import image2 from "@assets/image 2.webp";
-import image2_400 from "@assets/image 2-400w.webp";
-import image2_800 from "@assets/image 2-800w.webp";
-import image3 from "@assets/image 3.webp";
-import image3_400 from "@assets/image 3-400w.webp";
-import image3_800 from "@assets/image 3-800w.webp";
-import image4 from "@assets/image 4.webp";
-import image4_400 from "@assets/image 4-400w.webp";
-import image4_800 from "@assets/image 4-800w.webp";
-import image5 from "@assets/image 5.webp";
-import image5_400 from "@assets/image 5-400w.webp";
-import image5_800 from "@assets/image 5-800w.webp";
-import image6 from "@assets/image 6.webp";
-import image6_400 from "@assets/image 6-400w.webp";
-import image6_800 from "@assets/image 6-800w.webp";
+import image1 from "@assets/Image 1.jpg";
+import image2 from "@assets/image 2.jpg";
+import image3 from "@assets/image 3.jpg";
+import image4 from "@assets/image 4.jpg";
+import image5 from "@assets/image 5.jpg";
+import image6 from "@assets/image 6.jpeg";
 import { useEffect, useRef, useState } from "react";
 
 export default function PhotoGallery() {
     const images = [
         {
             src: image1,
-            srcset: `${image1_400} 400w, ${image1_800} 800w, ${image1} 1200w`,
+
             alt: "BNI Erode Beacon's 500th Week Celebration!",
         },
         {
             src: image2,
-            srcset: `${image2_400} 400w, ${image2_800} 800w, ${image2} 1200w`,
+
             alt: "I'm Overjoyed to Announce My Leadership Graduation!",
         },
         {
             src: image5,
-            srcset: `${image5_400} 400w, ${image5_800} 800w, ${image5} 1200w`,
+
             alt: "JCI India Installation Ceremony!",
         },
         {
             src: image4,
-            srcset: `${image4_400} 400w, ${image4_800} 800w, ${image4} 1200w`,
+
             alt: "VIP networking area at Blockchain Life",
         },
         {
             src: image3,
-            srcset: `${image3_400} 400w, ${image3_800} 800w, ${image3} 1200w`,
+
             alt: "BNI BeIcon Award Function and representing Blockchain Technology",
         },
         {
             src: image6,
-            srcset: `${image6_400} 400w, ${image6_800} 800w, ${image6} 1200w`,
+
             alt: "BNI BeIcon Award Function and representing Blockchain Technology",
         },
     ];
