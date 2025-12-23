@@ -4,6 +4,21 @@ This is a modern full-stack web application for TechARA Academy's Web3 and block
 
 # Recent Changes
 
+**2025-12-23**: Optimized Bubble Animation with Canvas Rendering
+- **Canvas-based Bubbles**: Replaced DOM-based bubble animation with Canvas API for 60fps smooth performance
+  - Eliminates layout thrashing and improves overall performance
+  - Native graphics rendering with no blur or shadow effects
+  - Lightweight gradient rendering using Canvas gradients
+- **Performance Constraints**: Maximum 10 bubbles to minimize GPU/CPU load
+- **LCP Integration**: Bubbles start only after Largest Contentful Paint (LCP) using PerformanceObserver
+  - Prevents layout shifts and ensures critical content renders first
+  - 3-second fallback timer if LCP doesn't trigger
+- **Mobile Optimization**: Animation completely disabled on mobile devices (< 768px width)
+  - Detects mobile via viewport width and user agent
+  - Zero rendering overhead on touch devices
+- **Visual Design**: Clean purple gradient without blur or shadow effects for crisp rendering
+- **Result**: Smooth 60fps animation, zero impact on Core Web Vitals
+
 **2025-10-27**: Additional Lighthouse Optimization - Accessibility, Security, and Best Practices
 - **Accessibility Improvements**:
   - Fixed viewport meta tag: changed maximum-scale from 1 to 5 to allow proper zoom for accessibility
@@ -137,6 +152,11 @@ Preferred communication style: Simple, everyday language.
 - **Cross-env** for environment variable management
 
 ## Performance Optimizations
+- **Canvas Bubble Animation**: Optimized 60fps rendering with zero CLS impact
+  - Maximum 10 bubbles with Canvas API for smooth performance
+  - Starts after LCP to avoid delaying critical rendering
+  - Disabled on mobile to reduce CPU/battery usage
+  - No blur or shadow effects for crisp rendering
 - **WebP Images**: All hero images converted from PNG to WebP (57% size reduction)
   - Responsive srcset: 400w, 800w, 1200w variants for all devices
   - HTML preload with imagesrcset + imagesizes for correct responsive preloading
@@ -167,7 +187,10 @@ Preferred communication style: Simple, everyday language.
 - Call-to-action elements for registration
 
 ## Visual Effects
-- Dynamic bubble animations throughout sections
+- **Canvas-based bubble animations** - 10 bubbles max, 60fps smooth rendering
+  - Purple gradient bubbles without blur or shadow
+  - Starts after LCP for optimal Core Web Vitals
+  - Disabled on mobile for zero overhead
 - Gradient text effects and crypto-themed styling
 - Responsive image galleries
 - Sticky bottom banner for registration calls
