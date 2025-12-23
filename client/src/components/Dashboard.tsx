@@ -70,7 +70,13 @@ type Enrollment = {
 };
 
 // API service functions
-const getApiUrl = () => import.meta.env.VITE_API_URL || "http://localhost:3000";
+const getApiUrl = () => {
+    if (import.meta.env.VITE_API_URL) {
+        return import.meta.env.VITE_API_URL;
+    }
+    // Use the current origin for API calls in development and production
+    return window.location.origin;
+};
 
 const apiService = {
     // Fetch all attendees
