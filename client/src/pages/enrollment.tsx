@@ -41,10 +41,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { insertEnrollmentSchema, type InsertEnrollment } from "@shared/schema";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest, getApiBase } from "@/lib/queryClient";
 import { Link } from "wouter";
-
-const getApiUrl = () => import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 function EnrollmentPage() {
     const { toast } = useToast();
@@ -79,7 +77,7 @@ function EnrollmentPage() {
 
     const enrollmentMutation = useMutation({
         mutationFn: async (data: InsertEnrollment) => {
-            const response = await fetch(`${getApiUrl()}/api/enroll`, {
+            const response = await fetch(`${getApiBase()}/api/enroll`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),

@@ -3,25 +3,9 @@
  * Handles environment-based API URL configuration for local, development, and production environments
  */
 
-const getApiUrl = (): string => {
-  // First check if VITE_API_URL env variable is set
-  if (import.meta.env.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL;
-  }
+import { getApiBase } from './queryClient';
 
-  // Fallback based on environment
-  if (import.meta.env.DEV) {
-    // Development: connect to local server on port 8000
-    return 'http://localhost:8000';
-  }
-
-  // Production: use current domain
-  const protocol = window.location.protocol;
-  const host = window.location.host;
-  return `${protocol}//${host}`;
-};
-
-export const API_URL = getApiUrl();
+export const API_URL = getApiBase();
 
 /**
  * Make API request with proper URL handling
