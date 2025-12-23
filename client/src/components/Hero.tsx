@@ -139,13 +139,13 @@ export default function Hero() {
 
                             {/* Sparkle Icons - Top Right of Circle */}
                             <div
-                                className={`absolute -top-4 -right-60 md:-right-80 text-yellow-400 transition-all duration-1000 delay-700 ${
+                                className={`absolute -top-4 -right-60 md:-right-80 text-yellow-400 transition-all duration-1000 delay-700 hidden md:block ${
                                     isVisible ? "opacity-100" : "opacity-0"
                                 }`}>
-                                <div className="text-xl md:text-2xl mb-2 animate-bounce">
+                                <div className="text-xl md:text-2xl mb-2">
                                     <Sparkles className="w-6 h-6 md:w-8 md:h-8" />
                                 </div>
-                                <div className="text-base md:text-lg ml-8 animate-ping">
+                                <div className="text-base md:text-lg ml-8">
                                     <Star className="w-5 h-5 md:w-6 md:h-6" />
                                 </div>
                             </div>

@@ -256,12 +256,12 @@ export default function AboutSection() {
                     }}
                 />
                 <div
-                    className="absolute bottom-0 left-1/3 h-40 w-40 rotate-45 bg-gradient-to-tr from-pink-500/20 to-blue-500/20 animate-spin"
+                    className="absolute bottom-0 left-1/3 h-40 w-40 rotate-45 bg-gradient-to-tr from-pink-500/20 to-blue-500/20 hidden lg:block"
                     style={{
                         transform: `translate(${mousePosition.x * 0.01}px, ${
                             mousePosition.y * 0.01
                         }px) rotate(45deg)`,
-                        animationDuration: "20s",
+                        animation: 'spin 20s linear infinite'
                     }}
                 />
 
