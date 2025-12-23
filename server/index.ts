@@ -23,8 +23,13 @@ app.use(compression());
 app.use((req, res, next) => {
     // Content Security Policy - allow WebSocket for Vite HMR in development
     const connectSrc = process.env.NODE_ENV === 'development' 
-        ? "'self' https://wa.me ws: wss:" 
+        ? "'self' https://wa.me ws: wss: https://*.replit.dev" 
         : "'self' https://wa.me";
+    
+    // Allow Replit's iframe embedding in development
+    const frameAncestors = process.env.NODE_ENV === 'development'
+        ? "'self' https://*.replit.dev https://*.replit.com"
+        : "'self'";
     
     res.setHeader(
         'Content-Security-Policy',
@@ -34,7 +39,7 @@ app.use((req, res, next) => {
         "font-src 'self' https://fonts.gstatic.com; " +
         "img-src 'self' data: blob: https: https://storage.googleapis.com https://ik.imagekit.io; " +
         `connect-src ${connectSrc}; ` +
-        "frame-ancestors 'self'"
+        `frame-ancestors ${frameAncestors}`
     );
     
     // HTTP Strict Transport Security (HSTS) - only in production
@@ -42,11 +47,15 @@ app.use((req, res, next) => {
         res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
     }
     
-    // Cross-Origin Opener Policy
-    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+    // Cross-Origin Opener Policy - relaxed for Replit iframe
+    if (process.env.NODE_ENV !== 'development') {
+        res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+    }
     
-    // X-Frame-Options for clickjacking protection
-    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    // X-Frame-Options - skip in development to allow Replit iframe
+    if (process.env.NODE_ENV !== 'development') {
+        res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    }
     
     // X-Content-Type-Options
     res.setHeader('X-Content-Type-Options', 'nosniff');
