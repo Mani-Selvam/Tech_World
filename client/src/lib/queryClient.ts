@@ -7,12 +7,26 @@ async function throwIfResNotOk(res: Response) {
   }
 }
 
+const getApiBase = () => {
+  // Use VITE_API_URL if available, otherwise construct from host
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  // Default for development
+  if (import.meta.env.DEV) {
+    return "http://localhost:3000";
+  }
+  // Default for production (same origin)
+  return window.location.origin;
+};
+
 export async function apiRequest(
   method: string,
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const apiUrl = import.meta.env.DEV ? `http://localhost:3000${url}` : url;
+  const apiBase = getApiBase();
+  const apiUrl = `${apiBase}${url}`;
   const res = await fetch(apiUrl, {
     method,
     headers: data ? { "Content-Type": "application/json" } : {},
@@ -31,7 +45,8 @@ export const getQueryFn: <T>(options: {
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
     const path = queryKey.join("/") as string;
-    const apiUrl = import.meta.env.DEV ? `http://localhost:3000${path}` : path;
+    const apiBase = getApiBase();
+    const apiUrl = `${apiBase}${path}`;
     const res = await fetch(apiUrl, {
       credentials: "include",
     });
