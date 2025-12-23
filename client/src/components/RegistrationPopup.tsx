@@ -72,13 +72,27 @@ export default function RegistrationPopup({ isOpen, onClose }) {
             });
 
             console.log("Registration response status:", response.status);
+            console.log("Response headers:", {
+                contentType: response.headers.get('content-type'),
+                contentLength: response.headers.get('content-length'),
+            });
             
-            const result = await response.json();
+            const responseText = await response.text();
+            console.log("Response text:", responseText);
+            
+            let result;
+            try {
+                result = JSON.parse(responseText);
+            } catch (parseError) {
+                console.error("JSON parse error:", parseError);
+                throw new Error(`Server error: ${response.status} - ${responseText || "No response"}`);
+            }
+            
             console.log("Registration result:", result);
 
             if (!response.ok) {
                 throw new Error(
-                    result.details || result.message || "Registration failed"
+                    result.details || result.message || `Registration failed: ${response.status}`
                 );
             }
 
@@ -111,6 +125,7 @@ export default function RegistrationPopup({ isOpen, onClose }) {
             }, 2000);
         } catch (error) {
             console.error("Registration error:", error);
+            console.error("Error details:", error instanceof Error ? error.message : String(error));
             setIsSubmitting(false);
             setError(
                 error instanceof Error
