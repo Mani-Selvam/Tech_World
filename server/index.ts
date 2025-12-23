@@ -19,6 +19,29 @@ const app = express();
 
 app.use(compression());
 
+// CORS middleware - allow requests from client port
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    const allowedOrigins = [
+        'http://localhost:5000',
+        'http://127.0.0.1:5000',
+        'http://0.0.0.0:5000',
+    ];
+    
+    if (process.env.NODE_ENV === 'development' || allowedOrigins.includes(origin || '')) {
+        res.setHeader('Access-Control-Allow-Origin', origin || '*');
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    }
+    
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    
+    next();
+});
+
 // Security headers middleware
 app.use((req, res, next) => {
     // Content Security Policy - allow WebSocket for Vite HMR in development
