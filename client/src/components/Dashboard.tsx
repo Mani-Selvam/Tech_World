@@ -476,7 +476,7 @@ export default function Dashboard() {
                         transition={{ duration: 0.5 }}
                         className="space-y-8">
                         {/* Stats Cards */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -550,11 +550,13 @@ export default function Dashboard() {
                                         <TrendingUp className="w-6 h-6 text-white" />
                                     </div>
                                     <span className="text-xs font-medium text-green-300">
-                                        {Math.round(
-                                            (onlineEnrollments /
-                                                totalEnrollments) *
-                                                100
-                                        )}
+                                        {totalEnrollments > 0
+                                            ? Math.round(
+                                                  (onlineEnrollments /
+                                                      totalEnrollments) *
+                                                      100
+                                              )
+                                            : 0}
                                         %
                                     </span>
                                 </div>
@@ -563,6 +565,34 @@ export default function Dashboard() {
                                 </h3>
                                 <p className="text-gray-400 text-sm">
                                     Online Students
+                                </p>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.5 }}
+                                className="bg-gradient-to-br from-orange-900/30 to-orange-900/10 backdrop-blur-sm border border-orange-500/20 rounded-xl p-6">
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center">
+                                        <Users className="w-6 h-6 text-white" />
+                                    </div>
+                                    <span className="text-xs font-medium text-orange-300">
+                                        {totalEnrollments > 0
+                                            ? Math.round(
+                                                  (offlineEnrollments /
+                                                      totalEnrollments) *
+                                                      100
+                                              )
+                                            : 0}
+                                        %
+                                    </span>
+                                </div>
+                                <h3 className="text-2xl font-bold mb-1">
+                                    {offlineEnrollments}
+                                </h3>
+                                <p className="text-gray-400 text-sm">
+                                    Offline Students
                                 </p>
                             </motion.div>
                         </div>
