@@ -285,6 +285,9 @@
   animation-play-state: paused;
 }
 
+/* === LAZY LOAD ANIMATIONS - DEFER UNTIL AFTER LCP === */
+/* Animations are controlled by React component state via useAnimationDefer hook */
+
 /* === MOBILE ANIMATION REDUCTION === */
 @media (max-width: 768px) {
   @keyframes float {
@@ -319,14 +322,14 @@
   .geometric-shape.square {
     animation: float 15s ease-in-out infinite;
   }
+}
 
-  /* Disable motion on initial page load */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

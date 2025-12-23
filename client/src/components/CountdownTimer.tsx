@@ -13,9 +13,11 @@ import {
 import { GraduationCap } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { useAnimationDefer } from "@/hooks/useAnimationDefer";
 
 export default function CountdownTimer({ onRegisterClick }) {
     const [isMobileView, setIsMobileView] = useState(false);
+    const animationsEnabled = useAnimationDefer(2000);
     const [timeLeft, setTimeLeft] = useState({
         days: 0,
         hours: 0,
@@ -147,7 +149,7 @@ export default function CountdownTimer({ onRegisterClick }) {
                 {/* Section Header */}
                 <motion.div
                     className="text-center mb-12"
-                    initial="hidden"
+                    initial={animationsEnabled ? "hidden" : "visible"}
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                     variants={containerVariants}>
@@ -178,7 +180,7 @@ export default function CountdownTimer({ onRegisterClick }) {
                 {/* Countdown Timer */}
                 <motion.div
                     className="max-w-5xl mx-auto"
-                    initial="hidden"
+                    initial={animationsEnabled ? "hidden" : "visible"}
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                     variants={containerVariants}>

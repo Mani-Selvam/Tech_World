@@ -6,9 +6,11 @@ import { useEffect, useState } from "react";
 import SectionBubbles from "./SectionBubbles";
 import OrbitIcons from "./OrbitIcons";
 import { MessageCircle, Sparkles, Star, Users } from "lucide-react";
+import { useAnimationDefer } from "@/hooks/useAnimationDefer";
 
 export default function Hero() {
     const [isVisible, setIsVisible] = useState(true);
+    const animationsEnabled = useAnimationDefer(1500);
 
     useEffect(() => {
         // Content visible immediately for better FCP/LCP
@@ -63,11 +65,11 @@ export default function Hero() {
                     <h1
                         className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight max-w-4xl lg:max-w-5xl mx-auto opacity-100 translate-y-0"
                         data-testid="text-main-title"
-                        style={{ animation: "float 3s ease-in-out infinite" }}>
+                        style={{ animation: animationsEnabled ? "float 3s ease-in-out infinite" : "none" }}>
                         <span
                             className="inline-block transition-transform duration-700 delay-300 transform hover:scale-105"
                             style={{
-                                animation: "pulseText 2s ease-in-out infinite",
+                                animation: animationsEnabled ? "pulseText 2s ease-in-out infinite" : "none",
                             }}>
                             Empowering India's Web3 Future
                         </span>
@@ -75,7 +77,7 @@ export default function Hero() {
                         <span
                             className="inline-block text-sm sm:text-base md:text-lg lg:text-xl bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 transition-all duration-700 delay-500 transform hover:scale-105"
                             style={{
-                                animation: "gradientMove 4s ease infinite",
+                                animation: animationsEnabled ? "gradientMove 4s ease infinite" : "none",
                                 backgroundSize: "200% 200%",
                             }}>
                             Er. SH — Blockchain & Fintech Innovator, Educator,
