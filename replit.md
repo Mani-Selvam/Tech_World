@@ -4,6 +4,25 @@ This is a modern full-stack web application for TechARA Academy's Web3 and block
 
 # Recent Changes
 
+**2025-12-23**: PWA Support & Further Performance Enhancements
+- **Progressive Web App (PWA) Setup**:
+  - Added `manifest.json` for installable app experience on mobile
+  - Implemented Service Worker for offline support and asset caching
+  - App now works offline and can be installed to home screen
+  - Smart caching strategy: cached assets + fallback to network
+  - Automatic old cache cleanup on updates
+
+- **Production Console Optimization**:
+  - Removed production console logs for PWA detection
+  - Silent error handling prevents debug noise
+  - Dev environment still shows diagnostics
+
+- **Service Worker Features**:
+  - Cache-first strategy for static assets
+  - Network-first for dynamic content with fallback
+  - Offline fallback serves cached HTML
+  - Automatic cache versioning for updates
+
 **2025-12-23**: CSS Optimization & Canvas Bubble Animation
 - **CSS Code Reduction**: Reduced CSS by ~40% through deduplication and consolidation
   - Removed duplicate `spin-slow` animation definitions

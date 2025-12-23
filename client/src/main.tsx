@@ -1,9 +1,9 @@
 // ✅ Safe PWA check — avoids InvalidStateError in iframes
-if (window === window.top) {
+// Only run in production to avoid console spam in development
+if (process.env.NODE_ENV === 'production' && window === window.top) {
     navigator
         .getInstalledRelatedApps?.()
-        .then((apps) => console.log("Installed related apps:", apps))
-        .catch((err) => console.warn("Not supported:", err));
+        .catch(() => {}); // Silent fail in production
 }
 
 import { createRoot } from "react-dom/client";
