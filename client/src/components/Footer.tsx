@@ -50,7 +50,7 @@ export default function Footer() {
         });
     };
 
-    const handleSubscribe = (e) => {
+    const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (email) {
             setIsSubscribed(true);
@@ -164,13 +164,9 @@ export default function Footer() {
                         </h3>
                         <ul className="space-y-3">
                             {resources.map((resource, index) => (
-                                <li key={index}>
-                                    <Link
-                                        href={resource.href}
-                                        className="text-gray-300 hover:text-purple-400 transition-colors duration-300 flex items-center">
-                                        <span className="w-1 h-1 bg-purple-400 rounded-full mr-3"></span>
-                                        {resource.name}
-                                    </Link>
+                                <li key={index} className="text-gray-300 flex items-center">
+                                    <span className="w-1 h-1 bg-purple-400 rounded-full mr-3"></span>
+                                    {resource.name}
                                 </li>
                             ))}
                         </ul>

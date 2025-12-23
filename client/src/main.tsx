@@ -1,7 +1,7 @@
 // ✅ Safe PWA check — avoids InvalidStateError in iframes
 // Only run in production to avoid console spam in development
 if (process.env.NODE_ENV === 'production' && window === window.top) {
-    navigator
+    (navigator as any)
         .getInstalledRelatedApps?.()
         .catch(() => {}); // Silent fail in production
 }
