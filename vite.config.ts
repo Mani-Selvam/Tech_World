@@ -22,10 +22,11 @@ export default defineConfig({
         port: 5000,
         allowedHosts: true,
         hmr: {
-            protocol: "ws",
-            host: "localhost",
+            host: "127.0.0.1",
             port: 5000,
+            protocol: "ws",
         },
+        middlewareMode: false,
     },
     build: {
         outDir: path.resolve(__dirname, "dist/public"),
