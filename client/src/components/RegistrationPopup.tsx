@@ -26,6 +26,9 @@ import {
     GraduationCap,
 } from "lucide-react";
 
+// Get API URL for backend requests
+const getApiUrl = () => import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 // Registration form schema
 const registrationSchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters"),
@@ -57,7 +60,7 @@ export default function RegistrationPopup({ isOpen, onClose }) {
 
         try {
             // Submit registration data to your backend
-            const response = await fetch("/api/register", {
+            const response = await fetch(`${getApiUrl()}/api/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -70,11 +70,13 @@ type Enrollment = {
 };
 
 // API service functions
+const getApiUrl = () => import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 const apiService = {
     // Fetch all attendees
     async fetchAttendees(): Promise<Attendee[]> {
         try {
-            const response = await fetch("/api/attendees");
+            const response = await fetch(`${getApiUrl()}/api/attendees`);
             if (!response.ok) throw new Error("Failed to fetch attendees");
             const data = await response.json();
             return data.attendees || [];
@@ -87,7 +89,7 @@ const apiService = {
     // Fetch all enrollments
     async fetchEnrollments(): Promise<Enrollment[]> {
         try {
-            const response = await fetch("/api/enrollments");
+            const response = await fetch(`${getApiUrl()}/api/enrollments`);
             if (!response.ok) throw new Error("Failed to fetch enrollments");
             const data = await response.json();
             return data.enrollments || [];
@@ -104,7 +106,7 @@ const apiService = {
     ): Promise<void> {
         try {
             const queryParams = new URLSearchParams(filters || {}).toString();
-            const response = await fetch(`/api/export/${type}?${queryParams}`);
+            const response = await fetch(`${getApiUrl()}/api/export/${type}${queryParams ? `?${queryParams}` : ""}`);
             if (!response.ok) throw new Error("Failed to export data");
 
             const blob = await response.blob();
