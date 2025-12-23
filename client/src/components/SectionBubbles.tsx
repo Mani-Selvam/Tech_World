@@ -25,12 +25,7 @@ export default function SectionBubbles({ count = 5, className = "" }: SectionBub
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Disable bubbles on mobile for performance
-  if (isMobile) {
-    return <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`} />;
-  }
-
-  // Generate stable bubble data once
+  // Generate stable bubble data once - must be called regardless of isMobile
   const bubbles = useMemo<Bubble[]>(() => {
     const newBubbles: Bubble[] = [];
     
@@ -48,6 +43,11 @@ export default function SectionBubbles({ count = 5, className = "" }: SectionBub
     
     return newBubbles;
   }, [count]);
+
+  // Disable bubbles on mobile for performance - return empty div
+  if (isMobile) {
+    return <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`} />;
+  }
 
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
