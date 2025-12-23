@@ -6,6 +6,11 @@ import Person1 from "@assets/Review person 1.jpg";
 import Person2 from "@assets/Review person 2.jpg";
 import Person3 from "@assets/Review person 3.jpg";
 
+const reduceAnimations = () => {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth < 768;
+};
+
 const testimonials = [
     {
         id: 1,
@@ -52,6 +57,8 @@ interface TestimonialSlideProps {
 }
 
 const TestimonialSlide = ({ testimonial, isActive }: TestimonialSlideProps) => {
+    const isMobileView = reduceAnimations();
+    
     return (
         <motion.div
             className="absolute inset-0 flex items-center justify-center px-4"
@@ -61,16 +68,22 @@ const TestimonialSlide = ({ testimonial, isActive }: TestimonialSlideProps) => {
                 scale: isActive ? 1 : 0.9,
                 zIndex: isActive ? 10 : 1,
             }}
-            transition={{ duration: 0.5 }}>
+            transition={{ duration: isMobileView ? 0 : 0.5 }}>
             <div className="relative w-full h-full flex items-center justify-center">
                 {/* Quote Icon - Smaller on mobile */}
-                <motion.div
-                    initial={{ opacity: 0, rotate: -180 }}
-                    animate={{ opacity: 0.2, rotate: 0 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                    className="absolute top-4 left-4 md:top-10 md:left-10">
-                    <Quote className="w-8 h-8 md:w-16 md:h-16 text-white" />
-                </motion.div>
+                {isMobileView ? (
+                    <div className="absolute top-4 left-4 md:top-10 md:left-10">
+                        <Quote className="w-8 h-8 md:w-16 md:h-16 text-white opacity-20" />
+                    </div>
+                ) : (
+                    <motion.div
+                        initial={{ opacity: 0, rotate: -180 }}
+                        animate={{ opacity: 0.2, rotate: 0 }}
+                        transition={{ delay: 0.3, duration: 0.8 }}
+                        className="absolute top-4 left-4 md:top-10 md:left-10">
+                        <Quote className="w-8 h-8 md:w-16 md:h-16 text-white" />
+                    </motion.div>
+                )}
 
                 {/* Main Content Container - Responsive Layout */}
                 <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
@@ -78,7 +91,7 @@ const TestimonialSlide = ({ testimonial, isActive }: TestimonialSlideProps) => {
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.4, duration: 0.8 }}
+                        transition={{ delay: isMobileView ? 0 : 0.4, duration: isMobileView ? 0 : 0.8 }}
                         className="relative w-full lg:w-1/2 h-[40vh] md:h-[45vh] lg:h-[55vh] flex items-center justify-center">
                         {/* Decorative Elements - Smaller on mobile - Static on mobile for performance */}
                         <div className={`absolute -top-4 -right-4 md:-top-8 md:-right-8 w-16 h-16 md:w-32 md:h-32 bg-gradient-to-br ${testimonial.color} rounded-full blur-xl md:blur-2xl opacity-30`} />
@@ -87,8 +100,8 @@ const TestimonialSlide = ({ testimonial, isActive }: TestimonialSlideProps) => {
 
                         {/* Profile Image - Responsive */}
                         <motion.div
-                            whileHover={{ scale: 1.05, rotate: 2 }}
-                            transition={{ type: "spring", stiffness: 300 }}
+                            whileHover={isMobileView ? {} : { scale: 1.05, rotate: 2 }}
+                            transition={isMobileView ? {} : { type: "spring", stiffness: 300 }}
                             className="relative">
                             <img
                                 src={testimonial.avatar}

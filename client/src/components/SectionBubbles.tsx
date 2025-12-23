@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 
 interface Bubble {
   id: number;
@@ -16,6 +16,20 @@ interface SectionBubblesProps {
 }
 
 export default function SectionBubbles({ count = 5, className = "" }: SectionBubblesProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Disable bubbles on mobile for performance
+  if (isMobile) {
+    return <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`} />;
+  }
+
   // Generate stable bubble data once
   const bubbles = useMemo<Bubble[]>(() => {
     const newBubbles: Bubble[] = [];
