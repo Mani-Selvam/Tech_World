@@ -7,7 +7,7 @@ async function throwIfResNotOk(res: Response) {
   }
 }
 
-const getApiBase = () => {
+export const getApiBase = () => {
   // Use VITE_API_URL if available, otherwise construct from host
   if (import.meta.env.VITE_API_URL) {
     return import.meta.env.VITE_API_URL;

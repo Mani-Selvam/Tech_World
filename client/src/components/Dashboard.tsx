@@ -22,6 +22,7 @@ import {
     AlertCircle,
 } from "lucide-react";
 import { useLocation } from "wouter";
+import { getApiBase } from "@/lib/queryClient";
 
 import {
     LineChart,
@@ -70,19 +71,11 @@ type Enrollment = {
 };
 
 // API service functions
-const getApiUrl = () => {
-    if (import.meta.env.VITE_API_URL) {
-        return import.meta.env.VITE_API_URL;
-    }
-    // Use the current origin for API calls in development and production
-    return window.location.origin;
-};
-
 const apiService = {
     // Fetch all attendees
     async fetchAttendees(): Promise<Attendee[]> {
         try {
-            const response = await fetch(`${getApiUrl()}/api/attendees`);
+            const response = await fetch(`${getApiBase()}/api/attendees`);
             if (!response.ok) throw new Error("Failed to fetch attendees");
             const data = await response.json();
             return data.attendees || [];
@@ -95,7 +88,7 @@ const apiService = {
     // Fetch all enrollments
     async fetchEnrollments(): Promise<Enrollment[]> {
         try {
-            const response = await fetch(`${getApiUrl()}/api/enrollments`);
+            const response = await fetch(`${getApiBase()}/api/enrollments`);
             if (!response.ok) throw new Error("Failed to fetch enrollments");
             const data = await response.json();
             return data.enrollments || [];
@@ -112,7 +105,7 @@ const apiService = {
     ): Promise<void> {
         try {
             const queryParams = new URLSearchParams(filters || {}).toString();
-            const response = await fetch(`${getApiUrl()}/api/export/${type}${queryParams ? `?${queryParams}` : ""}`);
+            const response = await fetch(`${getApiBase()}/api/export/${type}${queryParams ? `?${queryParams}` : ""}`);
             if (!response.ok) throw new Error("Failed to export data");
 
             const blob = await response.blob();
@@ -178,20 +171,20 @@ const processRoleData = (enrollments: Enrollment[]) => {
 };
 
 const processSkillData = (enrollments: Enrollment[]) => {
-    const skills = {
+    const skills: Record<string, Record<string, number>> = {
         blockchainCoding: { Beginner: 0, Intermediate: 0, Advanced: 0 },
         cryptoDefi: { Beginner: 0, Intermediate: 0, Advanced: 0 },
         nftWeb3: { Beginner: 0, Intermediate: 0, Advanced: 0 },
     };
 
     enrollments.forEach((enrollment) => {
-        if (enrollment.blockchainCoding) {
+        if (enrollment.blockchainCoding && skills.blockchainCoding) {
             skills.blockchainCoding[enrollment.blockchainCoding]++;
         }
-        if (enrollment.cryptoDefi) {
+        if (enrollment.cryptoDefi && skills.cryptoDefi) {
             skills.cryptoDefi[enrollment.cryptoDefi]++;
         }
-        if (enrollment.nftWeb3) {
+        if (enrollment.nftWeb3 && skills.nftWeb3) {
             skills.nftWeb3[enrollment.nftWeb3]++;
         }
     });
