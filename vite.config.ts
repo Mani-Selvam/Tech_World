@@ -34,12 +34,20 @@ export default defineConfig({
         target: "esnext",
         minify: "terser",
         cssCodeSplit: true,
+        reportCompressedSize: false,
+        sourcemap: false,
         rollupOptions: {
             output: {
                 chunkFileNames: "assets/js/[name]-[hash].js",
                 entryFileNames: "assets/js/[name]-[hash].js",
                 assetFileNames: "assets/[name]-[hash][extname]",
+                manualChunks: {
+                    'vendor': ['react', 'react-dom'],
+                    'ui': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+                    'animations': ['framer-motion'],
+                },
             },
+            external: [],
         },
     },
 });
