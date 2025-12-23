@@ -80,32 +80,10 @@ const TestimonialSlide = ({ testimonial, isActive }: TestimonialSlideProps) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4, duration: 0.8 }}
                         className="relative w-full lg:w-1/2 h-[40vh] md:h-[45vh] lg:h-[55vh] flex items-center justify-center">
-                        {/* Decorative Elements - Smaller on mobile */}
-                        <motion.div
-                            animate={{
-                                rotate: [0, 10, 0, -10, 0],
-                                scale: [1, 1.05, 1, 1.05, 1],
-                            }}
-                            transition={{
-                                duration: 8,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
-                            className={`absolute -top-4 -right-4 md:-top-8 md:-right-8 w-16 h-16 md:w-32 md:h-32 bg-gradient-to-br ${testimonial.color} rounded-full blur-xl md:blur-2xl opacity-30`}
-                        />
+                        {/* Decorative Elements - Smaller on mobile - Static on mobile for performance */}
+                        <div className={`absolute -top-4 -right-4 md:-top-8 md:-right-8 w-16 h-16 md:w-32 md:h-32 bg-gradient-to-br ${testimonial.color} rounded-full blur-xl md:blur-2xl opacity-30`} />
 
-                        <motion.div
-                            animate={{
-                                rotate: [0, -10, 0, 10, 0],
-                                scale: [1, 1.05, 1, 1.05, 1],
-                            }}
-                            transition={{
-                                duration: 10,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
-                            className={`absolute -bottom-4 -left-4 md:-bottom-8 md:-left-8 w-14 h-14 md:w-24 md:h-24 bg-gradient-to-br ${testimonial.color} rounded-full blur-lg md:blur-xl opacity-20`}
-                        />
+                        <div className={`absolute -bottom-4 -left-4 md:-bottom-8 md:-left-8 w-14 h-14 md:w-24 md:h-24 bg-gradient-to-br ${testimonial.color} rounded-full blur-lg md:blur-xl opacity-20`} />
 
                         {/* Profile Image - Responsive */}
                         <motion.div
