@@ -113,9 +113,11 @@ const TestimonialSlide = ({ testimonial, isActive }: TestimonialSlideProps) => {
                             transition={{ type: "spring", stiffness: 300 }}
                             className="relative">
                             <img
-                                loading="lazy"
                                 src={testimonial.avatar}
                                 alt={testimonial.name}
+                                width={400}
+                                height={500}
+                                decoding="async"
                                 className="h-[30vh] md:h-[35vh] lg:h-[45vh] w-auto rounded-2xl shadow-2xl object-cover"
                             />
 

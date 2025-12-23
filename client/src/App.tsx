@@ -19,11 +19,6 @@ const ProtectedDashboard = lazy(
 
 // Lightweight Loading Component - Optimized for performance
 const LoadingSpinner = () => {
-    const [isMounted, setIsMounted] = React.useState(false);
-    React.useEffect(() => {
-        setIsMounted(true);
-    }, []);
-
     return (
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
             <div className="relative z-10 flex flex-col items-center justify-center p-8">
@@ -46,15 +41,13 @@ const LoadingSpinner = () => {
                     {[0, 1, 2].map((i) => (
                         <div
                             key={i}
-                            className="w-3 h-3 bg-purple-400 rounded-full"
+                            className="w-3 h-3 bg-purple-400 rounded-full animate-pulse"
                             style={{
-                                animation: isMounted ? `pulse 1.2s ease-in-out infinite` : 'none',
                                 animationDelay: `${i * 0.15}s`
                             }}
                         />
                     ))}
                 </div>
-                <style>{`@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }`}</style>
             </div>
         </div>
     );

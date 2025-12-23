@@ -10,32 +10,38 @@ export default function PhotoGallery() {
     const images = [
         {
             src: image1,
-
+            width: 960,
+            height: 720,
             alt: "BNI Erode Beacon's 500th Week Celebration!",
         },
         {
             src: image2,
-
+            width: 960,
+            height: 720,
             alt: "I'm Overjoyed to Announce My Leadership Graduation!",
         },
         {
             src: image5,
-
+            width: 910,
+            height: 683,
             alt: "JCI India Installation Ceremony!",
         },
         {
             src: image4,
-
+            width: 960,
+            height: 720,
             alt: "VIP networking area at Blockchain Life",
         },
         {
             src: image3,
-
+            width: 960,
+            height: 720,
             alt: "BNI BeIcon Award Function and representing Blockchain Technology",
         },
         {
             src: image6,
-
+            width: 960,
+            height: 720,
             alt: "BNI BeIcon Award Function and representing Blockchain Technology",
         },
     ];
@@ -109,10 +115,10 @@ export default function PhotoGallery() {
                             >
                                 <img
                                     src={image.src}
-                                    srcSet={image.srcset}
-                                    sizes="(max-width: 640px) 240px, (max-width: 768px) 288px, 320px"
+                                    width={320}
+                                    height={240}
+                                    sizes="(max-width: 640px) 240px, (max-width: 768px) 288px, (max-width: 1024px) 320px, 320px"
                                     alt={image.alt}
-                                    loading="lazy"
                                     decoding="async"
                                     className="w-60 sm:w-72 md:w-80 h-48 sm:h-56 md:h-60 object-cover rounded-lg transition-transform duration-1000"
                                     data-testid={`gallery-image-${index}`}
