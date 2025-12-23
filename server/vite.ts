@@ -41,9 +41,18 @@ export async function setupVite(app: Express, server: Server) {
   });
 
   app.use(vite.middlewares);
-  app.use("*", async (req, res, next) => {
+  // Only serve index.html for non-API routes
+  app.use((req, res, next) => {
+    // Skip API routes - let them be handled by Express routes
+    if (req.path.startsWith("/api")) {
+      return next();
+    }
+    // Handle all other routes (SPA)
+    handleIndexHtml(req, res, next, vite);
+  });
+  
+  async function handleIndexHtml(req: any, res: any, next: any, vite: any) {
     const url = req.originalUrl;
-
     try {
       const clientTemplate = path.resolve(
         import.meta.dirname,
@@ -64,7 +73,7 @@ export async function setupVite(app: Express, server: Server) {
       vite.ssrFixStacktrace(e as Error);
       next(e);
     }
-  });
+  }
 }
 
 export function serveStatic(app: Express) {
