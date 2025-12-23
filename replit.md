@@ -193,6 +193,49 @@ Preferred communication style: Simple, everyday language.
 - **Cache Strategy**: 1-year immutable cache for versioned assets, no-cache for HTML
 - **Target Metrics**: Performance ≥90, FCP <1.8s, LCP <2.5s, TBT <150ms, CLS <0.1
 
+# Deployment & Architecture
+
+## Port Configuration
+
+### Local Development
+- **Client (Vite)**: Port 3000 - `npm run dev:client`
+- **Server (Express)**: Port 8000 - `npm run dev:server`
+- **Combined**: Port 5000 - `npm run dev` (for production-like setup)
+
+### Commands
+```bash
+npm run dev           # Single port (5000) - both client & server
+npm run dev:split    # Split ports (3000 & 8000) - recommended for dev
+npm run build        # Build for production
+npm start            # Start production server
+```
+
+### Environment Setup
+Create `.env` file (copy from `.env.example`):
+```env
+NODE_ENV=development
+PORT=8000
+VITE_API_URL=http://localhost:8000
+DATABASE_URL=postgresql://...
+```
+
+## cPanel Deployment
+
+### Quick Setup
+1. Upload files to cPanel server
+2. Run `npm install && npm run build`
+3. Start backend: `pm2 start dist/index.js`
+4. Copy frontend: `cp -r dist/public/* ~/public_html/`
+5. Configure `.env` with your domain
+
+### Full Guide
+See **DEPLOYMENT.md** in project root for complete cPanel, AWS, Heroku setup instructions.
+
+### API URL Configuration
+- **Local**: `http://localhost:8000`
+- **cPanel**: `https://yourdomain.com:8000` or `https://yourdomain.com` (if reverse-proxied)
+- **Separate Server**: `https://api.yourdomain.com`
+
 # Key Features
 
 ## Registration System
