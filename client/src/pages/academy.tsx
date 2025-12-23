@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { Zap, Users, TrendingUp } from "lucide-react";
 import { useAnimationDefer } from "@/hooks/useAnimationDefer";
+import { ResponsiveMedia } from "@/components/ResponsiveMedia";
 
 const Ecosystem = lazy(() => import("@/components/Ecosystem"));
 const Career = lazy(() => import("@/components/Career"));
@@ -199,7 +200,16 @@ export default function Academy() {
                                             className="absolute top-2 right-2 w-28 sm:w-36 md:w-40 h-32 sm:h-44 md:h-48 rounded-2xl overflow-hidden shadow-2xl border border-purple-500/20"
                                             animate={{ y: [0, -15, 0], x: [0, 5, 0] }}
                                             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
-                                            <img src={imgClass} alt="Blockchain" className="w-full h-full object-cover" />
+                                            <ResponsiveMedia 
+                                                src={imgClass} 
+                                                alt="Blockchain" 
+                                                className="w-full h-full object-cover"
+                                                loading="lazy"
+                                                decoding="async"
+                                                width={160}
+                                                height={192}
+                                                sizes="(max-width: 640px) 112px, (max-width: 1024px) 144px, 160px"
+                                            />
                                             <Label text="Blockchain" />
                                         </motion.div>
 
@@ -207,7 +217,16 @@ export default function Academy() {
                                             className="absolute top-14 left-2 w-32 sm:w-40 md:w-48 h-28 sm:h-40 md:h-44 rounded-2xl overflow-hidden shadow-2xl border border-blue-500/20"
                                             animate={{ y: [0, 15, 0], x: [0, -5, 0] }}
                                             transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}>
-                                            <img src={imgMetaverse} alt="Metaverse" className="w-full h-full object-cover" />
+                                            <ResponsiveMedia 
+                                                src={imgMetaverse} 
+                                                alt="Metaverse" 
+                                                className="w-full h-full object-cover"
+                                                loading="lazy"
+                                                decoding="async"
+                                                width={192}
+                                                height={176}
+                                                sizes="(max-width: 640px) 128px, (max-width: 1024px) 160px, 192px"
+                                            />
                                             <Label text="Metaverse" />
                                         </motion.div>
 
@@ -215,7 +234,16 @@ export default function Academy() {
                                             className="absolute bottom-4 left-2 w-32 sm:w-40 md:w-48 h-28 sm:h-40 md:h-44 rounded-2xl overflow-hidden shadow-2xl border border-blue-500/20"
                                             animate={{ y: [0, 15, 0], x: [0, -5, 0] }}
                                             transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}>
-                                            <img src={imgTeam} alt="Team Learning" className="w-full h-full object-cover" />
+                                            <ResponsiveMedia 
+                                                src={imgTeam} 
+                                                alt="Team Learning" 
+                                                className="w-full h-full object-cover"
+                                                loading="lazy"
+                                                decoding="async"
+                                                width={192}
+                                                height={176}
+                                                sizes="(max-width: 640px) 128px, (max-width: 1024px) 160px, 192px"
+                                            />
                                             <Label text="Team Learning" />
                                         </motion.div>
 
@@ -223,7 +251,16 @@ export default function Academy() {
                                             className="absolute bottom-6 right-2 w-32 sm:w-40 md:w-48 h-28 sm:h-40 md:h-44 rounded-2xl overflow-hidden shadow-2xl border border-blue-500/20"
                                             animate={{ y: [0, 15, 0], x: [0, -5, 0] }}
                                             transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}>
-                                            <img src={imgCode} alt="Web3 Dev" className="w-full h-full object-cover" />
+                                            <ResponsiveMedia 
+                                                src={imgCode} 
+                                                alt="Web3 Dev" 
+                                                className="w-full h-full object-cover"
+                                                loading="lazy"
+                                                decoding="async"
+                                                width={192}
+                                                height={176}
+                                                sizes="(max-width: 640px) 128px, (max-width: 1024px) 160px, 192px"
+                                            />
                                             <Label text="Web3 Dev" />
                                         </motion.div>
                                     </>
@@ -242,10 +279,16 @@ export default function Academy() {
                                             className="w-40 sm:w-52 md:w-56 h-52 sm:h-64 md:h-72 rounded-2xl overflow-hidden shadow-2xl border border-cyan-500/30 relative"
                                             animate={animationsEnabled ? { scale: [1, 1.05, 1] } : {}}
                                             transition={animationsEnabled ? { duration: 3.8, ease: "easeInOut" } : {}}>
-                                            <img
+                                            <ResponsiveMedia
                                                 src={carouselImages[carouselIndex].src}
                                                 alt={carouselImages[carouselIndex].label}
                                                 className="w-full h-full object-cover"
+                                                loading="eager"
+                                                decoding="async"
+                                                fetchpriority="high"
+                                                width={224}
+                                                height={288}
+                                                sizes="(max-width: 640px) 160px, (max-width: 1024px) 208px, 224px"
                                             />
                                             <Label text={carouselImages[carouselIndex].label} />
                                         </motion.div>
