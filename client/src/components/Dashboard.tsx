@@ -75,12 +75,16 @@ const apiService = {
     // Fetch all attendees
     async fetchAttendees(): Promise<Attendee[]> {
         try {
-            const response = await fetch(`${getApiBase()}/api/attendees`);
-            if (!response.ok) throw new Error("Failed to fetch attendees");
+            const apiBase = getApiBase();
+            const url = `${apiBase}/api/attendees`;
+            console.log("Fetching attendees from:", url);
+            const response = await fetch(url);
+            console.log("Attendees response status:", response.status);
+            if (!response.ok) throw new Error(`Failed to fetch attendees: ${response.status}`);
             const data = await response.json();
             return data.attendees || [];
         } catch (error) {
-            console.error("Error fetching attendees:", error);
+            console.error("Error fetching attendees:", error instanceof Error ? error.message : String(error));
             throw error;
         }
     },
@@ -88,12 +92,16 @@ const apiService = {
     // Fetch all enrollments
     async fetchEnrollments(): Promise<Enrollment[]> {
         try {
-            const response = await fetch(`${getApiBase()}/api/enrollments`);
-            if (!response.ok) throw new Error("Failed to fetch enrollments");
+            const apiBase = getApiBase();
+            const url = `${apiBase}/api/enrollments`;
+            console.log("Fetching enrollments from:", url);
+            const response = await fetch(url);
+            console.log("Enrollments response status:", response.status);
+            if (!response.ok) throw new Error(`Failed to fetch enrollments: ${response.status}`);
             const data = await response.json();
             return data.enrollments || [];
         } catch (error) {
-            console.error("Error fetching enrollments:", error);
+            console.error("Error fetching enrollments:", error instanceof Error ? error.message : String(error));
             throw error;
         }
     },

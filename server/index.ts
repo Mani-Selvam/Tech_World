@@ -19,18 +19,12 @@ const app = express();
 
 app.use(compression());
 
-// CORS middleware - allow requests from client port
+// CORS middleware - allow all origins in development
 app.use((req, res, next) => {
-    const origin = req.headers.origin;
-    const allowedOrigins = [
-        'http://localhost:5000',
-        'http://127.0.0.1:5000',
-        'http://0.0.0.0:5000',
-    ];
+    const isDevelopment = process.env.NODE_ENV === 'development';
     
-    if (process.env.NODE_ENV === 'development' || allowedOrigins.includes(origin || '')) {
-        res.setHeader('Access-Control-Allow-Origin', origin || '*');
-        res.setHeader('Access-Control-Allow-Credentials', 'true');
+    if (isDevelopment) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     }
@@ -61,7 +55,7 @@ app.use((req, res, next) => {
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
         "font-src 'self' https://fonts.gstatic.com; " +
         "img-src 'self' data: blob: https: https://storage.googleapis.com https://ik.imagekit.io; " +
-        `connect-src ${connectSrc}; ` +
+        `connect-src ${connectSrc} http://localhost:3000 ws://localhost:5000; ` +
         `frame-ancestors ${frameAncestors}`
     );
     
