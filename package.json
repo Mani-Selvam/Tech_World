@@ -4,10 +4,8 @@
     "type": "module",
     "license": "MIT",
     "scripts": {
-        "dev": "cross-env NODE_ENV=development npx tsx server/index.ts",
         "dev:client": "cross-env VITE_API_URL=http://localhost:3000 vite",
         "dev:server": "cross-env NODE_ENV=development PORT=3000 npx tsx server/index.ts",
-        "dev:split": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
         "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
         "start": "cross-env NODE_ENV=production node dist/index.js",
         "check": "tsc",
