@@ -56,8 +56,8 @@ export default function Hero() {
                 }}
             />
 
-            {/* Animated Bubbles */}
-            <SectionBubbles count={5} className="z-[1]" />
+            {/* Animated Bubbles - Skip on mobile */}
+            {animationsEnabled && <SectionBubbles count={5} className="z-[1]" />}
 
             {/* Main Content Container */}
             <div className="relative z-10 w-full h-full">
@@ -137,7 +137,7 @@ export default function Hero() {
                                         data-testid="img-sindhu-hero"
                                     />
                                 </div>
-                                <OrbitIcons />
+                                {animationsEnabled && <OrbitIcons />}
                             </div>
 
                             {/* Sparkle Icons - Top Right of Circle */}
