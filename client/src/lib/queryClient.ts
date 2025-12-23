@@ -8,16 +8,12 @@ async function throwIfResNotOk(res: Response) {
 }
 
 export const getApiBase = () => {
-  // Use VITE_API_URL if available, otherwise construct from host
+  // Use VITE_API_URL if available, otherwise use relative paths
   if (import.meta.env.VITE_API_URL) {
     return import.meta.env.VITE_API_URL;
   }
-  // Default for development
-  if (import.meta.env.DEV) {
-    return "http://localhost:3000";
-  }
-  // Default for production (same origin)
-  return window.location.origin;
+  // Default: use same origin (Vite middleware in Express serves both)
+  return "";
 };
 
 export async function apiRequest(

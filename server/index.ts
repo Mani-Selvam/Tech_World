@@ -157,8 +157,8 @@ app.use((req, res, next) => {
         serveStatic(app);
     }
 
-    // Server runs on port 3000 in development, 5000 in production
-    const port = parseInt(process.env.PORT || (process.env.NODE_ENV === 'development' ? "3000" : "5000"), 10);
+    // Server runs on port 5000 for both development and production
+    const port = parseInt(process.env.PORT || "5000", 10);
     const isWindows = process.platform === "win32";
 
     const listenOptions = {
