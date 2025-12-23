@@ -101,10 +101,10 @@ export default function AttendeesDemographics() {
 
     return (
         <div className="relative py-16">
-            {/* Background Effects */}
-            <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-20 left-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
-                <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+            {/* Background Effects - Subtle, no pulsing animation */}
+            <div className="absolute inset-0 overflow-hidden hidden md:block">
+                <div className="absolute top-20 left-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-5"></div>
+                <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-5"></div>
             </div>
 
             {/* Main Container with Left and Right Gaps */}

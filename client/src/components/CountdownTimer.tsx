@@ -13,13 +13,22 @@ import {
 import { GraduationCap } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+
 export default function CountdownTimer({ onRegisterClick }) {
+    const [isMobileView, setIsMobileView] = useState(false);
     const [timeLeft, setTimeLeft] = useState({
         days: 0,
         hours: 0,
         minutes: 0,
         seconds: 0,
     });
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobileView(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useEffect(() => {
         const getNextSessionStart = () => {
@@ -126,11 +135,13 @@ export default function CountdownTimer({ onRegisterClick }) {
 
     return (
         <div className="relative mb-16">
-            {/* Background Effects */}
-            <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-20 left-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
-                <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
-            </div>
+            {/* Background Effects - Disabled on mobile for better performance */}
+            {!isMobileView && (
+                <div className="absolute inset-0 overflow-hidden">
+                    <div className="absolute top-20 left-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-5"></div>
+                    <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-5"></div>
+                </div>
+            )}
 
             <div className="relative z-10">
                 {/* Section Header */}

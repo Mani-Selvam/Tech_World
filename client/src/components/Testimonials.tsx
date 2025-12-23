@@ -244,31 +244,31 @@ export default function Testimonials() {
             <section
                 ref={containerRef}
                 className="relative h-[90vh] bg-black overflow-hidden">
-                {/* Animated Background - Responsive */}
-                <div className="absolute inset-0 overflow-hidden">
+                {/* Animated Background - Disabled on mobile for better performance */}
+                <div className="absolute inset-0 overflow-hidden hidden md:block">
                     <motion.div
                         animate={{
-                            x: [0, 100, 0],
-                            y: [0, -50, 0],
-                        }}
-                        transition={{
-                            duration: 20,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                        }}
-                        className="absolute top-0 left-0 w-32 h-32 md:w-64 md:h-64 lg:w-96 lg:h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-xl md:blur-2xl lg:blur-3xl opacity-10"
-                    />
-                    <motion.div
-                        animate={{
-                            x: [0, -100, 0],
-                            y: [0, 50, 0],
+                            x: [0, 50, 0],
+                            y: [0, -25, 0],
                         }}
                         transition={{
                             duration: 25,
                             repeat: Infinity,
                             ease: "easeInOut",
                         }}
-                        className="absolute bottom-0 right-0 w-32 h-32 md:w-64 md:h-64 lg:w-96 lg:h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-xl md:blur-2xl lg:blur-3xl opacity-10"
+                        className="absolute top-0 left-0 w-32 h-32 md:w-64 md:h-64 lg:w-96 lg:h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-xl md:blur-2xl lg:blur-3xl opacity-5"
+                    />
+                    <motion.div
+                        animate={{
+                            x: [0, -50, 0],
+                            y: [0, 25, 0],
+                        }}
+                        transition={{
+                            duration: 30,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                        className="absolute bottom-0 right-0 w-32 h-32 md:w-64 md:h-64 lg:w-96 lg:h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-xl md:blur-2xl lg:blur-3xl opacity-5"
                     />
                 </div>
 

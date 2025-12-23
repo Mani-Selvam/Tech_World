@@ -235,8 +235,8 @@ export default function ExploreCourses() {
             className="py-20 bg-background relative overflow-hidden min-h-screen"
             style={{ height: "90vh" }}
             id="courses">
-            {/* Animated Background */}
-            <div className="absolute inset-0 overflow-hidden">
+            {/* Animated Background - Simplified on mobile */}
+            <div className="absolute inset-0 overflow-hidden hidden md:block">
                 {/* Dynamic Gradient Background */}
                 <motion.div
                     className="absolute inset-0"
@@ -244,18 +244,18 @@ export default function ExploreCourses() {
                         background: `radial-gradient(circle at 50% 50%, ${colors.glow} 0%, transparent 50%)`,
                     }}
                     animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.1, 0.2, 0.1],
+                        scale: [1, 1.1, 1],
+                        opacity: [0.05, 0.1, 0.05],
                     }}
                     transition={{
-                        duration: 4,
+                        duration: 6,
                         repeat: Infinity,
                         ease: "easeInOut",
                     }}
                 />
 
-                {/* Floating Geometric Shapes */}
-                {[...Array(12)].map((_, i) => (
+                {/* Floating Geometric Shapes - Desktop only */}
+                {[...Array(6)].map((_, i) => (
                     <motion.div
                         key={i}
                         className="absolute border"
@@ -274,38 +274,14 @@ export default function ExploreCourses() {
                                     : "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
                         }}
                         animate={{
-                            rotate: [0, 360],
-                            opacity: [0.1, 0.3, 0.1],
-                            scale: [1, 1.2, 1],
+                            rotate: [0, 180],
+                            opacity: [0.08, 0.15, 0.08],
+                            scale: [1, 1.1, 1],
                         }}
                         transition={{
-                            duration: 15 + i * 3,
+                            duration: 20 + i * 3,
                             repeat: Infinity,
                             ease: "linear",
-                        }}
-                    />
-                ))}
-
-                {/* Animated Lines */}
-                {[...Array(6)].map((_, i) => (
-                    <motion.div
-                        key={`line-${i}`}
-                        className="absolute h-px"
-                        style={{
-                            width: `${Math.random() * 200 + 100}px`,
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            background: `linear-gradient(90deg, transparent, ${colors.particle}, transparent)`,
-                            transform: `rotate(${Math.random() * 360}deg)`,
-                        }}
-                        animate={{
-                            x: [0, 50, 0],
-                            opacity: [0, 0.5, 0],
-                        }}
-                        transition={{
-                            duration: 5 + i * 2,
-                            repeat: Infinity,
-                            ease: "easeInOut",
                         }}
                     />
                 ))}
