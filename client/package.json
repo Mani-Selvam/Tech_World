@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 5000 --config ../vite.config.ts"
+    "dev": "vite --host 0.0.0.0 --port 5000"
   }
 }
