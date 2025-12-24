@@ -150,11 +150,14 @@ app.use((req, res, next) => {
         throw err;
     });
 
-    // Setup frontend serving
-    if (app.get("env") === "development") {
-        await setupVite(app, server);
-    } else {
-        serveStatic(app);
+    // Setup frontend serving (skip if API_ONLY mode)
+    const apiOnlyMode = process.env.API_ONLY === 'true';
+    if (!apiOnlyMode) {
+        if (app.get("env") === "development") {
+            await setupVite(app, server);
+        } else {
+            serveStatic(app);
+        }
     }
 
     // Server runs on port 5000 for both development and production

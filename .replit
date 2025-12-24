@@ -37,13 +37,13 @@ waitForPort = 5000
 name = "API Server"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "cross-env PORT=3001 npm run dev:server"
-waitForPort = 3001
-
 [workflows.workflow.metadata]
 outputType = "console"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cross-env PORT=3001 API_ONLY=true npm run dev:server"
+waitForPort = 3001
 
 [[ports]]
 localPort = 3000
