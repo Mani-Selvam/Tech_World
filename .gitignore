@@ -1,5 +1,7 @@
 # Dependencies
 node_modules
+client/node_modules
+server/node_modules
 /.pnp
 .pnp.js
 
@@ -8,6 +10,8 @@ dist
 dist-ssr
 build
 *.local
+client/dist
+server/dist
 
 # Environment
 .env
@@ -40,3 +44,6 @@ ehthumbs.db
 # Cache
 .cache
 .eslintcache
+
+# Local state
+.local/
