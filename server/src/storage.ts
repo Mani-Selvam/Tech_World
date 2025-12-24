@@ -2,10 +2,9 @@ import {
     attendees,
     enrollments,
     type Attendee,
-    type InsertAttendee,
     type Enrollment,
-    type InsertEnrollment,
-} from "@shared/schema";
+} from "./schema";
+import { type InsertAttendee, type InsertEnrollment } from "@shared/schema";
 import { eq, desc } from "drizzle-orm";
 import { nanoid } from "nanoid";
 
