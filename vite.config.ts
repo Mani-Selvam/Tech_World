@@ -22,8 +22,6 @@ export default defineConfig({
         port: 5000,
         allowedHosts: true,
         hmr: {
-            host: "127.0.0.1",
-            port: 5000,
             protocol: "ws",
         },
         middlewareMode: false,
