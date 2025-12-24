@@ -38,7 +38,7 @@ import {
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertEnrollmentSchema, type InsertEnrollment } from "@shared/schema";
+import { insertEnrollmentSchema, type InsertEnrollment } from "../schemas";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, getApiBase } from "@/lib/queryClient";

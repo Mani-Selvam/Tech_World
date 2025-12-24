@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertAttendeeSchema, insertEnrollmentSchema } from "@shared/schema";
+import { insertAttendeeSchema, insertEnrollmentSchema } from "./schema";
 import { fromZodError } from "zod-validation-error";
 import { Parser } from "json2csv";
 
