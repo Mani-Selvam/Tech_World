@@ -4,7 +4,7 @@
     "type": "module",
     "license": "MIT",
     "scripts": {
-        "dev": "cross-env NODE_ENV=development tsx server/index.ts",
+        "dev": "concurrently \"cross-env PORT=3001 API_ONLY=true npm run dev:server\" \"npm run dev:client\"",
         "dev:client": "vite --host 0.0.0.0 --port 5000",
         "dev:server": "cross-env NODE_ENV=development tsx server/index.ts",
         "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
