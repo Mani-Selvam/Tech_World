@@ -7,7 +7,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import BubbleAnimation from "@/components/BubbleAnimation";
 import { motion } from "framer-motion";
-import { Loader2, Sparkles, Zap, BookOpen } from "lucide-react";
+import { BookOpen } from "lucide-react";
+import { usePageReady } from "@/hooks/usePageReady";
 
 const Home = lazy(() => import("@/pages/home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -19,35 +20,56 @@ const ProtectedDashboard = lazy(
 
 // Lightweight Loading Component - Optimized for performance
 const LoadingSpinner = () => {
-    return (
-        <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
-            <div className="relative z-10 flex flex-col items-center justify-center p-8">
-                <div className="relative mb-8 w-24 h-24 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 flex items-center justify-center shadow-2xl">
-                    <BookOpen className="w-12 h-12 text-white" />
-                </div>
+    const isReady = usePageReady(2500);
 
-                <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-white mb-2">
+    if (isReady) {
+        return null;
+    }
+
+    return (
+        <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-slate-950 via-purple-900/30 to-slate-950 z-50">
+            <div className="flex flex-col items-center justify-center p-8">
+                {/* Logo Circle with Icon */}
+                <motion.div
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="relative mb-12 w-28 h-28 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 flex items-center justify-center shadow-2xl">
+                    <BookOpen className="w-14 h-14 text-white" />
+                </motion.div>
+
+                {/* Text Content */}
+                <div className="text-center mb-10">
+                    <h1 className="text-4xl font-bold text-white mb-3">
                         <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
-                            Techara
+                            TechARA
                         </span>
                     </h1>
-                    <p className="text-gray-300 text-lg">
-                        Loading...
+                    <p className="text-gray-300 text-base font-medium">
+                        Loading your experience...
                     </p>
                 </div>
 
-                <div className="flex space-x-2 mt-8">
+                {/* Animated Dots */}
+                <div className="flex gap-3 justify-center">
                     {[0, 1, 2].map((i) => (
-                        <div
+                        <motion.div
                             key={i}
-                            className="w-3 h-3 bg-purple-400 rounded-full animate-pulse"
-                            style={{
-                                animationDelay: `${i * 0.15}s`
+                            animate={{ y: [0, -12, 0] }}
+                            transition={{
+                                duration: 0.8,
+                                delay: i * 0.15,
+                                repeat: Infinity,
+                                ease: "easeInOut"
                             }}
+                            className="w-3 h-3 bg-gradient-to-r from-purple-400 to-indigo-400 rounded-full shadow-lg"
                         />
                     ))}
                 </div>
+
+                {/* Progress Text */}
+                <p className="text-xs text-gray-500 mt-10 tracking-wider uppercase">
+                    Preparing everything...
+                </p>
             </div>
         </div>
     );
@@ -74,6 +96,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <TooltipProvider>
                 <div className="relative">
+                    <LoadingSpinner />
                     <BubbleAnimation />
                     <div className="relative z-10">
                         <Toaster />
