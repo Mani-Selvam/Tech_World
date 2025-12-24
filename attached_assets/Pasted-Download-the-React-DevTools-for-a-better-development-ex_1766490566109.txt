@@ -1,0 +1,53 @@
+Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+The script has an unsupported MIME type ('text/html').Understand this error
+manifest.json:1 Manifest: Line: 1, column: 1, Syntax error.Understand this error
+10framer-motion.js?v=e3f89514:313 'rgb(hsl(240, 10%, 3.9%))' is not an animatable color. Use the equivalent color code instead.
+warning @ framer-motion.js?v=e3f89514:313
+asRGBA @ framer-motion.js?v=e3f89514:3434
+mixColor @ framer-motion.js?v=e3f89514:3445
+mix @ framer-motion.js?v=e3f89514:3550
+createMixers @ framer-motion.js?v=e3f89514:3871
+interpolate @ framer-motion.js?v=e3f89514:3892
+keyframes @ framer-motion.js?v=e3f89514:3947
+initPlayback @ framer-motion.js?v=e3f89514:4026
+onKeyframesResolved @ framer-motion.js?v=e3f89514:3345
+onResolved @ framer-motion.js?v=e3f89514:4004
+complete @ framer-motion.js?v=e3f89514:3084
+(anonymous) @ framer-motion.js?v=e3f89514:3005
+measureAllKeyframes @ framer-motion.js?v=e3f89514:3005
+triggerCallback @ framer-motion.js?v=e3f89514:366
+process @ framer-motion.js?v=e3f89514:399
+processBatch @ framer-motion.js?v=e3f89514:448
+requestAnimationFrame
+wake @ framer-motion.js?v=e3f89514:463
+acc.<computed> @ framer-motion.js?v=e3f89514:470
+scheduleResolve @ framer-motion.js?v=e3f89514:3039
+MainThreadAnimation @ framer-motion.js?v=e3f89514:4006
+(anonymous) @ framer-motion.js?v=e3f89514:4600
+(anonymous) @ framer-motion.js?v=e3f89514:2512
+start @ framer-motion.js?v=e3f89514:2510
+animateTarget @ framer-motion.js?v=e3f89514:4639
+animateVisualElement @ framer-motion.js?v=e3f89514:4704
+(anonymous) @ framer-motion.js?v=e3f89514:4738
+(anonymous) @ framer-motion.js?v=e3f89514:4738
+animateChanges @ framer-motion.js?v=e3f89514:4865
+(anonymous) @ framer-motion.js?v=e3f89514:899
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=e3f89514:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=e3f89514:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=e3f89514:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=e3f89514:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=e3f89514:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=e3f89514:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=e3f89514:19447
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=e3f89514:18868
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=e3f89514:9119
+commitRootImpl @ chunk-RPCDYKBN.js?v=e3f89514:19432
+commitRoot @ chunk-RPCDYKBN.js?v=e3f89514:19277
+finishConcurrentRender @ chunk-RPCDYKBN.js?v=e3f89514:18805
+performConcurrentWorkOnRoot @ chunk-RPCDYKBN.js?v=e3f89514:18718
+workLoop @ chunk-RPCDYKBN.js?v=e3f89514:197
+flushWork @ chunk-RPCDYKBN.js?v=e3f89514:176
+performWorkUntilDeadline @ chunk-RPCDYKBN.js?v=e3f89514:384Understand this warning
+chunk-RPCDYKBN.js?v=e3f89514:8429 Framing 'https://www.linkedin.com/' violates the following Content Security Policy directive: "default-src 'self'". The request has been blocked. Note that 'frame-src' was not explicitly set, so 'default-src' is used as a fallback.
+Understand this error
+42The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
