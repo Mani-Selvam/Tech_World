@@ -34,6 +34,7 @@ This project has been restructured from a monorepo to independent `/client` and 
 ### Development
 
 **Terminal 1 - Client (Vite dev server on port 5000):**
+
 ```bash
 cd client
 npm install
@@ -41,6 +42,7 @@ npm run dev
 ```
 
 **Terminal 2 - Server (Express API server on port 3001):**
+
 ```bash
 cd server
 npm install
@@ -59,11 +61,11 @@ npm start        # Starts server with built frontend
 
 ## Key Changes
 
-- **Port Changes**: Server moved from port 5000 to port 3001
-- **Client Proxy**: Client's Vite config includes a proxy to forward `/api/*` requests to server on port 3001
-- **Independent Scripts**: Each directory has its own `package.json` with relevant dependencies
-- **Shared Code**: Both client and server reference `../shared/schema.ts` for types
-- **Assets**: Both client and server can access `../attached_assets/`
+-   **Port Changes**: Server moved from port 5000 to port 3001
+-   **Client Proxy**: Client's Vite config includes a proxy to forward `/api/*` requests to server on port 3001
+-   **Independent Scripts**: Each directory has its own `package.json` with relevant dependencies
+-   **Shared Code**: Both client and server reference `../shared/schema.ts` for types
+-   **Assets**: Both client and server can access `../attached_assets/`
 
 ## Building for Production
 
@@ -81,6 +83,7 @@ npm start
 ```
 
 The production build will:
+
 1. Build the React frontend to `dist/public/`
 2. Bundle the Express server to `dist/`
 3. When the server starts, it serves the built frontend alongside the API
@@ -88,6 +91,7 @@ The production build will:
 ## Environment Variables
 
 Create a `.env` file in the root directory with:
+
 ```
 DATABASE_URL=your_database_url
 NODE_ENV=development

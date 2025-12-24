@@ -23,15 +23,19 @@ export default defineConfig({
         hmr: {
             protocol: "ws",
         },
+        fs: {
+            allow: [".", "../attached_assets"],
+        },
         proxy: {
             "/api": {
                 target: "http://localhost:3001",
                 changeOrigin: true,
+                rewrite: (path) => path,
             },
         },
     },
     build: {
-        outDir: path.resolve(__dirname, "../dist"),
+        outDir: path.resolve(__dirname, "../dist/public"),
         emptyOutDir: true,
         target: "esnext",
         minify: "terser",
