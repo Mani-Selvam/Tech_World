@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useAnimationDefer } from "@/hooks/useAnimationDefer";
@@ -7,7 +7,7 @@ import { useWhatsAppMessage } from "@/hooks/useWhatsAppMessage";
 import { AcademyHeroBackground } from "@/components/AcademyHeroBackground";
 import { AcademyHeroContent } from "@/components/AcademyHeroContent";
 import { AcademyHeroGallery } from "@/components/AcademyHeroGallery";
-import { ACADEMY_CAROUSEL_IMAGES, ACADEMY_FLOATING_IMAGES } from "@/constants/academy";
+import { ACADEMY_CAROUSEL_IMAGES, ACADEMY_FLOATING_IMAGES, preloadAcademyImages } from "@/constants/academy";
 
 const Ecosystem = lazy(() => import("@/components/Ecosystem"));
 const Career = lazy(() => import("@/components/Career"));
@@ -18,6 +18,11 @@ export default function Academy() {
     const animationsEnabled = useAnimationDefer(1500);
     const carouselIndex = useCarousel(ACADEMY_CAROUSEL_IMAGES, animationsEnabled);
     const { sendWorkshopMessage, sendConsultationMessage } = useWhatsAppMessage();
+
+    // Preload all academy images on component mount
+    useEffect(() => {
+        preloadAcademyImages();
+    }, []);
 
     return (
         <>

@@ -52,3 +52,19 @@ export const ACADEMY_FLOATING_IMAGES = [
     duration: 4.5,
   },
 ];
+
+/**
+ * Preload critical images for faster loading
+ * Images are loaded in background to ensure page completion
+ */
+export function preloadAcademyImages() {
+  const allImages = [imgClass, imgDev, imgTeam, imgMetaverse, imgCode];
+  
+  allImages.forEach((img) => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = img;
+    document.head.appendChild(link);
+  });
+}

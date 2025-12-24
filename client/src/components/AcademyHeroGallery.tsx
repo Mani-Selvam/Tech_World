@@ -72,7 +72,8 @@ export function AcademyHeroGallery({
                   src={img.src}
                   alt={img.alt}
                   className="w-full h-full object-cover"
-                  loading="lazy"
+                  loading="eager"
+                  fetchpriority="high"
                   decoding="async"
                 />
                 <AcademyLabel text={img.label} />
