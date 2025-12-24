@@ -29,11 +29,12 @@ export default function Academy() {
             <Navigation />
 
             {/* Hero Section */}
-            <section className="relative min-h-screen pt-20 overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950 flex items-center justify-center">
+            <section className="relative bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
                 <AcademyHeroBackground animationsEnabled={animationsEnabled} />
 
-                <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-12">
-                    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-20">
+                    <div className="min-h-screen flex items-center">
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 w-full">
                         <AcademyHeroContent
                             animationsEnabled={animationsEnabled}
                             onWorkshopClick={sendWorkshopMessage}
@@ -46,6 +47,7 @@ export default function Academy() {
                             carouselImages={ACADEMY_CAROUSEL_IMAGES}
                             carouselIndex={carouselIndex}
                         />
+                        </div>
                     </div>
                 </div>
             </section>
