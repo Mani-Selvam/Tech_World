@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development tsx server/index.ts",
-    "start": "cross-env PORT=3001 API_ONLY=true NODE_ENV=development tsx index.ts"
+    "dev": "cross-env NODE_ENV=development tsx ../server/index.ts",
+    "start": "cross-env PORT=3001 API_ONLY=true NODE_ENV=development tsx ../server/index.ts"
   }
 }

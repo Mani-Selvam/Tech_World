@@ -1,17 +1,23 @@
 # Development Setup
 
+## Prerequisites
+Install all dependencies from root first:
+```bash
+npm install
+```
+
 ## Running Client and Server Separately
 
 ### Terminal 1 - Client (UI on Port 5000)
 ```bash
-cd /client
+cd client
 npm run dev
 ```
 This starts the frontend on http://localhost:5000
 
 ### Terminal 2 - Server (API on Port 3001)
 ```bash
-cd /server
+cd server
 npm start
 ```
 This starts the backend API on http://localhost:3001 (API only, no UI)
