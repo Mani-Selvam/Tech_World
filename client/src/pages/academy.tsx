@@ -184,118 +184,107 @@ export default function Academy() {
                             initial={{ opacity: 0, x: 50 }}
                             animate={animationsEnabled ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
                             transition={animationsEnabled ? { duration: 0.8, delay: 0.3, ease: "easeOut" } : { duration: 0 }}
-                            className="relative h-full min-h-96 lg:min-h-screen flex items-center justify-center">
-                            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg aspect-square">
-                                {/* Outer Glow */}
-                                {animationsEnabled && (
-                                    <motion.div
-                                        className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-600/30 to-cyan-600/30 blur-xl"
-                                        animate={{ rotate: 360 }}
-                                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                            className="relative h-full min-h-96 lg:min-h-screen flex items-center justify-center hidden lg:flex">
+                            <div className="relative w-full h-96 md:h-full">
+                                {/* Metaverse Card - Top Left */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={animationsEnabled ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+                                    transition={animationsEnabled ? { duration: 0.6, delay: 0.35 } : { duration: 0 }}
+                                    whileHover={animationsEnabled ? { scale: 1.08, zIndex: 50 } : {}}
+                                    className="absolute top-8 left-8 w-40 h-40 rounded-2xl overflow-hidden shadow-2xl border border-purple-500/30 cursor-pointer transition-all duration-300">
+                                    <ResponsiveMedia 
+                                        src={imgMetaverse} 
+                                        alt="Metaverse" 
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                        width={160}
+                                        height={160}
+                                        sizes="(max-width: 1024px) 128px, 160px"
                                     />
-                                )}
+                                    <Label text="Metaverse" />
+                                </motion.div>
 
-                                {/* Floating Images */}
-                                {animationsEnabled && (
-                                    <>
-                                        <motion.div
-                                            className="absolute top-2 right-2 w-28 sm:w-36 md:w-40 h-32 sm:h-44 md:h-48 rounded-2xl overflow-hidden shadow-2xl border border-purple-500/20"
-                                            animate={{ y: [0, -15, 0], x: [0, 5, 0] }}
-                                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
-                                            <ResponsiveMedia 
-                                                src={imgClass} 
-                                                alt="Blockchain" 
-                                                className="w-full h-full object-cover"
-                                                loading="lazy"
-                                                decoding="async"
-                                                width={160}
-                                                height={192}
-                                                sizes="(max-width: 640px) 112px, (max-width: 1024px) 144px, 160px"
-                                            />
-                                            <Label text="Blockchain" />
-                                        </motion.div>
+                                {/* Bitcoin - Center Right */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={animationsEnabled ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+                                    transition={animationsEnabled ? { duration: 0.6, delay: 0.4 } : { duration: 0 }}
+                                    whileHover={animationsEnabled ? { scale: 1.08, zIndex: 50 } : {}}
+                                    className="absolute top-16 right-4 w-48 h-64 rounded-2xl overflow-hidden shadow-2xl border border-yellow-500/30 cursor-pointer transition-all duration-300">
+                                    <ResponsiveMedia 
+                                        src={imgClass} 
+                                        alt="Blockchain" 
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                        width={192}
+                                        height={256}
+                                        sizes="(max-width: 1024px) 144px, 192px"
+                                    />
+                                    <Label text="Blockchain" />
+                                </motion.div>
 
-                                        <motion.div
-                                            className="absolute top-14 left-2 w-32 sm:w-40 md:w-48 h-28 sm:h-40 md:h-44 rounded-2xl overflow-hidden shadow-2xl border border-blue-500/20"
-                                            animate={{ y: [0, 15, 0], x: [0, -5, 0] }}
-                                            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}>
-                                            <ResponsiveMedia 
-                                                src={imgMetaverse} 
-                                                alt="Metaverse" 
-                                                className="w-full h-full object-cover"
-                                                loading="lazy"
-                                                decoding="async"
-                                                width={192}
-                                                height={176}
-                                                sizes="(max-width: 640px) 128px, (max-width: 1024px) 160px, 192px"
-                                            />
-                                            <Label text="Metaverse" />
-                                        </motion.div>
+                                {/* Crypto - Center Left */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={animationsEnabled ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+                                    transition={animationsEnabled ? { duration: 0.6, delay: 0.45 } : { duration: 0 }}
+                                    whileHover={animationsEnabled ? { scale: 1.08, zIndex: 50 } : {}}
+                                    className="absolute top-56 left-12 w-44 h-44 rounded-2xl overflow-hidden shadow-2xl border border-yellow-600/30 cursor-pointer transition-all duration-300">
+                                    <ResponsiveMedia 
+                                        src={imgDev} 
+                                        alt="Crypto" 
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                        width={176}
+                                        height={176}
+                                        sizes="(max-width: 1024px) 132px, 176px"
+                                    />
+                                    <Label text="Crypto" />
+                                </motion.div>
 
-                                        <motion.div
-                                            className="absolute bottom-4 left-2 w-32 sm:w-40 md:w-48 h-28 sm:h-40 md:h-44 rounded-2xl overflow-hidden shadow-2xl border border-blue-500/20"
-                                            animate={{ y: [0, 15, 0], x: [0, -5, 0] }}
-                                            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}>
-                                            <ResponsiveMedia 
-                                                src={imgTeam} 
-                                                alt="Team Learning" 
-                                                className="w-full h-full object-cover"
-                                                loading="lazy"
-                                                decoding="async"
-                                                width={192}
-                                                height={176}
-                                                sizes="(max-width: 640px) 128px, (max-width: 1024px) 160px, 192px"
-                                            />
-                                            <Label text="Team Learning" />
-                                        </motion.div>
+                                {/* Team Learning - Bottom Left */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={animationsEnabled ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+                                    transition={animationsEnabled ? { duration: 0.6, delay: 0.5 } : { duration: 0 }}
+                                    whileHover={animationsEnabled ? { scale: 1.08, zIndex: 50 } : {}}
+                                    className="absolute bottom-12 left-0 w-44 h-44 rounded-2xl overflow-hidden shadow-2xl border border-blue-500/30 cursor-pointer transition-all duration-300">
+                                    <ResponsiveMedia 
+                                        src={imgTeam} 
+                                        alt="Team Learning" 
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                        width={176}
+                                        height={176}
+                                        sizes="(max-width: 1024px) 132px, 176px"
+                                    />
+                                    <Label text="Team Learning" />
+                                </motion.div>
 
-                                        <motion.div
-                                            className="absolute bottom-6 right-2 w-32 sm:w-40 md:w-48 h-28 sm:h-40 md:h-44 rounded-2xl overflow-hidden shadow-2xl border border-blue-500/20"
-                                            animate={{ y: [0, 15, 0], x: [0, -5, 0] }}
-                                            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}>
-                                            <ResponsiveMedia 
-                                                src={imgCode} 
-                                                alt="Web3 Dev" 
-                                                className="w-full h-full object-cover"
-                                                loading="lazy"
-                                                decoding="async"
-                                                width={192}
-                                                height={176}
-                                                sizes="(max-width: 640px) 128px, (max-width: 1024px) 160px, 192px"
-                                            />
-                                            <Label text="Web3 Dev" />
-                                        </motion.div>
-                                    </>
-                                )}
-
-                                {/* Center Carousel */}
-                                <AnimatePresence>
-                                    <motion.div
-                                        className="absolute inset-0 flex items-center justify-center"
-                                        key={carouselIndex}
-                                        initial={animationsEnabled ? { scale: 0.8, opacity: 0 } : {}}
-                                        animate={animationsEnabled ? { scale: 1, opacity: 1 } : {}}
-                                        exit={animationsEnabled ? { scale: 0.8, opacity: 0 } : {}}
-                                        transition={animationsEnabled ? { duration: 0.6, ease: "easeInOut" } : {}}>
-                                        <motion.div
-                                            className="w-40 sm:w-52 md:w-56 h-52 sm:h-64 md:h-72 rounded-2xl overflow-hidden shadow-2xl border border-cyan-500/30 relative"
-                                            animate={animationsEnabled ? { scale: [1, 1.05, 1] } : {}}
-                                            transition={animationsEnabled ? { duration: 3.8, ease: "easeInOut" } : {}}>
-                                            <ResponsiveMedia
-                                                src={carouselImages[carouselIndex].src}
-                                                alt={carouselImages[carouselIndex].label}
-                                                className="w-full h-full object-cover"
-                                                loading="eager"
-                                                decoding="async"
-                                                fetchpriority="high"
-                                                width={224}
-                                                height={288}
-                                                sizes="(max-width: 640px) 160px, (max-width: 1024px) 208px, 224px"
-                                            />
-                                            <Label text={carouselImages[carouselIndex].label} />
-                                        </motion.div>
-                                    </motion.div>
-                                </AnimatePresence>
+                                {/* Web3 Dev - Bottom Right */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={animationsEnabled ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+                                    transition={animationsEnabled ? { duration: 0.6, delay: 0.55 } : { duration: 0 }}
+                                    whileHover={animationsEnabled ? { scale: 1.08, zIndex: 50 } : {}}
+                                    className="absolute bottom-0 right-8 w-44 h-56 rounded-2xl overflow-hidden shadow-2xl border border-blue-500/30 cursor-pointer transition-all duration-300">
+                                    <ResponsiveMedia 
+                                        src={imgCode} 
+                                        alt="Web3 Dev" 
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                        width={176}
+                                        height={224}
+                                        sizes="(max-width: 1024px) 132px, 176px"
+                                    />
+                                    <Label text="Web3 Dev" />
+                                </motion.div>
                             </div>
                         </motion.div>
                     </div>
