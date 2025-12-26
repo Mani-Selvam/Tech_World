@@ -1,18 +1,16 @@
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
+import { drizzle } from "drizzle-orm/neon-serverless";
+import { Pool, neonConfig } from "@neondatabase/serverless";
+import ws from "ws";
 import * as schema from "./schema";
 
+// Use WebSockets for compatibility with restricted environments like cPanel
+neonConfig.webSocketConstructor = ws;
+
 if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL must be set. Please ensure the database is provisioned.");
+    throw new Error(
+        "DATABASE_URL must be set. Please ensure the database is provisioned."
+    );
 }
 
-// Configure connection pooling
-const connectionString = process.env.DATABASE_URL;
-const client = postgres(connectionString, {
-    max: 10,
-    idle_timeout: 20,
-    connect_timeout: 10,
-});
-
-export const db = drizzle(client, { schema });
-
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+export const db = drizzle(pool, { schema });
