@@ -1,21 +1,10 @@
-import dotenv from "dotenv";
-import { neon, neonConfig } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-http";
-import { Agent, setGlobalDispatcher } from "undici";
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
 import * as schema from "./schema";
 
-dotenv.config();
-
-if (process.env.REPL_ID) {
-    setGlobalDispatcher(new Agent({ connect: { rejectUnauthorized: false } }));
-}
-
 if (!process.env.DATABASE_URL) {
-    throw new Error(
-        "DATABASE_URL must be set. Did you forget to provision a database?"
-    );
+  throw new Error("DATABASE_URL must be set. Please ensure the database is provisioned.");
 }
 
-neonConfig.fetchConnectionCache = true;
-const sql = neon(process.env.DATABASE_URL);
-export const db = drizzle(sql, { schema });
+export const queryClient = postgres(process.env.DATABASE_URL);
+export const db = drizzle(queryClient, { schema });
