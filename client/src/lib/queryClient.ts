@@ -8,7 +8,12 @@ async function throwIfResNotOk(res: Response) {
 }
 
 export const getApiBase = () => {
-    return ""; // Empty string for relative path
+    // Check if VITE_API_URL is set (e.g., in a local .env file)
+    if (import.meta.env.VITE_API_URL) {
+        return import.meta.env.VITE_API_URL;
+    }
+    // Default to empty string for relative paths when running on the same host
+    return ""; 
 };
 
 export async function apiRequest(
