@@ -62,22 +62,17 @@ export class DatabaseStorage implements IStorage {
 
     async createAttendee(insertAttendee: InsertAttendee): Promise<Attendee> {
         try {
-            await this.db.insert(attendees).values(insertAttendee);
-
-            const inserted = await this.db
-                .select()
-                .from(attendees)
-                .where(eq(attendees.email, insertAttendee.email))
-                .orderBy(desc(attendees.registeredAt))
-                .limit(1);
-
+            console.log("💾 DatabaseStorage.createAttendee [START]:", JSON.stringify(insertAttendee));
+            const inserted = await this.db.insert(attendees).values(insertAttendee).returning();
+            console.log("✅ DatabaseStorage.createAttendee [SUCCESS]:", JSON.stringify(inserted));
+            
             if (!inserted || inserted.length === 0) {
-                throw new Error("Failed to retrieve created attendee");
+                console.error("❌ DatabaseStorage.createAttendee [EMPTY RESULT]");
+                throw new Error("Database returned empty result after insert");
             }
-
             return inserted[0];
         } catch (error) {
-            console.error("Error in createAttendee:", error);
+            console.error("❌ DatabaseStorage.createAttendee [CRITICAL FAILURE]:", error);
             throw error;
         }
     }
@@ -96,22 +91,16 @@ export class DatabaseStorage implements IStorage {
         insertEnrollment: InsertEnrollment
     ): Promise<Enrollment> {
         try {
-            await this.db.insert(enrollments).values(insertEnrollment);
-
-            const inserted = await this.db
-                .select()
-                .from(enrollments)
-                .where(eq(enrollments.email, insertEnrollment.email))
-                .orderBy(desc(enrollments.enrolledAt))
-                .limit(1);
-
+            console.log("💾 DatabaseStorage.createEnrollment [START]:", JSON.stringify(insertEnrollment));
+            const inserted = await this.db.insert(enrollments).values(insertEnrollment).returning();
+            console.log("✅ DatabaseStorage.createEnrollment [SUCCESS]:", JSON.stringify(inserted));
             if (!inserted || inserted.length === 0) {
-                throw new Error("Failed to retrieve created enrollment");
+                console.error("❌ DatabaseStorage.createEnrollment [EMPTY RESULT]");
+                throw new Error("Failed to insert enrollment - no result returned");
             }
-
             return inserted[0];
         } catch (error) {
-            console.error("Error in createEnrollment:", error);
+            console.error("❌ DatabaseStorage.createEnrollment [CRITICAL FAILURE]:", error);
             throw error;
         }
     }
@@ -157,7 +146,7 @@ async function initializeStorage(): Promise<IStorage> {
         if (process.env.DATABASE_URL) {
             const { db } = await import("./db");
             storageInstance = new DatabaseStorage(db);
-            console.log("✅ Using DatabaseStorage with Neon database");
+            console.log("✅ Using DatabaseStorage with Neon database:", process.env.DATABASE_URL.substring(0, 20));
         } else {
             storageInstance = new MemStorage();
             console.log("⚠️  Using MemStorage - DATABASE_URL not found");

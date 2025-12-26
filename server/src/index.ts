@@ -68,6 +68,11 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Add a test endpoint
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok", env: process.env.NODE_ENV, db: !!process.env.DATABASE_URL });
+});
+
 app.use((req, res, next) => {
   if (process.env.NODE_ENV === 'production') {
     if (req.url.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|webp)$/)) {
@@ -97,16 +102,10 @@ app.use((req, res, next) => {
   res.on("finish", () => {
     const duration = Date.now() - start;
     if (path.startsWith("/api")) {
-      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
+      console.log(`[API LOG] ${req.method} ${path} ${res.statusCode} ${duration}ms`);
       if (capturedJsonResponse) {
-        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
+        console.log(`[API RESPONSE]`, JSON.stringify(capturedJsonResponse).slice(0, 500));
       }
-
-      if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + "…";
-      }
-
-      console.log(logLine);
     }
   });
 
