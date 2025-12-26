@@ -8,12 +8,7 @@ async function throwIfResNotOk(res: Response) {
 }
 
 export const getApiBase = () => {
-    // Use VITE_API_URL if explicitly set in environment
-    if (import.meta.env.VITE_API_URL) {
-        return import.meta.env.VITE_API_URL;
-    }
-    // Default: use production server (no trailing slash)
-    return "https://s-h-co-server.neophrondev.in";
+    return ""; // Empty string for relative path
 };
 
 export async function apiRequest(
