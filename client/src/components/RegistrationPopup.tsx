@@ -91,9 +91,9 @@ export default function RegistrationPopup({ isOpen, onClose }) {
             console.log("Registration result:", result);
 
             if (!response.ok) {
-                throw new Error(
-                    result.details || result.message || `Registration failed: ${response.status}`
-                );
+                setError(result.details || result.message || `Registration failed: ${response.status}`);
+                setIsSubmitting(false);
+                return; // Stop execution here
             }
 
             // Also send data to n8n webhook for email
@@ -108,6 +108,7 @@ export default function RegistrationPopup({ isOpen, onClose }) {
             // Registration successful
             setIsSubmitting(false);
             setShowThankYou(true);
+            setError(""); // Clear any previous errors
 
             // Get WhatsApp number from environment variable
             const whatsappNumber =
