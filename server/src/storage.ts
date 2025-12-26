@@ -3,8 +3,9 @@ import {
     enrollments,
     type Attendee,
     type Enrollment,
+    type InsertAttendee,
+    type InsertEnrollment,
 } from "./schema";
-import { type InsertAttendee, type InsertEnrollment } from "@shared/schema";
 import { eq, desc } from "drizzle-orm";
 import { nanoid } from "nanoid";
 
@@ -16,8 +17,10 @@ export interface IStorage {
 }
 
 export class MemStorage implements IStorage {
-    private attendees: Attendee[] = [];
-    private enrollments: Enrollment[] = [];
+    constructor(
+        private attendees: Attendee[] = [],
+        private enrollments: Enrollment[] = []
+    ) {}
 
     async createAttendee(insertAttendee: InsertAttendee): Promise<Attendee> {
         const attendee: Attendee = {
@@ -59,9 +62,7 @@ export class DatabaseStorage implements IStorage {
 
     async createAttendee(insertAttendee: InsertAttendee): Promise<Attendee> {
         try {
-            await this.db
-                .insert(attendees)
-                .values(insertAttendee);
+            await this.db.insert(attendees).values(insertAttendee);
 
             const inserted = await this.db
                 .select()
@@ -95,9 +96,7 @@ export class DatabaseStorage implements IStorage {
         insertEnrollment: InsertEnrollment
     ): Promise<Enrollment> {
         try {
-            await this.db
-                .insert(enrollments)
-                .values(insertEnrollment);
+            await this.db.insert(enrollments).values(insertEnrollment);
 
             const inserted = await this.db
                 .select()

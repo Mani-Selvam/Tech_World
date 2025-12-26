@@ -1,10 +1,9 @@
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
+import "./Polyfills";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { join } from "path";
 import dotenv from "dotenv";
-const envPath = join(__dirname, "../../.env");
+
+const envPath = join(process.cwd(), ".env");
 dotenv.config({ path: envPath });
 
 import express, { type Request, Response, NextFunction } from "express";

@@ -1,20 +1,20 @@
 {
-  "include": ["src/**/*", "../shared/**/*"],
-  "exclude": ["node_modules", "build", "dist"],
-  "compilerOptions": {
-    "incremental": true,
-    "noEmit": true,
-    "module": "ESNext",
-    "strict": true,
-    "lib": ["esnext"],
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "allowImportingTsExtensions": true,
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "types": ["node"],
-    "paths": {
-      "@shared/*": ["../shared/*"]
+    "include": ["src/**/*", "../shared/**/*"],
+    "exclude": ["node_modules", "build", "dist"],
+    "compilerOptions": {
+        "incremental": true,
+        "noEmit": true,
+        "module": "commonjs",
+        "strict": true,
+        "lib": ["esnext"],
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "allowImportingTsExtensions": true,
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "types": ["node"],
+        "paths": {
+            "@shared/*": ["../shared/*"]
+        }
     }
-  }
 }

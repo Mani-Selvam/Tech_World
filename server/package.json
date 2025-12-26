@@ -1,12 +1,11 @@
 {
     "name": "techara-server",
     "version": "1.0.0",
-    "type": "module",
     "license": "MIT",
     "scripts": {
         "dev": "cross-env NODE_ENV=development tsx src/index.ts",
         "start": "cross-env NODE_ENV=production node dist/index.js",
-        "build": "esbuild src/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+        "build": "esbuild src/index.ts --platform=node --bundle --format=cjs --target=node10 --outdir=dist --external:sharp --external:postgres --external:undici --external:@neondatabase/serverless --banner:js=\"if(typeof globalThis==='undefined'){global.globalThis=global;}if(!Object.fromEntries){Object.fromEntries=function(e){const o={};for(const[t,r]of e)o[t]=r;return o};}if(!Array.prototype.at){Array.prototype.at=function(e){const r=this,t=r.length,n=e<0?t+e:e;return n<0||n>=t?void 0:r[n];};}if(typeof global!=='undefined'&&!global.crypto){const cryptoModule=require('crypto');global.crypto={getRandomValues:e=>{const o=cryptoModule.randomBytes(e.length);for(let t=0;t<e.length;t++)e[t]=o[t];return e}}}\"",
         "check": "tsc --noEmit",
         "db:push": "drizzle-kit push --config drizzle.config.mjs"
     },

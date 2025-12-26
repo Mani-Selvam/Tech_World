@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { neon, neonConfig } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import { Agent, setGlobalDispatcher } from "undici";
-import * as schema from "@shared/schema";
+import * as schema from "./schema";
 
 dotenv.config();
 
