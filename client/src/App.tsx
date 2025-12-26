@@ -10,13 +10,11 @@ import { motion } from "framer-motion";
 import { BookOpen } from "lucide-react";
 import { usePageReady } from "@/hooks/usePageReady";
 
-const Home = lazy(() => import("@/pages/home"));
-const NotFound = lazy(() => import("@/pages/not-found"));
-const Enrollment = lazy(() => import("@/pages/enrollment"));
-const Academy = lazy(() => import("@/pages/academy"));
-const ProtectedDashboard = lazy(
-    () => import("@/components/ProtectedDashboard")
-);
+import Home from "@/pages/home";
+import NotFound from "@/pages/not-found";
+import Enrollment from "@/pages/enrollment";
+import Academy from "@/pages/academy";
+import ProtectedDashboard from "@/components/ProtectedDashboard";
 
 // Lightweight Loading Component - Optimized for performance
 const LoadingSpinner = () => {

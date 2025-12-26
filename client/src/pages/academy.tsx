@@ -9,10 +9,10 @@ import { AcademyHeroContent } from "@/components/AcademyHeroContent";
 import { AcademyHeroGallery } from "@/components/AcademyHeroGallery";
 import { ACADEMY_CAROUSEL_IMAGES, ACADEMY_FLOATING_IMAGES, preloadAcademyImages } from "@/constants/academy";
 
-const Ecosystem = lazy(() => import("@/components/Ecosystem"));
-const Career = lazy(() => import("@/components/Career"));
-const CertificationPrograms = lazy(() => import("@/components/CertificationPrograms"));
-const CryptoDigitalAssetProgram = lazy(() => import("@/components/CryptoDigitalAssetProgram"));
+import Ecosystem from "@/components/Ecosystem";
+import Career from "@/components/Career";
+import CertificationPrograms from "@/components/CertificationPrograms";
+import CryptoDigitalAssetProgram from "@/components/CryptoDigitalAssetProgram";
 
 export default function Academy() {
     const animationsEnabled = useAnimationDefer(1500);

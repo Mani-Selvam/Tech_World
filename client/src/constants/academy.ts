@@ -2,7 +2,7 @@ import imgClass from "@assets/bitcoin.jpg";
 import imgDev from "@assets/crypto.jpg";
 import imgTeam from "@assets/nft.jpeg";
 import imgMetaverse from "@assets/vr.jpg";
-import imgCode from "@assets/web.jpg";
+import imgCode from "@assets/Web.jpg";
 
 /**
  * Carousel images for academy hero
