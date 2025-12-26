@@ -4,7 +4,7 @@ import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
 export const attendees = pgTable("attendees", {
-    id: varchar("id")
+    id: text("id")
         .primaryKey()
         .default(sql`gen_random_uuid()`),
     name: text("name").notNull(),
@@ -17,7 +17,7 @@ export const attendees = pgTable("attendees", {
 });
 
 export const enrollments = pgTable("enrollments", {
-    id: varchar("id")
+    id: text("id")
         .primaryKey()
         .default(sql`gen_random_uuid()`),
     fullName: text("full_name").notNull(),
